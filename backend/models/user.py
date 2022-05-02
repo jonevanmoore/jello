@@ -13,9 +13,9 @@ class User(db.Model, UserMixin):
     avatar_id = db.Column(db.Integer, nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    created_at = db.Column(db.Datetime(timezone=True),
+    created_at = db.Column(db.DateTime(timezone=True),
                            server_default=func.now())
-    updated_at = db.Column(db.Datetime(timezone=True), onupdate=func.now())
+    updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
 
     @property
     def password(self):
