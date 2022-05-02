@@ -1,0 +1,10 @@
+#logout-button {
+  padding: 6px 12px;
+  border-width: var(--main-button-border-width);
+  border-style: solid;
+  border-color: var(--logout-button-main-color);
+  color: var(--logout-button-main-color);
+  font-weight: 900;
+  font-family: inherit;
+  border-radius: var(--main-border-radius);
+}
