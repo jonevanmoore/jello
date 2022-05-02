@@ -18,7 +18,7 @@ const NavBar = () => {
         </Link>
       </div>
       <div className="nav-bar-right">
-        <Link to='/users'>
+        <Link to='/boards'>
           [IC]
         </Link>
         <LogoutButton />
