@@ -70,7 +70,7 @@ export const createBoardThunk = board => async dispatch => {
     }
 };
 
-export const readBoads = () => async dispatch => {
+export const readBoards = () => async dispatch => {
     const response = await fetch("/api/boards");
 
     if (response.ok) {

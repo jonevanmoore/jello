@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, session, request, redirect
 from flask_login import login_required
 from backend.forms.new_board_form import NewBoardForm
 from backend.models.board import Board
+from backend.models import User
 from backend.models.db import db
 from backend.api.auth_routes import validation_errors_to_error_messages
 
