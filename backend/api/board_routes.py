@@ -37,27 +37,22 @@ def new_board():
 
 # U P D A T E
 @board_routes.route('/<int:id>', methods = [ 'PUT' ])
-@login_required
+# @login_required
 def update_board(id):
-    board = Board.query.get(Board.id)
-    form = NewBoardForm(board)
+    board = Board.query.get(id)
 
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        # form.populate_obj(board)
-        board = Board(
-            user_id=form.data['user_id'],
-            title=form.data['title'],
-            avatar_id=form.data['avatar_id']
-            # workspace_id=form.data['workspace_id']
-        )
-        db.session.add(board)
-        db.session.commit()
-        return board.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    title = request.json['title']
+    avatar_id = request.json['avatar_id']
+
+    board.title = title
+    board.avatar_id = avatar_id
+
+    db.session.commit()
+    return board.to_dict()
+
 
 # D E L E T E
 @board_routes.route('/<int:id>', methods = [ 'DELETE' ])
-@login_required
+# @login_required
 def delete_board():
     pass
