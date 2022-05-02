@@ -54,5 +54,8 @@ def update_board(id):
 # D E L E T E
 @board_routes.route('/<int:id>', methods = [ 'DELETE' ])
 # @login_required
-def delete_board():
-    pass
+def delete_board(id):
+    board = Board.query.get(id)
+
+    db.session.delete(board)
+    db.session.commit()

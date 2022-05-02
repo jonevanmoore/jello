@@ -13,6 +13,27 @@ const createBoardAction = board => {
     };
 };
 
+const readBoardsAction = boards => {
+    return {
+        type: READ_BOARDS,
+        payload: boards
+    };
+};
+
+const updateBoardAction = board => {
+    return {
+        type: UPDATE_BOARD,
+        payload: board
+    };
+};
+
+const deleteBoardAction = board => {
+    return {
+        type: DELETE_BOARD,
+        payload: board
+    };
+};
+
 // THUNKS
 export const createBoardThunk = board => async dispatch => {
     const {
@@ -49,6 +70,46 @@ export const createBoardThunk = board => async dispatch => {
     }
 };
 
+export const readBoads = () => async dispatch => {
+    const response = await fetch("/api/boards");
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(readBoardsAction(data));
+        return data;
+    };
+};
+
+export const updateBoard = board => async dispatch => {
+    try {
+        const response = await fetch(`/api/boards/${board.id}`, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(board)
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            dispatch(updateBoardAction(data));
+            return data;
+        };
+    } catch (e) {
+        console.log('UPDATE BOARD ERROR: ', e);
+    }
+};
+
+export const deleteBoard = board => async dispatch => {
+    const response = await fetch(`/api/boards/${board.id}`, {
+        method: 'DELETE'
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(deleteBoardAction(data));
+        return data;
+    };
+};
+
 
 // REDUCER
 let initialState = { boards: [] };
@@ -59,6 +120,19 @@ const boardsReducer = (state = initialState, action) => {
         case CREATE_BOARD:
             newState = Object.assign({}, state);
             newState.boards = action.payload;
+            return newState;
+        case READ_BOARDS:
+            newState = Object.assign({}, state);
+            newState.boards = action.payload;
+            return newState;
+        case UPDATE_BOARD:
+            newState = Object.assign({}, state);
+            const boardIndex = newState.boards.findIndex(board => board.id === action.payload.id);
+            newState.boards[boardIndex] = action.payload;
+            return newState;
+        case DELETE_BOARD:
+            newState = Object.assign({}, state);
+            newState.boards = newState.boards.filter(board => board.id !== action.payload.id);
             return newState;
         default:
             return state;
