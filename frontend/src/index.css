@@ -1,1 +1,20 @@
 /* TODO Add site wide styles */
+
+/* CSS VARIABLES GO HERE */
+:root {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+
+  --nav-bar-color: #606666;
+  --main-button-border-width: 1.5px;
+  --main-border-radius: 4px;
+
+  --create-board-button-background-color: #a1a8aa;
+  --create-board-button-main-color: #363636;
+  --nav-bar-left-divider-color: #a6a9a9;
+  --logout-button-main-color: #af100b;
+}
+
+body {
+  margin: 0px;
+}
