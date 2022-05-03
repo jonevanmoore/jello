@@ -11,7 +11,6 @@ def seed_boards():
         user_id=2, title='This is the Third Title Limit.', avatar_id=2)
 
     db.session.add_all([board_01, board_02, board_03])
-
     db.session.commit()
 
 

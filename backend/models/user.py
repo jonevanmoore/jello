@@ -17,11 +17,16 @@ class User(db.Model, UserMixin):
                            server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
 
+
     boards = db.relationship('Board', back_populates='users')
+
+    shared_boards = db.relationship('Board', back_populates='users')
+
 
     @property
     def password(self):
         return self.hashed_password
+
 
     @password.setter
     def password(self, password):
