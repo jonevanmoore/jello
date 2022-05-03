@@ -52,8 +52,9 @@ const LandingPage = () => {
                     <p><span id="bulk">Trello</span> is a popular, simple-to-use collaboration tool that enables you to organize projects and everything related to them into boards</p>
                     <p id="get-both-text">When you mix both... you get <span id="bulk">Jello</span>, a cuter Trello</p>
                 </div>
-                <div className="coder-profiles">
+            </div>
 
+                <div className="coder-profiles">
                     <div className="coder">
                         <a target="_blank" href="github.com">
                             <img src="/jello9.png" className="coder-img jello-wiggle"></img>
@@ -80,9 +81,8 @@ const LandingPage = () => {
                         </a>
                         <span>Nicholas Yuan</span>
                     </div>
-
                 </div>
-            </div>
+
         </div>
     )
 }
