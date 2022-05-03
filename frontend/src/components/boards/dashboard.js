@@ -6,17 +6,29 @@ import { readBoards } from '../../store/boards';
 const DashBoard = () => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
-    const boards = useSelector(state => state.boards);
+    const boards = useSelector(state => state.boards?.boards);
     console.log(boards);
 
-    // useEffect(() => {
-    //     dispatch(readBoards());
-    // }, [dispatch]);
+    useEffect(() => {
+        dispatch(readBoards());
+    }, [dispatch]);
+
+    if (!boards) {
+        return null;
+    };
+
 
     return (
         <>
+            <div>Hello</div>
             <div>
-                hello
+                {/* <ul>
+                    {boards.map((board) => {
+                        <li key={board.id}>
+                            {board.title}
+                        </li>
+                    })}
+                </ul> */}
             </div>
         </>
     );

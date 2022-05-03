@@ -14,7 +14,7 @@ board_routes = Blueprint('boards', __name__)
 # @login_required
 def read_all_boards():
     boards = Board.query.filter(Board.user_id == User.id).all()
-    return {'boards': [boards.to_dict() for board in boards]}
+    return {'boards': [board.to_dict() for board in boards]}
 
 # C R E A T E
 @board_routes.route('/new-board', methods = [ 'GET', 'POST' ])
