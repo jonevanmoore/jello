@@ -32,7 +32,6 @@ nav {
 }
 
 .create-board-link {
-/*  letter-spacing: -0.75px;*/
   font-size: 13px;
   padding: 6px 12px;
   border-radius: var(--main-border-radius);
