@@ -11,10 +11,9 @@ board_routes = Blueprint('boards', __name__)
 
 # R E A D  A L L
 @board_routes.route('/', methods = [ 'GET' ])
-# @login_required
+@login_required
 def read_all_boards():
-    # print(current_user)
-    boards = Board.query.filter(Board.user_id == User.id).all()
+    boards = Board.query.filter(Board.user_id == current_user.id).all()
     return {'boards': [board.to_dict() for board in boards]}
 
 
