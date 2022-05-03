@@ -1,0 +1,14 @@
+.user-icon {
+  height: 31px;
+  width: 31px;
+
+  border-radius: var(--main-border-radius);
+  border-style: solid;
+  border-width: var(--main-button-border-width);
+
+  box-sizing: border-box;
+
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
