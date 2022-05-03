@@ -10,7 +10,7 @@ const NavBar = () => {
     <nav>
       <div className="nav-bar-left">
         <Link to='/boards' className='logo-link'>
-          <img src='/static/logo-white.png' className='nav-bar-logo' />
+          <img src='/static/Jello-White-Logo.png' className='nav-bar-logo' />
         </Link>
         <div className="nav-bar-left-divider" />
         <Link to='/boards/new' className='create-board-link jello__wiggle'>
