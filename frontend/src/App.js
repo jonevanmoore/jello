@@ -5,6 +5,7 @@ import LoginForm from './components/LandingPage/LoginForm';
 import SignUpForm from './components/LandingPage/SignUpForm';
 import NavBar from './components/NavBar/NavBar';
 import Boards from './components/boards';
+import OneBoard from './components/boards/oneboard';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import DashBoard from './components/boards/dashboard';
 import UsersList from './components/UsersList';
@@ -56,6 +57,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/boards/new' exact={true}>
           <Boards />
+        </ProtectedRoute>
+        <ProtectedRoute path={`/boards/:board_id`} exact={true}>
+          <OneBoard />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
