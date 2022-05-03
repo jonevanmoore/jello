@@ -1,7 +1,8 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
+import LogoutButton from './LogoutButton';
+import { UserIcon } from '../UserIcon';
 
 import './NavBar.css'
 
@@ -19,7 +20,7 @@ const NavBar = () => {
       </div>
       <div className="nav-bar-right">
         <Link to='/boards'>
-          [IC]
+          <UserIcon isNavIcon={true} />
         </Link>
         <LogoutButton />
       </div>
