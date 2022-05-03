@@ -53,7 +53,7 @@ const DashBoard = () => {
                     </div>
                     <div>
                         <ul className='all__boards'>
-                            {boards.map(board =>
+                            {boardsOwned.map(board =>
                                 <li className="jello__container jello__container__ani jello__bg__01" key={board.id}>
                                     <div className='jello__title'>
                                         {board.title}
@@ -69,7 +69,7 @@ const DashBoard = () => {
                     <div className='subtitles__boards'>
                         Shared Boards (WRONG LOGIC)
                     </div>
-                    {/* <div>
+                    <div>
                         <ul className='all__boards'>
                             {boardsShared.map(board =>
                                 <li className="jello__container jello__container__ani jello__bg__02" key={board.id}>
@@ -83,7 +83,7 @@ const DashBoard = () => {
                                 </li>
                             )}
                         </ul>
-                    </div> */}
+                    </div>
                 </div>
             </div>
         </>

@@ -13,7 +13,7 @@ board_routes = Blueprint('boards', __name__)
 @board_routes.route('/', methods = [ 'GET' ])
 # @login_required
 def read_all_boards():
-    print(session['user_id'])
+    # print(current_user)
     boards = Board.query.filter(Board.user_id == User.id).all()
     return {'boards': [board.to_dict() for board in boards]}
 
