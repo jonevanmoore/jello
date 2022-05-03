@@ -2,33 +2,21 @@
   padding: 6px 12px;
   border-width: var(--main-button-border-width);
   border-style: solid;
-  border-color: var(--logout-button-main-color);
-  color: var(--logout-button-main-color);
-  font-weight: 900;
+  border-color: var(--red-button-main-color);
+  color: var(--red-button-main-color);
+  font-weight: 700;
   font-family: inherit;
   border-radius: var(--main-border-radius);
+  width: 90px;
+  height: 30px;
 }
 
-.red__button {
-  color: #AF0B0B;
-  background: #ffffff;
-  border: 1px #AF0B0B solid;
-  transition: all 0.25s ease-in-out;
-}
-
-.red__button:hover {
-  color: #ffffff;
-  background: #AF0B0B;
+#logout-button:hover {
+  color: var(--white-button-main-color);
+  background: var(--red-button-main-color);
   border: 1px #000000 solid;
 }
 
-.logout__button {
-  font-weight: 700;
-  letter-spacing: 1;
-  border-radius: 3px;
-  width: 120px;
-  height: 30px;
-}
 
 .button__shine__short__red {
   position: relative;
@@ -39,9 +27,9 @@
 .button__shine__short__red:after {
   content: '';
   position: absolute;
-  top: 0;
-  left: -55%;
-  width: 75%;
+  top: 5px;
+  left: -75%;
+  width: 85%;
   height: 50%;
   background-color: rgb(255, 255, 255, 0.5);
   /* background-color: black; */
