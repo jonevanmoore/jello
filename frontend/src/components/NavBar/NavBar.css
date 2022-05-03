@@ -32,10 +32,6 @@ nav {
 }
 
 .create-board-link {
-<<<<<<< HEAD:frontend/src/components/NavBar/NavBar.css
-=======
-  /*  letter-spacing: -0.75px;*/
->>>>>>> 848ec953bd195585e3e98c3ef148832cce87374a:frontend/src/components/NavBar.css
   font-size: 13px;
   padding: 6px 12px;
   border-radius: var(--main-border-radius);
