@@ -5,9 +5,10 @@ import LoginForm from './components/LandingPage/LoginForm';
 import SignUpForm from './components/LandingPage/SignUpForm';
 import NavBar from './components/NavBar/NavBar';
 import Boards from './components/boards';
-import OneBoard from './components/boards/oneboard';
+import OneBoard from './components/boards/OneBoard';
+import EditBoard from './components/boards/EditBoardForm';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import DashBoard from './components/boards/dashboard';
+import DashBoard from './components/boards/Dashboard';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import LandingPage from './components/LandingPage/LandingPage'
@@ -57,6 +58,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/boards/new' exact={true}>
           <Boards />
+        </ProtectedRoute>
+        <ProtectedRoute path='/boards/:board_id/edit' exact={true}>
+          <EditBoard />
         </ProtectedRoute>
         <ProtectedRoute path={`/boards/:board_id`} exact={true}>
           <OneBoard />

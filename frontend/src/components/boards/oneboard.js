@@ -82,13 +82,21 @@ const OneBoard = () => {
                     <div className='board-nav-left-divider' />
                 </div>
                 <div className='edit-delete-btns'>
-                    <button>
-
-                        Edit Board
-                    </button>
-                    <button >
-                        Delete Board
-                    </button>
+                    <Link to={`/boards/${board.id}/edit`}>
+                        <button>
+                            Edit Board
+                        </button>
+                    </Link>
+                    {/* <a href={`/boards/${board.id}`}>
+                        <button onClick={() => editBoard()}>
+                            Edit Board
+                        </button>
+                    </a> */}
+                    <a href='/boards'>
+                        <button >
+                            Delete Board
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
