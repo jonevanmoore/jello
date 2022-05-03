@@ -2,10 +2,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LogoutButton from './LogoutButton';
-
-import './NavBar.css'
+import './NavBar.css';
 
 const NavBar = () => {
+
   return (
     <nav>
       <div className="nav-bar-left">

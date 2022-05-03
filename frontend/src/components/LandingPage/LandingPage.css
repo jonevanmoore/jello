@@ -1,0 +1,35 @@
+.home-body-div {
+    text-align: center;
+}
+
+.dark-logo {
+    width: 300px;
+}
+
+.user-buttons-div>* {
+    margin-left: 3px;
+    margin-right: 3px;
+    padding: 7px 15px 7px 15px;
+    border-radius: 3px;
+    font-weight: bolder;
+}
+
+.demo-btn {
+    background-color: white;
+    color: #263856;
+    border: 1.5px solid #263856;
+}
+
+.green-btn {
+    background-color: #b4d035;
+    color: #1a682f;
+    border: 1.5px solid #1a682f;
+}
+
+p {
+    font-size: 20px;
+}
+
+#bulk {
+    font-weight: bolder;
+}
