@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request, redirect
-from flask_login import login_required
+from flask_login import login_required, current_user
 from backend.forms.new_board_form import NewBoardForm
 from backend.models.board import Board
 from backend.models import User
@@ -13,12 +13,12 @@ board_routes = Blueprint('boards', __name__)
 @board_routes.route('/', methods = [ 'GET' ])
 # @login_required
 def read_all_boards():
+    # print(session['user_id'])
     boards = Board.query.filter(Board.user_id == User.id).all()
     return {'boards': [board.to_dict() for board in boards]}
 
 # C R E A T E
 @board_routes.route('/new-board', methods = [ 'GET', 'POST' ])
-# @login_required
 def new_board():
     form = NewBoardForm()
 
@@ -38,7 +38,6 @@ def new_board():
 
 # U P D A T E
 @board_routes.route('/<int:id>', methods = [ 'PUT' ])
-# @login_required
 def update_board(id):
     board = Board.query.get(id)
 
@@ -54,7 +53,6 @@ def update_board(id):
 
 # D E L E T E
 @board_routes.route('/<int:id>', methods = [ 'DELETE' ])
-# @login_required
 def delete_board(id):
     board = Board.query.get(id)
 
