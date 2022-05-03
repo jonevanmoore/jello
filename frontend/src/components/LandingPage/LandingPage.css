@@ -11,19 +11,36 @@
     margin-right: 3px;
     padding: 7px 15px 7px 15px;
     border-radius: 3px;
-    font-weight: bolder;
+    font-weight: 700;
+    letter-spacing: 1;
 }
 
 .demo-btn {
-    background-color: white;
     color: #263856;
-    border: 1.5px solid #263856;
+    background: white;
+    border: 1px solid #263856;
+    position: relative;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+}
+
+.demo-btn:hover {
+    color: white;
+    background: #263856;
 }
 
 .green-btn {
-    background-color: #b4d035;
-    color: #1a682f;
-    border: 1.5px solid #1a682f;
+    color: #035B2F;
+    background: #B3D035;
+    border: 1px #035B2F solid;
+    position: relative;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+}
+
+.green-btn:hover {
+    color: #ffffff;
+    background: #6CAC45;
 }
 
 p {
@@ -32,4 +49,119 @@ p {
 
 #bulk {
     font-weight: bolder;
+}
+
+
+
+/*
+ */
+/* ANIMATION */
+.jello-wiggle:hover {
+    animation: jello_1 1s;
+    animation-timing-function: ease-in-out;
+    transform-origin: center
+}
+
+@keyframes jello_1 {
+    0% {
+        transform: skewX(9deg) scaleX(0.95) scaleY(0.95);
+    }
+
+    10% {
+        transform: skewX(-8deg) scaleX(1.05) scaleY(1.05);
+    }
+
+    20% {
+        transform: skewX(7deg) scaleX(0.96) scaleY(0.96);
+    }
+
+    30% {
+        transform: skewX(-6deg) scaleX(1.04) scaleY(1.04);
+    }
+
+    40% {
+        transform: skewX(5deg) scaleX(0.97) scaleY(0.97);
+    }
+
+    50% {
+        transform: skewX(-4deg) scaleX(1.03) scaleY(1.03);
+    }
+
+    60% {
+        transform: skewX(3deg) scaleX(0.98) scaleY(0.98);
+    }
+
+    70% {
+        transform: skewX(-2deg) scaleX(1.02) scaleY(1.02);
+    }
+
+    80% {
+        transform: skewX(1deg) scaleX(0.99) scaleY(0.99);
+    }
+
+    90% {
+        transform: skewX(0deg) scaleX(1.01) scaleY(1.01);
+    }
+
+    100% {
+        transform: none;
+    }
+}
+
+.button__shine__long__green {
+    position: relative;
+    overflow: hidden;
+}
+
+.button__shine__long__green:before,
+.button__shine__long__green:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -55%;
+    width: 120%;
+    height: 40%;
+    transform: rotate(-45deg);
+    background-color: #B3D035;
+    transition: all ease .8s;
+    z-index: -1;
+}
+
+.button__shine__long__green:after {
+    transition-delay: 0.1s;
+}
+
+.button__shine__long__green:hover:before,
+.button__shine__long__green:hover:after {
+    left: 120%;
+}
+
+/* DEMO BTN */
+.button__shine__short {
+    position: relative;
+    overflow: hidden;
+}
+
+.button__shine__short:before,
+.button__shine__short:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -55%;
+    width: 75%;
+    height: 40%;
+    background-color: #b8b8b8;
+    transform: rotate(-45deg);
+    transition: all ease 0.75s;
+    z-index: -1;
+}
+
+.button__shine__short:after {
+    transition-delay: 0.1s;
+}
+
+.button__shine__short:hover:before,
+.button__shine__short:hover:after {
+    left: 100%;
+    background-color: white;
 }

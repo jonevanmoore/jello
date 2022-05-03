@@ -8,9 +8,9 @@ const LandingPage = () => {
                     <img src='/logo-dark.png' className='dark-logo' />
                 </div>
                 <div className="user-buttons-div">
-                    <button className='demo-btn'>Demo User</button>
-                    <button className='login-btn green-btn'>Log In</button>
-                    <button className='signup-btn green-btn'>Sign Up</button>
+                    <button className='demo-btn jello-wiggle button__shine__short'>Demo User</button>
+                    <button className='login-btn green-btn jello-wiggle button__shine__long__green'>Log In</button>
+                    <button className='signup-btn green-btn jello-wiggle button__shine__long__green'>Sign Up</button>
                 </div>
             </div>
             <div className='home-bottom-div'>
