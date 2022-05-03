@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
                            server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
 
-    board = db.relationship('Board', back_populates='users')
+    boards = db.relationship('Board', back_populates='users')
 
     @property
     def password(self):

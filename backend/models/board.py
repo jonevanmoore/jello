@@ -1,8 +1,9 @@
 from .db import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
+# from backend.models.users_boards import users_boards
 
-users_boards = db.table(
+users_boards = db.Table(
     'users_boards',
     db.Column('board_id', db.Integer, db.ForeignKey('boards.id'), primary_key=True),
     db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True)
@@ -19,7 +20,7 @@ class Board(db.Model, UserMixin):
     created_at = db.Column(db.DateTime(timezone = True), server_default = func.now())
     updated_at = db.Column(db.DateTime(timezone = True), onupdate = func.now())
 
-    user = db.relationship('User', back_populates='boards', secondary=users_boards)
+    users = db.relationship('User', back_populates='boards', secondary=users_boards)
 
     def to_dict(self):
         return {
