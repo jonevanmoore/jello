@@ -2,24 +2,52 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, useHistory, useParams } from 'react-router-dom';
 
-import { readBoards } from '../../store/boards';
+import { readBoards, readOneBoard, updateBoard } from '../../store/boards';
 
 import './Boards.css';
 
 const OneBoard = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const { board_id } = useParams();
     const user = useSelector(state => state.session.user);
     const boards = useSelector(state => state.boards?.boards);
     const board = (boards.filter(board => {
         if (board.id == board_id) {
-            return board;
+            return true;
         }
     })[0]);
+    const [title, setTitle] = useState(board.title);
+    const [avatar_id, setAvatar_id] = useState(board.avatar_id);
+    const [errors, setErrors] = useState([]);
     
     useEffect(() => {
         dispatch(readBoards());
     }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(readOneBoard(board_id));
+    }, [dispatch, board_id]);
+
+    const editBoard = async (e) => {
+        e.preventDefault();
+
+        const edits = {
+            title,
+            avatar_id
+        }
+        
+        let newBoard = await dispatch(updateBoard(edits, board_id))
+        .catch( async(res) => {
+            const data = await res.json();
+            if (data && data.errors) {
+                setErrors(data.errors);
+            }
+        })
+        if (errors.length && newBoard) {
+            history.push(`/boards/${newBoard.id}`);
+        }
+    }
 
     if (!boards) return null;
 

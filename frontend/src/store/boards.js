@@ -2,6 +2,7 @@
 //CONSTANTS
 const CREATE_BOARD = 'boards/CREATE_BOARD';
 const READ_BOARDS = 'boards/READ_BOARDS';
+const READ_ONE_BOARD = 'boards/READ_ONE_BOARD';
 const UPDATE_BOARD = 'boards/UPDATE_BOARD';
 const DELETE_BOARD = 'boards/DELETE_BOARD';
 
@@ -17,6 +18,13 @@ const readBoardsAction = boards => {
     return {
         type: READ_BOARDS,
         payload: boards
+    };
+};
+
+const readOneBoardAction = board => {
+    return {
+        type: READ_ONE_BOARD,
+        payload: board
     };
 };
 
@@ -80,9 +88,19 @@ export const readBoards = () => async dispatch => {
     }
 };
 
-export const updateBoard = board => async dispatch => {
+export const readOneBoard = (id) => async dispatch => {
+    const response = await fetch(`/api/boards/${id}`);
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(readOneBoardAction(data));
+        return data;
+    };
+};
+
+export const updateBoard = (board, id) => async dispatch => {
     try {
-        const response = await fetch(`/api/boards/${board.id}`, {
+        const response = await fetch(`/api/boards/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(board)
@@ -124,6 +142,10 @@ const boardsReducer = (state = initialState, action) => {
         case READ_BOARDS:
             newState = Object.assign({}, state);
             newState = action.payload;
+            return newState;
+        case READ_ONE_BOARD:
+            newState = Object.assign({}, state);
+            newState[action.payload.id] = action.payload;
             return newState;
         case UPDATE_BOARD:
             newState = Object.assign({}, state);
