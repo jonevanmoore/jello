@@ -98,3 +98,7 @@
     transform: none;
   }
 }
+
+#logout-button:hover {
+  cursor: pointer;
+}

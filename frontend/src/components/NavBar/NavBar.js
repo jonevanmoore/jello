@@ -2,10 +2,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LogoutButton from './LogoutButton';
-import './NavBar.css';
+import { UserIcon } from '../UserIcon';
+
+import './NavBar.css'
 
 const NavBar = () => {
-
   return (
     <nav>
       <div className="nav-bar-left">
@@ -19,7 +20,7 @@ const NavBar = () => {
       </div>
       <div className="nav-bar-right">
         <Link to='/boards'>
-          [IC]
+          <UserIcon isNavIcon={true} />
         </Link>
         <LogoutButton />
       </div>

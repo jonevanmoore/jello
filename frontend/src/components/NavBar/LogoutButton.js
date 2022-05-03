@@ -10,6 +10,7 @@ const LogoutButton = () => {
     await dispatch(logout());
   };
 
+
   return <button id="logout-button" className='jello__container__ani' onClick={onLogout}>Logout</button>;
 };
 
