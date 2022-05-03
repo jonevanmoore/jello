@@ -11,8 +11,21 @@ const DashBoard = () => {
 
     const user = useSelector(state => state.session.user);
     const boards = useSelector(state => state.boards?.boards);
+    // console.log('BOARDS: ', boards);
 
-    console.log('USER: ', user);
+    const boardsOwned = [];
+    const boardsShared = [];
+
+    boards.forEach(board => {
+        if (board.user_id === user.id) {
+            boardsOwned.push(board);
+        } else {
+            boardsShared.push(board);
+        }
+    });
+
+    console.log(boardsOwned);
+    console.log(boardsShared);
 
     useEffect(() => {
         dispatch(readBoards());
@@ -40,7 +53,7 @@ const DashBoard = () => {
                     </div>
                     <div>
                         <ul className='all__boards'>
-                            {boards.map(board =>
+                            {boardsOwned.map(board =>
                                 <li className="jello__container jello__container__ani jello__bg__01" key={board.id}>
                                     <div className='jello__title'>
                                         {board.title}
@@ -54,11 +67,11 @@ const DashBoard = () => {
                         </ul>
                     </div>
                     <div className='subtitles__boards'>
-                        Shared Boards (Temp Logic)
+                        Shared Boards (WRONG LOGIC)
                     </div>
                     <div>
                         <ul className='all__boards'>
-                            {boards.map(board =>
+                            {boardsShared.map(board =>
                                 <li className="jello__container jello__container__ani jello__bg__02" key={board.id}>
                                     <div className='jello__title'>
                                         {board.title}

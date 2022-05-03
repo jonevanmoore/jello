@@ -18,6 +18,8 @@
   --red-button-main-color: #af100b;
   --white-button-main-color: #ffffff;
   --light-gray-bg-color: #FAFBFC;
+  --light-green-shine-color: #B3D035;
+  --light-blue-shine-color: #4DBEE6;
 }
 
 body {
@@ -41,7 +43,7 @@ body {
   left: -40%;
   width: 50%;
   height: 100%;
-  background-color: #B3D035;
+  background-color: var(--light-green-shine-color);
   transform: rotate(-45deg);
   transition: all ease 1s;
   z-index: -1;
@@ -70,7 +72,7 @@ body {
   width: 75%;
   height: 40%;
   /* background-color: black; */
-  background-color: #4DBEE6;
+  background-color: var(--light-blue-shine-color);
   transform: rotate(-45deg);
   transition: all ease 0.75s;
   z-index: -1;
