@@ -102,9 +102,9 @@ export const signUp = (first_name, last_name, avatar_id, email, password) => asy
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
-      return { user: action.payload }
+      return { user: action.payload };
     case REMOVE_USER:
-      return { user: null }
+      return { user: null };
     default:
       return state;
   }

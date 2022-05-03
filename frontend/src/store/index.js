@@ -5,7 +5,7 @@ import boardsReducer from './boards';
 
 const rootReducer = combineReducers({
   session,
-  boardsReducer
+  boards: boardsReducer
 });
 
 

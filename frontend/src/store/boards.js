@@ -77,14 +77,14 @@ export const readBoards = () => async dispatch => {
         const data = await response.json();
         dispatch(readBoardsAction(data));
         return data;
-    };
+    }
 };
 
 export const updateBoard = board => async dispatch => {
     try {
         const response = await fetch(`/api/boards/${board.id}`, {
             method: 'PUT',
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(board)
         });
 
@@ -119,20 +119,20 @@ const boardsReducer = (state = initialState, action) => {
     switch (action.type) {
         case CREATE_BOARD:
             newState = Object.assign({}, state);
-            newState.boards = action.payload;
+            newState = action.payload;
             return newState;
         case READ_BOARDS:
             newState = Object.assign({}, state);
-            newState.boards = action.payload;
+            newState = action.payload;
             return newState;
         case UPDATE_BOARD:
             newState = Object.assign({}, state);
             const boardIndex = newState.boards.findIndex(board => board.id === action.payload.id);
-            newState.boards[boardIndex] = action.payload;
+            newState[boardIndex] = action.payload;
             return newState;
         case DELETE_BOARD:
             newState = Object.assign({}, state);
-            newState.boards = newState.boards.filter(board => board.id !== action.payload.id);
+            newState = newState.boards.filter(board => board.id !== action.payload.id);
             return newState;
         default:
             return state;

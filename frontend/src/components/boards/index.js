@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 import { createBoardThunk } from '../../store/boards';
 
-import './New_Boards.css';
+import './Boards.css';
 
 const Boards = () => {
     const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const Boards = () => {
         };
 
         const createdBoard = await dispatch(createBoardThunk(newBoard));
-        // history.push(`/boards/${createdBoard.id}`);
+        history.push(`/boards`);
     };
 
 
