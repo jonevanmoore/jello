@@ -1,0 +1,31 @@
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin-right: 500px;
+    margin-left: 500px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 20px -10px;
+}
+
+.signup-input {
+    height: 35px;
+    width: 75%;
+    margin: 10px 0 10px 0;
+    border: 1px solid rgb(167, 167, 167);
+    border-radius: 3px;
+}
+
+.signup-input::placeholder {
+    color: rgb(167, 167, 167);
+}
+
+.first-last-div {
+    display: flex;
+    justify-content: center;
+}
+
+.first-last-div>* {
+    width: 46%;
+    margin: -10px;
+}

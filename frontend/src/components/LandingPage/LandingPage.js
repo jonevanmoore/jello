@@ -1,6 +1,32 @@
+import React, { useState, useEffect } from 'react'
+
 import './LandingPage.css'
+import LoginForm from './LoginForm'
+import SignUpForm from './SignUpForm'
 
 const LandingPage = () => {
+    const [loginDisplay, setLoginDisplay] = useState('not-displayed')
+    const [signupDisplay, setSignupDisplay] = useState('not-displayed')
+
+    const changeLoginDisplay = () => {
+        if (loginDisplay === 'not-displayed') {
+            setLoginDisplay('displayed')
+        } else if (loginDisplay === 'displayed') {
+            setLoginDisplay('not-displayed')
+        } else if (signupDisplay === 'displayed') {
+            setLoginDisplay('not-displayed')
+        }
+    }
+    const changeSignupDisplay = () => {
+        if (signupDisplay === 'not-displayed') {
+            setSignupDisplay('displayed')
+        } else if (signupDisplay === 'displayed') {
+            setSignupDisplay('not-displayed')
+        } else if (loginDisplay === 'displayed') {
+            setSignupDisplay('not-displayed')
+        }
+    }
+
     return (
         <div className="home-body-div">
             <div className="top-bottom-div">
@@ -11,8 +37,14 @@ const LandingPage = () => {
                     </div>
                     <div className="user-buttons-div">
                         <button className='demo-btn jello-wiggle button__shine__short'>Demo User</button>
-                        <button className='login-btn green-btn jello-wiggle button__shine__long__green'>Log In</button>
-                        <button className='signup-btn green-btn jello-wiggle button__shine__long__green'>Sign Up</button>
+                        <button className='login-btn green-btn jello-wiggle button__shine__long__green' onClick={changeLoginDisplay}>Log In</button>
+                        <button className='signup-btn green-btn jello-wiggle button__shine__long__green' onClick={changeSignupDisplay}>Sign Up</button>
+                        <div className={`modal ${loginDisplay}`}>
+                            <LoginForm />
+                        </div>
+                        <div className={`modal ${signupDisplay}`}>
+                            <SignUpForm />
+                        </div>
                     </div>
                 </div>
                 <div className='home-bottom-div'>

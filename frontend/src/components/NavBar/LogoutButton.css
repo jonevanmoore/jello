@@ -10,6 +10,7 @@
   position: relative;
   transition: all 0.25s ease-in-out;
   cursor: pointer;
+  background-color: white;
 }
 
 #logout-button:hover {
@@ -31,7 +32,7 @@
   left: -55%;
   width: 120%;
   height: 40%;
-  background-color: rgb(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255);
   transform: rotate(-45deg);
   transition: all ease 1s;
   z-index: -1;

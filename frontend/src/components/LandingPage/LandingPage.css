@@ -1,3 +1,12 @@
+/* MODAL DISPLAYS */
+.not-displayed {
+    display: none;
+}
+
+.displayed {
+    display: block;
+}
+
 .home-body-div {
     text-align: center;
     width: 100%;
@@ -163,6 +172,7 @@ p {
 .button__shine__long__green {
     position: relative;
     overflow: hidden;
+    border-radius: 3px;
 }
 
 .button__shine__long__green:before,
