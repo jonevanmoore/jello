@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, useHistory, useParams } from 'react-router-dom';
 
-import { readBoards, readOneBoard, updateBoard } from '../../store/boards';
+import { readBoards, readOneBoard, updateBoard, deleteBoard } from '../../store/boards';
 
 import './Boards.css';
 
@@ -12,15 +12,13 @@ const OneBoard = () => {
     const { board_id } = useParams();
     const user = useSelector(state => state.session.user);
     const boards = useSelector(state => state.boards?.boards);
-    const board = (boards.filter(board => {
-        if (board.id == board_id) {
-            return true;
-        }
-    })[0]);
-    const [title, setTitle] = useState(board.title);
-    const [avatar_id, setAvatar_id] = useState(board.avatar_id);
+
+    const board = boards.find(board => board.id == board_id);
+
+    const [title, setTitle] = useState(board?.title);
+    const [avatar_id, setAvatar_id] = useState(board?.avatar_id);
     const [errors, setErrors] = useState([]);
-    
+
     useEffect(() => {
         dispatch(readBoards());
     }, [dispatch]);
@@ -36,20 +34,22 @@ const OneBoard = () => {
             title,
             avatar_id
         }
-        
+
         let newBoard = await dispatch(updateBoard(edits, board_id))
-        .catch( async(res) => {
-            const data = await res.json();
-            if (data && data.errors) {
-                setErrors(data.errors);
-            }
-        })
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) {
+                    setErrors(data.errors);
+                }
+            })
         if (errors.length && newBoard) {
             history.push(`/boards/${newBoard.id}`);
         }
     }
 
     if (!boards) return null;
+
+    if (!board) return null;
 
     return (
         <div className='divided_screen'>
@@ -67,7 +67,7 @@ const OneBoard = () => {
             <div className='board-nav-bar'>
                 <div className='title-share-icons'>
                     <div>
-                        {board.title}
+                        {board?.title}
                     </div>
                     <div className='board-nav-left-divider' />
                     <div>
@@ -83,9 +83,10 @@ const OneBoard = () => {
                 </div>
                 <div className='edit-delete-btns'>
                     <button>
-                        Edit Button
+
+                        Edit Board
                     </button>
-                    <button>
+                    <button >
                         Delete Board
                     </button>
                 </div>
