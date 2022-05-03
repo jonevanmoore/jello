@@ -19,7 +19,6 @@ const NavBar = () => {
         </Link>
       </div>
       <div className="nav-bar-right">
-        <UserIcon isNavIcon={false} />
         <Link to='/boards'>
           <UserIcon isNavIcon={true} />
         </Link>
