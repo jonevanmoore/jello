@@ -1,22 +1,223 @@
 /* TODO Add site wide styles */
+@import url('https: //fonts.google.com/share?selection.family=Roboto%20Condensed:wght@300;400;700;900');
 
 /* CSS VARIABLES GO HERE */
 :root {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 500;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #273755;
 
   --nav-bar-color: #606666;
-  --main-button-border-width: 1.5px;
+  --main-button-border-width: 1px;
   --main-border-radius: 4px;
 
   
   --create-board-button-background-color: #a1a8aa;
   --create-board-button-main-color: #363636;
   --nav-bar-left-divider-color: #a6a9a9;
-  --logout-button-main-color: #af100b;
+  --red-button-main-color: #af100b;
+  --white-button-main-color: #ffffff;
+  --light-gray-bg-color: #FAFBFC;
+  --light-green-shine-color: #B3D035;
+  --light-blue-shine-color: #4DBEE6;
 }
 
 body {
   margin: 0px;
   background-color: #d9e1e6;
+}
+
+/* button:hover {
+  cursor: pointer;
+} */
+
+.button__shine__long__green {
+  position: relative;
+  overflow: hidden;
+}
+
+.button__shine__long__green:before,
+.button__shine__long__green:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -40%;
+  width: 50%;
+  height: 100%;
+  background-color: var(--light-green-shine-color);
+  transform: rotate(-45deg);
+  transition: all ease 1s;
+  z-index: -1;
+}
+
+.button__shine__long__green:after {
+  transition-delay: 0.1s;
+}
+
+.button__shine__long__green:hover:before,
+.button__shine__long__green:hover:after {
+  left: 100%
+}
+
+.button__shine__short {
+  position: relative;
+  overflow: hidden;
+}
+
+.button__shine__short:before,
+.button__shine__short:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -55%;
+  width: 75%;
+  height: 40%;
+  /* background-color: black; */
+  background-color: var(--light-blue-shine-color);
+  transform: rotate(-45deg);
+  transition: all ease 0.75s;
+  z-index: -1;
+}
+
+.button__shine__short:after {
+  transition-delay: 0.1s;
+}
+
+.button__shine__short:hover:before,
+.button__shine__short:hover:after {
+  left: 100%
+}
+
+.button__shine__long__red {
+  position: relative;
+  overflow: hidden;
+}
+
+.button__shine__long__red:before,
+.button__shine__long__red:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -40%;
+  width: 50%;
+  height: 100%;
+  background-color: rgb(255, 255, 255, 0.5);
+  transform: rotate(-45deg);
+  transition: all ease 1s;
+  z-index: -1;
+}
+
+.button__shine__long__red:after {
+  transition-delay: 0.1s;
+}
+
+.button__shine__long__red:hover:before,
+.button__shine__long__red:hover:after {
+  left: 100%
+}
+
+
+.jello__wiggle:hover {
+  animation: jello_1 1s;
+  animation-timing-function: ease-in-out;
+  transform-origin: center
+}
+
+.jello__container__ani:hover {
+  animation: jello_2 1s;
+  animation-timing-function: ease-in-out;
+  transform-origin: center
+}
+
+@keyframes jello_1 {
+  0% {
+    transform: skewX(9deg) scaleX(0.95) scaleY(0.95);
+  }
+
+  10% {
+    transform: skewX(-8deg) scaleX(1.05) scaleY(1.05);
+  }
+
+  20% {
+    transform: skewX(7deg) scaleX(0.96) scaleY(0.96);
+  }
+
+  30% {
+    transform: skewX(-6deg) scaleX(1.04) scaleY(1.04);
+  }
+
+  40% {
+    transform: skewX(5deg) scaleX(0.97) scaleY(0.97);
+  }
+
+  50% {
+    transform: skewX(-4deg) scaleX(1.03) scaleY(1.03);
+  }
+
+  60% {
+    transform: skewX(3deg) scaleX(0.98) scaleY(0.98);
+  }
+
+  70% {
+    transform: skewX(-2deg) scaleX(1.02) scaleY(1.02);
+  }
+
+  80% {
+    transform: skewX(1deg) scaleX(0.99) scaleY(0.99);
+  }
+
+  90% {
+    transform: skewX(0deg) scaleX(1.01) scaleY(1.01);
+  }
+
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes jello_2 {
+  0% {
+    transform: skewX(-9deg) scaleX(0.95) scaleY(0.95);
+  }
+
+  10% {
+    transform: skewX(8deg) scaleX(1.05) scaleY(1.05);
+  }
+
+  20% {
+    transform: skewX(-7deg) scaleX(0.96) scaleY(0.96);
+  }
+
+  30% {
+    transform: skewX(6deg) scaleX(1.04) scaleY(1.04);
+  }
+
+  40% {
+    transform: skewX(-5deg) scaleX(0.97) scaleY(0.97);
+  }
+
+  50% {
+    transform: skewX(4deg) scaleX(1.03) scaleY(1.03);
+  }
+
+  60% {
+    transform: skewX(-3deg) scaleX(0.98) scaleY(0.98);
+  }
+
+  70% {
+    transform: skewX(2deg) scaleX(1.02) scaleY(1.02);
+  }
+
+  80% {
+    transform: skewX(-1deg) scaleX(0.99) scaleY(0.99);
+  }
+
+  90% {
+    transform: skewX(0deg) scaleX(1.01) scaleY(1.01);
+  }
+
+  100% {
+    transform: none;
+  }
 }

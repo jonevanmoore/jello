@@ -2,104 +2,55 @@
   padding: 6px 12px;
   border-width: var(--main-button-border-width);
   border-style: solid;
-  border-color: var(--logout-button-main-color);
-  color: var(--logout-button-main-color);
-  font-weight: 900;
+  border-color: var(--red-button-main-color);
+  color: var(--red-button-main-color);
+  font-weight: 700;
   font-family: inherit;
   border-radius: var(--main-border-radius);
   position: relative;
   transition: all 0.25s ease-in-out;
   cursor: pointer;
   background-color: white;
+  width: 90px;
+  height: 30px;
 }
 
 #logout-button:hover {
-  color: #ffffff;
-  background: #AF0B0B;
+  color: var(--white-button-main-color);
+  background: var(--red-button-main-color);
+  border: 1px #000000 solid;
 }
 
 
-#logout-button {
+.button__shine__short__red {
   position: relative;
   overflow: hidden;
 }
 
-#logout-button:before,
-#logout-button:after {
+.button__shine__short__red:before,
+.button__shine__short__red:after {
   content: '';
   position: absolute;
-  top: 0;
-  left: -55%;
-  width: 120%;
-  height: 40%;
-  background-color: rgba(255, 255, 255);
+  top: 5px;
+  left: -75%;
+  width: 85%;
+  height: 50%;
+  background-color: rgb(255, 255, 255, 0.5);
+  /* background-color: black; */
   transform: rotate(-45deg);
-  transition: all ease 1s;
-  z-index: -1;
+  transition: all ease 0.75s;
+  z-index: 1;
 }
 
-#logout-button:after {
+.button__shine__short__red:after {
   transition-delay: 0.1s;
 }
 
-#logout-button:hover:before,
-#logout-button:hover:after {
+.button__shine__short__red:hover:before,
+.button__shine__short__red:hover:after {
   left: 100%
 }
 
-
-.jello__container__ani:hover {
-  animation: jello_2 1s;
-  animation-timing-function: ease-in-out;
-  transform-origin: center
-}
-
-@keyframes jello_2 {
-  0% {
-    transform: skewX(-9deg) scaleX(0.95) scaleY(0.95);
-  }
-
-  10% {
-    transform: skewX(8deg) scaleX(1.05) scaleY(1.05);
-  }
-
-  20% {
-    transform: skewX(-7deg) scaleX(0.96) scaleY(0.96);
-  }
-
-  30% {
-    transform: skewX(6deg) scaleX(1.04) scaleY(1.04);
-  }
-
-  40% {
-    transform: skewX(-5deg) scaleX(0.97) scaleY(0.97);
-  }
-
-  50% {
-    transform: skewX(4deg) scaleX(1.03) scaleY(1.03);
-  }
-
-  60% {
-    transform: skewX(-3deg) scaleX(0.98) scaleY(0.98);
-  }
-
-  70% {
-    transform: skewX(2deg) scaleX(1.02) scaleY(1.02);
-  }
-
-  80% {
-    transform: skewX(-1deg) scaleX(0.99) scaleY(0.99);
-  }
-
-  90% {
-    transform: skewX(0deg) scaleX(1.01) scaleY(1.01);
-  }
-
-  100% {
-    transform: none;
-  }
-}
-
-#logout-button:hover {
+/* #logout-button:hover {
   cursor: pointer;
-}
+} */
