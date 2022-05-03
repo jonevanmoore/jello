@@ -8,7 +8,7 @@ import Boards from './components/boards';
 import OneBoard from './components/boards/OneBoard';
 import EditBoard from './components/boards/EditBoardForm';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import DashBoard from './components/boards/Dashboard';
+import DashBoard from './components/boards/DashBoard';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import LandingPage from './components/LandingPage/LandingPage'

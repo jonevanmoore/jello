@@ -66,6 +66,9 @@ const EditBoard = () => {
                 <button type='submit'>
                     Save Board
                 </button>
+                <button onClick={() => history.push(`/boards/${board?.id}`)}>
+                    Cancel
+                </button>
             </form>
         </>
     )

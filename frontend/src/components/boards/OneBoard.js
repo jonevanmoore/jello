@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink, useHistory, useParams } from 'react-router-dom';
+import { Link, NavLink, useHistory, useParams, Redirect } from 'react-router-dom';
 
 import { readBoards, readOneBoard, updateBoard, deleteBoard } from '../../store/boards';
 
@@ -19,6 +19,8 @@ const OneBoard = () => {
     const [avatar_id, setAvatar_id] = useState(board?.avatar_id);
     const [errors, setErrors] = useState([]);
 
+    // const owner = user.id === board.user_id;
+
     useEffect(() => {
         dispatch(readBoards());
     }, [dispatch]);
@@ -27,25 +29,10 @@ const OneBoard = () => {
         dispatch(readOneBoard(board_id));
     }, [dispatch, board_id]);
 
-    const editBoard = async (e) => {
-        e.preventDefault();
-
-        const edits = {
-            title,
-            avatar_id
-        }
-
-        let newBoard = await dispatch(updateBoard(edits, board_id))
-            .catch(async (res) => {
-                const data = await res.json();
-                if (data && data.errors) {
-                    setErrors(data.errors);
-                }
-            })
-        if (errors.length && newBoard) {
-            history.push(`/boards/${newBoard.id}`);
-        }
-    }
+    const deleteOneBoard = async (board) => {
+        await dispatch(deleteBoard(board))
+        history.push("/boards")
+    };
 
     if (!boards) return null;
 
@@ -87,16 +74,9 @@ const OneBoard = () => {
                             Edit Board
                         </button>
                     </Link>
-                    {/* <a href={`/boards/${board.id}`}>
-                        <button onClick={() => editBoard()}>
-                            Edit Board
-                        </button>
-                    </a> */}
-                    <a href='/boards'>
-                        <button >
-                            Delete Board
-                        </button>
-                    </a>
+                    <button onClick={() => {
+                        deleteOneBoard(board)
+                    }}>Delete Board</button>
                 </div>
             </div>
         </div>

@@ -64,6 +64,9 @@ const Boards = () => {
                 <button type='submit'>
                     Create Board
                 </button>
+                <button onClick={() => history.push('/boards')}>
+                    Cancel
+                </button>
             </form>
         </>
     )
