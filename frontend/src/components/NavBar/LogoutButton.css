@@ -1,6 +1,5 @@
 #logout-button {
   padding: 6px 12px;
-  font-size: 13px;
   border-width: var(--main-button-border-width);
   border-style: solid;
   border-color: var(--red-button-main-color);
@@ -47,6 +46,7 @@
 .button__shine__short__red:hover:after {
   left: 100%
 }
+
 /* #logout-button:hover {
   cursor: pointer;
 } */
