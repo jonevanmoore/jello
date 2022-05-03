@@ -1,0 +1,59 @@
+.all__buttons {
+    padding: 5px
+}
+
+.all__boards {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 300px 300px 300px;
+    grid-auto-flow: row dense;
+
+}
+
+.jello__container {
+    width: 300px;
+    height: 100px;
+
+    border-radius: 4px;
+
+    display: flex;
+    justify-content: space-between;
+
+    overflow: hidden;
+    align-items: flex-start;
+}
+
+.jello__image {
+    width: 155px;
+    height: auto;
+    border-radius: 4px;
+
+    position: relative;
+    bottom: 25px;
+    left: 30px
+}
+
+.jello__text {
+    z-index: 1;
+}
+
+.jello__title {
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.jello__bg__01 {
+    color: white;
+    background: #B3D035;
+    transition: background 1s, color 0.5s;
+}
+
+.jello__bg__01:hover {
+    color: #005A50;
+    background: #EBE716;
+    cursor: pointer;
+}

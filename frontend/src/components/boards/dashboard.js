@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 
 import { readBoards } from '../../store/boards';
 
@@ -22,15 +22,25 @@ const DashBoard = () => {
 
     return (
         <>
-            <div>Hello</div>
-            <div>
-                <ul>
-                    {boards.map(board =>
-                        <li key={board.id}>
-                            {board.title}
-                        </li>
-                    )}
-                </ul>
+            <div className=''>
+                <div>
+                    Vertical NavBar
+                </div>
+                <div>
+                    <ul className='all__boards'>
+                        {boards.map(board =>
+                            <li className="jello__container jello__container__ani jello__bg__01" key={board.id}>
+                                <div className='jello__title'>
+                                    {board.title}
+                                </div>
+                                <div className="jello__image__container jello__wiggle">
+                                    <img className="jello__image" src={'/static/Jello-01.png'} />
+                                </div>
+
+                            </li>
+                        )}
+                    </ul>
+                </div>
             </div>
         </>
     );

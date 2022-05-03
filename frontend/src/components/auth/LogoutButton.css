@@ -8,3 +8,53 @@
   font-family: inherit;
   border-radius: var(--main-border-radius);
 }
+
+.red__button {
+  color: #AF0B0B;
+  background: #ffffff;
+  border: 1px #AF0B0B solid;
+  transition: all 0.25s ease-in-out;
+}
+
+.red__button:hover {
+  color: #ffffff;
+  background: #AF0B0B;
+  border: 1px #000000 solid;
+}
+
+.logout__button {
+  font-weight: 700;
+  letter-spacing: 1;
+  border-radius: 3px;
+  width: 120px;
+  height: 30px;
+}
+
+.button__shine__short__red {
+  position: relative;
+  overflow: hidden;
+}
+
+.button__shine__short__red:before,
+.button__shine__short__red:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -55%;
+  width: 75%;
+  height: 50%;
+  background-color: rgb(255, 255, 255, 0.5);
+  /* background-color: black; */
+  transform: rotate(-45deg);
+  transition: all ease 0.75s;
+  z-index: 1;
+}
+
+.button__shine__short__red:after {
+  transition-delay: 0.1s;
+}
+
+.button__shine__short__red:hover:before,
+.button__shine__short__red:hover:after {
+  left: 100%
+}
