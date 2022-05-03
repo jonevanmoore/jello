@@ -17,6 +17,13 @@ def read_all_boards():
     boards = Board.query.filter(Board.user_id == User.id).all()
     return {'boards': [board.to_dict() for board in boards]}
 
+
+# R E A D O N E
+@board_routes.route('/<int:id>', methods=['GET'])
+def read_one_board(id):
+    board = Board.query.get(id)
+    return board.to_dict()
+
 # C R E A T E
 @board_routes.route('/new-board', methods = [ 'GET', 'POST' ])
 def new_board():
