@@ -12,7 +12,15 @@ const LogoutButton = () => {
 
   return (
     <div>
-      <button className='jello__wiggle logout__button red__button button__shine__short__red' onClick={onLogout}>Logout</button>
+      <button
+        id='logout-button'
+        className='
+        jello__wiggle
+        logout__button
+        red__button
+        button__shine__short__red
+        '
+        onClick={onLogout}>Logout</button>
     </div>
   );
 };

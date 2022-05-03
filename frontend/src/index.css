@@ -1,26 +1,33 @@
 /* TODO Add site wide styles */
-/* @import url('https: //fonts.google.com/share?selection.family=Roboto%20Condensed:wght@300;400;700'); */
+@import url('https: //fonts.google.com/share?selection.family=Roboto%20Condensed:wght@300;400;700;900');
 
 /* CSS VARIABLES GO HERE */
 :root {
-  font-family: 'Roboto-Condensed', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
   font-weight: 700;
+  font-size: 15px;
+  color: #273755;
 
   --nav-bar-color: #606666;
-  --main-button-border-width: 1.5px;
+  --main-button-border-width: 1px;
   --main-border-radius: 4px;
 
   
   --create-board-button-background-color: #a1a8aa;
   --create-board-button-main-color: #363636;
   --nav-bar-left-divider-color: #a6a9a9;
-  --logout-button-main-color: #af100b;
+  --red-button-main-color: #af100b;
+  --white-button-main-color: #ffffff;
+  --light-gray-bg-color: #FAFBFC;
 }
 
 body {
   margin: 0px;
 }
 
+/* button:hover {
+  cursor: pointer;
+} */
 
 .button__shine__long__green {
   position: relative;

@@ -1,7 +1,7 @@
 nav {
   display: flex;
   justify-content: space-between;
-  align-items: center; 
+  align-items: center;
   background-color: var(--nav-bar-color);
   height: 54px;
 }
@@ -18,24 +18,28 @@ nav {
 .nav-bar-left {
   display: flex;
   justify-content: space-between;
-  align-items: center; 
+  align-items: center;
   margin-left: 12px;
   gap: 18px;
 }
 
-.nav-bar-left > span {
+.nav-bar-left>span {
   color: white;
 }
 
-.nav-bar-left > a {
+.nav-bar-left>a {
   text-decoration: none;
 }
 
 .create-board-link {
+<<<<<<< HEAD:frontend/src/components/NavBar/NavBar.css
+=======
+  /*  letter-spacing: -0.75px;*/
+>>>>>>> 848ec953bd195585e3e98c3ef148832cce87374a:frontend/src/components/NavBar.css
   font-size: 13px;
   padding: 6px 12px;
   border-radius: var(--main-border-radius);
-  font-weight: 900;
+  /* font-weight: 900; */
   color: var(--create-board-button-main-color);
   background-color: var(--create-board-button-background-color);
   border-width: var(--main-button-border-width);
