@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import LoginForm from './components/auth/LoginForm';
-import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import LoginForm from './components/LandingPage/LoginForm';
+import SignUpForm from './components/LandingPage/SignUpForm';
+import NavBar from './components/NavBar/NavBar';
 import Boards from './components/boards';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import DashBoard from './components/boards/dashboard';
 import UsersList from './components/UsersList';
 import User from './components/User';
+import LandingPage from './components/LandingPage/LandingPage'
 import { authenticate } from './store/session';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+
+  const sessionUser = useSelector(state => state.session.user)
 
   useEffect(() => {
     (async () => {
@@ -36,14 +39,17 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
+        <Route path='/home'>
+          <LandingPage />
+        </Route>
+        {/* <ProtectedRoute path='/users' exact={true} >
           <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
+          {sessionUser ? <Redirect to='/boards' /> : <Redirect to='/home' />}
         </ProtectedRoute>
         <ProtectedRoute path='/boards' exact={true}>
           <DashBoard />
