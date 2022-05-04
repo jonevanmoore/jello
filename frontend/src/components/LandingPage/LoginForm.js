@@ -5,7 +5,7 @@ import { login } from '../../store/session';
 import SignUpForm from './SignUpForm'
 import './LoginForm.css'
 
-const LoginForm = () => {
+const LoginForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -55,10 +55,14 @@ const LoginForm = () => {
     }
   }
 
+  const stopTheProp = e => {
+    e.stopPropagation();
+  }
+
   return (
-    <div className={`login-body ${loginDisplay}`}>
+    <div className={`login-body ${loginDisplay}`} onClick={stopTheProp}>
       <form onSubmit={onLogin} className='login-form'>
-        <span id="bulk" className='login-text'>Log in to Jello <span id="skinny">or</span> <a className='signup-click' onClick={changeSignupDisplay}>Sign up</a></span>
+        <span id="bulk" className='login-text'>Log in to Jello <span id="skinny">or</span> <span className='signup-click' onClick={toggleLoginSignupFunc}>Sign up</span></span>
         <div>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
@@ -83,11 +87,11 @@ const LoginForm = () => {
           />
         </div>
         <button type='submit' className='login-form-btn submit-btn jello-wiggle button__shine__long__green green-btn'>Login</button>
-        <button className='login-form-btn jello-wiggle jello__container__ani cancel-btn' id="logout-button">Cancel</button>
       </form>
-      <div className={`modal ${signupDisplay}`}>
-        <SignUpForm />
-      </div>
+        <button className='login-form-btn jello-wiggle jello__container__ani cancel-btn' 
+          id="logout-button" 
+          style={{width: '75%', marginBottom: '36px'}} /* <<< hack alert */
+          onClick={closeModalFunc}>Cancel</button>
     </div>
   );
 };
