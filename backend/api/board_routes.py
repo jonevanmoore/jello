@@ -64,3 +64,4 @@ def delete_board(id):
 
     db.session.delete(board)
     db.session.commit()
+    return { 'id': id }
