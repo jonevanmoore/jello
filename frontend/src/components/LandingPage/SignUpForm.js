@@ -15,6 +15,11 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  // CUSTOME ERROR HANDLING
+  const [nameError, setNameError] = useState([])
+  const [emailError, setEmailError] = useState([])
+  const [avatarError, setAvatarError] = useState('')
+
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
