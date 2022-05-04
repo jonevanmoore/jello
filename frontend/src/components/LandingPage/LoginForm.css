@@ -26,8 +26,12 @@
     background-color: transparent;
     border: none;
     font-weight: bolder;
-    font-size: large;
     cursor: default;
+    transition: .2s;
+}
+
+.signup-click:hover {
+    color: rgb(0, 170, 176);
 }
 
 .signup-click:hover {

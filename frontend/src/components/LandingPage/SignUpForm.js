@@ -63,7 +63,7 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
   return (
     <div className={`signup-body`} onClick={stopTheProp} onMouseDown={stopTheProp}>
       <form onSubmit={onSignUp} className='signup-form'>
-        <span id="bulk" className='login-text'>Sign up for Jello <span id="skinny">or</span> <span className='signup-click' onClick={toggleLoginSignupFunc}>Log in</span></span>
+        <span id="bulk" className='login-text'>Sign up for Jello <span id="skinny">or</span> <span className='login-click' onClick={toggleLoginSignupFunc}>Log in</span></span>
 
         <div>
           {errors.map((error, ind) => (

@@ -5,6 +5,19 @@
     box-shadow: 0px 0px 20px 0px;
 }
 
+.login-click {
+    color: rgb(0, 145, 255);
+    background-color: transparent;
+    border: none;
+    font-weight: bolder;
+    cursor: default;
+    transition: .2s;
+}
+
+.login-click:hover {
+    color: rgb(0, 170, 176);
+}
+
 .signup-form {
     display: flex;
     flex-direction: column;
@@ -23,8 +36,6 @@
 
 .signup-input::placeholder {
     color: rgb(167, 167, 167);
-    position: relative;
-    left: 1.5vh;
 }
 
 .first-last-div {
@@ -83,5 +94,5 @@
 
 /* CHECKED STYLES */
 [type=radio]:checked+img {
-    outline: 2px solid #6CAC45;
+    background: #1aff00b9;
 }
