@@ -47,6 +47,7 @@ const EditBoardForm = ({ closeModalFunc }) => {
                     <input
                         placeholder='title'
                         type='text'
+                        pattern='^[\S].*[\S]$'
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         required
@@ -56,6 +57,7 @@ const EditBoardForm = ({ closeModalFunc }) => {
                     <input
                         placeholder='avatar'
                         type='text'
+                        // pattern="[^\s]+"
                         value={avatar_id}
                         onChange={(e) => setAvatar_id(e.target.value)}
                         required
