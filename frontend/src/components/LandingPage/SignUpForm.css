@@ -23,6 +23,8 @@
 
 .signup-input::placeholder {
     color: rgb(167, 167, 167);
+    position: relative;
+    left: 1.5vh;
 }
 
 .first-last-div {
@@ -32,4 +34,55 @@
     justify-content: space-between;
 }
 
-.first-last-div>* {}
+.radio-div {
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.radio-icons-row1,
+.radio-icons-row2 {
+    display: flex;
+}
+
+#radio-jello-div {
+    display: flex;
+    flex-direction: column;
+}
+
+#avatar-label {
+    position: relative;
+    right: 18vh;
+    bottom: .5vh;
+    color: gray;
+    font-size: 12px;
+}
+
+#radio-icon {
+    width: 50px;
+    border: 1px solid rgb(197, 197, 197);
+    border-radius: 3px;
+    margin: 2px;
+}
+
+#radio-icon:hover {
+    border-color: #00ff0d;
+}
+
+[type=radio] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* IMAGE STYLES */
+[type=radio]+img {
+    cursor: pointer;
+}
+
+/* CHECKED STYLES */
+[type=radio]:checked+img {
+    outline: 2px solid #6CAC45;
+    animation: jello1 .8s;
+}

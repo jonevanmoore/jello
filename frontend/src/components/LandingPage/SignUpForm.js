@@ -52,11 +52,11 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
   if (user) {
     return <Redirect to='/' />;
   }
- 
+
   const stopTheProp = e => e.stopPropagation();
 
   return (
-    <div className={`signup-body`}onClick={stopTheProp} onMouseDown={stopTheProp}>
+    <div className={`signup-body`} onClick={stopTheProp} onMouseDown={stopTheProp}>
       <form onSubmit={onSignUp} className='signup-form'>
         <span id="bulk" className='login-text'>Sign up for Jello <span id="skinny">or</span> <span className='signup-click' onClick={toggleLoginSignupFunc}>Log in</span></span>
 
@@ -67,56 +67,198 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
         </div>
         <div className='first-last-div'>
 
-            <input className='signup-input'
-              placeholder='First Name'
-              type='text'
-              name='firstName'
-              onChange={updateFirstName}
-              value={firstName}
-            ></input>
-            <input className='signup-input'
-              placeholder='Last Name'
-              type='text'
-              name='lastName'
-              onChange={updateLastName}
-              value={lastName}
-            ></input>
-        </div>
           <input className='signup-input'
-            placeholder='Email'
+            placeholder='First Name'
             type='text'
-            name='email'
-            onChange={updateEmail}
-            value={email}
+            name='firstName'
+            onChange={updateFirstName}
+            value={firstName}
           ></input>
-        <div>
-          <label>Avatar</label>
-          <input
-            type='radio'
-            name='avatarId'
-            onChange={updateAvatarId}
-            value={avatarId}
+          <input className='signup-input'
+            placeholder='Last Name'
+            type='text'
+            name='lastName'
+            onChange={updateLastName}
+            value={lastName}
           ></input>
         </div>
-          <input className='signup-input'
-            placeholder='Password'
-            type='password'
-            name='password'
-            onChange={updatePassword}
-            value={password}
-          ></input>
-          <input className='signup-input'
-            placeholder='Confirm Password'
-            type='password'
-            name='repeat_password'
-            onChange={updateRepeatPassword}
-            value={repeatPassword}
-            required={true}
-          ></input>
+        <input className='signup-input'
+          placeholder='Email'
+          type='text'
+          name='email'
+          onChange={updateEmail}
+          value={email}
+        ></input>
+        <div className='radio-div'>
+          <label id="avatar-label">Avatar</label>
+          <div className='radio-icons-row1'>
+
+            <div id='radio-jello-div'>
+              <label>
+                <input
+                  type='radio'
+                  name='avatarId'
+                  onChange={updateAvatarId}
+                  value={1}
+                ></input>
+                <img src="static/jello1.png" id="radio-icon"></img>
+              </label>
+            </div>
+
+            <div id='radio-jello-div'>
+              <label>
+                <input
+                  type='radio'
+                  name='avatarId'
+                  onChange={updateAvatarId}
+                  value={2}
+                ></input>
+                <img src="static/jello2.png" id="radio-icon"></img>
+              </label>
+            </div>
+
+            <div id='radio-jello-div'>
+              <label>
+                <input
+                  type='radio'
+                  name='avatarId'
+                  onChange={updateAvatarId}
+                  value={3}
+                ></input>
+                <img src="static/jello3.png" id="radio-icon"></img>
+              </label>
+            </div>
+
+            <div id='radio-jello-div'>
+              <label>
+                <input
+                  type='radio'
+                  name='avatarId'
+                  onChange={updateAvatarId}
+                  value={4}
+                ></input>
+                <img src="static/jello4.png" id="radio-icon"></img>
+              </label>
+            </div>
+
+            <div id='radio-jello-div'>
+              <label>
+                <input
+                  type='radio'
+                  name='avatarId'
+                  onChange={updateAvatarId}
+                  value={5}
+                ></input>
+                <img src="static/jello5.png" id="radio-icon"></img>
+              </label>
+            </div>
+
+            <div id='radio-jello-div'>
+              <label>
+                <input
+                  type='radio'
+                  name='avatarId'
+                  onChange={updateAvatarId}
+                  value={6}
+                ></input>
+                <img src="static/jello6.png" id="radio-icon"></img>
+              </label>
+            </div>
+          </div>
+          <div className='radio-icons-row2'>
+            <div id='radio-jello-div'>
+              <label>
+                <input
+                  type='radio'
+                  name='avatarId'
+                  onChange={updateAvatarId}
+                  value={7}
+                ></input>
+                <img src="static/jello7.png" id="radio-icon"></img>
+              </label>
+            </div>
+
+            <div id='radio-jello-div'>
+              <label>
+                <input
+                  type='radio'
+                  name='avatarId'
+                  onChange={updateAvatarId}
+                  value={8}
+                ></input>
+                <img src="static/jello8.png" id="radio-icon"></img>
+              </label>
+            </div>
+
+            <div id='radio-jello-div'>
+              <label>
+                <input
+                  type='radio'
+                  name='avatarId'
+                  onChange={updateAvatarId}
+                  value={9}
+                ></input>
+                <img src="static/jello9.png" id="radio-icon"></img>
+              </label>
+            </div>
+
+            <div id='radio-jello-div'>
+              <label>
+                <input
+                  type='radio'
+                  name='avatarId'
+                  onChange={updateAvatarId}
+                  value={10}
+                ></input>
+                <img src="static/jello10.png" id="radio-icon"></img>
+              </label>
+            </div>
+
+            <div id='radio-jello-div'>
+              <label>
+                <input
+                  type='radio'
+                  name='avatarId'
+                  onChange={updateAvatarId}
+                  value={11}
+                ></input>
+                <img src="static/jello11.png" id="radio-icon"></img>
+              </label>
+            </div>
+
+            <div id='radio-jello-div'>
+              <label>
+                <input
+                  type='radio'
+                  name='avatarId'
+                  onChange={updateAvatarId}
+                  value={12}
+                ></input>
+                <img src="static/jello12.png" id="radio-icon"></img>
+              </label>
+            </div>
+
+          </div>
+        </div>
+        <input className='signup-input'
+          placeholder='Password'
+          type='password'
+          name='password'
+          onChange={updatePassword}
+          value={password}
+        ></input>
+        <input className='signup-input'
+          placeholder='Confirm Password'
+          type='password'
+          name='repeat_password'
+          onChange={updateRepeatPassword}
+          value={repeatPassword}
+          required={true}
+        ></input>
         <button type='submit' className='login-form-btn submit-btn jello-wiggle button__shine__long__green green-btn'>Sign Up</button>
       </form>
-        <button className='login-form-btn jello-wiggle jello__container__ani cancel-btn' 
-        style={{width: '75%', marginBottom: '36px'}} /* <<< hack alert */
+      <button className='login-form-btn jello-wiggle jello__container__ani cancel-btn'
+        style={{ width: '75%', marginBottom: '36px' }} /* <<< hack alert */
         onClick={closeModalFunc}
         id="logout-button">Cancel</button>
     </div>
