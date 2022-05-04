@@ -1,26 +1,70 @@
+@keyframes jello_2 {
+    0% {
+        transform: skewX(-9deg) scaleX(0.95) scaleY(0.95);
+    }
+
+    10% {
+        transform: skewX(8deg) scaleX(1.05) scaleY(1.05);
+    }
+
+    20% {
+        transform: skewX(-7deg) scaleX(0.96) scaleY(0.96);
+    }
+
+    30% {
+        transform: skewX(6deg) scaleX(1.04) scaleY(1.04);
+    }
+
+    40% {
+        transform: skewX(-5deg) scaleX(0.97) scaleY(0.97);
+    }
+
+    50% {
+        transform: skewX(4deg) scaleX(1.03) scaleY(1.03);
+    }
+
+    60% {
+        transform: skewX(-3deg) scaleX(0.98) scaleY(0.98);
+    }
+
+    70% {
+        transform: skewX(2deg) scaleX(1.02) scaleY(1.02);
+    }
+
+    80% {
+        transform: skewX(-1deg) scaleX(0.99) scaleY(0.99);
+    }
+
+    90% {
+        transform: skewX(0deg) scaleX(1.01) scaleY(1.01);
+    }
+
+    100% {
+        transform: none;
+    }
+}
+
 .modal-background {
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  background-color: rgba(0,0,0,.3);
-  position: absolute;
-  z-index: 2;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    position: absolute;
+    z-index: 2;
 
-  backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: jello_2 1s;
+    /* transition: 0.8s; */
 }
 
 /* MODAL DISPLAYS */
 .not-displayed {
     display: none;
-}
-
-.displayed {
 }
 
 .home-body-div {
@@ -94,7 +138,7 @@ p {
     left: 20%;
 }
 
-.home-bottom-div > * {
+.home-bottom-div>* {
     overflow-wrap: break-word;
     font-size: 20px;
     font-weight: lighter;
@@ -114,7 +158,7 @@ p {
     display: flex;
     gap: 14px;
     justify-content: center;
-/*    position: fixed;*/
+    /*    position: fixed;*/
     bottom: 30px;
     border-top: 1px solid gray;
 }

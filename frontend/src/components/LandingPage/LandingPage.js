@@ -1,10 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../store/session';
 
 import './LandingPage.css'
 import LoginForm from './LoginForm'
 import SignUpForm from './SignUpForm'
 
 const LandingPage = () => {
+    const dispatch = useDispatch();
+    const sessionUser = useSelector(state => state.session.user);
+    const history = useHistory()
+
     const [loginDisplay, setLoginDisplay] = useState('not-displayed')
     const [signupDisplay, setSignupDisplay] = useState('not-displayed')
 
@@ -28,8 +35,12 @@ const LandingPage = () => {
     }
 
     const toggleLoginSignupFunc = () => {
-      changeLoginDisplay();
-      changeSignupDisplay();
+        changeLoginDisplay();
+        changeSignupDisplay();
+    }
+
+    const demoLogin = async () => {
+        await dispatch(login('demo@aa.io', 'password'));
     }
 
     return (
@@ -41,7 +52,7 @@ const LandingPage = () => {
                         <img src='/logo-dark.png' className='dark-logo' />
                     </div>
                     <div className="user-buttons-div">
-                        <button className='demo-btn jello-wiggle button__shine__short'>Demo User</button>
+                        <button className='demo-btn jello-wiggle button__shine__short' onClick={demoLogin}>Demo User</button>
                         <button className='login-btn green-btn jello-wiggle button__shine__long__green' onClick={changeLoginDisplay}>Log In</button>
                         <button className='signup-btn green-btn jello-wiggle button__shine__long__green' onClick={changeSignupDisplay}>Sign Up</button>
                         <div className={`modal-background ${loginDisplay}`} onMouseDown={changeLoginDisplay}>
@@ -59,34 +70,34 @@ const LandingPage = () => {
                 </div>
             </div>
 
-                <div className="coder-profiles">
-                    <div className="coder">
-                        <a target="_blank" href="github.com">
-                            <img src="/jello9.png" className="coder-img jello-wiggle"></img>
-                        </a>
-                        <span>Daniel Blanco</span>
-                    </div>
-                    <div className="coder">
-                        <a target="_blank" href="">
-                            <img src="/jello6.png" className="coder-img jello-wiggle"></img>
-                        </a>
-                        <span>Jon Moore</span>
-                    </div>
-
-                    <div className="coder">
-                        <a target="_blank" href="">
-                            <img src="/jello3.png" className="coder-img jello-wiggle"></img>
-                        </a>
-                        <span>Mason Kogami</span>
-                    </div>
-
-                    <div className="coder">
-                        <a target="_blank" href="">
-                            <img src="/jello5.png" className="coder-img jello-wiggle"></img>
-                        </a>
-                        <span>Nicholas Yuan</span>
-                    </div>
+            <div className="coder-profiles">
+                <div className="coder">
+                    <a target="_blank" href="github.com">
+                        <img src="/jello9.png" className="coder-img jello-wiggle"></img>
+                    </a>
+                    <span>Daniel Blanco</span>
                 </div>
+                <div className="coder">
+                    <a target="_blank" href="">
+                        <img src="/jello6.png" className="coder-img jello-wiggle"></img>
+                    </a>
+                    <span>Jon Moore</span>
+                </div>
+
+                <div className="coder">
+                    <a target="_blank" href="">
+                        <img src="/jello3.png" className="coder-img jello-wiggle"></img>
+                    </a>
+                    <span>Mason Kogami</span>
+                </div>
+
+                <div className="coder">
+                    <a target="_blank" href="">
+                        <img src="/jello5.png" className="coder-img jello-wiggle"></img>
+                    </a>
+                    <span>Nicholas Yuan</span>
+                </div>
+            </div>
 
         </div>
     )
