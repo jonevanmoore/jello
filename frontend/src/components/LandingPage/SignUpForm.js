@@ -56,7 +56,7 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
   const stopTheProp = e => e.stopPropagation();
 
   return (
-    <div className={`signup-body`}onClick={stopTheProp}>
+    <div className={`signup-body`}onClick={stopTheProp} onMouseDown={stopTheProp}>
       <form onSubmit={onSignUp} className='signup-form'>
         <span id="bulk" className='login-text'>Sign up for Jello <span id="skinny">or</span> <span className='signup-click' onClick={toggleLoginSignupFunc}>Log in</span></span>
 

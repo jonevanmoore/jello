@@ -44,10 +44,10 @@ const LandingPage = () => {
                         <button className='demo-btn jello-wiggle button__shine__short'>Demo User</button>
                         <button className='login-btn green-btn jello-wiggle button__shine__long__green' onClick={changeLoginDisplay}>Log In</button>
                         <button className='signup-btn green-btn jello-wiggle button__shine__long__green' onClick={changeSignupDisplay}>Sign Up</button>
-                        <div className={`modal-background ${loginDisplay}`} onClick={changeLoginDisplay}>
+                        <div className={`modal-background ${loginDisplay}`} onMouseDown={changeLoginDisplay}>
                             <LoginForm closeModalFunc={changeLoginDisplay} toggleLoginSignupFunc={toggleLoginSignupFunc} />
                         </div>
-                        <div className={`modal-background ${signupDisplay}`} onClick={changeSignupDisplay}>
+                        <div className={`modal-background ${signupDisplay}`} onMouseDown={changeSignupDisplay}>
                             <SignUpForm closeModalFunc={changeSignupDisplay} toggleLoginSignupFunc={toggleLoginSignupFunc} />
                         </div>
                     </div>
