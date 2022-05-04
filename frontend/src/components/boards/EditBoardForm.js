@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-import { readOneBoard, updateBoard } from '../../store/boards';
+import { updateBoard } from '../../store/boards';
 
 import './Boards.css';
 import './BoardForm.css';
 
 const EditBoardForm = ({ closeModalFunc }) => {
     const dispatch = useDispatch();
-    const history = useHistory();
     const { board_id } = useParams();
-    const user = useSelector(state => state.session.user);
-    const boards = useSelector(state => state.boards);
     const board = useSelector(state => state.boards[board_id])
     const [title, setTitle] = useState(board?.title);
     const [avatar_id, setAvatar_id] = useState(board?.avatar_id);
@@ -50,17 +47,6 @@ const EditBoardForm = ({ closeModalFunc }) => {
 
     const stopTheProp = e => e.stopPropagation();
 
-    // const pattern = /^[\S].*[\S]$/;
-    // const validData = '([a-zA-Z])\w+/g'
-
-    // const updateTitle = (e) => {
-    //     if (pattern.test(e.target.value)) {
-    //         setTitle(e.target.value);
-    //     } else {
-    //         e.target.setCustomValidity('Please input a proper title that includes at least one character.');
-    //     }
-    // };
-
     return (
         <div className='new__board__form__container'>
             <form
@@ -79,7 +65,6 @@ const EditBoardForm = ({ closeModalFunc }) => {
                             placeholder='Title'
                             type='text'
                             value={title}
-                            // pattern={/^[\S].*[\S]$/}
                             onChange={(e) => setTitle(e.target.value)}
                             required
                         />
@@ -92,7 +77,6 @@ const EditBoardForm = ({ closeModalFunc }) => {
                         type='text'
                         value={avatar_id}
                         onChange={(e) => updateAvatarId(e)}
-                        // helperText={error ? 'Title must have at least one character which is not a space.' : 'Perfect!'}
                         required
                     />
                 </div>
