@@ -49,12 +49,9 @@ const EditBoard = () => {
                     <input
                         placeholder='title'
                         type='text'
-                        // pattern="[^\s]+"
+                        pattern='^[\S].*[\S]$'
                         value={title}
-                        onChange={(e) => {
-                            if (!(e.target.value === "[^\s]+"))
-                            setTitle(e.target.value)}
-                        }
+                        onChange={(e) => setTitle(e.target.value)}
                         required
                     />
                 </div>
