@@ -33,9 +33,10 @@ const DashBoard = () => {
 
     if (!boards) return null;
 
-    const avatarPNGs = Object.values(avatars).map((avatar) => {
-        return avatar.imageUrl
-    })
+    const avatarPNGs = Object.values(avatars)
+        .filter((avatar, i) => user.avatar_id != i + 1)
+        .map(avatar => avatar.imageUrl)
+
     const randomAvatar = avatarPNGs[Math.floor(Math.random() * avatarPNGs.length)];
 
     return (
