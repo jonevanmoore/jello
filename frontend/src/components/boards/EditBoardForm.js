@@ -49,8 +49,12 @@ const EditBoard = () => {
                     <input
                         placeholder='title'
                         type='text'
+                        // pattern="[^\s]+"
                         value={title}
-                        onChange={(e) => setTitle(e.target.value)}
+                        onChange={(e) => {
+                            if (!(e.target.value === "[^\s]+"))
+                            setTitle(e.target.value)}
+                        }
                         required
                     />
                 </div>
@@ -58,6 +62,7 @@ const EditBoard = () => {
                     <input
                         placeholder='avatar'
                         type='text'
+                        // pattern="[^\s]+"
                         value={avatar_id}
                         onChange={(e) => setAvatar_id(e.target.value)}
                         required
