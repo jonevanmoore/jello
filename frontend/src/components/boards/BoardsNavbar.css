@@ -1,0 +1,125 @@
+.all__boards__vertical__navbar {
+    width: 210px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* padding-left: 10px; */
+    background: var(--light-gray-bg-color);
+    border: #D6DADE solid 1px;
+}
+
+.one__board__vertical__navbar {
+    width: 190px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* padding-left: 10px; */
+
+    background: var(--dark-gray-bg-color);
+    border: #D6DADE solid 1px;
+}
+
+.user__vertical__navbar {
+    width: auto;
+    height: 80px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    /* background: var(--light-gray-bg-color); */
+    /* border: red solid 1px; */
+}
+
+.avatar__navbar__boards {
+    background: #FFFFFF;
+    border: 1px rgba(39, 55, 85, 1) solid;
+    border-width: 1px;
+    width: 25px;
+    height: 25px;
+    border-radius: 2px;
+
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 10px;
+    color: black;
+}
+
+.your__boards__PLUS {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--background-color);
+    height: 32px;
+}
+
+.your__boards__PLUS>div {
+    margin: 10px;
+}
+
+.name__board__navbar__boards {
+    font-size: 14px;
+    color: var(--white-button-main-color);
+    /* padding-left: 5px; */
+}
+
+.name__boards__navbar__boards {
+    font-size: 18px;
+    color: var(--dark-blue-main-text);
+    /* padding-left: 5px; */
+}
+
+.color__square {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    background-color: black;
+    margin: 0 10px;
+}
+
+.vertical__list__boards {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.vertical__board__names {
+    font-size: 12px;
+    list-style: none;
+    color: var(--white-button-main-color);
+}
+
+.vertical__boards__names {
+    font-size: 12px;
+    list-style: none;
+    color: var(--dark-blue-main-text);
+}
+
+.board__title__board {
+    color: var(--white-button-main-color);
+    letter-spacing: 1pt;
+}
+
+#gray__board__button {
+    /* padding: 6px 12px; */
+    border-width: var(--main-button-border-width);
+    border-style: solid;
+    border-color: var(--dark-gray-bg-color);
+    color: var(--dark-gray-bg-color);
+    font-weight: 700;
+    font-family: inherit;
+    font-size: 10px;
+    border-radius: var(--main-border-radius);
+    width: 70px;
+    height: 20px;
+    transition: background 1s, color 0.5s;
+    /* display: flex;
+    justify-content: center; */
+}
+
+#gray__board__button:hover {
+    color: var(--white-button-main-color);
+    background: var(--dark-button-main-color);
+    border: 1px #000000 solid;
+}

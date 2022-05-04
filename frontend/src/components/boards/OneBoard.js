@@ -4,7 +4,10 @@ import { Link, NavLink, useHistory, useParams, Redirect } from 'react-router-dom
 
 import { readBoards, readOneBoard, updateBoard, deleteBoard } from '../../store/boards';
 
+import { UserIcon } from '../UserIcon';
+
 import './Boards.css';
+import './OneBoard.css';
 
 const OneBoard = () => {
     const dispatch = useDispatch();
@@ -14,6 +17,17 @@ const OneBoard = () => {
     const boards = useSelector(state => state.boards?.boards);
 
     const board = boards.find(board => board.id == board_id);
+
+    const boardsOwned = [];
+    const boardsShared = [];
+
+    boards?.forEach(board => {
+        if (board.user_id === user.id) {
+            boardsOwned.push(board);
+        } else {
+            boardsShared.push(board);
+        }
+    });
 
     const [title, setTitle] = useState(board?.title);
     const [avatar_id, setAvatar_id] = useState(board?.avatar_id);
@@ -40,25 +54,55 @@ const OneBoard = () => {
 
     return (
         <div className='divided_screen'>
-            <div className='temp_vertical_navbar'>
-                TEMP VERTICAL NAVBAR
+            <div className='one__board__vertical__navbar'>
+                <div className='user__vertical__navbar'>
+                    <div className='avatar__navbar__boards'>
+                        <div>
+                            <UserIcon isNavIcon={true} />
+                        </div>
+                    </div>
+                    <div className='name__board__navbar__boards'>
+                        {`${user.first_name} ${user.last_name}`}
+                    </div>
+                </div>
+                <div className='your__boards__PLUS'>
+                    <div>
+                        Your Boards
+                    </div>
+                    <div>
+                        +
+                    </div>
+                </div>
                 <div>
-                    <div>
-                        [ IC ]
-                    </div>
-                    <div>
-                        {`${user.first_name} ${user.last_name}'s boards`}
-                    </div>
+                    {boardsOwned.map(board =>
+                        <li className="boards__list__elements" key={board.id}>
+                            <NavLink style={{ textDecoration: 'none' }} to={`/boards/${board.id}`}>
+                                <div className='vertical__list__boards'>
+                                    <div className='color__square jello__wiggle' />
+                                    <div className='vertical__board__names jello__wiggle'>
+                                        {board.title}
+                                    </div>
+                                </div>
+                            </NavLink>
+                        </li>
+                    )}
                 </div>
             </div>
             <div className='board-nav-bar'>
                 <div className='title-share-icons'>
-                    <div>
+                    <div className='board__title__board'>
                         {board?.title}
                     </div>
                     <div className='board-nav-left-divider' />
                     <div>
-                        <button>
+                        <button
+                            id='gray__board__button'
+                            className='
+                            jello__wiggle
+                            logout__button
+                            red__button
+                            button__shine__short__red
+                            '>
                             Share
                         </button>
                     </div>
@@ -70,13 +114,28 @@ const OneBoard = () => {
                 </div>
                 <div className='edit-delete-btns'>
                     <Link to={`/boards/${board.id}/edit`}>
-                        <button>
+                        <button
+                            id='gray__board__button'
+                            className='
+                            jello__wiggle
+                            logout__button
+                            red__button
+                            button__shine__short__red
+                            '>
                             Edit Board
                         </button>
                     </Link>
-                    <button onClick={() => {
-                        deleteOneBoard(board)
-                    }}>Delete Board</button>
+                    <button
+                        id='gray__board__button'
+                        className='
+                            jello__wiggle
+                            logout__button
+                            red__button
+                            button__shine__short__red
+                            '
+                        onClick={() => {
+                            deleteOneBoard(board)
+                        }}>Delete Board</button>
                 </div>
             </div>
         </div>
