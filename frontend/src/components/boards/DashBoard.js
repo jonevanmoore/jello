@@ -90,16 +90,12 @@ const DashBoard = () => {
                                 <li className="boards__list__elements" key={board.id}>
                                     <NavLink style={{ textDecoration: 'none' }} to={`/boards/${board.id}`}>
                                         <div
-                                            style={{
-                                                backgroundColor: avatars[board.avatar_id].color,
-                                                // color: 'black'
-                                            }}
                                             className="
-                                        jello__container
-                                        jello__container__ani
-                                        jello__bg__01"
-                                        >
-
+                                                jello__container
+                                                jello__container__ani
+                                                jello__bg
+                                                "
+                                            style={{ backgroundColor: avatars[board.avatar_id].color }}>
                                             <div className='jello__title'>
                                                 {board.title}
                                             </div>
@@ -120,7 +116,7 @@ const DashBoard = () => {
                     <div>
                         <ul className='all__boards'>
                             {boardsShared.map(board =>
-                                <li className="jello__container jello__container__ani jello__bg__02" key={board.id}>
+                                <li className="jello__container jello__container__ani jello__bg" key={board.id}>
                                     <div className='jello__title'>
                                         {board.title}
                                     </div>
