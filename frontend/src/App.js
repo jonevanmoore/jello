@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/LandingPage/LoginForm';
 import SignUpForm from './components/LandingPage/SignUpForm';
 import NavBar from './components/NavBar/NavBar';
-import Boards from './components/boards';
+import NewBoardForm from './components/boards/NewBoardForm';
 import OneBoard from './components/boards/OneBoard';
 import EditBoard from './components/boards/EditBoardForm';
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -56,12 +56,12 @@ function App() {
         <ProtectedRoute path='/boards' exact={true}>
           <DashBoard />
         </ProtectedRoute>
-        <ProtectedRoute path='/boards/new' exact={true}>
+        {/*<ProtectedRoute path='/boards/new' exact={true}>
           <Boards />
         </ProtectedRoute>
         <ProtectedRoute path='/boards/:board_id/edit' exact={true}>
           <EditBoard />
-        </ProtectedRoute>
+        </ProtectedRoute>*/}
         <ProtectedRoute path={`/boards/:board_id`} exact={true}>
           <OneBoard />
         </ProtectedRoute>

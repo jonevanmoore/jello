@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, useHistory, useParams, Redirect } from 'react-router-dom';
-
 import { readBoards, readOneBoard, updateBoard, deleteBoard } from '../../store/boards';
-
 import { UserIcon } from '../UserIcon';
-
 import ListsPage from './temp_lists';
+import Modal from '../Modal';
+import EditBoardForm from './EditBoardForm';
 
 import './Boards.css';
 import './OneBoard.css';
@@ -17,8 +16,11 @@ const OneBoard = () => {
     const { board_id } = useParams();
     const user = useSelector(state => state.session.user);
     const boards = useSelector(state => state.boards?.boards);
+    const [ showEditModal, setShowEditModal ] = useState(false);
+//    const board = useSelector(state => state.boards.boards[board_id])
 
-    const board = boards.find(board => board.id == board_id);
+    console.log(boards);
+    const board = boards?.find(board => board.id == board_id);
 
     const boardsOwned = [];
     const boardsShared = [];
@@ -50,9 +52,11 @@ const OneBoard = () => {
         history.push("/boards")
     };
 
-    if (!boards) return null;
+//    if (!boards) return null;
+//    if (!board) return null;
 
-    if (!board) return null;
+    const showEditModalFunc  = () => setShowEditModal(true);
+    const closeEditModalFunc = () => setShowEditModal(false);
 
     return (
         <>
@@ -117,18 +121,20 @@ const OneBoard = () => {
                             <div className='board-nav-left-divider' />
                         </div>
                         <div className='edit-delete-btns'>
-                            <Link to={`/boards/${board.id}/edit`}>
-                                <button
+                            <button
                                     id='gray__board__button'
+                                    onClick={showEditModalFunc}
                                     className='
-                            jello__wiggle
-                            logout__button
-                            red__button
-                            button__shine__short__red
-                            '>
-                                    Edit Board
-                                </button>
-                            </Link>
+                                      jello__wiggle
+                                      logout__button
+                                      red__button
+                                      button__shine__short__red
+                                      '>
+                              Edit Board
+                            </button>
+                          {showEditModal && (<Modal closeModalFunc={closeEditModalFunc}>
+                              <EditBoardForm closeModalFunc={closeEditModalFunc} />
+                            </Modal>)}
                             <button
                                 id='gray__board__button'
                                 className='
