@@ -1,5 +1,4 @@
-from backend.models import db, Board
-
+from backend.models import db, Board, List
 
 # Adds a demo user, you can add other users here if you want
 def seed_boards():
@@ -10,7 +9,9 @@ def seed_boards():
     board_03 = Board(
         user_id=2, title='This is the Third Title Limit.', avatar_id=2)
 
-    db.session.add_all([board_01, board_02, board_03])
+    list_01 = List( user_id=1, board_id=1, title="test list", order=1 )
+
+    db.session.add_all([board_01, board_02, board_03, list_01])
     db.session.commit()
 
 
