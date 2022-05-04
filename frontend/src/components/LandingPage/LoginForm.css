@@ -39,6 +39,7 @@
     margin: 10px 0 10px 0;
     border: 1px solid rgb(167, 167, 167);
     border-radius: 3px;
+    box-sizing: border-box;
 }
 
 .login-input::placeholder {
@@ -56,6 +57,8 @@
 .submit-btn {
     margin-top: 20px;
     font-weight: bolder;
+    box-sizing: border-box;
+    width: 75%;
 }
 
 .cancel-btn {

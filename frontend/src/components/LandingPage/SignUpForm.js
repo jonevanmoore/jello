@@ -67,7 +67,6 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
         </div>
         <div className='first-last-div'>
 
-          <div>
             <input className='signup-input'
               placeholder='First Name'
               type='text'
@@ -75,8 +74,6 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
               onChange={updateFirstName}
               value={firstName}
             ></input>
-          </div>
-          <div>
             <input className='signup-input'
               placeholder='Last Name'
               type='text'
@@ -84,9 +81,7 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
               onChange={updateLastName}
               value={lastName}
             ></input>
-          </div>
         </div>
-        <div>
           <input className='signup-input'
             placeholder='Email'
             type='text'
@@ -94,7 +89,6 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
             onChange={updateEmail}
             value={email}
           ></input>
-        </div>
         <div>
           <label>Avatar</label>
           <input
@@ -104,7 +98,6 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
             value={avatarId}
           ></input>
         </div>
-        <div>
           <input className='signup-input'
             placeholder='Password'
             type='password'
@@ -112,8 +105,6 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
             onChange={updatePassword}
             value={password}
           ></input>
-        </div>
-        <div>
           <input className='signup-input'
             placeholder='Confirm Password'
             type='password'
@@ -122,7 +113,6 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
             value={repeatPassword}
             required={true}
           ></input>
-        </div>
         <button type='submit' className='login-form-btn submit-btn jello-wiggle button__shine__long__green green-btn'>Sign Up</button>
       </form>
         <button className='login-form-btn jello-wiggle jello__container__ani cancel-btn' 
