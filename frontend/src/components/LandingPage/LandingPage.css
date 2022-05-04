@@ -44,7 +44,15 @@
     }
 }
 
-.modal-background {
+.login-body {
+    animation: jello_2 1s;
+}
+
+.signup-body {
+    animation: jello_2 1s;
+}
+
+.modal-background-home-page {
     top: 0px;
     bottom: 0px;
     left: 0px;
@@ -58,7 +66,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    animation: jello_2 1s;
 }
 
 /* MODAL DISPLAYS */
