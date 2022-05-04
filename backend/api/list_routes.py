@@ -11,7 +11,7 @@ def update_list(id):
     list = List.query.get(id)
 
     if list.user_id != current_user.id:
-        return {'errors': "Unauthorized edit", 401}
+        return {'errors': "Unauthorized edit"}, 401
 
     list.title = request.json('title')
     list.order = request.json('order')
@@ -19,6 +19,12 @@ def update_list(id):
     db.session.commit()
     return list.to_dict()
 
+# TODO: How to manage shared board permissions?
+# maybe a function which checks:
+# does users_boards have a record of 
+# user_id == current_user.is
+# and 
+# board_id == card.list.board.id ?
 
 # D E L E T E
 @list_routes.route('/<int:id>', methods=['DELETE'])
@@ -27,7 +33,7 @@ def delete_list(id):
     list = List.query.get(id)
 
     if list.user_id != current_user.id:
-        return {'errors': "Unauthorized edit", 401}
+        return {'errors': "Unauthorized delete"}, 401
 
     db.session.delete(list)
     db.session.commit()
