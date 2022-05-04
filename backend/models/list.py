@@ -12,6 +12,8 @@ class List(db.Model):
     created_at  = db.Column(db.DateTime(timezone = True), server_default = func.now())
     updated_at  = db.Column(db.DateTime(timezone = True), onupdate = func.now())
 
+    cards       = db.relationship('Card', back_populates='list')
+
     def to_dict(self):
         return {
                 'id': self.id,
@@ -20,5 +22,6 @@ class List(db.Model):
                 'title': self.title,
                 'order': self.order,
                 'created_at': self.created_at,
-                'updated_at': self.updated_at
+                'updated_at': self.updated_at,
+                'cards': [ card.to_dict() for card in self.cards ]
                 }
