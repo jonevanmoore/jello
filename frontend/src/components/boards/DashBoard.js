@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 import { UserIcon } from '../UserIcon';
+import { avatars } from "../../context/Avatar";
+
 
 
 import { readBoards } from '../../store/boards';
@@ -11,7 +13,7 @@ import './BoardsNavbar.css';
 
 const DashBoard = () => {
     const dispatch = useDispatch();
-    const user   = useSelector(state => state.session.user);
+    const user = useSelector(state => state.session.user);
     const boards = useSelector(state => state.boards);
 
     // TODO: FIX SHARED BOARDS BEHAVIOR
@@ -20,6 +22,7 @@ const DashBoard = () => {
 
     Object.values(boards).forEach(board => {
         if (board.user_id === user.id) {
+            console.log('BIOARD-----------------', board);
             boardsOwned.push(board);
         } else {
             boardsShared.push(board);
@@ -86,12 +89,24 @@ const DashBoard = () => {
                             {boardsOwned.map(board =>
                                 <li className="boards__list__elements" key={board.id}>
                                     <NavLink style={{ textDecoration: 'none' }} to={`/boards/${board.id}`}>
-                                        <div className="jello__container jello__container__ani jello__bg__01" >
+                                        <div
+                                            style={{
+                                                backgroundColor: avatars[board.avatar_id].color,
+                                                // color: 'black'
+                                            }}
+                                            className="
+                                        jello__container
+                                        jello__container__ani
+                                        jello__bg__01"
+                                        >
+
                                             <div className='jello__title'>
                                                 {board.title}
                                             </div>
-                                            <div className="jello__image__container jello__wiggle">
-                                                <img className="jello__image" src={'/static/Jello-01.png'} />
+                                            <div className="jello__wiggle">
+                                                <img
+                                                    className="jello__image"
+                                                    src={avatars[board.avatar_id].imageUrl} />
                                             </div>
                                         </div>
                                     </NavLink>

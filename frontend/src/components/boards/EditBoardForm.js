@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
 import { readOneBoard, updateBoard } from '../../store/boards';
+import { Icons } from '../Icons/Icons';
 
 import './Boards.css';
 import './BoardForm.css';
@@ -15,7 +16,7 @@ const EditBoardForm = ({ closeModalFunc }) => {
     const boards = useSelector(state => state.boards);
     const board = useSelector(state => state.boards[board_id])
     const [title, setTitle] = useState(board?.title);
-    const [avatar_id, setAvatar_id] = useState(board?.avatar_id);
+    const [avatarId, setAvatarId] = useState(board?.avatar_id);
     const [errors, setErrors] = useState([]);
 
     const handleSubmit = async (e) => {
@@ -23,7 +24,7 @@ const EditBoardForm = ({ closeModalFunc }) => {
 
         const edits = {
             title,
-            avatar_id
+            avatar_id: avatarId
         };
 
         let newBoard = await dispatch(updateBoard(edits, board_id))
@@ -39,9 +40,6 @@ const EditBoardForm = ({ closeModalFunc }) => {
         }
     };
 
-    const updateAvatarId = (e) => {
-        setAvatar_id(e.target.value);
-    };
 
     const stopTheProp = e => e.stopPropagation();
 
@@ -62,23 +60,16 @@ const EditBoardForm = ({ closeModalFunc }) => {
                             className='input__board__title'
                             placeholder='Title'
                             type='text'
+                            // pattern='^[\S].*[\S]$'
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
                             required
                         />
                     </div>
                 </div>
-                <div>
-                    <label>Avatar</label>
-                    <input
-                        placeholder='title'
-                        type='text'
-                        pattern='^[\S].*[\S]$'
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        required
-                    />
-                </div>
+
+                <Icons avatarId={avatarId} setAvatarId={setAvatarId} />
+
                 {/* <div>
                     <input
                         placeholder='workspace'

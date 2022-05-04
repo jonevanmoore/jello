@@ -6,6 +6,7 @@ export const Icons = ({ avatarId, setAvatarId }) => {
     const updateAvatarId = (e) => {
         setAvatarId(e.target.value)
     };
+
     return (
         <div className='radio-div'>
             <label id="avatar-label">Avatar</label>
@@ -19,7 +20,11 @@ export const Icons = ({ avatarId, setAvatarId }) => {
                                 onChange={updateAvatarId}
                                 value={i + 1}
                             ></input>
-                            <img src={`${avatar.imageUrl}`} id="radio-icon" style={{ backgroundColor: avatarId == i + 1 ? avatar.color : '' }} />
+                            <img
+                                src={`${avatar.imageUrl}`}
+                                id="radio-icon"
+                                style={{ backgroundColor: avatarId == i + 1 ? avatar.color : '' }}
+                            />
                         </label>
                     </div>
                 ))}
