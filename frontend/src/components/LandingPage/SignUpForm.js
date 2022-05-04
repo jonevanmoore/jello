@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import './SignUpForm.css';
 
-const SignUpForm = () => {
+const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
   const [errors, setErrors] = useState([]);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -49,14 +49,16 @@ const SignUpForm = () => {
     setRepeatPassword(e.target.value);
   };
 
-  if (user) {
+/*  if (user) {
     return <Redirect to='/' />;
-  }
+  }*/
+ 
+  const stopTheProp = e => e.stopPropagation();
 
   return (
-    <div>
+    <div className={`signup-body`}onClick={stopTheProp}>
       <form onSubmit={onSignUp} className='signup-form'>
-        <span id="bulk" className='login-text'>Sign up to Jello <span id="skinny">or</span> <a className='signup-click'>Log in</a></span>
+        <span id="bulk" className='login-text'>Sign up for Jello <span id="skinny">or</span> <span className='signup-click' onClick={toggleLoginSignupFunc}>Log in</span></span>
 
         <div>
           {errors.map((error, ind) => (
@@ -122,8 +124,11 @@ const SignUpForm = () => {
           ></input>
         </div>
         <button type='submit' className='login-form-btn submit-btn jello-wiggle button__shine__long__green green-btn'>Sign Up</button>
-        <button className='login-form-btn jello-wiggle jello__container__ani cancel-btn' id="logout-button">Cancel</button>
       </form>
+        <button className='login-form-btn jello-wiggle jello__container__ani cancel-btn' 
+        style={{width: '75%', marginBottom: '36px'}} /* <<< hack alert */
+        onClick={closeModalFunc}
+        id="logout-button">Cancel</button>
     </div>
   );
 };

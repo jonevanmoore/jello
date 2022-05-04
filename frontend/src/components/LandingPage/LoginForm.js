@@ -31,9 +31,9 @@ const LoginForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
     setPassword(e.target.value);
   };
 
-  if (user) {
+/*  if (user) {
     return <Redirect to='/' />;
-  }
+  }*/
 
   const changeLoginDisplay = () => {
     if (loginDisplay === 'not-displayed') {
@@ -55,9 +55,7 @@ const LoginForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
     }
   }
 
-  const stopTheProp = e => {
-    e.stopPropagation();
-  }
+  const stopTheProp = e => e.stopPropagation();
 
   return (
     <div className={`login-body ${loginDisplay}`} onClick={stopTheProp}>
