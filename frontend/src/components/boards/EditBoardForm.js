@@ -71,18 +71,21 @@ const EditBoardForm = ({ closeModalFunc }) => {
                 <div>
                     <label>Avatar</label>
                     <input
-                        type='radio'
-                        name='avatar_id'
-                        onChange={updateAvatarId}
-                        value={avatar_id}
-                    ></input>
+                        placeholder='title'
+                        type='text'
+                        pattern='^[\S].*[\S]$'
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        required
+                    />
                 </div>
                 {/* <div>
                     <input
                         placeholder='workspace'
                         type='text'
-                        value={workspace_id}
-                        onChange={(e) => setWorkspace_id(e.target.value)}
+                        // pattern="[^\s]+"
+                        value={avatar_id}
+                        onChange={(e) => setAvatar_id(e.target.value)}
                         required
                     />
                 </div> */}
