@@ -31,9 +31,9 @@ const LoginForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
     setPassword(e.target.value);
   };
 
-/*  if (user) {
+  if (user) {
     return <Redirect to='/' />;
-  }*/
+  }
 
   const changeLoginDisplay = () => {
     if (loginDisplay === 'not-displayed') {

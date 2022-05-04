@@ -49,9 +49,9 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
     setRepeatPassword(e.target.value);
   };
 
-/*  if (user) {
+  if (user) {
     return <Redirect to='/' />;
-  }*/
+  }
  
   const stopTheProp = e => e.stopPropagation();
 
