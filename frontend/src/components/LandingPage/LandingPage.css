@@ -59,7 +59,6 @@
     align-items: center;
     justify-content: center;
     animation: jello_2 1s;
-    /* transition: 0.8s; */
 }
 
 /* MODAL DISPLAYS */
@@ -174,6 +173,7 @@ p {
     filter: grayscale(100%);
     margin-left: 30px;
     margin-right: 30px;
+    transition: .2s;
 }
 
 .coder-img:hover {

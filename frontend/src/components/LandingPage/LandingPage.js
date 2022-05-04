@@ -72,27 +72,27 @@ const LandingPage = () => {
 
             <div className="coder-profiles">
                 <div className="coder">
-                    <a target="_blank" href="github.com">
+                    <a target="_blank" href="https://github.com/danguai">
                         <img src="/jello9.png" className="coder-img jello-wiggle"></img>
                     </a>
                     <span>Daniel Blanco</span>
                 </div>
                 <div className="coder">
-                    <a target="_blank" href="">
+                    <a target="_blank" href="https://github.com/jonevanmoore">
                         <img src="/jello6.png" className="coder-img jello-wiggle"></img>
                     </a>
                     <span>Jon Moore</span>
                 </div>
 
                 <div className="coder">
-                    <a target="_blank" href="">
+                    <a target="_blank" href="https://github.com/MasonKogami">
                         <img src="/jello3.png" className="coder-img jello-wiggle"></img>
                     </a>
                     <span>Mason Kogami</span>
                 </div>
 
                 <div className="coder">
-                    <a target="_blank" href="">
+                    <a target="_blank" href="https://github.com/Nick-Yawn">
                         <img src="/jello5.png" className="coder-img jello-wiggle"></img>
                     </a>
                     <span>Nicholas Yuan</span>
