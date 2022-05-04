@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import './SignUpForm.css';
+import { avatars } from '../../context/Avatar';
+import { Icons } from '../Icons/Icons';
+
 
 const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
   const [errors, setErrors] = useState([]);
@@ -94,157 +97,9 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
           onChange={updateEmail}
           value={email}
         ></input>
-        <div className='radio-div'>
-          <label id="avatar-label">Avatar</label>
-          <div className='radio-icons-row1'>
 
-            <div id='radio-jello-div'>
-              <label>
-                <input
-                  type='radio'
-                  name='avatarId'
-                  onChange={updateAvatarId}
-                  value={1}
-                ></input>
-                <img src="static/jello1.png" id="radio-icon"></img>
-              </label>
-            </div>
+        <Icons avatarId={avatarId} setAvatarId={setAvatarId} />
 
-            <div id='radio-jello-div'>
-              <label>
-                <input
-                  type='radio'
-                  name='avatarId'
-                  onChange={updateAvatarId}
-                  value={2}
-                ></input>
-                <img src="static/jello2.png" id="radio-icon"></img>
-              </label>
-            </div>
-
-            <div id='radio-jello-div'>
-              <label>
-                <input
-                  type='radio'
-                  name='avatarId'
-                  onChange={updateAvatarId}
-                  value={3}
-                ></input>
-                <img src="static/jello3.png" id="radio-icon"></img>
-              </label>
-            </div>
-
-            <div id='radio-jello-div'>
-              <label>
-                <input
-                  type='radio'
-                  name='avatarId'
-                  onChange={updateAvatarId}
-                  value={4}
-                ></input>
-                <img src="static/jello4.png" id="radio-icon"></img>
-              </label>
-            </div>
-
-            <div id='radio-jello-div'>
-              <label>
-                <input
-                  type='radio'
-                  name='avatarId'
-                  onChange={updateAvatarId}
-                  value={5}
-                ></input>
-                <img src="static/jello5.png" id="radio-icon"></img>
-              </label>
-            </div>
-
-            <div id='radio-jello-div'>
-              <label>
-                <input
-                  type='radio'
-                  name='avatarId'
-                  onChange={updateAvatarId}
-                  value={6}
-                ></input>
-                <img src="static/jello6.png" id="radio-icon"></img>
-              </label>
-            </div>
-          </div>
-          <div className='radio-icons-row2'>
-            <div id='radio-jello-div'>
-              <label>
-                <input
-                  type='radio'
-                  name='avatarId'
-                  onChange={updateAvatarId}
-                  value={7}
-                ></input>
-                <img src="static/jello7.png" id="radio-icon"></img>
-              </label>
-            </div>
-
-            <div id='radio-jello-div'>
-              <label>
-                <input
-                  type='radio'
-                  name='avatarId'
-                  onChange={updateAvatarId}
-                  value={8}
-                ></input>
-                <img src="static/jello8.png" id="radio-icon"></img>
-              </label>
-            </div>
-
-            <div id='radio-jello-div'>
-              <label>
-                <input
-                  type='radio'
-                  name='avatarId'
-                  onChange={updateAvatarId}
-                  value={9}
-                ></input>
-                <img src="static/jello9.png" id="radio-icon"></img>
-              </label>
-            </div>
-
-            <div id='radio-jello-div'>
-              <label>
-                <input
-                  type='radio'
-                  name='avatarId'
-                  onChange={updateAvatarId}
-                  value={10}
-                ></input>
-                <img src="static/jello10.png" id="radio-icon"></img>
-              </label>
-            </div>
-
-            <div id='radio-jello-div'>
-              <label>
-                <input
-                  type='radio'
-                  name='avatarId'
-                  onChange={updateAvatarId}
-                  value={11}
-                ></input>
-                <img src="static/jello11.png" id="radio-icon"></img>
-              </label>
-            </div>
-
-            <div id='radio-jello-div'>
-              <label>
-                <input
-                  type='radio'
-                  name='avatarId'
-                  onChange={updateAvatarId}
-                  value={12}
-                ></input>
-                <img src="static/jello12.png" id="radio-icon"></img>
-              </label>
-            </div>
-
-          </div>
-        </div>
         <input className='signup-input'
           placeholder='Password'
           type='password'

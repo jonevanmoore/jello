@@ -1,0 +1,54 @@
+.radio-div {
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.icon-loop {
+    display: grid;
+    grid-template: '1 2 3 4 5 6'
+        '7 8 9 10 11 12';
+
+}
+
+
+#radio-jello-div {
+    display: flex;
+    flex-direction: column;
+}
+
+#avatar-label {
+    position: relative;
+    right: 18vh;
+    bottom: .5vh;
+    color: gray;
+    font-size: 12px;
+}
+
+#radio-icon {
+    width: 50px;
+    border: 1px solid rgb(197, 197, 197);
+    border-radius: 3px;
+    margin: 2px;
+}
+
+#radio-icon:hover {
+    background-color: lightgray;
+}
+
+[type=radio] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* IMAGE STYLES */
+[type=radio]+img {
+    cursor: pointer;
+}
+
+/* CHECKED STYLES */
+[type=radio]:checked+img {
+    /* background: #1aff00b9; */
+}
