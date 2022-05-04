@@ -11,7 +11,7 @@ in the NavBar: <UserIcon isNavIcon={true} />
 as a sharing indicator: <UserIcon givenUser={ userObject } >
 where userObject has an avatar_id
 */
-export const UserIcon = ({ isNavIcon, givenUser }) => {
+export const UserIcon = ({ isNavIcon, givenUser, size }) => {
   const { avatars } = useContext(AvatarContext); 
   const activeUser = useSelector( state => state.session?.user );
   
@@ -24,6 +24,11 @@ export const UserIcon = ({ isNavIcon, givenUser }) => {
     backgroundImage:`url(${avatar?.imageUrl})`,
     backgroundColor: isNavIcon ? 'white' : avatar?.color,
     borderColor: isNavIcon ? avatar?.color : 'var(--create-board-button-main-color)'
+  }
+
+  if( size ){
+    styleObject["height"] = `${size}px`;
+    styleObject["width"]  = `${size}px`;
   }
 
   return (

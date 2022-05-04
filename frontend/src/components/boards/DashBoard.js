@@ -72,7 +72,7 @@ const DashBoard = () => {
                 <div className='body__boards'>
                     <div className='boards__name'>
                         <div className='avatar__boards__big'>
-                            <UserIcon isNavIcon={true} />
+                            <UserIcon size={122} isNavIcon={true} />
                         </div>
                         <div className='boards__title'>
                             {`${user.first_name} ${user.last_name}'s boards`}
