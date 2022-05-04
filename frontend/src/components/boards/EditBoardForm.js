@@ -21,21 +21,26 @@ const EditBoardForm = ({ closeModalFunc }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const edits = {
-            title,
-            avatar_id
-        };
+        const pattern = /\S+/;
 
-        let newBoard = await dispatch(updateBoard(edits, board_id))
-            .catch(async (res) => {
-                const data = await res.json();
-                if (data && data.errors) {
-                    setErrors(data.errors);
-                }
-            });
+        if (pattern.test(title)) {
 
-        if (!errors.length && newBoard) {
-            closeModalFunc();
+            const edits = {
+                title: title.trim(),
+                avatar_id
+            };
+    
+            let newBoard = await dispatch(updateBoard(edits, board_id))
+                .catch(async (res) => {
+                    const data = await res.json();
+                    if (data && data.errors) {
+                        setErrors(data.errors);
+                    }
+                });
+    
+            if (!errors.length && newBoard) {
+                closeModalFunc();
+            }
         }
     };
 
@@ -45,16 +50,16 @@ const EditBoardForm = ({ closeModalFunc }) => {
 
     const stopTheProp = e => e.stopPropagation();
 
-    const customMsg = (e) => {
-        if (e.target.value !== '^[\S].*[\S]$') {
-            e.target.setCustomValidity('Title must have at least one character.');
-        }
-        else {
-            setTitle(e.target.value);
-        }
-    };
+    // const pattern = /^[\S].*[\S]$/;
+    // const validData = '([a-zA-Z])\w+/g'
 
-    // const error = board.title === '^[\S].*[\S]$';
+    // const updateTitle = (e) => {
+    //     if (pattern.test(e.target.value)) {
+    //         setTitle(e.target.value);
+    //     } else {
+    //         e.target.setCustomValidity('Please input a proper title that includes at least one character.');
+    //     }
+    // };
 
     return (
         <div className='new__board__form__container'>
@@ -74,6 +79,7 @@ const EditBoardForm = ({ closeModalFunc }) => {
                             placeholder='Title'
                             type='text'
                             value={title}
+                            // pattern={/^[\S].*[\S]$/}
                             onChange={(e) => setTitle(e.target.value)}
                             required
                         />
@@ -82,11 +88,10 @@ const EditBoardForm = ({ closeModalFunc }) => {
                 <div>
                     <label>Avatar</label>
                     <input
-                        placeholder='title'
+                        placeholder='Avatar ID'
                         type='text'
-                        pattern='^[\S].*[\S]$'
-                        value={title}
-                        onChange={(e) => customMsg()}
+                        value={avatar_id}
+                        onChange={(e) => updateAvatarId(e)}
                         // helperText={error ? 'Title must have at least one character which is not a space.' : 'Perfect!'}
                         required
                     />
