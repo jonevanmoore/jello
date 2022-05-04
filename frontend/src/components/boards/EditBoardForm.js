@@ -1,33 +1,44 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
-import { createBoardThunk } from '../../store/boards';
+import { readOneBoard, updateBoard } from '../../store/boards';
 
 import './Boards.css';
 
-const Boards = () => {
+const EditBoard = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const { board_id } = useParams();
+
     const user = useSelector(state => state.session.user);
 
-    const [title, setTitle] = useState('');
-    const [avatar_id, setAvatar_id] = useState('');
-    // const [workspace_id, setWorkspace_id] = useState('');
+    const boards = useSelector(state => state.boards?.boards);
+    const board = boards.find(board => board.id == board_id);
+
+    const [title, setTitle] = useState(board?.title);
+    const [avatar_id, setAvatar_id] = useState(board?.avatar_id);
+    const [errors, setErrors] = useState([]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const newBoard = {
+        const edits = {
             title,
-            user_id: user.id,
-            avatar_id,
-            // workspace_id
+            avatar_id
         };
 
-        const createdBoard = await dispatch(createBoardThunk(newBoard));
-        history.push(`/boards`);
+        let newBoard = await dispatch(updateBoard(edits, board_id))
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) {
+                    setErrors(data.errors);
+                }
+            });
+        if (!errors.length && newBoard) {
+            history.push(`/boards/${newBoard.id}`);
+        }
     };
 
 
@@ -52,19 +63,10 @@ const Boards = () => {
                         required
                     />
                 </div>
-                {/* <div>
-                    <input
-                        placeholder='workspace'
-                        type='text'
-                        value={workspace_id}
-                        onChange={(e) => setWorkspace_id(e.target.value)}
-                        required
-                    />
-                </div> */}
                 <button type='submit'>
-                    Create Board
+                    Save Board
                 </button>
-                <button onClick={() => history.push('/boards')}>
+                <button onClick={() => history.push(`/boards/${board?.id}`)}>
                     Cancel
                 </button>
             </form>
@@ -72,4 +74,4 @@ const Boards = () => {
     )
 };
 
-export default Boards;
+export default EditBoard;
