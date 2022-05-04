@@ -4,7 +4,7 @@ from backend.models import db
 
 list_routes = Blueprint('lists', __name__)
 
-# U P D A T E
+# U P D A T E  L I S T
 @list_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def update_list(id):
@@ -26,7 +26,7 @@ def update_list(id):
 # and 
 # board_id == card.list.board.id ?
 
-# D E L E T E
+# D E L E T E  L I S T
 @list_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_list(id):
@@ -38,3 +38,24 @@ def delete_list(id):
     db.session.delete(list)
     db.session.commit()
     return {'id':id}
+
+
+#C R E A T E  C A R D
+@list_routes.route('/<int:id>/cards', methods=['POST'])
+@login_required
+def new_card(id):
+    form = NewCardForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        card = Card(
+            user_id=form.data['user_id'],
+            list_id=id,
+            content=form.data['content'],
+            description=form.data['description'],
+            order=form.data['order'],
+            due_date=form.data['due_date']
+        )
+        db.session.add(card)
+        db.session.commit()
+        return card.to_dict()
