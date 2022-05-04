@@ -12,6 +12,9 @@ import './Modal.css';
   {showModalBoolean && <Modal closeModalFunc={function}>
     <Form closeModalFunc={function} onClick={stopTheProp} onMouseDown={stopTheProp}>
   </Modal>}
+
+  for example implementation, see NavBar.js
+
 */
 
 export default function Modal({ children, closeModalFunc }) {
