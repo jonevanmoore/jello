@@ -16,7 +16,7 @@ const DashBoard = () => {
     const boardsOwned = [];
     const boardsShared = [];
 
-    boards.forEach(board => {
+    boards?.forEach(board => {
         if (board.user_id === user.id) {
             boardsOwned.push(board);
         } else {
