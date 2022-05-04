@@ -1,0 +1,118 @@
+.new__board__form__container {
+    width: 400px;
+    height: 420px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--white-color);
+    box-shadow: 0px 0px 5.79px rgba(3, 13, 33, 0.5);
+}
+
+.new_edit__board__form {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    width: 380px;
+    height: 400px;
+
+}
+
+.input__board__title {
+    width: 314px;
+    height: 30px;
+    border: var(--nav-bar-left-divider-color) var(--main-button-border-width) solid;
+    border-radius: var(--main-border-radius);
+}
+
+
+.buttons__board__form {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    /* padding: 10px; */
+    /* margin: 20px; */
+}
+
+.buttons__board__form>button {
+    margin: 10px;
+}
+
+.title__n__title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title__n__title>div {
+    margin: 10px
+}
+
+.title__new__board {
+    font-size: 14px;
+}
+
+.light__blue__button {
+    color: var(--dark-blue-button-color);
+    background: #4DBEE6;
+    border: 1px var(--dark-blue-button-color) solid;
+    position: relative;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+}
+
+.light__blue__button:hover {
+    color: #ffffff;
+    background: #0A80BE;
+    border: 1px #000000 solid;
+}
+
+#cancel-button {
+    padding: 6px 12px;
+    border-width: var(--main-button-border-width);
+    border-style: solid;
+    border-color: var(--red-button-main-color);
+    color: var(--red-button-main-color);
+    font-weight: 700;
+    font-family: inherit;
+    border-radius: var(--main-border-radius);
+    position: relative;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+    background-color: white;
+    width: 320px;
+    height: 30px;
+}
+
+#cancel-button:hover {
+    color: var(--white-button-main-color);
+    background: var(--red-button-main-color);
+    border: 1px #000000 solid;
+}
+
+#create-button {
+    padding: 6px 12px;
+    border-width: var(--main-button-border-width);
+    /* border-style: solid; */
+    border-color: var(--dark-blue-button-color);
+    color: var(--dark-blue-button-color);
+    font-weight: 700;
+    font-family: inherit;
+    border-radius: var(--main-border-radius);
+    position: relative;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+    background-color: var(--light-blue-button-color);
+    width: 320px;
+    height: 30px;
+}
+
+#create-button:hover {
+    color: var(--white-button-main-color);
+    background: var(--dark-blue-button-color);
+    border: 1px #000000 solid;
+}

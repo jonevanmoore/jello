@@ -1,55 +1,9 @@
-@keyframes jello_2 {
-    0% {
-        transform: skewX(-9deg) scaleX(0.95) scaleY(0.95);
-    }
-
-    10% {
-        transform: skewX(8deg) scaleX(1.05) scaleY(1.05);
-    }
-
-    20% {
-        transform: skewX(-7deg) scaleX(0.96) scaleY(0.96);
-    }
-
-    30% {
-        transform: skewX(6deg) scaleX(1.04) scaleY(1.04);
-    }
-
-    40% {
-        transform: skewX(-5deg) scaleX(0.97) scaleY(0.97);
-    }
-
-    50% {
-        transform: skewX(4deg) scaleX(1.03) scaleY(1.03);
-    }
-
-    60% {
-        transform: skewX(-3deg) scaleX(0.98) scaleY(0.98);
-    }
-
-    70% {
-        transform: skewX(2deg) scaleX(1.02) scaleY(1.02);
-    }
-
-    80% {
-        transform: skewX(-1deg) scaleX(0.99) scaleY(0.99);
-    }
-
-    90% {
-        transform: skewX(0deg) scaleX(1.01) scaleY(1.01);
-    }
-
-    100% {
-        transform: none;
-    }
-}
-
 .login-body {
-    animation: jello_2 1s;
+    animation: jello_3 1s;
 }
 
 .signup-body {
-    animation: jello_2 1s;
+    animation: jello_3 1s;
 }
 
 .modal-background-home-page {
