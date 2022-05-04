@@ -11,15 +11,14 @@ import './BoardsNavbar.css';
 
 const DashBoard = () => {
     const dispatch = useDispatch();
+    const user   = useSelector(state => state.session.user);
+    const boards = useSelector(state => state.boards);
 
-    const user = useSelector(state => state.session.user);
-    const boards = useSelector(state => state.boards?.boards);
-    // console.log('BOARDS: ', boards);
-
+    // TODO: FIX SHARED BOARDS BEHAVIOR
     const boardsOwned = [];
     const boardsShared = [];
 
-    boards?.forEach(board => {
+    Object.values(boards).forEach(board => {
         if (board.user_id === user.id) {
             boardsOwned.push(board);
         } else {

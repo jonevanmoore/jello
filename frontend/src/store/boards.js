@@ -6,9 +6,6 @@ const READ_ONE_BOARD = 'boards/READ_ONE_BOARD';
 const UPDATE_BOARD = 'boards/UPDATE_BOARD';
 const DELETE_BOARD = 'boards/DELETE_BOARD';
 
-// const DISPLAY_MODAL_NEW_BOARDS_FORM = 'boards/DISPLAY_MODAL_NEW_BOARDS_FORM';
-
-
 // ACTIONS
 const createBoardAction = board => {
     return {
@@ -44,18 +41,6 @@ const deleteBoardAction = board => {
         payload: board
     };
 };
-
-//  D I S P L A Y   M O D A L   B O A R D S   F O R M
-// export const displayModalNewBoardForm = () => {
-//     return (dispatch, getState) => {
-//         const shouldDisplayNewBoardForm = getState().boards.shouldDisplayNewBoardForm;
-
-//         return dispatch({
-//             type: DISPLAY_MODAL_NEW_BOARDS_FORM,
-//             shouldDisplayNewBoardForm: !shouldDisplayNewBoardForm
-//         });
-//     };
-// };
 
 // THUNKS
 export const createBoardThunk = board => async dispatch => {
@@ -145,36 +130,27 @@ export const deleteBoard = board => async dispatch => {
 
 
 // REDUCER
-let initialState = { boards: [] };
+let initialState = { };
 
 const boardsReducer = (state = initialState, action) => {
-    let newState;
+//    console.log("ACTION.PAYLOAD>>>>>>>>>>", action.payload);
+    let newState = {...state};
     switch (action.type) {
         case CREATE_BOARD:
-            newState = Object.assign({}, state);
-            newState = action.payload;
+            newState[action.payload.id] = action.payload;
             return newState;
         case READ_BOARDS:
-            newState = Object.assign({}, state);
-            newState = action.payload;
+            action.payload.boards.forEach(b => newState[b.id] = b )
             return newState;
         case READ_ONE_BOARD:
-            newState = Object.assign({}, state);
             newState[action.payload.id] = action.payload;
             return newState;
         case UPDATE_BOARD:
-            newState = Object.assign({}, state);
-            const boardIndex = newState.boards.findIndex(board => board.id === action.payload.id);
-            newState[boardIndex] = action.payload;
+            newState[action.payload.id] = action.payload;
             return newState;
         case DELETE_BOARD:
-            newState = Object.assign({}, state);
-            newState = newState.boards.filter(board => board.id !== action.payload.id);
+            delete newState[action.payload.id]
             return newState;
-        // case DISPLAY_MODAL_NEW_BOARDS_FORM:
-        //     newState = Object.assign({}, state);
-        //     newState.shouldDisplayNewBoardForm = action.shouldDisplayNewBoardForm;
-        //     return newState;
         default:
             return state;
     }
