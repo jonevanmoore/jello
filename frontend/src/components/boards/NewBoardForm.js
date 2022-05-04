@@ -6,7 +6,7 @@ import { createBoardThunk } from '../../store/boards';
 
 import './Boards.css';
 
-const Boards = () => {
+const NewBoardForm = ({ closeModalFunc }) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -27,13 +27,15 @@ const Boards = () => {
         };
 
         const createdBoard = await dispatch(createBoardThunk(newBoard));
-        history.push(`/boards`);
+        closeModalFunc();
+        history.push(`/boards/${createdBoard.id}`);
     };
 
+    const stopTheProp = e => e.stopPropagation();
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} onClick={stopTheProp} onMouseDown={stopTheProp}>
                 <div>
                     <input
                         placeholder='title'
@@ -64,7 +66,7 @@ const Boards = () => {
                 <button type='submit'>
                     Create Board
                 </button>
-                <button onClick={() => history.push('/boards')}>
+                <button onClick={closeModalFunc}>
                     Cancel
                 </button>
             </form>
@@ -72,4 +74,4 @@ const Boards = () => {
     )
 };
 
-export default Boards;
+export default NewBoardForm;
