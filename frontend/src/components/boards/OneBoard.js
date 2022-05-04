@@ -6,6 +6,8 @@ import { readBoards, readOneBoard, updateBoard, deleteBoard } from '../../store/
 
 import { UserIcon } from '../UserIcon';
 
+import ListsPage from './temp_lists';
+
 import './Boards.css';
 import './OneBoard.css';
 
@@ -53,92 +55,99 @@ const OneBoard = () => {
     if (!board) return null;
 
     return (
-        <div className='divided_screen'>
-            <div className='one__board__vertical__navbar'>
-                <div className='user__vertical__navbar'>
-                    <div className='avatar__navbar__boards'>
-                        <div>
-                            <UserIcon isNavIcon={true} />
+        <>
+            <div className='divided_screen'>
+                <div className='one__board__vertical__navbar'>
+                    <div className='user__vertical__navbar'>
+                        <div className='avatar__navbar__boards'>
+                            <div>
+                                <UserIcon isNavIcon={true} />
+                            </div>
+                        </div>
+                        <div className='name__board__navbar__boards'>
+                            {`${user.first_name} ${user.last_name}`}
                         </div>
                     </div>
-                    <div className='name__board__navbar__boards'>
-                        {`${user.first_name} ${user.last_name}`}
+                    <div className='your__boards__PLUS'>
+                        <div>
+                            Your Boards
+                        </div>
+                        <div>
+                            +
+                        </div>
                     </div>
-                </div>
-                <div className='your__boards__PLUS'>
                     <div>
-                        Your Boards
-                    </div>
-                    <div>
-                        +
-                    </div>
-                </div>
-                <div>
-                    {boardsOwned.map(board =>
-                        <li className="boards__list__elements" key={board.id}>
-                            <NavLink style={{ textDecoration: 'none' }} to={`/boards/${board.id}`}>
-                                <div className='vertical__list__boards'>
-                                    <div className='color__square jello__wiggle' />
-                                    <div className='vertical__board__names jello__wiggle'>
-                                        {board.title}
+                        {boardsOwned.map(board =>
+                            <li className="boards__list__elements" key={board.id}>
+                                <NavLink style={{ textDecoration: 'none' }} to={`/boards/${board.id}`}>
+                                    <div className='vertical__list__boards'>
+                                        <div className='color__square jello__wiggle' />
+                                        <div className='vertical__board__names jello__wiggle'>
+                                            {board.title}
+                                        </div>
                                     </div>
-                                </div>
-                            </NavLink>
-                        </li>
-                    )}
-                </div>
-            </div>
-            <div className='board-nav-bar'>
-                <div className='title-share-icons'>
-                    <div className='board__title__board'>
-                        {board?.title}
+                                </NavLink>
+                            </li>
+                        )}
                     </div>
-                    <div className='board-nav-left-divider' />
-                    <div>
-                        <button
-                            id='gray__board__button'
-                            className='
+                </div>
+                <div className='board-nav-bar-length'>
+                    <div className='board-nav-bar'>
+                        <div className='title-share-icons'>
+                            <div className='board__title__board'>
+                                {board?.title}
+                            </div>
+                            <div className='board-nav-left-divider' />
+                            <div>
+                                <button
+                                    id='gray__board__button'
+                                    className='
                             jello__wiggle
                             logout__button
                             red__button
                             button__shine__short__red
                             '>
-                            Share
-                        </button>
-                    </div>
-                    <div className='board-nav-left-divider' />
-                    <div>
-                        [ IC ]
-                    </div>
-                    <div className='board-nav-left-divider' />
-                </div>
-                <div className='edit-delete-btns'>
-                    <Link to={`/boards/${board.id}/edit`}>
-                        <button
-                            id='gray__board__button'
-                            className='
+                                    Share
+                                </button>
+                            </div>
+                            <div className='board-nav-left-divider' />
+                            <div>
+                                [ IC ]
+                            </div>
+                            <div className='board-nav-left-divider' />
+                        </div>
+                        <div className='edit-delete-btns'>
+                            <Link to={`/boards/${board.id}/edit`}>
+                                <button
+                                    id='gray__board__button'
+                                    className='
                             jello__wiggle
                             logout__button
                             red__button
                             button__shine__short__red
                             '>
-                            Edit Board
-                        </button>
-                    </Link>
-                    <button
-                        id='gray__board__button'
-                        className='
-                            jello__wiggle
-                            logout__button
-                            red__button
-                            button__shine__short__red
-                            '
-                        onClick={() => {
-                            deleteOneBoard(board)
-                        }}>Delete Board</button>
+                                    Edit Board
+                                </button>
+                            </Link>
+                            <button
+                                id='gray__board__button'
+                                className='
+                                jello__wiggle
+                                logout__button
+                                red__button
+                                button__shine__short__red
+                                '
+                                onClick={() => {
+                                    deleteOneBoard(board)
+                                }}>Delete Board</button>
+                        </div>
+                    </div>
+                    <div className='lists__page__bg__color'>
+                        <ListsPage />
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

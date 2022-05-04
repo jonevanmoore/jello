@@ -24,6 +24,7 @@
   --nav-bar-left-divider-color: #a6a9a9;
 
   --light-gray-bg-color: #FAFBFC;
+  --gray-bg-color: #868D91;
   --dark-gray-bg-color: #545959;
   --light-green-shine-color: #B3D035;
   --light-blue-shine-color: #4DBEE6;
@@ -42,6 +43,10 @@ body {
 /* button:hover {
   cursor: pointer;
 } */
+
+button:hover {
+  cursor: pointer;
+}
 
 .button__shine__long__green {
   position: relative;
