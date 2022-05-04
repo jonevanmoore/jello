@@ -14,31 +14,25 @@ const OneBoard = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { board_id } = useParams();
-    const user = useSelector(state => state.session.user);
-    const boards = useSelector(state => state.boards?.boards);
+    const user   = useSelector(state => state.session?.user);
+    const boards = useSelector(state => state.boards);
+    const board  = useSelector(state => state.boards[board_id])
     const [ showEditModal, setShowEditModal ] = useState(false);
-//    const board = useSelector(state => state.boards.boards[board_id])
 
-    console.log(boards);
-    const board = boards?.find(board => board.id == board_id);
+    //console.log("BOARDS>>>>>>>>>>>>>>>>>>>",boards);
 
+    // TODO: FIX SHARED BOARDS BEHAVIOR
     const boardsOwned = [];
     const boardsShared = [];
 
-    boards?.forEach(board => {
+    Object.values(boards).forEach(board => {
         if (board.user_id === user.id) {
             boardsOwned.push(board);
         } else {
             boardsShared.push(board);
         }
     });
-
-    const [title, setTitle] = useState(board?.title);
-    const [avatar_id, setAvatar_id] = useState(board?.avatar_id);
-    const [errors, setErrors] = useState([]);
-
-    // const owner = user.id === board.user_id;
-
+    
     useEffect(() => {
         dispatch(readBoards());
     }, [dispatch]);
@@ -47,9 +41,9 @@ const OneBoard = () => {
         dispatch(readOneBoard(board_id));
     }, [dispatch, board_id]);
 
-    const deleteOneBoard = async (board) => {
+    const deleteOneBoard = async (board) => { 
         await dispatch(deleteBoard(board))
-        history.push("/boards")
+        history.push("/boards") // timing issue
     };
 
 //    if (!boards) return null;

@@ -3,6 +3,7 @@
 }
 
 .body__boards {
+    flex: auto;
     background-color: var(--white-button-main-color);
 }
 
