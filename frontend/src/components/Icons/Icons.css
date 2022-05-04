@@ -18,15 +18,12 @@
 }
 
 #avatar-label {
-    position: relative;
-    right: 18vh;
-    bottom: .5vh;
     color: gray;
     font-size: 12px;
 }
 
 #radio-icon {
-    width: 50px;
+    width: 50.5px;
     border: 1px solid rgb(197, 197, 197);
     border-radius: 3px;
     margin: 2px;
