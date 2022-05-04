@@ -9,9 +9,11 @@ def seed_boards():
     board_03 = Board(
         user_id=2, title='This is the Third Title Limit.', avatar_id=2)
 
-    list_01 = List( user_id=1, board_id=1, title="test list", order=1 )
+    list_01 = List( user_id=1, board_id=1, title="test list 1", order=1 )
+    list_02 = List( user_id=1, board_id=1, title="test list 2", order=2 )
+    list_03 = List( user_id=1, board_id=1, title="test list 3", order=3 )
 
-    db.session.add_all([board_01, board_02, board_03, list_01])
+    db.session.add_all([board_01, board_02, board_03, list_01, list_02, list_03])
     db.session.commit()
 
 
