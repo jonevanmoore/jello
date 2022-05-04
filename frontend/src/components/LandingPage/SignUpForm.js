@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import './SignUpForm.css';
+import { avatars } from '../../context/Avatar';
+import { Icons } from '../Icons/Icons';
+
 
 const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
   const [errors, setErrors] = useState([]);
@@ -14,6 +17,11 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
+  // CUSTOME ERROR HANDLING
+  const [nameError, setNameError] = useState([])
+  const [emailError, setEmailError] = useState([])
+  const [avatarError, setAvatarError] = useState('')
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -52,13 +60,13 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
   if (user) {
     return <Redirect to='/' />;
   }
- 
+
   const stopTheProp = e => e.stopPropagation();
 
   return (
-    <div className={`signup-body`}onClick={stopTheProp} onMouseDown={stopTheProp}>
+    <div className={`signup-body`} onClick={stopTheProp} onMouseDown={stopTheProp}>
       <form onSubmit={onSignUp} className='signup-form'>
-        <span id="bulk" className='login-text'>Sign up for Jello <span id="skinny">or</span> <span className='signup-click' onClick={toggleLoginSignupFunc}>Log in</span></span>
+        <span id="bulk" className='login-text'>Sign up for Jello <span id="skinny">or</span> <span className='login-click' onClick={toggleLoginSignupFunc}>Log in</span></span>
 
         <div>
           {errors.map((error, ind) => (
@@ -67,56 +75,50 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
         </div>
         <div className='first-last-div'>
 
-            <input className='signup-input'
-              placeholder='First Name'
-              type='text'
-              name='firstName'
-              onChange={updateFirstName}
-              value={firstName}
-            ></input>
-            <input className='signup-input'
-              placeholder='Last Name'
-              type='text'
-              name='lastName'
-              onChange={updateLastName}
-              value={lastName}
-            ></input>
-        </div>
           <input className='signup-input'
-            placeholder='Email'
+            placeholder='First Name'
             type='text'
-            name='email'
-            onChange={updateEmail}
-            value={email}
+            name='firstName'
+            onChange={updateFirstName}
+            value={firstName}
           ></input>
-        <div>
-          <label>Avatar</label>
-          <input
-            type='radio'
-            name='avatarId'
-            onChange={updateAvatarId}
-            value={avatarId}
+          <input className='signup-input'
+            placeholder='Last Name'
+            type='text'
+            name='lastName'
+            onChange={updateLastName}
+            value={lastName}
           ></input>
         </div>
-          <input className='signup-input'
-            placeholder='Password'
-            type='password'
-            name='password'
-            onChange={updatePassword}
-            value={password}
-          ></input>
-          <input className='signup-input'
-            placeholder='Confirm Password'
-            type='password'
-            name='repeat_password'
-            onChange={updateRepeatPassword}
-            value={repeatPassword}
-            required={true}
-          ></input>
+        <input className='signup-input'
+          placeholder='Email'
+          type='text'
+          name='email'
+          onChange={updateEmail}
+          value={email}
+        ></input>
+
+        <Icons avatarId={avatarId} setAvatarId={setAvatarId} />
+
+        <input className='signup-input'
+          placeholder='Password'
+          type='password'
+          name='password'
+          onChange={updatePassword}
+          value={password}
+        ></input>
+        <input className='signup-input'
+          placeholder='Confirm Password'
+          type='password'
+          name='repeat_password'
+          onChange={updateRepeatPassword}
+          value={repeatPassword}
+          required={true}
+        ></input>
         <button type='submit' className='login-form-btn submit-btn jello-wiggle button__shine__long__green green-btn'>Sign Up</button>
       </form>
-        <button className='login-form-btn jello-wiggle jello__container__ani cancel-btn' 
-        style={{width: '75%', marginBottom: '36px'}} /* <<< hack alert */
+      <button className='login-form-btn jello-wiggle jello__container__ani cancel-btn'
+        style={{ width: '75%', marginBottom: '36px' }} /* <<< hack alert */
         onClick={closeModalFunc}
         id="logout-button">Cancel</button>
     </div>
