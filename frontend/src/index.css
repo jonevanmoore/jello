@@ -27,7 +27,11 @@
   --gray-bg-color: #868D91;
   --dark-gray-bg-color: #545959;
   --light-green-shine-color: #B3D035;
-  --light-blue-shine-color: #4DBEE6;
+  --white-color: #ffffff;
+
+  --dark-blue-button-color: #12426D;
+  --light-blue-button-color: #30AAE1;
+  --shine-blue-color: #4DBEE6;
 
   --dark-blue-main-text: #273755;
   --red-button-main-color: #af100b;
@@ -39,10 +43,6 @@ body {
   margin: 0px;
   background-color: var(--background-color);
 }
-
-/* button:hover {
-  cursor: pointer;
-} */
 
 button:hover {
   cursor: pointer;
@@ -73,6 +73,34 @@ button:hover {
 
 .button__shine__long__green:hover:before,
 .button__shine__long__green:hover:after {
+  left: 100%
+}
+
+.button__shine__long__blue {
+  position: relative;
+  overflow: hidden;
+}
+
+.button__shine__long__blue:before,
+.button__shine__long__blue:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -40%;
+  width: 50%;
+  height: 100%;
+  background-color: var(--shine-blue-color);
+  transform: rotate(-45deg);
+  transition: all ease 1s;
+  z-index: -1;
+}
+
+.button__shine__long__blue:after {
+  transition-delay: 0.1s;
+}
+
+.button__shine__long__blue:hover:before,
+.button__shine__long__blue:hover:after {
   left: 100%
 }
 
@@ -142,6 +170,12 @@ button:hover {
 
 .jello__container__ani:hover {
   animation: jello_2 1s;
+  animation-timing-function: ease-in-out;
+  transform-origin: center
+}
+
+.jello__modal__ani:hover {
+  animation: jello_3 1s;
   animation-timing-function: ease-in-out;
   transform-origin: center
 }
@@ -231,6 +265,36 @@ button:hover {
 
   90% {
     transform: skewX(0deg) scaleX(1.01) scaleY(1.01);
+  }
+
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes jello_3 {
+  0% {
+    transform: skewX(-5deg) scaleX(0.96) scaleY(0.96);
+  }
+
+  10% {
+    transform: skewX(4deg) scaleX(1.04) scaleY(1.04);
+  }
+
+  20% {
+    transform: skewX(-3deg) scaleX(0.98) scaleY(0.98);
+  }
+
+  30% {
+    transform: skewX(2deg) scaleX(1.02) scaleY(1.02);
+  }
+
+  40% {
+    transform: skewX(-1deg) scaleX(0.99) scaleY(0.99);
+  }
+
+  50% {
+    transform: skewX(0deg) scaleX(1) scaleY(1);
   }
 
   100% {

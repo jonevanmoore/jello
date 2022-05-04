@@ -86,10 +86,10 @@ const LoginForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
         </div>
         <button type='submit' className='login-form-btn submit-btn jello-wiggle button__shine__long__green green-btn'>Login</button>
       </form>
-        <button className='login-form-btn jello-wiggle jello__container__ani cancel-btn' 
-          id="logout-button" 
-          style={{width: '75%', marginBottom: '36px'}} /* <<< hack alert */
-          onClick={closeModalFunc}>Cancel</button>
+      <button className='login-form-btn jello-wiggle jello__container__ani cancel-btn'
+        id="logout-button"
+        style={{ width: '75%', marginBottom: '36px' }} /* <<< hack alert */
+        onClick={closeModalFunc}>Cancel</button>
     </div>
   );
 };
