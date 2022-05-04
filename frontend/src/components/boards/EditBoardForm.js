@@ -40,6 +40,17 @@ const EditBoardForm = ({ closeModalFunc }) => {
 
     const stopTheProp = e => e.stopPropagation();
 
+    const customMsg = (e) => {
+        if (e.target.value !== '^[\S].*[\S]$') {
+            e.target.setCustomValidity('Title must have at least one character.');
+        }
+        else {
+            setTitle(e.target.value);
+        }
+    };
+
+    // const error = board.title === '^[\S].*[\S]$';
+
     return (
         <>
             <form onSubmit={handleSubmit} onClick={stopTheProp} onMouseDown={stopTheProp}>
@@ -49,7 +60,8 @@ const EditBoardForm = ({ closeModalFunc }) => {
                         type='text'
                         pattern='^[\S].*[\S]$'
                         value={title}
-                        onChange={(e) => setTitle(e.target.value)}
+                        onChange={(e) => customMsg()}
+                        // helperText={error ? 'Title must have at least one character which is not a space.' : 'Perfect!'}
                         required
                     />
                 </div>
