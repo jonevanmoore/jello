@@ -7,6 +7,10 @@
   font-weight: 700;
   font-family: inherit;
   border-radius: var(--main-border-radius);
+  position: relative;
+  transition: all 0.25s ease-in-out;
+  cursor: pointer;
+  background-color: white;
   width: 90px;
   height: 30px;
 }
