@@ -78,7 +78,9 @@ const OneBoard = () => {
                             <li className="boards__list__elements" key={board.id}>
                                 <NavLink style={{ textDecoration: 'none' }} to={`/boards/${board.id}`}>
                                     <div className='vertical__list__boards'>
-                                        <div className='color__square jello__wiggle' />
+                                        <div className='color__square jello__wiggle'
+                                            style={{ backgroundColor: avatars[board.avatar_id].color }}
+                                        />
                                         <div className='vertical__board__names jello__wiggle'>
                                             {board.title}
                                         </div>
