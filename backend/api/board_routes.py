@@ -1,9 +1,7 @@
 from flask import Blueprint, jsonify, session, request, redirect
 from flask_login import login_required, current_user
 from backend.forms.new_board_form import NewBoardForm
-from backend.models.board import Board
-from backend.models import User
-from backend.models.db import db
+from backend.models import User, Board, List, db
 from backend.api.auth_routes import validation_errors_to_error_messages
 
 board_routes = Blueprint('boards', __name__)
@@ -65,3 +63,20 @@ def delete_board(id):
     db.session.delete(board)
     db.session.commit()
     return { 'id': id }
+
+# C R E A T E   L I S T
+@board_routes.route('/<int:id>/lists', methods = [ 'POST' ])
+def create_list(id):
+    form = NewListForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        list = List(
+            user_id=form.data['user_id'],
+            board_id=id,
+            title=form.data['title'],
+            order=form.data['order'],
+        )
+        db.session.add(list)
+        db.session.commit()
+        return list.to_dict()
