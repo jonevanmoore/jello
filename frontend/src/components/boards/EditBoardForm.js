@@ -6,7 +6,7 @@ import { readOneBoard, updateBoard } from '../../store/boards';
 
 import './Boards.css';
 
-const EditBoard = () => {
+const EditBoardForm = ({ closeModalFunc }) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -29,6 +29,8 @@ const EditBoard = () => {
             avatar_id
         };
 
+
+        // TODO: refactor thunk / useSelectors
         let newBoard = await dispatch(updateBoard(edits, board_id))
             .catch(async (res) => {
                 const data = await res.json();
@@ -37,14 +39,16 @@ const EditBoard = () => {
                 }
             });
         if (!errors.length && newBoard) {
-            history.push(`/boards/${newBoard.id}`);
+          closeModalFunc();
+          //history.push(`/boards/${newBoard.id}`);
         }
     };
 
+    const stopTheProp = e => e.stopPropagation();
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} onClick={stopTheProp} onMouseDown={stopTheProp}>
                 <div>
                     <input
                         placeholder='title'
@@ -66,7 +70,7 @@ const EditBoard = () => {
                 <button type='submit'>
                     Save Board
                 </button>
-                <button onClick={() => history.push(`/boards/${board?.id}`)}>
+                <button onClick={closeModalFunc}>
                     Cancel
                 </button>
             </form>
@@ -74,4 +78,4 @@ const EditBoard = () => {
     )
 };
 
-export default EditBoard;
+export default EditBoardForm;

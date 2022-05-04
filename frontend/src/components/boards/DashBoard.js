@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, useHistory } from 'react-router-dom';
+import { UserIcon } from '../UserIcon';
+
 
 import { readBoards } from '../../store/boards';
 
 import './Boards.css';
+import './BoardsNavbar.css';
 
 const DashBoard = () => {
     const dispatch = useDispatch();
@@ -24,9 +27,6 @@ const DashBoard = () => {
         }
     });
 
-    console.log(boardsOwned);
-    console.log(boardsShared);
-
     useEffect(() => {
         dispatch(readBoards());
     }, [dispatch]);
@@ -36,13 +36,44 @@ const DashBoard = () => {
     return (
         <>
             <div className='divided_screen'>
-                <div className='temp_vertical_navbar'>
-                    TEMP VERTICAL NAVBAR
+                <div className='all__boards__vertical__navbar'>
+                    <div className='user__vertical__navbar'>
+                        <div className='avatar__navbar__boards'>
+                            <div>
+                                <UserIcon isNavIcon={true} />
+                            </div>
+                        </div>
+                        <div className='name__boards__navbar__boards'>
+                            {`${user.first_name} ${user.last_name}`}
+                        </div>
+                    </div>
+                    <div className='your__boards__PLUS'>
+                        <div>
+                            Your Boards
+                        </div>
+                        <div>
+                            +
+                        </div>
+                    </div>
+                    <div>
+                        {boardsOwned.map(board =>
+                            <li className="boards__list__elements" key={board.id}>
+                                <NavLink style={{ textDecoration: 'none' }} to={`/boards/${board.id}`}>
+                                    <div className='vertical__list__boards'>
+                                        <div className='color__square jello__wiggle' />
+                                        <div className='vertical__boards__names jello__wiggle'>
+                                            {board.title}
+                                        </div>
+                                    </div>
+                                </NavLink>
+                            </li>
+                        )}
+                    </div>
                 </div>
-                <div className=''>
+                <div className='body__boards'>
                     <div className='boards__name'>
                         <div className='avatar__boards__big'>
-                            [ IC ]
+                            <UserIcon isNavIcon={true} />
                         </div>
                         <div className='boards__title'>
                             {`${user.first_name} ${user.last_name}'s boards`}
@@ -54,13 +85,15 @@ const DashBoard = () => {
                     <div>
                         <ul className='all__boards'>
                             {boardsOwned.map(board =>
-                                <li className="jello__container jello__container__ani jello__bg__01" key={board.id}>
-                                    <NavLink to={`/boards/${board.id}`}>
-                                        <div className='jello__title'>
-                                            {board.title}
-                                        </div>
-                                        <div className="jello__image__container jello__wiggle">
-                                            <img className="jello__image" src={'/static/Jello-01.png'} />
+                                <li className="boards__list__elements" key={board.id}>
+                                    <NavLink style={{ textDecoration: 'none' }} to={`/boards/${board.id}`}>
+                                        <div className="jello__container jello__container__ani jello__bg__01" >
+                                            <div className='jello__title'>
+                                                {board.title}
+                                            </div>
+                                            <div className="jello__image__container jello__wiggle">
+                                                <img className="jello__image" src={'/static/Jello-01.png'} />
+                                            </div>
                                         </div>
                                     </NavLink>
                                 </li>
