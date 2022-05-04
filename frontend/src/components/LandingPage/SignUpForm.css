@@ -2,7 +2,7 @@
     background-color: white;
     border-radius: 5px;
     width: 470px;
-    box-shadow: 0px 0px 20px -10px;
+    box-shadow: 0px 0px 20px 0px;
 }
 
 .signup-form {
@@ -32,5 +32,4 @@
     justify-content: space-between;
 }
 
-.first-last-div>* {
-}
+.first-last-div>* {}
