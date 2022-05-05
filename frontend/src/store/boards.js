@@ -34,75 +34,62 @@ const deleteBoardAction = board => ({
 
 // BOARD THUNKS
 export const createBoard = board => async dispatch => {
-    const {
-        id,
-        user_id,
-        title,
-        avatar_id,
-        // workspace_id
-    } = board;
+    const response = await fetch('/api/boards/new-board', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(board)
+    });
 
-    try {
+    const data = await response.json();
 
-        const response = await fetch('/api/boards/new-board', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                id,
-                user_id,
-                title,
-                avatar_id,
-                // workspace_id
-            })
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            await dispatch(createBoardAction(data));
-            return data;
-        }
-    } catch (e) {
-        console.log('CREATE BOARD ERROR', e);
+    if (response.ok) {
+        await dispatch(createBoardAction(data));
+        return data;
+    } else {
+        console.log(data.errors);
     }
 };
 
 export const readBoards = () => async dispatch => {
     const response = await fetch("/api/boards/");
 
+    const data = await response.json();
+
     if (response.ok) {
-        const data = await response.json();
         await dispatch(readBoardsAction(data.boards));
         return data;
+    } else {
+        console.log(data.errors);
     }
 };
 
 export const readOneBoard = (id) => async dispatch => {
     const response = await fetch(`/api/boards/${id}`);
 
+    const data = await response.json();
+
     if (response.ok) {
-        const data = await response.json();
         await dispatch(readOneBoardAction(data));
         return data;
-    };
+    } else {
+        console.log(data.errors);
+    }
 };
 
 export const updateBoard = (board, id) => async dispatch => {
-    try {
-        const response = await fetch(`/api/boards/${id}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(board)
-        });
+    const response = await fetch(`/api/boards/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(board)
+    });
 
-        if (response.ok) {
-            const data = await response.json();
-            await dispatch(updateBoardAction(data));
-            return data;
-        };
-    } catch (e) {
-        console.log('UPDATE BOARD ERROR: ', e);
+    const data = await response.json();
+
+    if (response.ok) {
+        await dispatch(updateBoardAction(data));
+        return data;
+    } else {
+        console.log(data.errors);
     }
 };
 
@@ -111,11 +98,14 @@ export const deleteBoard = board => async dispatch => {
         method: 'DELETE'
     });
 
+    const data = await response.json();
+
     if (response.ok) {
-        const data = await response.json();
         await dispatch(deleteBoardAction(data));
         return data;
-    };
+    } else {
+        console.log(data.errors);
+    }
 };
 
 
@@ -149,7 +139,7 @@ export const createList = list => async dispatch => {
     });
 
     const data = await response.json();
-    
+
     if (response.ok) {
         await dispatch(createListAction(data));
         return data;
