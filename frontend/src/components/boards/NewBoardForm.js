@@ -22,8 +22,12 @@ const NewBoardForm = ({ closeModalFunc }) => {
 
         e.preventDefault();
 
+        const pattern = /\S+/;
+
+        if (!pattern.test(title)) return;
+
         const newBoard = {
-            title,
+            title: title.trim(),
             user_id: user.id,
             avatar_id: avatarId,
             // workspace_id

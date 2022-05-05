@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-import { readOneBoard, updateBoard } from '../../store/boards';
-import { Icons } from '../Icons/Icons';
+import { updateBoard } from '../../store/boards';
 
 import './Boards.css';
 import './BoardForm.css';
 
 const EditBoardForm = ({ closeModalFunc }) => {
     const dispatch = useDispatch();
-    const history = useHistory();
     const { board_id } = useParams();
-    const user = useSelector(state => state.session.user);
-    const boards = useSelector(state => state.boards);
     const board = useSelector(state => state.boards[board_id])
     const [title, setTitle] = useState(board?.title);
     const [avatarId, setAvatarId] = useState(board?.avatar_id);
@@ -22,21 +18,26 @@ const EditBoardForm = ({ closeModalFunc }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const edits = {
-            title,
-            avatar_id: avatarId
-        };
+        const pattern = /\S+/;
 
-        let newBoard = await dispatch(updateBoard(edits, board_id))
-            .catch(async (res) => {
-                const data = await res.json();
-                if (data && data.errors) {
-                    setErrors(data.errors);
-                }
-            });
+        if (pattern.test(title)) {
 
-        if (!errors.length && newBoard) {
-            closeModalFunc();
+            const edits = {
+                title: title.trim(),
+                avatar_id: avatarId
+            };
+
+            let newBoard = await dispatch(updateBoard(edits, board_id))
+                .catch(async (res) => {
+                    const data = await res.json();
+                    if (data && data.errors) {
+                        setErrors(data.errors);
+                    }
+                });
+
+            if (!errors.length && newBoard) {
+                closeModalFunc();
+            }
         }
     };
 
