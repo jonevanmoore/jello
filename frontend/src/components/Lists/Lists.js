@@ -30,7 +30,7 @@ const ListsPage = () => {
     return (
         <div className='lists__in__boards'>
             <DragDropContext>
-                <Droppable droppableId='list__size'>
+                <Droppable droppableId='list__size' direction='horizontal'>
                     {(provided) => (
                         <div className='list__size' {...provided.droppableProps} ref={provided.innerRef}>
                             {board.lists.map((list, index) =>
