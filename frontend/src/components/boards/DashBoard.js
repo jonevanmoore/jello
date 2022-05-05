@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 import { UserIcon } from '../UserIcon';
-import { avatars } from '../../context/Avatar';
-
+import { avatars } from "../../context/Avatar";
 
 import { readBoards } from '../../store/boards';
 
@@ -21,6 +20,7 @@ const DashBoard = () => {
 
     Object.values(boards).forEach(board => {
         if (board.user_id === user.id) {
+            console.log('BIOARD-----------------', board);
             boardsOwned.push(board);
         } else {
             boardsShared.push(board);
@@ -66,7 +66,9 @@ const DashBoard = () => {
                             <li className="boards__list__elements" key={board.id}>
                                 <NavLink style={{ textDecoration: 'none' }} to={`/boards/${board.id}`}>
                                     <div className='vertical__list__boards'>
-                                        <div className='color__square jello__wiggle' />
+                                        <div className='color__square jello__wiggle'
+                                            style={{ backgroundColor: avatars[board.avatar_id].color }}
+                                        />
                                         <div className='vertical__boards__names jello__wiggle'>
                                             {board.title}
                                         </div>
@@ -84,7 +86,7 @@ const DashBoard = () => {
                 }}>
                     <div className='boards__name'>
                         <div className='avatar__boards__big'>
-                            <UserIcon size={122} isNavIcon={true} />
+                            <UserIcon size={120} isNavIcon={true} />
                         </div>
                         <div className='boards__title'>
                             {`${user.first_name} ${user.last_name}'s boards`}
@@ -98,12 +100,20 @@ const DashBoard = () => {
                             {boardsOwned.map(board =>
                                 <li className="boards__list__elements" key={board.id}>
                                     <NavLink style={{ textDecoration: 'none' }} to={`/boards/${board.id}`}>
-                                        <div className="jello__container jello__container__ani jello__bg__01" >
+                                        <div
+                                            className="
+                                                jello__container
+                                                jello__container__ani
+                                                jello__bg
+                                                "
+                                            style={{ backgroundColor: avatars[board.avatar_id].color }}>
                                             <div className='jello__title'>
                                                 {board.title}
                                             </div>
-                                            <div className="jello__image__container jello__wiggle">
-                                                <img className="jello__image" src={'/static/Jello-01.png'} />
+                                            <div className="jello__wiggle">
+                                                <img
+                                                    className="jello__image"
+                                                    src={avatars[board.avatar_id].imageUrl} />
                                             </div>
                                         </div>
                                     </NavLink>
@@ -114,10 +124,10 @@ const DashBoard = () => {
                     <div className='subtitles__boards'>
                         Shared Boards (WRONG LOGIC)
                     </div>
-                    <div>
+                    {/* <div>
                         <ul className='all__boards'>
                             {boardsShared.map(board =>
-                                <li className="jello__container jello__container__ani jello__bg__02" key={board.id}>
+                                <li className="jello__container jello__container__ani jello__bg" key={board.id}>
                                     <div className='jello__title'>
                                         {board.title}
                                     </div>
@@ -128,7 +138,7 @@ const DashBoard = () => {
                                 </li>
                             )}
                         </ul>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </>

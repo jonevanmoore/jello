@@ -6,6 +6,7 @@ import { UserIcon } from '../UserIcon';
 import ListsPage from './temp_lists';
 import Modal from '../Modal';
 import EditBoardForm from './EditBoardForm';
+import { avatars } from '../../context/Avatar';
 
 import './Boards.css';
 import './OneBoard.css';
@@ -14,25 +15,23 @@ const OneBoard = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { board_id } = useParams();
-    const user   = useSelector(state => state.session?.user);
+    const user = useSelector(state => state.session?.user);
     const boards = useSelector(state => state.boards);
-    const board  = useSelector(state => state.boards[board_id])
-    const [ showEditModal, setShowEditModal ] = useState(false);
+    const board = useSelector(state => state.boards[board_id]);
+    const [showEditModal, setShowEditModal] = useState(false);
 
     //console.log("BOARDS>>>>>>>>>>>>>>>>>>>",boards);
 
     // TODO: FIX SHARED BOARDS BEHAVIOR
     const boardsOwned = [];
-    const boardsShared = [];
 
     Object.values(boards).forEach(board => {
         if (board.user_id === user.id) {
             boardsOwned.push(board);
-        } else {
-            boardsShared.push(board);
         }
     });
-    
+
+    console.log('THIS BOARD: ', board);
     useEffect(() => {
         dispatch(readBoards());
     }, [dispatch]);
@@ -41,15 +40,15 @@ const OneBoard = () => {
         dispatch(readOneBoard(board_id));
     }, [dispatch, board_id]);
 
-    const deleteOneBoard = async (board) => { 
-        await dispatch(deleteBoard(board))
-        history.push("/boards") // timing issue
+    const deleteOneBoard = async (board) => {
+        await dispatch(deleteBoard(board));
+        history.push("/boards"); // timing issue
     };
 
-//    if (!boards) return null;
-//    if (!board) return null;
+    //    if (!boards) return null;
+    if (!board) return null;
 
-    const showEditModalFunc  = () => setShowEditModal(true);
+    const showEditModalFunc = () => setShowEditModal(true);
     const closeEditModalFunc = () => setShowEditModal(false);
 
     return (
@@ -79,7 +78,9 @@ const OneBoard = () => {
                             <li className="boards__list__elements" key={board.id}>
                                 <NavLink style={{ textDecoration: 'none' }} to={`/boards/${board.id}`}>
                                     <div className='vertical__list__boards'>
-                                        <div className='color__square jello__wiggle' />
+                                        <div className='color__square jello__wiggle'
+                                            style={{ backgroundColor: avatars[board.avatar_id].color }}
+                                        />
                                         <div className='vertical__board__names jello__wiggle'>
                                             {board.title}
                                         </div>
@@ -109,25 +110,25 @@ const OneBoard = () => {
                                 </button>
                             </div>
                             <div className='board-nav-left-divider' />
-                            <div>
-                                [ IC ]
+                            <div className='shared__with'>
+                                <UserIcon isNavIcon={true} />
                             </div>
                             <div className='board-nav-left-divider' />
                         </div>
                         <div className='edit-delete-btns'>
                             <button
-                                    id='gray__board__button'
-                                    onClick={showEditModalFunc}
-                                    className='
+                                id='gray__board__button'
+                                onClick={showEditModalFunc}
+                                className='
                                       jello__wiggle
                                       logout__button
                                       red__button
                                       button__shine__short__red
                                       '>
-                              Edit Board
+                                Edit Board
                             </button>
-                          {showEditModal && (<Modal closeModalFunc={closeEditModalFunc}>
-                              <EditBoardForm closeModalFunc={closeEditModalFunc} />
+                            {showEditModal && (<Modal closeModalFunc={closeEditModalFunc}>
+                                <EditBoardForm closeModalFunc={closeEditModalFunc} />
                             </Modal>)}
                             <button
                                 id='gray__board__button'
@@ -142,8 +143,15 @@ const OneBoard = () => {
                                 }}>Delete Board</button>
                         </div>
                     </div>
-                    <div className='lists__page__bg__color'>
+                    <div
+                        className='lists__page__bg__color'
+                        style={{
+                            backgroundColor: avatars[board.avatar_id].color
+                        }}>
                         <ListsPage />
+                    </div>
+                    <div className='bg__avatar__image jello__wiggle__big'>
+                        <img className='bg__avatar__image ' src={avatars[board.avatar_id].imageUrl} />
                     </div>
                 </div>
             </div>

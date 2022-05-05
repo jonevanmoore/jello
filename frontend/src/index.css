@@ -161,11 +161,16 @@ button:hover {
   left: 100%
 }
 
-
 .jello__wiggle:hover {
   animation: jello_1 1s;
   animation-timing-function: ease-in-out;
   transform-origin: center
+}
+
+.jello__wiggle__big:hover {
+  animation: jello_1 1s;
+  animation-timing-function: ease-in-out;
+  transform-origin: left
 }
 
 .jello__container__ani:hover {

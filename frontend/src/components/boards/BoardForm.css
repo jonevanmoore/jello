@@ -21,7 +21,7 @@
 }
 
 .input__board__title {
-    width: 314px;
+    width: 340px;
     height: 30px;
     border: var(--nav-bar-left-divider-color) var(--main-button-border-width) solid;
     border-radius: var(--main-border-radius);
@@ -84,7 +84,7 @@
     transition: all 0.25s ease-in-out;
     cursor: pointer;
     background-color: white;
-    width: 320px;
+    width: 350px;
     height: 30px;
 }
 
@@ -107,7 +107,7 @@
     transition: all 0.25s ease-in-out;
     cursor: pointer;
     background-color: var(--light-blue-button-color);
-    width: 320px;
+    width: 350px;
     height: 30px;
 }
 

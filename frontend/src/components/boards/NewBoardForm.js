@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { createBoardThunk } from '../../store/boards';
+import { Icons } from '../Icons/Icons';
 
 import './Boards.css';
 import './BoardForm.css';
@@ -14,10 +15,11 @@ const NewBoardForm = ({ closeModalFunc }) => {
     const user = useSelector(state => state.session.user);
 
     const [title, setTitle] = useState('');
-    const [avatar_id, setAvatar_id] = useState('');
+    const [avatarId, setAvatarId] = useState('');
     // const [workspace_id, setWorkspace_id] = useState('');
 
     const handleSubmit = async (e) => {
+
         e.preventDefault();
 
         const pattern = /\S+/;
@@ -27,17 +29,13 @@ const NewBoardForm = ({ closeModalFunc }) => {
         const newBoard = {
             title: title.trim(),
             user_id: user.id,
-            avatar_id: 1,
+            avatar_id: avatarId,
             // workspace_id
         };
 
         const createdBoard = await dispatch(createBoardThunk(newBoard));
         closeModalFunc();
         history.push(`/boards/${createdBoard.id}`);
-    };
-
-    const updateAvatarId = (e) => {
-        setAvatar_id(e.target.value);
     };
 
     const stopTheProp = e => e.stopPropagation();
@@ -65,15 +63,9 @@ const NewBoardForm = ({ closeModalFunc }) => {
                         />
                     </div>
                 </div>
-                <div>
-                    <label>Avatar</label>
-                    <input
-                        type='radio'
-                        name='avatar_id'
-                        onChange={updateAvatarId}
-                        value={avatar_id}
-                    ></input>
-                </div>
+
+                <Icons avatarId={avatarId} setAvatarId={setAvatarId} />
+
                 {/* <div>
                     <input
                         placeholder='workspace'

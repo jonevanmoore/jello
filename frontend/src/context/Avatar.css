@@ -1,0 +1,47 @@
+.jello__bg__01 {
+    color: var(--white-color);
+    background: #B3D035;
+    transition: background 1s, color 0.5s;
+}
+
+.jello__bg__01:hover {
+    color: #005A50;
+    background: #EBE716;
+    cursor: pointer;
+}
+
+.jello__bg__02 {
+    color: var(--white-color);
+    background: #F8AC1B;
+    transition: background 1s, color 0.5s;
+}
+
+.jello__bg__02:hover {
+    color: #F37F25;
+    background: #FBEF65;
+    cursor: pointer;
+}
+
+.jello__bg__03 {
+    color: var(--white-color);
+    background: #B3D035;
+    transition: background 1s, color 0.5s;
+}
+
+.jello__bg__03:hover {
+    color: #005A50;
+    background: #EBE716;
+    cursor: pointer;
+}
+
+.jello__bg__04 {
+    color: var(--white-color);
+    background: #F8AC1B;
+    transition: background 1s, color 0.5s;
+}
+
+.jello__bg__04:hover {
+    color: #F37F25;
+    background: #FBEF65;
+    cursor: pointer;
+}
