@@ -36,7 +36,6 @@ const ListsPage = () => {
 
         setLists(listCopy);
         console.log(result);
-        console.log('LISTS: ', board.lists);
     };
 
     // console.log('LISTS: ', board.lists);
@@ -47,7 +46,7 @@ const ListsPage = () => {
                 <Droppable droppableId='list__size' direction='horizontal'>
                     {(provided) => (
                         <div className='list__size' {...provided.droppableProps} ref={provided.innerRef}>
-                            {board.lists.map((list, index) =>
+                            {lists.map((list, index) =>
                             <Draggable draggableId={String(list.id)} key={list.id} index={index}>
                                 {(provided) => (
                                     <div className='list__container' {...provided.draggableProps} ref={provided.innerRef} {...provided.dragHandleProps}>
