@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { createBoardThunk } from '../../store/boards';
+import { createBoard } from '../../store/boards';
 import { Icons } from '../Icons/Icons';
 
 import './Boards.css';
@@ -63,7 +63,7 @@ const NewBoardForm = ({ closeModalFunc }) => {
             // workspace_id
         };
 
-        const createdBoard = await dispatch(createBoardThunk(newBoard));
+        const createdBoard = await dispatch(createBoard(newBoard));
         closeModalFunc();
         history.push(`/boards/${createdBoard.id}`);
     };
