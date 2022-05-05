@@ -1,9 +1,8 @@
 from .db import db
-from flask_login import UserMixin
 from sqlalchemy.sql import func
 from backend.models.users_boards import users_boards
 
-class Board(db.Model, UserMixin):
+class Board(db.Model):
     __tablename__ = 'boards'
 
     id = db.Column(db.Integer, primary_key = True)
@@ -19,6 +18,8 @@ class Board(db.Model, UserMixin):
 
     users = db.relationship('User', back_populates='shared_boards', secondary=users_boards)
 
+    lists = db.relationship('List')
+
 
     def to_dict(self):
         return {
@@ -28,5 +29,6 @@ class Board(db.Model, UserMixin):
             'avatar_id': self.avatar_id,
             # 'workspace_id': self.workspace_id,
             'created_at': self.created_at,
-            'updated_at': self.updated_at
+            'updated_at': self.updated_at,
+            'lists': [ list.to_dict() for list in self.lists ]
         }

@@ -1,15 +1,13 @@
 from flask import Blueprint, jsonify, session, request, redirect
 from flask_login import login_required, current_user
-from backend.forms.new_board_form import NewBoardForm
-from backend.models.board import Board
-from backend.models import User
-from backend.models.db import db
+from backend.forms import NewBoardForm, NewListForm
+from backend.models import User, Board, List, db
 from backend.api.auth_routes import validation_errors_to_error_messages
 
 board_routes = Blueprint('boards', __name__)
 
 
-# R E A D  A L L
+# R E A D  A L L  B O A R D S
 @board_routes.route('/', methods = [ 'GET' ])
 @login_required
 def read_all_boards():
@@ -17,13 +15,13 @@ def read_all_boards():
     return {'boards': [board.to_dict() for board in boards]}
 
 
-# R E A D O N E
+# R E A D  O N E  B O A R D
 @board_routes.route('/<int:id>', methods=['GET'])
 def read_one_board(id):
     board = Board.query.get(id)
     return board.to_dict()
 
-# C R E A T E
+# C R E A T E  B O A R D
 @board_routes.route('/new-board', methods = [ 'GET', 'POST' ])
 def new_board():
     form = NewBoardForm()
@@ -42,7 +40,7 @@ def new_board():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-# U P D A T E
+# U P D A T E  B O A R D
 @board_routes.route('/<int:id>', methods = [ 'PUT' ])
 def update_board(id):
     board = Board.query.get(id)
@@ -57,7 +55,7 @@ def update_board(id):
     return board.to_dict()
 
 
-# D E L E T E
+# D E L E T E  B O A R D
 @board_routes.route('/<int:id>', methods = [ 'DELETE' ])
 def delete_board(id):
     board = Board.query.get(id)
@@ -65,3 +63,21 @@ def delete_board(id):
     db.session.delete(board)
     db.session.commit()
     return { 'id': id }
+
+# C R E A T E   L I S T
+@board_routes.route('/<int:id>/lists', methods = [ 'POST' ])
+def create_list(id):
+    form = NewListForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        list = List(
+            user_id=form.data['user_id'],
+            board_id=id,
+            title=form.data['title'],
+            order=form.data['order'],
+        )
+        db.session.add(list)
+        db.session.commit()
+        return list.to_dict()
+    return {'errors': ["Unsuccessful List Submission"]}, 400
