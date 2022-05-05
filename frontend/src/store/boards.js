@@ -148,6 +148,38 @@ export const createList = list => async dispatch => {
     }
 };
 
+export cost updateList = list => async dispatch => {
+    const response = await fetch(`/api/lists/${list.id}`,{
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(list)
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+        await dispatch(updateListAction(data));
+        return data;
+    } else {
+        console.log(data.errors);
+    }
+};
+
+export cost deleteList = list => async dispatch => {
+    const response = await fetch(`/api/lists/${list.id}`,{
+        method: 'DELETE'
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+        await dispatch(deleteListAction(data));
+        return data;
+    } else {
+        console.log(data.errors);
+    }
+};
+
 // REDUCER
 let initialState = { };
 
