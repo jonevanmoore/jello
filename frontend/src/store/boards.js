@@ -9,27 +9,27 @@ const DELETE_BOARD = 'boards/DELETE_BOARD';
 // ACTIONS
 const createBoardAction = board => ({ 
     type: CREATE_BOARD, 
-    payload: board  
+    board  
 });
 
 const readBoardsAction = boards =>( {
     type: READ_BOARDS,
-    payload: boards
+    boards
 });
 
 const readOneBoardAction = board => ({
     type: READ_ONE_BOARD,
-    payload: board
+    board
 });
 
 const updateBoardAction = board => ({
     type: UPDATE_BOARD,
-    payload: board
+    board
 });
 
 const deleteBoardAction = board => ({
     type: DELETE_BOARD,
-    payload: board
+    board
 });
 
 // THUNKS
@@ -60,7 +60,7 @@ export const createBoardThunk = board => async dispatch => {
 
         if (response.ok) {
             const data = await response.json();
-            dispatch(createBoardAction(data));
+            await dispatch(createBoardAction(data));
             return data;
         }
     } catch (e) {
@@ -73,7 +73,7 @@ export const readBoards = () => async dispatch => {
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(readBoardsAction(data));
+        await dispatch(readBoardsAction(data.boards));
         return data;
     }
 };
@@ -83,7 +83,7 @@ export const readOneBoard = (id) => async dispatch => {
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(readOneBoardAction(data));
+        await dispatch(readOneBoardAction(data));
         return data;
     };
 };
@@ -98,7 +98,7 @@ export const updateBoard = (board, id) => async dispatch => {
 
         if (response.ok) {
             const data = await response.json();
-            dispatch(updateBoardAction(data));
+            await dispatch(updateBoardAction(data));
             return data;
         };
     } catch (e) {
@@ -113,7 +113,7 @@ export const deleteBoard = board => async dispatch => {
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(deleteBoardAction(data));
+        await dispatch(deleteBoardAction(data));
         return data;
     };
 };
@@ -127,19 +127,19 @@ const boardsReducer = (state = initialState, action) => {
     let newState = {...state};
     switch (action.type) {
         case CREATE_BOARD:
-            newState[action.payload.id] = action.payload;
+            newState[action.board.id] = action.board;
             return newState;
         case READ_BOARDS: // this includes lists and cards
-            action.payload.boards.forEach(b => newState[b.id] = b )
+            action.boards.forEach(b => newState[b.id] = b )
             return newState;
         case READ_ONE_BOARD: // this includes lists and cards
-            newState[action.payload.id] = action.payload;
+            newState[action.board.id] = action.board;
             return newState;
         case UPDATE_BOARD:
-            newState[action.payload.id] = action.payload;
+            newState[action.board.id] = action.board;
             return newState;
         case DELETE_BOARD:
-            delete newState[action.payload.id]
+            delete newState[action.board.id]
             return newState;
         default:
             return state;
