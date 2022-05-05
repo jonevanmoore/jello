@@ -188,6 +188,17 @@ const boardsReducer = (state = initialState, action) => {
             newState[board_id].lists = [...lists];
             return newState;
         }
+        case DELETE_LIST:{
+            let list_id = action.list.id
+            let board_id = action.list.board_id
+            let board = newState[board_id];
+            let lists = board.lists;
+            let index = lists.findIndex(list => list.id === action.list.id) // WOW!!!!
+            lists.splice(index, 1); // remove 1 element starting at index
+            newState[board_id] = {...board};
+            newState[board_id].lists = [...lists];
+            return newState;
+        }
         default:
             return state;
     }
