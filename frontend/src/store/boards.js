@@ -148,6 +148,38 @@ export const createList = list => async dispatch => {
     }
 };
 
+export const updateList = list => async dispatch => {
+    const response = await fetch(`/api/lists/${list.id}`,{
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(list)
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+        await dispatch(updateListAction(data));
+        return data;
+    } else {
+        console.log(data.errors);
+    }
+};
+
+export const deleteList = list => async dispatch => {
+    const response = await fetch(`/api/lists/${list.id}`,{
+        method: 'DELETE'
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+        await dispatch(deleteListAction(data));
+        return data;
+    } else {
+        console.log(data.errors);
+    }
+};
+
 // REDUCER
 let initialState = { };
 
@@ -169,13 +201,36 @@ const boardsReducer = (state = initialState, action) => {
         case DELETE_BOARD:
             delete newState[action.board.id]
             return newState;
-        case CREATE_LIST:
+        case CREATE_LIST:{
             let board_id = action.list.board_id
             let board = newState[board_id];
             let lists = board.lists;
             newState[board_id] = {...board};
             newState[board_id].lists = [...lists, action.list]
             return newState;
+        }
+        case UPDATE_LIST:{
+            let list_id = action.list.id
+            let board_id = action.list.board_id
+            let board = newState[board_id];
+            let lists = board.lists;
+            let index = lists.findIndex(list => list.id === action.list.id) // WOW!!!!
+            lists[index] = action.list; 
+            newState[board_id] = {...board};
+            newState[board_id].lists = [...lists];
+            return newState;
+        }
+        case DELETE_LIST:{
+            let list_id = action.list.id
+            let board_id = action.list.board_id
+            let board = newState[board_id];
+            let lists = board.lists;
+            let index = lists.findIndex(list => list.id === action.list.id) // WOW!!!!
+            lists.splice(index, 1); // remove 1 element starting at index
+            newState[board_id] = {...board};
+            newState[board_id].lists = [...lists];
+            return newState;
+        }
         default:
             return state;
     }
