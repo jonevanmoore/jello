@@ -302,13 +302,19 @@ const boardsReducer = (state = initialState, action) => {
             return newState;
         }
         case CREATE_CARD: {
-
+            let board_id = action.card.list.board_id;
+            let board = newState[board_id];
+            let list = board.list.find(list => list.id === card.list.id);
+            list.cards = [...list.cards, action.card];
+            board.list = [...board.list];
+            newState[board_id] = [...board];
+            return newState;
         }
         case UPDATE_CARD: {
 
         }
         case DELETE_CARD: {
-            
+
         }
         default:
             return state;
