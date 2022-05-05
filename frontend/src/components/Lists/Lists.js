@@ -20,7 +20,7 @@ const ListsPage = () => {
     const [title, setTitle] = useState('')
 
     const addNewList = async () => {
-        const newList = { title, user_id, board_id, order: board.lists.length }
+        const newList = { title, user_id, board_id, order: board.lists.length + 1 }
         await dispatch(createList(newList))
     }
 
