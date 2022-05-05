@@ -24,16 +24,16 @@ const ListsPage = () => {
                                 {list.title}
                             </label>
                             <button class="close">
-                                <div class="close__text">+</div>
+                                <div class="close__text">&#215;</div>
                             </button>
                         </div>
                         <div>
                             {list.cards.map(card =>
                                 <div className='card__container'>
-                                    <div>{card.content}</div>
-                                    <div>{card.description}</div>
-                                    <div>{card.due_date}</div>
-                                    <div>{card.created_at}</div>
+                                    <div className='card__content'>{card.content}</div>
+                                    <div className='card__description'>{card.description}</div>
+                                    <div className='card__due__date'>{card.due_date}</div>
+                                    {/* <div>{card.created_at}</div> */}
                                 </div>
                             )}
                         </div>

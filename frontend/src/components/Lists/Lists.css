@@ -9,8 +9,9 @@
     width: 220px;
     height: auto;
     border-radius: 3px;
-    background-color: var(--gray-bg-color);
+    background-color: var(--light-gray-bg-color);
     margin: 2px;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
 }
 
 .list__size {
@@ -71,18 +72,16 @@
 }
 
 .close__text {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 25px;
     color: #A1A8AA;
-    transform: rotate(45deg);
     transition: transform 1s, color 0.5s;
 }
 
 .close__text:hover {
     color: #AF0B0B;
-    transform: rotate(315deg)
+    transform: rotate(270deg)
 }
 
 .list__title {
-    /* margin: 10px; */
+    font-size: 16px;
 }
