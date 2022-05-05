@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Redirect, useHistory, useParams } from 'react-router-dom';
 
-import { readOneBoard, createList } from '../../store/boards';
+import { readOneBoard, createList, deleteList } from '../../store/boards';
 
 import './Lists.css';
 import './Cards.css';
@@ -14,15 +14,19 @@ const ListsPage = () => {
     const sessionUser = useSelector(state => state.session.user);
     const user_id = sessionUser.id;
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
-    const [addListBtnDisplay, setAddListBtnDisplay] = useState('displayed')
-    const [title, setTitle] = useState('')
+    const [addListBtnDisplay, setAddListBtnDisplay] = useState('displayed');
+    const [title, setTitle] = useState('');
 
     const addNewList = async () => {
-        const newList = { title, user_id, board_id, order: board.lists.length + 1 }
-        await dispatch(createList(newList))
-    }
+        const newList = { title, user_id, board_id, order: board.lists.length + 1 };
+        await dispatch(createList(newList));
+    };
+
+    const removeList = async (list) => {
+        await dispatch(deleteList(list));
+    };
 
     // console.log('LISTS: ', board.lists);
 
@@ -30,18 +34,21 @@ const ListsPage = () => {
         <div className='lists__in__boards'>
             <div className='list__size'>
                 {board.lists.map(list =>
-                    <div className='list__container'>
+                    <div key={list.id} className='list__container'>
                         <div className='list__title__close'>
                             <label className='list__title'>
                                 {list.title}
                             </label>
-                            <button class="close">
+                            <button
+                                class="close"
+                                onClick={() => removeList(list)}
+                            >
                                 <div class="close__text">&#215;</div>
                             </button>
                         </div>
                         <div>
                             {list.cards.map(card =>
-                                <div className='card__container'>
+                                <div key={card.id} className='card__container'>
                                     <div className='card__content'>{card.content}</div>
                                     <div className='card__description'>{card.description}</div>
                                     <div className='card__due__date'>{card.due_date}</div>
