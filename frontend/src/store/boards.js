@@ -152,7 +152,6 @@ export const createList = list => async dispatch => {
 let initialState = { };
 
 const boardsReducer = (state = initialState, action) => {
-//    console.log("ACTION.PAYLOAD>>>>>>>>>>", action.payload);
     let newState = {...state};
     switch (action.type) {
         case CREATE_BOARD:
@@ -169,6 +168,13 @@ const boardsReducer = (state = initialState, action) => {
             return newState;
         case DELETE_BOARD:
             delete newState[action.board.id]
+            return newState;
+        case CREATE_LIST:
+            let board_id = action.list.board_id
+            let board = newState[board_id];
+            let lists = board.lists;
+            newState[board_id] = {...board};
+            newState[board_id].lists = [...lists, action.list]
             return newState;
         default:
             return state;
