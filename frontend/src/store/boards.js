@@ -304,14 +304,22 @@ const boardsReducer = (state = initialState, action) => {
         case CREATE_CARD: {
             let board_id = action.card.list.board_id;
             let board = newState[board_id];
-            let list = board.list.find(list => list.id === card.list.id);
+            let list = board.lists.find(list => list.id === card.list.id);
             list.cards = [...list.cards, action.card];
-            board.list = [...board.list];
+            board.lists = [...board.lists];
             newState[board_id] = [...board];
             return newState;
         }
         case UPDATE_CARD: {
-
+            let board_id = action.card.list.board_id;
+            let board = newState[board_id];
+            let list = board.lists.find(list => list.id === card.list.id);
+            let index = list.cards.findIndex(card => card.id === action.card.id);
+            list.cards[index] = action.card;
+            list.cards = [...list.cards];
+            board.lists = [...board.lists];
+            newState[board_id] = [...board];
+            return newState;
         }
         case DELETE_CARD: {
 
