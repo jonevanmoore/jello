@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 
 import { updateBoard } from '../../store/boards';
 
+import { Icons } from '../Icons/Icons';
+
 import './Boards.css';
 import './BoardForm.css';
 
