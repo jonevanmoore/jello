@@ -77,7 +77,7 @@ const DashBoard = () => {
                 <div className='body__boards'>
                     <div className='boards__name'>
                         <div className='avatar__boards__big'>
-                            <UserIcon size={122} isNavIcon={true} />
+                            <UserIcon size={120} isNavIcon={true} />
                         </div>
                         <div className='boards__title'>
                             {`${user.first_name} ${user.last_name}'s boards`}
@@ -115,7 +115,7 @@ const DashBoard = () => {
                     <div className='subtitles__boards'>
                         Shared Boards (WRONG LOGIC)
                     </div>
-                    <div>
+                    {/* <div>
                         <ul className='all__boards'>
                             {boardsShared.map(board =>
                                 <li className="jello__container jello__container__ani jello__bg" key={board.id}>
@@ -129,7 +129,7 @@ const DashBoard = () => {
                                 </li>
                             )}
                         </ul>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </>

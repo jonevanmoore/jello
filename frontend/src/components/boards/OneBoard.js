@@ -110,8 +110,8 @@ const OneBoard = () => {
                                 </button>
                             </div>
                             <div className='board-nav-left-divider' />
-                            <div>
-                                [ IC ]
+                            <div className='shared__with'>
+                                <UserIcon isNavIcon={true} />
                             </div>
                             <div className='board-nav-left-divider' />
                         </div>
