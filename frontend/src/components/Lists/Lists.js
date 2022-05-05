@@ -18,18 +18,32 @@ const ListsPage = () => {
     const dispatch = useDispatch()
 
     const [addListBtnDisplay, setAddListBtnDisplay] = useState('displayed')
-    const [title, setTitle] = useState('')
+    const [title, setTitle] = useState('');
+    const [lists, setLists] = useState(board.lists);
 
     const addNewList = async () => {
         const newList = { title, user_id, board_id, order: board.lists.length + 1 }
         await dispatch(createList(newList))
     }
 
+    const handleOnDragEnd = (result) => {
+        // console.log('LISTS: ', board.lists);
+        if (!result.destination) return;
+        
+        let listCopy = Array.from(lists);
+        const [reOrderedItem] = listCopy.splice(result.source.index, 1);
+        listCopy.splice(result.destination.index, 0, reOrderedItem);
+
+        setLists(listCopy);
+        console.log(result);
+        console.log('LISTS: ', board.lists);
+    };
+
     // console.log('LISTS: ', board.lists);
 
     return (
         <div className='lists__in__boards'>
-            <DragDropContext>
+            <DragDropContext onDragEnd={handleOnDragEnd}>
                 <Droppable droppableId='list__size' direction='horizontal'>
                     {(provided) => (
                         <div className='list__size' {...provided.droppableProps} ref={provided.innerRef}>
@@ -41,13 +55,13 @@ const ListsPage = () => {
                                             <label className='list__title'>
                                                 {list.title}
                                             </label>
-                                            <button class="close">
-                                                <div class="close__text">&#215;</div>
+                                            <button className="close">
+                                                <div className="close__text">&#215;</div>
                                             </button>
                                         </div>
                                         <div>
-                                            {list.cards.map(card =>
-                                                <div className='card__container'>
+                                            {list.cards.map((card, index) =>
+                                                <div className='card__container' key={index}>
                                                     <div className='card__content'>{card.content}</div>
                                                     <div className='card__description'>{card.description}</div>
                                                     <div className='card__due__date'>{card.due_date}</div>
@@ -92,8 +106,8 @@ const ListsPage = () => {
                             <button
                                 onClick={addNewList}
                             >Create List</button>
-                            <button class="close">
-                                <div class="close__text">&#215;</div>
+                            <button className="close">
+                                <div className="close__text">&#215;</div>
                             </button>
                         </div>
                     </div>
