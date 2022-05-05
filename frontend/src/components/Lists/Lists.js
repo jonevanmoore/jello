@@ -17,18 +17,43 @@ const ListsPage = () => {
     const dispatch = useDispatch();
 
     const [addListBtnDisplay, setAddListBtnDisplay] = useState('displayed');
+    const [createListDisplay, setCreateListDisplay] = useState('not-displayed');
+
     const [title, setTitle] = useState('');
 
     const addNewList = async () => {
         const newList = { title, user_id, board_id, order: board.lists.length + 1 };
         await dispatch(createList(newList));
+        setTitle('');
+        setAddListBtnDisplay('displayed');
+        setCreateListDisplay('not-displayed')
     };
 
     const removeList = async (list) => {
         await dispatch(deleteList(list));
     };
 
-    // console.log('LISTS: ', board.lists);
+    const createDisplay = () => {
+        if (addListBtnDisplay === 'displayed') {
+            setAddListBtnDisplay('not-displayed');
+            setCreateListDisplay('displayed');
+            setTitle('');
+        } else {
+            setAddListBtnDisplay('displayed');
+            setCreateListDisplay('not-displayed');
+            setTitle('');
+        }
+
+        if (createListDisplay === 'not-displayed') {
+            setCreateListDisplay('displayed');
+            setAddListBtnDisplay('not-displayed');
+            setTitle('');
+        } else {
+            setCreateListDisplay('not-displayed');
+            setAddListBtnDisplay('displayed');
+            setTitle('');
+        }
+    };
 
     return (
         <div className='lists__in__boards'>
@@ -59,12 +84,12 @@ const ListsPage = () => {
 
                         <div className='create__list__button'>
                             <button
-                                id='lists__buttons'
+                                id='cards__buttons'
                                 className='
-                        light__green__blue__button
-                        jello__wiggle
-                        button__shine__short
-                        '>
+                                light__blue__button
+                                jello__wiggle
+                                button__shine__short
+                                '>
                                 Create a Card
                             </button>
 
@@ -76,30 +101,41 @@ const ListsPage = () => {
             <div className='list__size'>
 
                 <div className='list__container'>
-                    <div className='add-another-list-div'>
+                    <div className={`add-another-list-div ${createListDisplay}`}>
                         <input
                             onChange={e => setTitle(e.target.value)}
+                            className='input__list__title'
+                            placeholder='List Title'
                             type='text'
                             value={title}
                         >
                         </input>
-                        <div className='create-list-btns'>
+                        <div className='create__list__button create-list-btns'>
                             <button
                                 onClick={addNewList}
+                                id='lists__buttons'
+                                className='
+                                light__green__blue__button
+                                jello__wiggle
+                                button__shine__short
+                                '
                             >Create List</button>
-                            <button class="close">
-                                <div class="close__text">&#215;</div>
+                            <button
+                                onClick={createDisplay}
+                                className={`close `}>
+                                <div className="close__text">&#215;</div>
                             </button>
                         </div>
                     </div>
-                    <div className='create__list__button'>
+                    <div className={`create__list__button ${addListBtnDisplay}`}>
                         <button
+                            onClick={createDisplay}
                             id='lists__buttons'
-                            className='
-                        light__green__blue__button
-                        jello__wiggle
-                        button__shine__short
-                        '>
+                            className={`
+                            light__green__blue__button
+                            jello__wiggle
+                            button__shine__short
+                            `}>
                             {board.lists.length > 0 ? 'Add Another List' : 'Create a List'}
                         </button>
 
@@ -107,7 +143,7 @@ const ListsPage = () => {
                 </div>
             </div>
             {/* </div> */}
-        </div>
+        </div >
     )
 };
 

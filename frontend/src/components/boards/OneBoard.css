@@ -12,6 +12,7 @@
     top: 54px;
     width: 91.2vw;
     left: 190px;
+    z-index: 1;
 }
 
 .one__board__vertical__navbar {
