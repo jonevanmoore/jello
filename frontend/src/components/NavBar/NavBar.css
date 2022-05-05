@@ -4,6 +4,8 @@ nav {
   align-items: center;
   background-color: var(--nav-bar-color);
   height: 54px;
+  position: fixed;
+  width: 100%;
 }
 
 .nav-bar-logo {

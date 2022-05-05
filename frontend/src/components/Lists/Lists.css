@@ -85,3 +85,13 @@
 .list__title {
     font-size: 16px;
 }
+
+/* ADD ANOTHER LIST */
+.add-another-list-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-list-btns {
+    display: flex;
+}
