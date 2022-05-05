@@ -3,9 +3,9 @@ from wtforms import StringField, IntegerField, SubmitField, DateTimeField, TextA
 from wtforms.validators import DataRequired
 
 class NewCardForm(FlaskForm):
-    content     = StringField('Content', validators=[DataRequired()])
-    order       = IntegerField('Order', validators=[DataRequired()])
-    description = TextAreaField('Description')
-    due_date    = DateTimeField('Due Date')
-    user_id     = IntegerField('User ID', validators=[DataRequired()])
-    list_id     = IntegerField('List ID', validators=[DataRequired()])
+    content     = StringField('content', validators=[DataRequired()])
+    order       = IntegerField('order', validators=[DataRequired()])
+    description = TextAreaField('description')
+    due_date    = DateTimeField('due_date')
+    user_id     = IntegerField('user_id', validators=[DataRequired()])
+    list_id     = IntegerField('list_id', validators=[DataRequired()])

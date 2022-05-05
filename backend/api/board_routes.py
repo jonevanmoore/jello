@@ -80,3 +80,4 @@ def create_list(id):
         db.session.add(list)
         db.session.commit()
         return list.to_dict()
+    return {'errors': ["Unsuccessful List Submission"]}, 400

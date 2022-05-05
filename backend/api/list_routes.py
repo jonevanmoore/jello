@@ -1,6 +1,6 @@
-from flask import Blueprint
+from flask import Blueprint, request
 from flask_login import current_user, login_required
-from backend.models import db, List
+from backend.models import db, List, Card
 from backend.forms import NewCardForm
 
 list_routes = Blueprint('lists', __name__)
@@ -60,3 +60,4 @@ def new_card(id):
         db.session.add(card)
         db.session.commit()
         return card.to_dict()
+    return {'errors': ["Unsuccessful Card Submission"]}, 400
