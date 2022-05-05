@@ -281,12 +281,7 @@ const boardsReducer = (state = initialState, action) => {
             newState[board_id].lists = [...lists, action.list]
             return newState;
         }
-<<<<<<< HEAD
         case UPDATE_LIST: {
-            let list_id = action.list.id
-=======
-        case UPDATE_LIST:{
->>>>>>> main
             let board_id = action.list.board_id
             let board = newState[board_id];
             let lists = board.lists;
