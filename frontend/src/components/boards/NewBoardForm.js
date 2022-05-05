@@ -20,8 +20,12 @@ const NewBoardForm = ({ closeModalFunc }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const pattern = /\S+/;
+
+        if (!pattern.test(title)) return;
+
         const newBoard = {
-            title,
+            title: title.trim(),
             user_id: user.id,
             avatar_id: 1,
             // workspace_id
@@ -29,7 +33,6 @@ const NewBoardForm = ({ closeModalFunc }) => {
 
         const createdBoard = await dispatch(createBoardThunk(newBoard));
         closeModalFunc();
-        // history.push(`/boards`);
         history.push(`/boards/${createdBoard.id}`);
     };
 

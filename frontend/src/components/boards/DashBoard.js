@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 import { UserIcon } from '../UserIcon';
+import { avatars } from '../../context/Avatar';
 
 
 import { readBoards } from '../../store/boards';
@@ -11,7 +12,7 @@ import './BoardsNavbar.css';
 
 const DashBoard = () => {
     const dispatch = useDispatch();
-    const user   = useSelector(state => state.session.user);
+    const user = useSelector(state => state.session.user);
     const boards = useSelector(state => state.boards);
 
     // TODO: FIX SHARED BOARDS BEHAVIOR
@@ -32,6 +33,12 @@ const DashBoard = () => {
 
     if (!boards) return null;
 
+    const avatarPNGs = Object.values(avatars)
+        .filter((avatar, i) => user.avatar_id != i + 1)
+        .map(avatar => avatar.imageUrl)
+
+    const randomAvatar = avatarPNGs[Math.floor(Math.random() * avatarPNGs.length)];
+
     return (
         <>
             <div className='divided_screen'>
@@ -48,7 +55,7 @@ const DashBoard = () => {
                     </div>
                     <div className='your__boards__PLUS'>
                         <div>
-                            Your Boards
+                            Your Board
                         </div>
                         <div>
                             +
@@ -69,7 +76,12 @@ const DashBoard = () => {
                         )}
                     </div>
                 </div>
-                <div className='body__boards'>
+                <div className='body__boards' style={{
+                    backgroundImage: `url('${randomAvatar}')`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: '95% 90%',
+                    backgroundSize: "350px",
+                }}>
                     <div className='boards__name'>
                         <div className='avatar__boards__big'>
                             <UserIcon size={122} isNavIcon={true} />
