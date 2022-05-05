@@ -99,7 +99,7 @@
     border: 1px #000000 solid;
 }
 
-#create-button {
+.create-button {
     padding: 6px 12px;
     border-width: var(--main-button-border-width);
     /* border-style: solid; */
@@ -116,7 +116,7 @@
     height: 30px;
 }
 
-#create-button:hover {
+.create-button:hover {
     color: var(--white-button-main-color);
     background: var(--dark-blue-button-color);
     border: 1px #000000 solid;
@@ -141,4 +141,15 @@
 #valid-blue {
     color: var(--light-blue-button-color);
     transition: .3s;
+}
+
+#disabled-blue {
+    color: var(--dark-blue-button-color);
+    background-color: var(--light-blue-button-color);
+    border-color: var(--dark-blue-button-color);
+    opacity: 35%
+}
+
+#disabled-blue:hover {
+    animation: none;
 }
