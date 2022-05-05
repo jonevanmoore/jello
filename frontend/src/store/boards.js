@@ -148,7 +148,7 @@ export const createList = list => async dispatch => {
     }
 };
 
-export cost updateList = list => async dispatch => {
+export const updateList = list => async dispatch => {
     const response = await fetch(`/api/lists/${list.id}`,{
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
@@ -165,7 +165,7 @@ export cost updateList = list => async dispatch => {
     }
 };
 
-export cost deleteList = list => async dispatch => {
+export const deleteList = list => async dispatch => {
     const response = await fetch(`/api/lists/${list.id}`,{
         method: 'DELETE'
     });
