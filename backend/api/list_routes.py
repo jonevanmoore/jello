@@ -1,6 +1,7 @@
 from flask import Blueprint
 from flask_login import current_user, login_required
-from backend.models import db
+from backend.models import db, List
+from backend.forms import NewCardForm
 
 list_routes = Blueprint('lists', __name__)
 
@@ -40,7 +41,7 @@ def delete_list(id):
     return {'id':id}
 
 
-#C R E A T E  C A R D
+# C R E A T E  C A R D
 @list_routes.route('/<int:id>/cards', methods=['POST'])
 @login_required
 def new_card(id):

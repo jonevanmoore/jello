@@ -5,7 +5,7 @@ from backend.models import db, Card
 
 card_routes = Blueprint("card_routes", __name__)
 
-# U P D A T E
+# U P D A T E  C A R D
 @card_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def update_card(id):
@@ -23,7 +23,7 @@ def update_card(id):
     db.session.commit()
     return card.to_dict()
 
-#D E L E T E
+# D E L E T E  C A R D
 @card_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_card(id):
