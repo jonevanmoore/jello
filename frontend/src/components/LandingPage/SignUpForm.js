@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
@@ -19,9 +19,70 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
   const dispatch = useDispatch();
 
   // CUSTOME ERROR HANDLING
-  const [nameError, setNameError] = useState([])
-  const [emailError, setEmailError] = useState([])
-  const [avatarError, setAvatarError] = useState('')
+  const [firstNameError, setFirstNameError] = useState('invalid')
+  const [lastNameError, setLastNameError] = useState('invalid')
+  const [emailError, setEmailError] = useState('invalid')
+  const [avatarError, setAvatarError] = useState('invalid')
+  const [passError, setPassError] = useState('invalid')
+  const [confirmPassError, setConfirmPassError] = useState('invalid')
+  const [submitError, setSubmitError] = useState('disabled')
+
+  useEffect(() => {
+    //FIRST NAME
+    if (firstName.length > 0 && firstName.length < 101) {
+      setFirstNameError('valid')
+    } else {
+      setFirstNameError('invalid')
+    }
+
+    //LAST NAME
+    if (lastName.length > 0 && lastName.length < 101) {
+      setLastNameError('valid')
+    } else {
+      setLastNameError('invalid')
+    }
+
+    //AVATAR
+    if (avatarId > 0) {
+      setAvatarError('valid')
+    } else {
+      setAvatarId('invalid')
+    }
+
+    //EMAIL
+    if (email.length > 4 && email.length < 256) {
+      setEmailError('valid')
+    } else {
+      setEmailError('invalid')
+    }
+
+    //PASS
+    if (password.length > 7 && password.length < 256) {
+      setPassError('valid')
+    } else {
+      setPassError('invalid')
+    }
+
+    //CONFIRM PASS
+    if (repeatPassword === password && repeatPassword.length > 0) {
+      setConfirmPassError('valid')
+    } else {
+      setConfirmPassError('invalid')
+    }
+
+    //SUBMIT BUTTON
+    if (firstName.length > 0 && firstName.length < 101 &&
+      lastName.length > 0 && lastName.length < 101 &&
+      avatarId > 0 &&
+      email.length > 4 && email.length < 256 &&
+      password.length > 7 && password.length < 256 &&
+      repeatPassword === password && repeatPassword.length > 0) {
+      setSubmitError('able')
+    } else {
+      setSubmitError('disabled')
+    }
+
+  }, [firstName, lastName, avatarId, email, password, repeatPassword])
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -39,10 +100,6 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
 
   const updateLastName = (e) => {
     setLastName(e.target.value);
-  };
-
-  const updateAvatarId = (e) => {
-    setAvatarId(e.target.value)
   };
 
   const updateEmail = (e) => {
@@ -73,8 +130,11 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
             <div key={ind}>{error}</div>
           ))}
         </div>
+        <div className='first-last-checks sign-up-checks'>
+          <i className="fa-solid fa-circle-check first-name-check" id={firstNameError}></i>
+          <i className="fa-solid fa-circle-check last-name-check" id={lastNameError}></i>
+        </div>
         <div className='first-last-div'>
-
           <input className='signup-input'
             placeholder='First Name'
             type='text'
@@ -90,6 +150,9 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
             value={lastName}
           ></input>
         </div>
+        <div className='sign-up-checks email-check-div'>
+          <i className="fa-solid fa-circle-check email-check" id={emailError}></i>
+        </div>
         <input className='signup-input'
           placeholder='Email'
           type='text'
@@ -98,8 +161,11 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
           value={email}
         ></input>
 
-        <Icons avatarId={avatarId} setAvatarId={setAvatarId} />
+        <Icons avatarId={avatarId} setAvatarId={setAvatarId} avatarError={avatarError} setAvatarError={setAvatarError} />
 
+        <div className='sign-up-checks'>
+          <i className="fa-solid fa-circle-check pass-check" id={passError}></i>
+        </div>
         <input className='signup-input'
           placeholder='Password'
           type='password'
@@ -107,6 +173,9 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
           onChange={updatePassword}
           value={password}
         ></input>
+        <div className='sign-up-checks'>
+          <i className="fa-solid fa-circle-check confirm-pass-check" id={confirmPassError}></i>
+        </div>
         <input className='signup-input'
           placeholder='Confirm Password'
           type='password'
@@ -115,7 +184,11 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
           value={repeatPassword}
           required={true}
         ></input>
-        <button type='submit' className='login-form-btn submit-btn jello-wiggle button__shine__long__green green-btn'>Sign Up</button>
+        <button
+          type='submit'
+          className='login-form-btn submit-btn jello-wiggle button__shine__long__green green-btn'
+          id={submitError}
+          disabled={submitError !== 'able'}>Sign Up</button>
       </form>
       <button className='login-form-btn jello-wiggle jello__container__ani cancel-btn'
         style={{ width: '75%', marginBottom: '36px' }} /* <<< hack alert */

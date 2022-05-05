@@ -45,6 +45,68 @@
     justify-content: space-between;
 }
 
+/* ERROR HANDLES */
+#invalid {
+    color: lightgray;
+    transition: .3s;
+}
+
+#valid {
+    color: #6CAC45;
+    transition: .3s;
+}
+
+#disabled {
+    color: #2b6f0064;
+    background-color: #6dac455b;
+    border-color: rgba(6, 132, 6, 0.254);
+}
+
+#disabled:hover {
+    animation: none;
+}
+
+.sign-up-checks {
+    display: flex;
+    position: absolute;
+}
+
+.first-last-checks>* {
+    position: relative;
+    top: 77px;
+}
+
+.first-name-check {
+    position: relative;
+    right: 15px;
+}
+
+.last-name-check {
+    position: relative;
+    left: 155px;
+}
+
+.email-check {
+    position: relative;
+    top: 133px;
+    left: 163px;
+}
+
+.pass-check {
+    position: relative;
+    top: 330px;
+    left: 163px;
+}
+
+.confirm-pass-check {
+    position: relative;
+    top: 385px;
+    left: 163px;
+}
+
+
+/* ERROR HANDLES */
+
 .radio-div {
     border: 1px solid gray;
     border-radius: 5px;

@@ -13,6 +13,9 @@
         '7 8 9 10 11 12';
 }
 
+.avatar-check {
+    float: right;
+}
 
 #radio-jello-div {
     display: flex;
