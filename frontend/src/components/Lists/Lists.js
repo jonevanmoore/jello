@@ -25,17 +25,17 @@ const ListsPage = () => {
         await dispatch(createList(newList))
     }
 
-    console.log('LISTS: ', board.lists);
+    // console.log('LISTS: ', board.lists);
 
     return (
         <div className='lists__in__boards'>
             <DragDropContext>
-                <Droppable droppableId='lists'>
-                    {(provided) => {
+                <Droppable droppableId='list__size'>
+                    {(provided) => (
                         <div className='list__size' {...provided.droppableProps} ref={provided.innerRef}>
                             {board.lists.map((list, index) =>
-                            <Draggable draggableId={index} key={index} index={index}>
-                                {(provided) => {
+                            <Draggable draggableId={String(list.id)} key={list.id} index={index}>
+                                {(provided) => (
                                     <div className='list__container' {...provided.draggableProps} ref={provided.innerRef} {...provided.dragHandleProps}>
                                         <div className='list__title__close'>
                                             <label className='list__title'>
@@ -69,11 +69,12 @@ const ListsPage = () => {
 
                                         </div>
                                     </div>
-                                }}
+                                )}
                             </Draggable>
                             )}
+                            {provided.placeholder}
                         </div>
-                    }}
+                    )}
                 </Droppable>
             </DragDropContext>
             {/* <div className='lists__in__boards'> */}
