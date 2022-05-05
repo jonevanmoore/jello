@@ -25,3 +25,9 @@ class List(db.Model):
                 'updated_at': self.updated_at,
                 'cards': [ card.to_dict() for card in self.cards ]
                 }
+
+    def to_short_dict(self):
+        return {
+                'id': self.id,
+                'board_id': self.board_id
+                }

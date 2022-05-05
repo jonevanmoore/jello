@@ -35,4 +35,4 @@ def delete_card(id):
     db.session.delete(card)
     db.session.commit()
 
-    return {'id': id} 
+    return card.to_dict()
