@@ -5,6 +5,19 @@
     width: 470px;
 }
 
+.login-error-div {
+    position: absolute;
+}
+
+#custom-error-login {
+    position: relative;
+    top: 45px;
+    left: 135px;
+    color: var(--red-button-main-color);
+    font-weight: lighter;
+    font-size: small;
+}
+
 .login-form {
     display: flex;
     flex-direction: column;
