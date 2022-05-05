@@ -7,7 +7,8 @@
     flex-direction: column;
     align-items: center;
     background-color: var(--white-color);
-    box-shadow: 0px 0px 5.79px rgba(3, 13, 33, 0.5);
+    /* box-shadow: 0px 0px 5.79px rgba(3, 13, 33, 0.5); */
+    box-shadow: 0px 0px 20px 0px;
 }
 
 .new_edit__board__form {
@@ -15,13 +16,17 @@
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
-    width: 380px;
+    /* width: 380px; */
     height: 400px;
 
 }
 
+.position_avatar_title {
+    margin-top: 50px;
+}
+
 .input__board__title {
-    width: 340px;
+    width: 344px;
     height: 30px;
     border: var(--nav-bar-left-divider-color) var(--main-button-border-width) solid;
     border-radius: var(--main-border-radius);
@@ -94,7 +99,7 @@
     border: 1px #000000 solid;
 }
 
-#create-button {
+.create-button {
     padding: 6px 12px;
     border-width: var(--main-button-border-width);
     /* border-style: solid; */
@@ -111,8 +116,40 @@
     height: 30px;
 }
 
-#create-button:hover {
+.create-button:hover {
     color: var(--white-button-main-color);
     background: var(--dark-blue-button-color);
     border: 1px #000000 solid;
+}
+
+.title-avatar-checks>* {
+    position: relative;
+    top: 18px;
+    right: -162px
+}
+
+.boards-checks {
+    display: flex;
+    position: absolute;
+}
+
+.title-check {
+    position: relative;
+    /* right: 150px; */
+}
+
+#valid-blue {
+    color: var(--light-blue-button-color);
+    transition: .3s;
+}
+
+#disabled-blue {
+    color: var(--dark-blue-button-color);
+    background-color: var(--light-blue-button-color);
+    border-color: var(--dark-blue-button-color);
+    opacity: 35%
+}
+
+#disabled-blue:hover {
+    animation: none;
 }

@@ -7,12 +7,12 @@ const UPDATE_BOARD = 'boards/UPDATE_BOARD';
 const DELETE_BOARD = 'boards/DELETE_BOARD';
 
 // BOARD ACTIONS
-const createBoardAction = board => ({ 
-    type: CREATE_BOARD, 
-    board  
+const createBoardAction = board => ({
+    type: CREATE_BOARD,
+    board
 });
 
-const readBoardsAction = boards =>( {
+const readBoardsAction = boards => ({
     type: READ_BOARDS,
     boards
 });
@@ -36,7 +36,7 @@ const deleteBoardAction = board => ({
 export const createBoard = board => async dispatch => {
     const response = await fetch('/api/boards/new-board', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(board)
     });
 
@@ -134,7 +134,7 @@ const deleteListAction = list => ({
 export const createList = list => async dispatch => {
     const response = await fetch(`/api/boards/${list.board_id}/lists`, {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(list)
     });
 
@@ -149,9 +149,9 @@ export const createList = list => async dispatch => {
 };
 
 export const updateList = list => async dispatch => {
-    const response = await fetch(`/api/lists/${list.id}`,{
+    const response = await fetch(`/api/lists/${list.id}`, {
         method: 'PUT',
-        headers: {'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(list)
     });
 
@@ -166,7 +166,7 @@ export const updateList = list => async dispatch => {
 };
 
 export const deleteList = list => async dispatch => {
-    const response = await fetch(`/api/lists/${list.id}`,{
+    const response = await fetch(`/api/lists/${list.id}`, {
         method: 'DELETE'
     });
 
@@ -206,7 +206,7 @@ const deleteCardAction = card => ({
 export const createCard = card => async dispatch => {
     const response = await fetch(`/api/lists/${card.list_id}/cards`, {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(card)
     });
 
@@ -223,7 +223,7 @@ export const createCard = card => async dispatch => {
 export const updateCard = card => async dispatch => {
     const response = await fetch(`/api/cards/${card.id}`, {
         method: 'PUT',
-        headers: {'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(card)
     });
 
@@ -253,16 +253,16 @@ export const deleteCard = card => async dispatch => {
 };
 
 // REDUCER
-let initialState = { };
+let initialState = {};
 
 const boardsReducer = (state = initialState, action) => {
-    let newState = {...state};
+    let newState = { ...state };
     switch (action.type) {
         case CREATE_BOARD:
             newState[action.board.id] = action.board;
             return newState;
         case READ_BOARDS: // this includes lists and cards
-            action.boards.forEach(b => newState[b.id] = b )
+            action.boards.forEach(b => newState[b.id] = b)
             return newState;
         case READ_ONE_BOARD: // this includes lists and cards
             newState[action.board.id] = action.board;
@@ -273,31 +273,31 @@ const boardsReducer = (state = initialState, action) => {
         case DELETE_BOARD:
             delete newState[action.board.id]
             return newState;
-        case CREATE_LIST:{
+        case CREATE_LIST: {
             let board_id = action.list.board_id
             let board = newState[board_id];
             let lists = board.lists;
-            newState[board_id] = {...board};
+            newState[board_id] = { ...board };
             newState[board_id].lists = [...lists, action.list]
             return newState;
         }
-        case UPDATE_LIST:{
+        case UPDATE_LIST: {
             let board_id = action.list.board_id
             let board = newState[board_id];
             let lists = board.lists;
             let index = lists.findIndex(list => list.id === action.list.id) // WOW!!!!
-            lists[index] = action.list; 
-            newState[board_id] = {...board};
+            lists[index] = action.list;
+            newState[board_id] = { ...board };
             newState[board_id].lists = [...lists];
             return newState;
         }
-        case DELETE_LIST:{
+        case DELETE_LIST: {
             let board_id = action.list.board_id
             let board = newState[board_id];
             let lists = board.lists;
             let index = lists.findIndex(list => list.id === action.list.id) // WOW!!!!
             lists.splice(index, 1); // remove 1 element starting at index
-            newState[board_id] = {...board};
+            newState[board_id] = { ...board };
             newState[board_id].lists = [...lists];
             return newState;
         }
