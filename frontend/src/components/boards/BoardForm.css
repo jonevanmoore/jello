@@ -15,9 +15,13 @@
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
-    width: 380px;
+    /* width: 380px; */
     height: 400px;
 
+}
+
+.position_avatar_title {
+    margin-top: 50px;
 }
 
 .input__board__title {

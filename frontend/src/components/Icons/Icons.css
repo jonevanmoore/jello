@@ -2,7 +2,7 @@
     border: 1px solid gray;
     border-radius: 5px;
     padding: 5px;
-    /* width: 336px; */
+
     /* background-color: red; */
 }
 
@@ -23,8 +23,12 @@
 }
 
 #avatar-label {
-    color: rgb(186, 186, 186);
+    /* color: rgb(186, 186, 186); */
+    color: black;
     font-size: 12px;
+    /* position: relative; */
+    /* top: 20px; */
+    /* margin-left: 155px; */
 }
 
 #radio-icon {

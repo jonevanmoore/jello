@@ -161,6 +161,8 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
           value={email}
         ></input>
 
+        {/* <div id="avatar-label">Avatar</div> */}
+
         <Icons avatarId={avatarId} setAvatarId={setAvatarId} avatarError={avatarError} setAvatarError={setAvatarError} />
 
         <div className='sign-up-checks'>
@@ -191,7 +193,7 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
           disabled={submitError !== 'able'}>Sign Up</button>
       </form>
       <button className='login-form-btn jello-wiggle jello__container__ani cancel-btn'
-        style={{ width: '75%', marginBottom: '36px' }} /* <<< hack alert */
+        style={{ width: '88%', marginBottom: '36px' }} /* <<< hack alert */
         onClick={closeModalFunc}
         id="logout-button">Cancel</button>
     </div>

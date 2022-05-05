@@ -64,6 +64,8 @@ const NewBoardForm = ({ closeModalFunc }) => {
                     </div>
                 </div>
 
+                {/* <div id="avatar-label" className='position_avatar_title'>Avatar</div> */}
+
                 <Icons avatarId={avatarId} setAvatarId={setAvatarId} />
 
                 {/* <div>
