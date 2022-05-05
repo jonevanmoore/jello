@@ -1,12 +1,12 @@
 
-//CONSTANTS
+//BOARD CONSTANTS
 const CREATE_BOARD = 'boards/CREATE_BOARD';
 const READ_BOARDS = 'boards/READ_BOARDS';
 const READ_ONE_BOARD = 'boards/READ_ONE_BOARD';
 const UPDATE_BOARD = 'boards/UPDATE_BOARD';
 const DELETE_BOARD = 'boards/DELETE_BOARD';
 
-// ACTIONS
+// BOARD ACTIONS
 const createBoardAction = board => ({ 
     type: CREATE_BOARD, 
     board  
@@ -32,8 +32,8 @@ const deleteBoardAction = board => ({
     board
 });
 
-// THUNKS
-export const createBoardThunk = board => async dispatch => {
+// BOARD THUNKS
+export const createBoard = board => async dispatch => {
     const {
         id,
         user_id,
@@ -118,6 +118,45 @@ export const deleteBoard = board => async dispatch => {
     };
 };
 
+
+// LIST CONSTANTS
+const CREATE_LIST = 'boards/CREATE_LIST';
+const UPDATE_LIST = 'boards/UPDATE_LIST';
+const DELETE_LIST = 'boards/DELETE_LIST';
+
+// LIST ACTIONS
+const createListAction = list => ({
+    type: CREATE_LIST,
+    list
+});
+
+const updateListAction = list => ({
+    type: UPDATE_LIST,
+    list
+});
+
+const deleteListAction = list => ({
+    type: DELETE_LIST,
+    list
+});
+
+// LIST THUNKS
+export const createList = list => async dispatch => {
+    const response = await fetch(`/api/boards/${list.board_id}/lists`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(list)
+    });
+
+    const data = await response.json();
+    
+    if (response.ok) {
+        await dispatch(createListAction(data));
+        return data;
+    } else {
+        console.log(data.errors);
+    }
+};
 
 // REDUCER
 let initialState = { };
