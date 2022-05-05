@@ -23,7 +23,10 @@ const ListsPage = () => {
 
     const addNewList = async () => {
         const newList = { title, user_id, board_id, order: board.lists.length + 1 }
-        await dispatch(createList(newList))
+        const createdList = await dispatch(createList(newList))
+
+        const newLists = [...lists, createdList];
+        setLists(newLists);
     }
 
     const handleOnDragEnd = (result) => {
@@ -35,7 +38,9 @@ const ListsPage = () => {
         listCopy.splice(result.destination.index, 0, reOrderedItem);
 
         setLists(listCopy);
-        console.log(result);
+
+        //dispatch instead?
+        // lists.map( (list, index) => { list.id: index }) [{23:1}, {2: 2}, {3: 3}]
     };
 
     // console.log('LISTS: ', board.lists);
