@@ -3,47 +3,40 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Redirect, useHistory, useParams } from 'react-router-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-import { readOneBoard, createList } from '../../store/boards';
+import { readOneBoard, createList, updateListOrder } from '../../store/boards';
 
 import './Lists.css';
 import './Cards.css';
 
 const ListsPage = () => {
-
-    const { board_id } = useParams();
-    const board = useSelector(state => state.boards[board_id]);
-    const sessionUser = useSelector(state => state.session.user);
-    const user_id = sessionUser.id;
-
     const dispatch = useDispatch()
-
+    const { board_id } = useParams();
+    const board   = useSelector(state => state.boards[board_id]);
+    const user_id = useSelector(state => state.session.user.id);
+    
     const [addListBtnDisplay, setAddListBtnDisplay] = useState('displayed')
     const [title, setTitle] = useState('');
-    const [lists, setLists] = useState(board.lists);
+
+    let lists   = board.lists.sort((a,b) => a.order - b.order);
 
     const addNewList = async () => {
         const newList = { title, user_id, board_id, order: board.lists.length + 1 }
         const createdList = await dispatch(createList(newList))
-
-        const newLists = [...lists, createdList];
-        setLists(newLists);
+        // const newLists = [...lists, createdList];
     }
 
-    const handleOnDragEnd = (result) => {
-        // console.log('LISTS: ', board.lists);
+    const handleOnDragEnd = async (result) => {
         if (!result.destination) return;
         
         let listCopy = Array.from(lists);
         const [reOrderedItem] = listCopy.splice(result.source.index, 1);
         listCopy.splice(result.destination.index, 0, reOrderedItem);
 
-        setLists(listCopy);
-
-        //dispatch instead?
-        // lists.map( (list, index) => { list.id: index }) [{23:1}, {2: 2}, {3: 3}]
+        let listOrder = {};
+        listCopy.forEach( (list, index) => listOrder[list.id] = index);
+        lists = listCopy;
+        await dispatch(updateListOrder(board_id, listOrder));
     };
-
-    // console.log('LISTS: ', board.lists);
 
     return (
         <div className='lists__in__boards'>
