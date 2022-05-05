@@ -25,7 +25,7 @@ const LoginForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
 
   useEffect(() => {
     if (errors.length > 0) {
-      setCustomError('Username or password is incorrect')
+      setCustomError('Email or password is incorrect')
     }
   })
 
