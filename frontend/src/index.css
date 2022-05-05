@@ -17,17 +17,15 @@
   --main-button-border-width: 1px;
   --main-border-radius: 4px;
 
-
   --create-board-button-background-color: #a1a8aa;
   --create-board-button-main-color: #363636;
 
   --nav-bar-left-divider-color: #a6a9a9;
-
   --light-gray-bg-color: #FAFBFC;
   --gray-bg-color: #868D91;
   --dark-gray-bg-color: #545959;
-  --light-green-shine-color: #B3D035;
   --white-color: #ffffff;
+  --light-green-shine-color: #B3D035;
 
   --dark-blue-button-color: #12426D;
   --light-blue-button-color: #30AAE1;
@@ -37,6 +35,67 @@
   --red-button-main-color: #af100b;
   --white-button-main-color: #ffffff;
   --background-color: #d9e1e6;
+
+  /* C O L O R S   B Y   J E L L O*/
+  /*   J E L L O  1  */
+  --jello-1: #B3D035;
+  --jello-1-font: #035B2F;
+  --jello-1-highlight: #EBE716;
+
+  /*   J E L L O  2  */
+  --jello-2: #F8AC1B;
+  --jello-2-font: #BE3227;
+  --jello-2-highlight: #FBEF65;
+
+  /*   J E L L O  3  */
+  --jello-3: #00AABF;
+  --jello-3-font: #1F2858;
+  --jello-3-highlight: #A6DCDE;
+
+  /*   J E L L O  4  */
+  --jello-4: #B67BAB;
+  --jello-4-font: #3A1B59;
+  --jello-4-highlight: #D4AED2;
+
+  /*   J E L L O  5  */
+  --jello-5: #30AAE1;
+  --jello-5-font: #12426D;
+  --jello-5-highlight: #99DBF9;
+
+  /*   J E L L O  6  */
+  --jello-6: #F7AAB7;
+  --jello-6-font: #A61E5C;
+  --jello-6-highlight: #FAC9CB;
+
+  /*   J E L L O  7  */
+  --jello-7: #FDCF0B;
+  --jello-7-font: #CD3827;
+  --jello-7-highlight: #FDF391;
+
+  /*   J E L L O  8  */
+  --jello-8: #74C7A7;
+  --jello-8-font: #005A50;
+  --jello-8-highlight: #B8DFCB;
+
+  /*   J E L L O  9  */
+  --jello-9: #9BADCC;
+  --jello-9-font: #20426A;
+  --jello-9-highlight: #CAD9EF;
+
+  /*   J E L L O  1 0  */
+  --jello-10: #F05C71;
+  --jello-10-font: #931930;
+  --jello-10-highlight: #F7A8B5;
+
+  /*   J E L L O  1 1  */
+  --jello-11: #0A80BE;
+  --jello-11-font: #23215B;
+  --jello-11-highlight: #4DBEE6;
+
+  /*   J E L L O  1 2  */
+  --jello-12: #F68C54;
+  --jello-12-font: #781514;
+  --jello-12-highlight: #FDC99A;
 }
 
 body {
