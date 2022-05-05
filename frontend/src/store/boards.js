@@ -169,13 +169,25 @@ const boardsReducer = (state = initialState, action) => {
         case DELETE_BOARD:
             delete newState[action.board.id]
             return newState;
-        case CREATE_LIST:
+        case CREATE_LIST:{
             let board_id = action.list.board_id
             let board = newState[board_id];
             let lists = board.lists;
             newState[board_id] = {...board};
             newState[board_id].lists = [...lists, action.list]
             return newState;
+        }
+        case UPDATE_LIST:{
+            let list_id = action.list.id
+            let board_id = action.list.board_id
+            let board = newState[board_id];
+            let lists = board.lists;
+            let index = lists.findIndex(list => list.id === action.list.id) // WOW!!!!
+            lists[index] = action.list; 
+            newState[board_id] = {...board};
+            newState[board_id].lists = [...lists];
+            return newState;
+        }
         default:
             return state;
     }
