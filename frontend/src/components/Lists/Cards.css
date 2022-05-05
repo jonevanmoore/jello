@@ -1,0 +1,5 @@
+.card__container {
+    margin: 10px;
+    border-radius: var(--main-border-radius);
+    background-color: var(--white-button-main-color);
+}

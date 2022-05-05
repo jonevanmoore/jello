@@ -1,21 +1,37 @@
 .lists__in__boards {
     display: flex;
     padding: 2px;
+    height: auto;
 }
 
 .list__container {
+    display: inline-block;
     width: 220px;
     height: auto;
     border-radius: 3px;
-    background-color: var(--white-button-main-color);
+    background-color: var(--gray-bg-color);
     margin: 2px;
+}
+
+.list__size {
+    display: flex;
+    align-items: flex-start;
+}
+
+.list__title__close {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 8px;
 }
 
 .create__list__button {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 3px 6px;
+    padding: 2px 4px;
+    margin: 4px;
+
 }
 
 #lists__buttons {
@@ -65,4 +81,8 @@
 .close__text:hover {
     color: #AF0B0B;
     transform: rotate(315deg)
+}
+
+.list__title {
+    /* margin: 10px; */
 }

@@ -31,7 +31,7 @@ const OneBoard = () => {
         }
     });
 
-    console.log('THIS BOARD: ', board);
+    // console.log('THIS BOARD: ', board);
     useEffect(() => {
         dispatch(readBoards());
     }, [dispatch]);
