@@ -180,6 +180,78 @@ export const deleteList = list => async dispatch => {
     }
 };
 
+
+// CARD CONSTANTS
+const CREATE_CARD = 'boards/CREATE_CARD';
+const UPDATE_CARD = 'boards/UPDATE_CARD';
+const DELETE_CARD = 'boards/DELETE_CARD';
+
+// CARD ACTIONS
+const createCardAction = card => ({
+    type: CREATE_CARD,
+    card
+});
+
+const updateCardAction = card => ({
+    type: UPDATE_CARD,
+    card
+});
+
+const deleteCardAction = card => ({
+    type: DELETE_CARD,
+    card
+});
+
+// CARD THUNKS
+export const createCard = card => async dispatch => {
+    const response = await fetch(`/api/lists/${card.list_id}/cards`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(card)
+    });
+
+    const data = await response.json()
+
+    if (response.ok) {
+        await dispatch(createCardAction(data));
+        return data;
+    } else {
+        console.log(data.errors);
+    }
+};
+
+export const updateCard = card => async dispatch => {
+    const response = await fetch(`/api/cards/${card.id}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(card)
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+        await dispatch(updateCardAction(data));
+        return data;
+    } else {
+        console.log(data.errors);
+    }
+};
+
+export const deleteCard = card => async dispatch => {
+    const response = await fetch(`/api/cards/${card.id}`, {
+        method: 'DELETE'
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+        await dispatch(deleteCardAction(data));
+        return data;
+    } else {
+        console.log(data.errors);
+    }
+};
+
 // REDUCER
 let initialState = { };
 
@@ -210,7 +282,6 @@ const boardsReducer = (state = initialState, action) => {
             return newState;
         }
         case UPDATE_LIST:{
-            let list_id = action.list.id
             let board_id = action.list.board_id
             let board = newState[board_id];
             let lists = board.lists;
@@ -221,7 +292,6 @@ const boardsReducer = (state = initialState, action) => {
             return newState;
         }
         case DELETE_LIST:{
-            let list_id = action.list.id
             let board_id = action.list.board_id
             let board = newState[board_id];
             let lists = board.lists;
@@ -230,6 +300,15 @@ const boardsReducer = (state = initialState, action) => {
             newState[board_id] = {...board};
             newState[board_id].lists = [...lists];
             return newState;
+        }
+        case CREATE_CARD: {
+
+        }
+        case UPDATE_CARD: {
+
+        }
+        case DELETE_CARD: {
+            
         }
         default:
             return state;
