@@ -15,6 +15,9 @@
 
 .avatar-check {
     float: right;
+    position: relative;
+    /* bottom: 16px; */
+    right: -66px;
 }
 
 #radio-jello-div {
@@ -23,12 +26,15 @@
 }
 
 #avatar-label {
-    /* color: rgb(186, 186, 186); */
-    color: black;
+    color: rgb(186, 186, 186);
     font-size: 12px;
-    /* position: relative; */
-    /* top: 20px; */
-    /* margin-left: 155px; */
+    position: relative;
+    top: -1px;
+    margin-left: 227px;
+}
+
+.justify_right_label {
+    display: flex;
 }
 
 #radio-icon {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -17,6 +17,36 @@ const NewBoardForm = ({ closeModalFunc }) => {
     const [title, setTitle] = useState('');
     const [avatarId, setAvatarId] = useState('');
     // const [workspace_id, setWorkspace_id] = useState('');
+
+    // CUSTOME ERRORS
+    const [titleError, setTitleError] = useState('invalid')
+    const [avatarError, setAvatarError] = useState('invalid');
+    const [submitError, setSubmitError] = useState('disabled');
+
+
+    useEffect(() => {
+        //TITLE
+        if (title.length > 0 && title.length < 101) {
+            setTitleError('valid-blue')
+        } else {
+            setTitleError('invalid')
+        }
+
+        //AVATAR
+        if (avatarId > 0) {
+            setAvatarError('valid-blue')
+        } else {
+            setAvatarId('invalid')
+        }
+
+        //SUBMIT BUTTON
+        if (title.length > 0 && title.length < 31 &&
+            avatarId > 0) {
+            setSubmitError('able')
+        } else {
+            setSubmitError('disabled')
+        }
+    }, [title, avatarId]);
 
     const handleSubmit = async (e) => {
 
@@ -52,8 +82,12 @@ const NewBoardForm = ({ closeModalFunc }) => {
                     <div className='title__new__board'>
                         New Board
                     </div>
+                    <div className='title-avatar-checks boards-checks'>
+                        <i className="fa-solid fa-circle-check" id={titleError}></i>
+                    </div>
                     <div>
                         <input
+
                             className='input__board__title'
                             placeholder='Title'
                             type='text'
@@ -64,9 +98,12 @@ const NewBoardForm = ({ closeModalFunc }) => {
                     </div>
                 </div>
 
-                {/* <div id="avatar-label" className='position_avatar_title'>Avatar</div> */}
-
-                <Icons avatarId={avatarId} setAvatarId={setAvatarId} />
+                <Icons
+                    avatarId={avatarId}
+                    setAvatarId={setAvatarId}
+                    avatarError={avatarError}
+                    setAvatarError={setAvatarError}
+                />
 
                 {/* <div>
                     <input
