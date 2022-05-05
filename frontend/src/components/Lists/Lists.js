@@ -53,6 +53,25 @@ const ListsPage = () => {
                     </div>
                 )}
             </div>
+            {/* <div className='lists__in__boards'> */}
+            <div className='list__size'>
+
+                <div className='list__container'>
+                    <div className='create__list__button'>
+                        <button
+                            id='lists__buttons'
+                            className='
+                        light__green__blue__button
+                        jello__wiggle
+                        button__shine__short
+                        '>
+                            Add another List
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            {/* </div> */}
         </div>
     )
 };
