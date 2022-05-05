@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
-import SignUpForm from './SignUpForm'
 import './LoginForm.css'
 
 const LoginForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
   const [errors, setErrors] = useState([]);
+  const [customError, setCustomError] = useState('')
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
@@ -22,6 +22,12 @@ const LoginForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
       setErrors(data);
     }
   };
+
+  useEffect(() => {
+    if (errors.length > 0) {
+      setCustomError('Email or password is incorrect')
+    }
+  })
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -61,10 +67,8 @@ const LoginForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
     <div className={`login-body ${loginDisplay}`} onClick={stopTheProp} onMouseDown={stopTheProp}>
       <form onSubmit={onLogin} className='login-form'>
         <span id="bulk" className='login-text'>Log in to Jello <span id="skinny">or</span> <span className='signup-click' onClick={toggleLoginSignupFunc}>Sign up</span></span>
-        <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
+        <div className='login-error-div'>
+          <span id='custom-error-login'>{customError}</span>
         </div>
         <div>
           <input className='login-input'

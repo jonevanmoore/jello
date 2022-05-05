@@ -1,7 +1,7 @@
 import { avatars } from "../../context/Avatar";
 import './Icons.css'
 
-export const Icons = ({ avatarId, setAvatarId }) => {
+export const Icons = ({ avatarId, setAvatarId, avatarError, setAvatarError }) => {
 
     const updateAvatarId = (e) => {
         setAvatarId(e.target.value)
@@ -10,6 +10,7 @@ export const Icons = ({ avatarId, setAvatarId }) => {
     return (
         <div className='radio-div'>
             <label id="avatar-label">Avatar</label>
+            <i className="fa-solid fa-circle-check avatar-check" id={avatarError}></i>
             <div className='icon-loop'>
                 {Object.values(avatars).map((avatar, i) => (
                     <div id='radio-jello-div'>

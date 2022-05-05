@@ -1,47 +1,143 @@
-.jello__bg__01 {
+.jello__bg__1 {
     color: var(--white-color);
-    background: #B3D035;
+    background: var(--jello-1);
     transition: background 1s, color 0.5s;
 }
 
-.jello__bg__01:hover {
-    color: #005A50;
-    background: #EBE716;
+.jello__bg__1:hover {
+    color: var(--jello-1-font);
+    background: var(--jello-1-highlight);
     cursor: pointer;
 }
 
-.jello__bg__02 {
+.jello__bg__2 {
     color: var(--white-color);
-    background: #F8AC1B;
+    background: var(--jello-2);
     transition: background 1s, color 0.5s;
 }
 
-.jello__bg__02:hover {
-    color: #F37F25;
-    background: #FBEF65;
+.jello__bg__2:hover {
+    color: var(--jello-2-font);
+    background: var(--jello-2-highlight);
     cursor: pointer;
 }
 
-.jello__bg__03 {
+.jello__bg__3 {
     color: var(--white-color);
-    background: #B3D035;
+    background: var(--jello-3);
     transition: background 1s, color 0.5s;
 }
 
-.jello__bg__03:hover {
-    color: #005A50;
-    background: #EBE716;
+.jello__bg__3:hover {
+    color: var(--jello-3-font);
+    background: var(--jello-3-highlight);
     cursor: pointer;
 }
 
-.jello__bg__04 {
+.jello__bg__4 {
     color: var(--white-color);
-    background: #F8AC1B;
+    background: var(--jello-4);
     transition: background 1s, color 0.5s;
 }
 
-.jello__bg__04:hover {
-    color: #F37F25;
-    background: #FBEF65;
+.jello__bg__4:hover {
+    color: var(--jello-4-font);
+    background: var(--jello-4-highlight);
+    cursor: pointer;
+}
+
+.jello__bg__5 {
+    color: var(--white-color);
+    background: var(--jello-5);
+    transition: background 1s, color 0.5s;
+}
+
+.jello__bg__5:hover {
+    color: var(--jello-5-font);
+    background: var(--jello-5-highlight);
+    cursor: pointer;
+}
+
+.jello__bg__6 {
+    color: var(--white-color);
+    background: var(--jello-6);
+    transition: background 1s, color 0.5s;
+}
+
+.jello__bg__6:hover {
+    color: var(--jello-6-font);
+    background: var(--jello-6-highlight);
+    cursor: pointer;
+}
+
+.jello__bg__7 {
+    color: var(--white-color);
+    background: var(--jello-7);
+    transition: background 1s, color 0.5s;
+}
+
+.jello__bg__7:hover {
+    color: var(--jello-7-font);
+    background: var(--jello-7-highlight);
+    cursor: pointer;
+}
+
+.jello__bg__8 {
+    color: var(--white-color);
+    background: var(--jello-8);
+    transition: background 1s, color 0.5s;
+}
+
+.jello__bg__8:hover {
+    color: var(--jello-8-font);
+    background: var(--jello-8-highlight);
+    cursor: pointer;
+}
+
+.jello__bg__9 {
+    color: var(--white-color);
+    background: var(--jello-9);
+    transition: background 1s, color 0.5s;
+}
+
+.jello__bg__9:hover {
+    color: var(--jello-9-font);
+    background: var(--jello-9-highlight);
+    cursor: pointer;
+}
+
+.jello__bg__10 {
+    color: var(--white-color);
+    background: var(--jello-10);
+    transition: background 1s, color 0.5s;
+}
+
+.jello__bg__10:hover {
+    color: var(--jello-10-font);
+    background: var(--jello-10-highlight);
+    cursor: pointer;
+}
+
+.jello__bg__11 {
+    color: var(--white-color);
+    background: var(--jello-11);
+    transition: background 1s, color 0.5s;
+}
+
+.jello__bg__11:hover {
+    color: var(--jello-11-font);
+    background: var(--jello-11-highlight);
+    cursor: pointer;
+}
+
+.jello__bg__12 {
+    color: var(--white-color);
+    background: var(--jello-12);
+    transition: background 1s, color 0.5s;
+}
+
+.jello__bg__12:hover {
+    color: var(--jello-12-font);
+    background: var(--jello-12-highlight);
     cursor: pointer;
 }
