@@ -49,20 +49,20 @@
     font-size: 16px;
     font-weight: 700;
     display: flex;
-
     margin-left: 10px;
     margin-top: 10px;
+    /* color: var(--white-color); */
 }
 
-.jello__bg__01 {
+.jello__bg {
     color: white;
-    background: #B3D035;
+    /* background: #B3D035; */
     transition: background 1s, color 0.5s;
 }
 
-.jello__bg__01:hover {
+.jello__bg:hover {
     color: #005A50;
-    background: #EBE716;
+    background-color: #EBE716;
     cursor: pointer;
 }
 
@@ -98,7 +98,7 @@
 
 .avatar__boards__big {
     background: #FFFFFF;
-    border: 1px rgba(39, 55, 85, 1) solid;
+    /* border: 1px rgba(39, 55, 85, 1) solid; */
     border-width: 1px;
     width: 120px;
     height: 120px;
@@ -110,7 +110,7 @@
     align-items: center;
 
     font-size: 42px;
-    color: black;
+    /* color: black; */
 }
 
 .subtitles__boards {
@@ -118,4 +118,8 @@
     margin-top: 35px;
     margin-left: 40px;
     margin-bottom: 15px;
+}
+
+.shared__with {
+    /* width: 15px; */
 }
