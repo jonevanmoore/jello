@@ -54,30 +54,6 @@
     /* color: var(--white-color); */
 }
 
-.jello__bg {
-    color: white;
-    /* background: #B3D035; */
-    transition: background 1s, color 0.5s;
-}
-
-.jello__bg:hover {
-    color: #005A50;
-    background-color: #EBE716;
-    cursor: pointer;
-}
-
-.jello__bg__02 {
-    color: white;
-    background: #F8AC1B;
-    transition: background 1s, color 0.5s;
-}
-
-.jello__bg__02:hover {
-    color: #F37F25;
-    background: #FBEF65;
-    cursor: pointer;
-}
-
 .divided_screen {
     display: flex;
 }

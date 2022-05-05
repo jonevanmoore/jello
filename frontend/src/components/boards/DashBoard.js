@@ -20,7 +20,6 @@ const DashBoard = () => {
 
     Object.values(boards).forEach(board => {
         if (board.user_id === user.id) {
-            console.log('BIOARD-----------------', board);
             boardsOwned.push(board);
         } else {
             boardsShared.push(board);
@@ -101,12 +100,13 @@ const DashBoard = () => {
                                 <li className="boards__list__elements" key={board.id}>
                                     <NavLink style={{ textDecoration: 'none' }} to={`/boards/${board.id}`}>
                                         <div
-                                            className="
-                                                jello__container
-                                                jello__container__ani
-                                                jello__bg
-                                                "
-                                            style={{ backgroundColor: avatars[board.avatar_id].color }}>
+                                            className={`
+                                            jello__container
+                                            jello__container__ani
+                                            jello__bg__${board.avatar_id}
+                                            `}
+                                        // style={{ backgroundColor: avatars[board.avatar_id].color }}
+                                        >
                                             <div className='jello__title'>
                                                 {board.title}
                                             </div>
