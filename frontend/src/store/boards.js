@@ -7,40 +7,30 @@ const UPDATE_BOARD = 'boards/UPDATE_BOARD';
 const DELETE_BOARD = 'boards/DELETE_BOARD';
 
 // ACTIONS
-const createBoardAction = board => {
-    return {
-        type: CREATE_BOARD,
-        payload: board
-    };
-};
+const createBoardAction = board => ({ 
+    type: CREATE_BOARD, 
+    payload: board  
+});
 
-const readBoardsAction = boards => {
-    return {
-        type: READ_BOARDS,
-        payload: boards
-    };
-};
+const readBoardsAction = boards =>( {
+    type: READ_BOARDS,
+    payload: boards
+});
 
-const readOneBoardAction = board => {
-    return {
-        type: READ_ONE_BOARD,
-        payload: board
-    };
-};
+const readOneBoardAction = board => ({
+    type: READ_ONE_BOARD,
+    payload: board
+});
 
-const updateBoardAction = board => {
-    return {
-        type: UPDATE_BOARD,
-        payload: board
-    };
-};
+const updateBoardAction = board => ({
+    type: UPDATE_BOARD,
+    payload: board
+});
 
-const deleteBoardAction = board => {
-    return {
-        type: DELETE_BOARD,
-        payload: board
-    };
-};
+const deleteBoardAction = board => ({
+    type: DELETE_BOARD,
+    payload: board
+});
 
 // THUNKS
 export const createBoardThunk = board => async dispatch => {
@@ -139,10 +129,10 @@ const boardsReducer = (state = initialState, action) => {
         case CREATE_BOARD:
             newState[action.payload.id] = action.payload;
             return newState;
-        case READ_BOARDS:
+        case READ_BOARDS: // this includes lists and cards
             action.payload.boards.forEach(b => newState[b.id] = b )
             return newState;
-        case READ_ONE_BOARD:
+        case READ_ONE_BOARD: // this includes lists and cards
             newState[action.payload.id] = action.payload;
             return newState;
         case UPDATE_BOARD:
