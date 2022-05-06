@@ -109,7 +109,6 @@ const DashBoard = () => {
                                             jello__container__ani
                                             jello__bg__${board.avatar_id}
                                             `}
-                                            // style={{ backgroundColor: avatars[board.avatar_id].color }}
                                             >
                                                 <div className='jello__title'>
                                                     {board.title}

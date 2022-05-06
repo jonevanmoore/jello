@@ -1,7 +1,9 @@
 .lists__in__boards {
     display: flex;
     padding: 2px;
-    height: 80%;
+    /* width: 100vw;
+    height: 100vh; */
+    /* height: 80%; */
     /* max-height: 80%; */
 }
 
