@@ -14,7 +14,7 @@ class Card(db.Model):
     created_at  = db.Column(db.DateTime(timezone = True), server_default = func.now())
     updated_at  = db.Column(db.DateTime(timezone = True), onupdate = func.now())
 
-    list        = db.relationship('List', backref=db.backref("cards", cascade="all, delete"))
+    list        = db.relationship('List', back_populates="cards", cascade="all, delete")
 
     comments    = db.relationship('Comment', back_populates='card', cascade="all, delete")
 
