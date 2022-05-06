@@ -14,7 +14,9 @@ class Card(db.Model):
     created_at  = db.Column(db.DateTime(timezone = True), server_default = func.now())
     updated_at  = db.Column(db.DateTime(timezone = True), onupdate = func.now())
 
-    list        = db.relationship('List', backref=db.backref("cards", cascade="all, delete"))
+    list        = db.relationship('List', back_populates="cards", cascade="all, delete")
+
+    comments    = db.relationship('Comment', back_populates='card', cascade="all, delete")
 
     def to_dict(self):
         return {
@@ -27,5 +29,12 @@ class Card(db.Model):
                 'due_date': self.due_date,
                 'created_at': self.created_at,
                 'updated_at': self.updated_at,
-                'list': self.list.to_short_dict()
+                'list': self.list.to_short_dict(),
+                'comments': [ comment.to_dict() for comment in self.comments ]
+                }
+
+    def to_short_dict(self):
+        return {
+                'id': self.id,
+                'list_id': self.list_id
                 }
