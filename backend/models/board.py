@@ -16,9 +16,10 @@ class Board(db.Model):
 
     user = db.relationship('User', back_populates='boards')
 
-    users = db.relationship('User', back_populates='shared_boards', secondary=users_boards)
+    users = db.relationship('User', back_populates='shared_boards', secondary=users_boards, cascade="all, delete")
+    # note that the above cascade is only supposed to delete association table records, and not users. So says the docs.
 
-    lists = db.relationship('List')
+    lists = db.relationship('List', cascade="all, delete")
 
 
     def to_dict(self):
