@@ -21,5 +21,6 @@ class Comment(db.Model):
                 'body': self.body,
                 'created_at': self.created_at,
                 'updated_at': self.updated_at,
-                'card': self.card.to_short_dict()
+                'card': self.card.to_short_dict(),
+                'board_id': self.card.list.board_id
                 }
