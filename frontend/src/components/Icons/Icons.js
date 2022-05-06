@@ -27,7 +27,7 @@ export const Icons = ({ avatarId, setAvatarId, avatarError, setAvatarError }) =>
                                 src={`${avatar.imageUrl}`}
                                 id="radio-icon"
                                 alt="avatar"
-                                style={{ backgroundColor: avatarId === i + 1 ? avatar.color : '' }}
+                                style={{ backgroundColor: +avatarId === i + 1 ? avatar.color : '' }}
                             />
                         </label>
                     </div>
