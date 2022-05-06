@@ -8,7 +8,7 @@ import { avatars } from '../../context/Avatar';
 import { readOneBoard, createList, updateListOrder, updateList, deleteList } from '../../store/boards';
 
 import './Lists.css';
-import './Cards.css';
+import './Cards-in-Lists.css';
 
 const ListsPage = () => {
     const dispatch = useDispatch()

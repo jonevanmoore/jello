@@ -1,0 +1,12 @@
+.TEMP__POSITION {
+    position: relative;
+    top: 84px;
+    left: 190px;
+}
+
+.card__container {
+    background: var(--light-gray-bg-color);
+    border-radius: var(--main-border-radius);
+    width: 619px;
+    height: 981px;
+}

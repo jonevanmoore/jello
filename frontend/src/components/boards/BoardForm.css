@@ -8,7 +8,7 @@
     align-items: center;
     background-color: var(--white-color);
     /* box-shadow: 0px 0px 5.79px rgba(3, 13, 33, 0.5); */
-    box-shadow: 0px 0px 20px 0px;
+    box-shadow: var(--main-box-shadow);
     animation: jello_3 1s;
     z-index: 5;
 }
