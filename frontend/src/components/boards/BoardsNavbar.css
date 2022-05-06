@@ -10,11 +10,11 @@
 
 .one__board__vertical__navbar {
     width: 190px;
-    height: 100vh;
+    /* height: 100vh; */
     display: flex;
     flex-direction: column;
     /* padding-left: 10px; */
-
+    z-index: 5;
     background: var(--dark-gray-bg-color);
 }
 

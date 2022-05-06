@@ -4,7 +4,7 @@ nav {
   align-items: center;
   background-color: var(--nav-bar-color);
   height: 54px;
-  position: fixed;
+  /* position: fixed; */
   width: 100%;
   z-index: 1;
 }

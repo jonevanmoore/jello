@@ -66,6 +66,7 @@
 
 .divided_screen {
     display: flex;
+    height: 100%;
 }
 
 .boards__name {
@@ -113,10 +114,7 @@
     position: fixed;
     right: 0;
     bottom: 0;
-    z-index: -1;
-}
-
-.bg__avatar__image>img {
+    z-index: 0;
     width: 400px;
     height: auto;
 }
