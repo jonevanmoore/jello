@@ -18,7 +18,7 @@ const CardPage = ({ list, card, closeModalFunc }) => {
         // TODO: fix this
     };
 
-
+    console.log(card);
     const avatarPNGs = Object.values(avatars)
         .filter((avatar, i) => user.avatar_id != i + 1)
         .map(avatar => avatar.imageUrl)
@@ -36,7 +36,7 @@ const CardPage = ({ list, card, closeModalFunc }) => {
                 <div className='close__in_card'>
                     <button
                         className="close"
-                    // onClick={() => removeList(list)}
+                        onClick={() => removeCard(card)}
                     >
                         <div className="close__text">&#215;</div>
                     </button>

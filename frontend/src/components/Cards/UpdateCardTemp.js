@@ -10,57 +10,50 @@ const AddNewCard = ({ list }) => {
     const board = useSelector(state => state.boards[board_id]);
     const user_id = useSelector(state => state.session.user.id);
 
+    const [addCardBtnDisplay, setAddCardBtnDisplay] = useState('displayed-card');
+    const [createCardDisplay, setCreateCardDisplay] = useState('not-displayed-card');
+
     const [content, setContent] = useState('');
-
-    const [cardDisplay, setCardDisplay] = useState('displayed-card');
-    const [cardInputDisplay, setCardInputDisplay] = useState('not-displayed-card');
-
-    // const [description, setDescription] = useState('');
+    const [description, setDescription] = useState('');
     // const [orderCard, setOrderCard] = useState('');
-    // const [dueDate, setDueDate] = useState('');
+    const [dueDate, setDueDate] = useState('');
 
     const addNewCard = async () => {
         const newCard = {
             content,
             user_id,
             list_id: list.id,
-            order: list.cards.length + 1
-            // description
+            order: list.cards.length + 1,
+            description
             // due_date: dueDate
         };
         await dispatch(createCard(newCard));
-        setCardDisplay('displayed-card');
-        setCardInputDisplay('not-displayed-card');
-
     };
 
     const createNewCardDisplay = () => {
-        if (cardDisplay === 'displayed-card') {
-            setCardDisplay('not-displayed-card');
-            setCardInputDisplay('displayed-card');
+        if (addCardBtnDisplay === 'displayed-card') {
+            setAddCardBtnDisplay('not-displayed-card');
+            setCreateCardDisplay('displayed-card');
             setContent('');
+            setDescription('');
+            setDueDate('');
         } else {
-            setCardDisplay('displayed-card');
-            setCardInputDisplay('not-displayed-card');
-            setContent('');
+            setAddCardBtnDisplay('displayed-card');
+            setCreateCardDisplay('not-displayed-card');
         }
 
-        if (cardInputDisplay === 'not-displayed-card') {
-            setCardInputDisplay('displayed-card');
-            setCardDisplay('not-displayed-card');
-            setContent('');
-
+        if (createCardDisplay === 'not-displayed-card') {
+            setCreateCardDisplay('displayed-card');
+            setAddCardBtnDisplay('not-displayed-card');
         } else {
-            setCardInputDisplay('not-displayed-card');
-            setCardDisplay('displayed-card');
-            setContent('');
-
+            setCreateCardDisplay('not-displayed-card');
+            setAddCardBtnDisplay('displayed-card');
         }
     };
 
     return (
         <>
-            <div className={`add-another-list-div ${cardInputDisplay} grow-down`}>
+            <div className={`add-another-list-div ${createCardDisplay} grow-down`}>
                 <input
                     onChange={e => setContent(e.target.value)}
                     className='input__list__title'
@@ -86,7 +79,7 @@ const AddNewCard = ({ list }) => {
                     </button>
                 </div>
             </div>
-            <div className={`create__card_in_list__button ${cardDisplay} grow-down`}>
+            <div className={`create__card_in_list__button ${addCardBtnDisplay} grow-down`}>
                 <button
                     onClick={createNewCardDisplay}
                     id='cards__buttons'
