@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { login } from '../../store/session';
 
 import './LandingPage.css'
@@ -9,8 +8,6 @@ import SignUpForm from './SignUpForm'
 
 const LandingPage = () => {
     const dispatch = useDispatch();
-    const sessionUser = useSelector(state => state.session.user);
-    const history = useHistory()
 
     const [loginDisplay, setLoginDisplay] = useState('not-displayed')
     const [signupDisplay, setSignupDisplay] = useState('not-displayed')
