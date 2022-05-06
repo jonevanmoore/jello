@@ -70,14 +70,11 @@ def update_list_order(id):
     board = Board.query.get(id)
     
     list_order = request.json['listOrder']
-    print(list_order, "<<<<<<<<<<<<<<<<<<<<<")
+#    print(list_order, "<<<<<<<<<<<<<<<<<<<<<")
 
-    # FUTURE OPTIMIZATION: use a single DB query to get all the lists in question.
-
-    for list_id, order in list_order.items():
-        list = List.query.get(list_id)
-        list.order = order
-        db.session.add(list)
+    lists = List.query.filter(List.id.in_(list(list_order))) # this grabs all changing lists in a single DB query
+    for a_list in lists:    # this loop is still only O(n)!
+        a_list.order = list_order[str(a_list.id)] # this is a O( log( n ) ) operation — basically constant-time
 
     db.session.commit()
 

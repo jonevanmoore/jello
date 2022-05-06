@@ -5,6 +5,7 @@ import NavBar from './components/NavBar/NavBar';
 import OneBoard from './components/boards/OneBoard';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import DashBoard from './components/boards/DashBoard';
+import CardPage from './components/Cards/Card';
 import LandingPage from './components/LandingPage/LandingPage'
 import { authenticate } from './store/session';
 
@@ -56,6 +57,9 @@ function App() {
         <ProtectedRoute path='/boards/:board_id/edit' exact={true}>
           <EditBoard />
         </ProtectedRoute>*/}
+        <ProtectedRoute path='/cards' exact={true}>
+          <CardPage />
+        </ProtectedRoute>
         <ProtectedRoute path={`/boards/:board_id`} exact={true}>
           <OneBoard />
         </ProtectedRoute>
