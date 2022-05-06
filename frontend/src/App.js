@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import LoginForm from './components/LandingPage/LoginForm';
-import SignUpForm from './components/LandingPage/SignUpForm';
 import NavBar from './components/NavBar/NavBar';
-import NewBoardForm from './components/boards/NewBoardForm';
 import OneBoard from './components/boards/OneBoard';
-import EditBoard from './components/boards/EditBoardForm';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import DashBoard from './components/boards/DashBoard';
-import UsersList from './components/UsersList';
-import User from './components/User';
 import LandingPage from './components/LandingPage/LandingPage'
 import { authenticate } from './store/session';
 
