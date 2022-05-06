@@ -21,9 +21,9 @@ const CardPage = () => {
 
     return (
         <div className='TEMP__POSITION'>
-            <div className='card__container'>
-                <div className='card__title__container'>
-                    <div className='card__title'>
+            <div className='card__container__in_card'>
+                <div className='card__title__container__in_card'>
+                    <div className='card__title__in_card'>
                         Card Title
                     </div>
                     <span className='card__subtitle__in_list'>in list
@@ -59,7 +59,7 @@ const CardPage = () => {
                         </div>
                         <div className='next__comment'>
                             <div className='comments__image__users'>
-                                <UserIcon size={50} isNavIcon={true} />
+                                <UserIcon size={30} isNavIcon={true} />
                             </div>
                             <textarea
                                 className='textarea__input__comments'

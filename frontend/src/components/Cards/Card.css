@@ -4,7 +4,7 @@
     left: 190px;
 }
 
-.card__container {
+.card__container__in_card {
     background: var(--white-color);
     border-radius: var(--main-border-radius);
     width: 620px;
@@ -12,12 +12,12 @@
     overflow: hidden;
 }
 
-.card__title__container {
+.card__title__container__in_card {
     margin-bottom: 20px;
 }
 
 
-.card__title {
+.card__title__in_card {
     font-size: 24px;
     letter-spacing: 0.5px;
     color: var(--dark-blue-main-text);
@@ -118,6 +118,6 @@
     height: auto
 }
 
-.jello__image__card {
+v .jello__image__card {
     overflow: hidden;
 }
