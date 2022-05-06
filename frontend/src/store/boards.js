@@ -269,6 +269,55 @@ export const deleteCard = card => async dispatch => {
     }
 };
 
+
+// COMMENT CONSTANTS
+const CREATE_COMMENT = 'boards/CREATE_COMMENT'
+const DELETE_COMMENT = 'boards/DELETE_COMMENT'
+ 
+// COMMENT ACTIONS
+const createCommentAction = comment => ({
+  type: CREATE_COMMENT,
+  comment
+})
+
+const deleteCommentAction = comment => ({
+  type: DELETE_COMMENT,
+  comment
+})
+
+// COMMENT THUNKS
+export const createComment = comment => async dispatch => {
+  const response = await fetch(`/api/cards/${comment.card_id}/comments`,{
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(comment)
+  });
+
+  const data = await response.json();
+
+  if (response.ok) {
+    await dispatch(createCommentAction(data));
+    return data;
+  } else {
+    console.log(data.errors);
+  }
+}
+
+export const deleteComment = comment => async dispatch => {
+  const response = await fetch(`/api/comments/${comment.id}`,{
+    method: 'DELETE'
+  }) 
+
+  const data = await response.json();
+
+  if (response.ok) {
+    await dispatch(deleteCommentAction(data));
+    return data;
+  } else {
+    console.log(data.errors);
+  }
+}
+
 // REDUCER
 let initialState = {};
 
@@ -347,6 +396,30 @@ const boardsReducer = (state = initialState, action) => {
             list.cards = [...list.cards];
             board.lists = [...board.lists];
             newState[board_id] = { ...board };
+            return newState;
+        }
+        case CREATE_COMMENT: {
+            let board_id = action.comment.board_id; //note this is only from Comment.to_dict()
+            let board = newState[board_id];
+            let list = board.lists.find(list => list.id === action.comment.card.list_id); // oh no
+            let card = list.cards.find(card  => card.id === action.comment.card_id);
+            card.comments = [...card.comments, action.comment]; // add comment
+            list.cards = [...list.cards];
+            board.lists = [...board.lists];
+            newState[board_id] = {...board};
+            return newState;
+        }
+        case DELETE_COMMENT: {
+            let board_id = action.comment.board_id; //note this is only from Comment.to_dict()
+            let board = newState[board_id];
+            let list = board.lists.find(list => list.id === action.comment.card.list_id); // oh no
+            let card = list.cards.find(card  => card.id === action.comment.card_id);
+            let index = card.comments.findIndex(comment => comment.id === action.comment.id);
+            card.comments.splice(index, 1); // remove comment
+            card.comments = [...card.comments];
+            list.cards = [...list.cards];
+            board.lists = [...board.lists];
+            newState[board_id] = {...board};
             return newState;
         }
         default:
