@@ -108,6 +108,22 @@ export const deleteBoard = board => async dispatch => {
     }
 };
 
+export const updateListOrder = (boardId, listOrder) => async dispatch => {
+    const response = await fetch(`/api/boards/${boardId}/list-order`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({listOrder})
+    });
+
+    const data = await response.json();
+   
+    if (response.ok) {
+        await dispatch(readOneBoardAction(data));
+        return data;
+    } else {
+        console.log(data.errors);
+    }
+}
 
 // LIST CONSTANTS
 const CREATE_LIST = 'boards/CREATE_LIST';
@@ -179,6 +195,7 @@ export const deleteList = list => async dispatch => {
         console.log(data.errors);
     }
 };
+
 
 
 // CARD CONSTANTS

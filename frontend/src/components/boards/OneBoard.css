@@ -1,5 +1,6 @@
 .board-nav-bar-length {
     width: 100%;
+    overflow-y: hidden;
 }
 
 .board-nav-bar {

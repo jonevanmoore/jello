@@ -1,50 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Redirect, useHistory, useParams } from 'react-router-dom';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-import { readOneBoard, createList, updateList, deleteList } from '../../store/boards';
+import { readOneBoard, createList, updateListOrder, updateList, deleteList } from '../../store/boards';
 
 import './Lists.css';
 import './Cards.css';
 
 const ListsPage = () => {
-
+    const dispatch = useDispatch()
     const { board_id } = useParams();
-    const board = useSelector(state => state.boards[board_id]);
-    const sessionUser = useSelector(state => state.session.user);
-    const user_id = sessionUser.id;
-
-    const dispatch = useDispatch();
-
-    const [addListBtnDisplay, setAddListBtnDisplay] = useState('displayed');
+    const board   = useSelector(state => state.boards[board_id]);
+    const user_id = useSelector(state => state.session.user.id);
+    
+    const [addListBtnDisplay, setAddListBtnDisplay] = useState('displayed')
     const [createListDisplay, setCreateListDisplay] = useState('not-displayed');
-
     const [title, setTitle] = useState('');
 
+    let lists   = board.lists.sort((a,b) => a.order - b.order);
+
     const addNewList = async () => {
-        const newList = { title, user_id, board_id, order: board.lists.length + 1 };
-        await dispatch(createList(newList));
+        const newList = { title, user_id, board_id, order: board.lists.length + 1 }
+        await dispatch(createList(newList))
         setTitle('');
         setAddListBtnDisplay('displayed');
         setCreateListDisplay('not-displayed')
-    };
-
-    const updatingList = async (list) => {
-
-        const editedList = {
-            title,
-            user_id,
-            board_id,
-            order: board.lists.length + 1
-        };
-
-        await dispatch(updateList(list));
     }
 
     const removeList = async (list) => {
         await dispatch(deleteList(list));
+        // TODO: fix this
     };
 
+    const handleOnDragEnd = async (result) => {
+        if (!result.destination) return;
+        
+        let listCopy = Array.from(lists);
+        const [reOrderedItem] = listCopy.splice(result.source.index, 1);
+        listCopy.splice(result.destination.index, 0, reOrderedItem);
+
+        let listOrder = {};
+        listCopy.forEach( (list, index) => listOrder[list.id] = index);
+        lists = listCopy;
+        await dispatch(updateListOrder(board_id, listOrder));
+    };
 
     const createDisplay = () => {
         if (addListBtnDisplay === 'displayed') {
@@ -70,56 +70,57 @@ const ListsPage = () => {
 
     return (
         <div className='lists__in__boards'>
-            <div className='list__size'>
-                {board.lists.map(list =>
-                    <div key={list.id} className='list__container'>
-                        <div className='list__title__close'>
-                            <label className='list__title'>
-                                {list.title}
-                            </label>
-                            {/* <input
-                                className='list__title'
-                                value={list.title}
-                                type='text'
-                                onChange={e => setTitle(e.target.value)} />
-                            <button
-                            // onClick={updateList(list.title)}
-                            >
-                                <div>edit </div>
-                            </button> */}
-                            <button
-                                class="close"
-                                onClick={() => removeList(list)}
-                            >
-                                <div class="close__text">&#215;</div>
-                            </button>
-                        </div>
-                        <div>
-                            {list.cards.map(card =>
-                                <div key={card.id} className='card__container'>
-                                    <div className='card__content'>{card.content}</div>
-                                    <div className='card__description'>{card.description}</div>
-                                    <div className='card__due__date'>{card.due_date}</div>
-                                    {/* <div>{card.created_at}</div> */}
-                                </div>
+            <DragDropContext onDragEnd={handleOnDragEnd}>
+                <Droppable droppableId='list__size' direction='horizontal'>
+                    {(provided) => (
+                        <div className='list__size' {...provided.droppableProps} ref={provided.innerRef}>
+                            {lists.map((list, index) =>
+                            <Draggable draggableId={String(list.id)} key={list.id} index={index}>
+                                {(provided) => (
+                                    <div className='list__container' {...provided.draggableProps} ref={provided.innerRef} {...provided.dragHandleProps}>
+                                        <div className='list__title__close'>
+                                            <label className='list__title'>
+                                                {list.title}
+                                            </label>
+                                            <button 
+                                              className="close"
+                                              onClick={() => removeList(list)}
+                                            >
+                                                <div className="close__text">&#215;</div>
+                                            </button>
+                                        </div>
+                                        <div>
+                                            {list.cards.map((card, index) =>
+                                                <div className='card__container' key={index}>
+                                                    <div className='card__content'>{card.content}</div>
+                                                    <div className='card__description'>{card.description}</div>
+                                                    <div className='card__due__date'>{card.due_date}</div>
+                                                    {/* <div>{card.created_at}</div> */}
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        <div className='create__list__button'>
+                                            <button
+                                                id='cards__buttons'
+                                                className='
+                                        light__blue__button
+                                        jello__wiggle
+                                        button__shine__short
+                                        '>
+                                                Create a Card
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                )}
+                            </Draggable>
                             )}
+                            {provided.placeholder}
                         </div>
-
-                        <div className='create__list__button'>
-                            <button
-                                id='cards__buttons'
-                                className='
-                                light__blue__button
-                                jello__wiggle
-                                button__shine__short
-                                '>
-                                Create a Card
-                            </button>
-
-                        </div>
-                    </div>
-                )}
-            </div>
+                    )}
+                </Droppable>
+            </DragDropContext>
             {/* <div className='lists__in__boards'> */}
             <div className='list__size'>
 

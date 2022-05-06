@@ -64,6 +64,25 @@ def delete_board(id):
     db.session.commit()
     return { 'id': id }
 
+# U P D A T E   L I S T   O R D E R
+@board_routes.route('/<int:id>/list-order', methods = [ 'POST' ])
+def update_list_order(id):
+    board = Board.query.get(id)
+    
+    list_order = request.json['listOrder']
+    print(list_order, "<<<<<<<<<<<<<<<<<<<<<")
+
+    # FUTURE OPTIMIZATION: use a single DB query to get all the lists in question.
+
+    for list_id, order in list_order.items():
+        list = List.query.get(list_id)
+        list.order = order
+        db.session.add(list)
+
+    db.session.commit()
+
+    return board.to_dict()
+
 # C R E A T E   L I S T
 @board_routes.route('/<int:id>/lists', methods = [ 'POST' ])
 def create_list(id):
