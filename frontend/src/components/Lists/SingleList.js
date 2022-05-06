@@ -20,28 +20,28 @@ export const SingleList = ({ list }) => {
             user_id: list.user_id,
             board_id: list.board_id
         }
-        await dispatch(updateList(updated))
-        setTitleDisplay('displayed')
-        setTitleInputDisplay('not-displayed')
+        await dispatch(updateList(updated));
+        setTitleDisplay('displayed');
+        setTitleInputDisplay('not-displayed');
     }
 
     const titleAndInputDisplay = () => {
         if (titleDisplay === 'displayed') {
-            setTitleDisplay('not-displayed')
-            setTitleInputDisplay('displayed')
+            setTitleDisplay('not-displayed');
+            setTitleInputDisplay('displayed');
         } else {
-            setTitleDisplay('displayed')
-            setTitleInputDisplay('not-displayed')
+            setTitleDisplay('displayed');
+            setTitleInputDisplay('not-displayed');
         }
 
         if (titleInputDisplay === 'not-displayed') {
-            setTitleInputDisplay('displayed')
-            setTitleDisplay('not-displayed')
+            setTitleInputDisplay('displayed');
+            setTitleDisplay('not-displayed');
         } else {
-            setTitleInputDisplay('not-displayed')
-            setTitleDisplay('displayed')
+            setTitleInputDisplay('not-displayed');
+            setTitleDisplay('displayed');
         }
-    }
+    };
 
     const removeList = async (list) => {
         await dispatch(deleteList(list));
