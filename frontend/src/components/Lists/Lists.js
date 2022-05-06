@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Redirect, useHistory, useParams } from 'react-router-dom';
 
-import { readOneBoard, createList, deleteList } from '../../store/boards';
+import { readOneBoard, createList, updateList, deleteList } from '../../store/boards';
 
 import './Lists.css';
 import './Cards.css';
@@ -29,9 +29,22 @@ const ListsPage = () => {
         setCreateListDisplay('not-displayed')
     };
 
+    const updatingList = async (list) => {
+
+        const editedList = {
+            title,
+            user_id,
+            board_id,
+            order: board.lists.length + 1
+        };
+
+        await dispatch(updateList(list));
+    }
+
     const removeList = async (list) => {
         await dispatch(deleteList(list));
     };
+
 
     const createDisplay = () => {
         if (addListBtnDisplay === 'displayed') {
@@ -64,6 +77,16 @@ const ListsPage = () => {
                             <label className='list__title'>
                                 {list.title}
                             </label>
+                            {/* <input
+                                className='list__title'
+                                value={list.title}
+                                type='text'
+                                onChange={e => setTitle(e.target.value)} />
+                            <button
+                            // onClick={updateList(list.title)}
+                            >
+                                <div>edit </div>
+                            </button> */}
                             <button
                                 class="close"
                                 onClick={() => removeList(list)}

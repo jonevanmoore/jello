@@ -19,6 +19,9 @@
 
 .user__vertical__navbar {
     width: auto;
+    /* position: fixed;
+        top: 54px;
+        z-index: 1; */
     height: 80px;
     display: flex;
     justify-content: flex-start;

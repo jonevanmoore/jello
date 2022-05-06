@@ -10,8 +10,8 @@
     align-items: center;
     position: fixed;
     top: 54px;
-    width: 91.2vw;
     left: 190px;
+    right: 0px;
     z-index: 1;
 }
 
@@ -70,3 +70,5 @@
     width: 500px;
     height: auto
 }
+
+.shared__with {}
