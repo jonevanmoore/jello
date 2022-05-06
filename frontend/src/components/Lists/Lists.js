@@ -36,6 +36,8 @@ const ListsPage = () => {
     let lists = board.lists.sort((a, b) => a.order - b.order);
 
     const addNewList = async () => {
+        if( title.trim() === '' ) return;
+
         const newList = { title, user_id, board_id, order: board.lists.length + 1 };
         await dispatch(createList(newList));
         setTitle('');
