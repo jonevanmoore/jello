@@ -118,6 +118,6 @@
     height: auto
 }
 
-v .jello__image__card {
+.jello__image__card {
     overflow: hidden;
 }
