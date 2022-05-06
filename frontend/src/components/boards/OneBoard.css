@@ -60,16 +60,3 @@
     top: 84px;
     left: 190px;
 }
-
-.bg__avatar__image {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-}
-
-.bg__avatar__image>img {
-    width: 500px;
-    height: auto
-}
-
-.shared__with {}
