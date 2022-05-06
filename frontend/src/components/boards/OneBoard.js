@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink, useHistory, useParams, Redirect } from 'react-router-dom';
-import { readBoards, readOneBoard, updateBoard, deleteBoard } from '../../store/boards';
+import { NavLink, useHistory, useParams } from 'react-router-dom';
+import { readBoards, readOneBoard, deleteBoard } from '../../store/boards';
 import { UserIcon } from '../UserIcon';
 import ListsPage from '../Lists/Lists';
 import Modal from '../Modal';
