@@ -15,18 +15,13 @@ const AddNewCard = ({ list }) => {
     const [cardDisplay, setCardDisplay] = useState('displayed-card');
     const [cardInputDisplay, setCardInputDisplay] = useState('not-displayed-card');
 
-    // const [description, setDescription] = useState('');
-    // const [orderCard, setOrderCard] = useState('');
-    // const [dueDate, setDueDate] = useState('');
-
     const addNewCard = async () => {
         const newCard = {
             content,
             user_id,
             list_id: list.id,
             order: list.cards.length + 1
-            // description
-            // due_date: dueDate
+
         };
         await dispatch(createCard(newCard));
         setCardDisplay('displayed-card');

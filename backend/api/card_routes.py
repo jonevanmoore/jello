@@ -30,13 +30,16 @@ def update_card(id):
 def delete_card(id):
     card = Card.query.get(id)
 
-    if list.user_id != current_user.id:
+    if card.user_id != current_user.id:
         return {'errors': "Unauthorized delete"}, 401
+
+    board_id = card.list.board_id
 
     db.session.delete(card)
     db.session.commit()
 
-    return card.to_dict()
+    card.board_id = board_id
+    return { 'id':card.id, 'list_id': card.list_id, 'board_id': board_id }
 
 
 # C R E A T E  C O M M E N T
@@ -52,7 +55,7 @@ def new_comment(id):
             card_id=id,
             body=form.data['content']
         )
-        
+
         db.session.add(comment)
         db.session.commit()
         return comment.to_dict()

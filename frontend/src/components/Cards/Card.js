@@ -21,7 +21,7 @@ const CardPage = ({ list, card, closeModalFunc }) => {
     console.log(card);
     const avatarPNGs = Object.values(avatars)
         .filter((avatar, i) => user.avatar_id != i + 1)
-        .map(avatar => avatar.imageUrl)
+        .map(avatar => avatar.imageUrl);
 
     const randomAvatar = avatarPNGs[Math.floor(Math.random() * avatarPNGs.length)];
 
