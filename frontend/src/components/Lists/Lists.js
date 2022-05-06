@@ -5,14 +5,8 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import { avatars } from '../../context/Avatar';
 
-import {
-    readOneBoard,
-    createList,
-    updateListOrder,
-    updateList,
-    deleteList,
-    createCard,
-} from '../../store/boards';
+import { readOneBoard, createList, updateListOrder, updateList, deleteList } from '../../store/boards';
+import AddNewCard from '../Cards/NewCard';
 
 import './Lists.css';
 import './Cards-in-Lists.css';
@@ -25,17 +19,10 @@ const ListsPage = () => {
 
     const [addListBtnDisplay, setAddListBtnDisplay] = useState('displayed');
     const [createListDisplay, setCreateListDisplay] = useState('not-displayed');
-    const [addCardBtnDisplay, setAddCardBtnDisplay] = useState('displayed-card');
-    const [createCardDisplay, setCreateCardDisplay] = useState('not-displayed-card');
 
     const [title, setTitle] = useState('');
     const [titleDisplay, setTitleDisplay] = useState('displayed');
     const [titleInputDisplay, setTitleInputDisplay] = useState('not-displayed');
-
-    const [content, setContent] = useState('');
-    const [description, setDescription] = useState('');
-    const [orderCard, setOrderCard] = useState('');
-    const [dueDate, setDueDate] = useState('');
 
     let lists = board.lists.sort((a, b) => a.order - b.order);
 
@@ -45,11 +32,6 @@ const ListsPage = () => {
         setTitle('');
         setAddListBtnDisplay('displayed');
         setCreateListDisplay('not-displayed');
-    };
-
-    const addNewCard = async () => {
-        const newCard = { content, user_id, list_id: board.lists.id, order: orderCard, description, due_date: dueDate };
-        await dispatch(createCard(newCard));
     };
 
     const removeList = async (list) => {
@@ -92,36 +74,6 @@ const ListsPage = () => {
         }
     };
 
-    const createNewCardDisplay = () => {
-        if (addCardBtnDisplay === 'displayed') {
-            setAddCardBtnDisplay('not-displayed');
-            setCreateCardDisplay('displayed');
-            setContent('');
-            setDescription('');
-            setDueDate('');
-        } else {
-            setAddCardBtnDisplay('displayed');
-            setCreateCardDisplay('not-displayed');
-            setContent('');
-            setDescription('');
-            setDueDate('');
-        }
-
-        if (createCardDisplay === 'not-displayed') {
-            setCreateCardDisplay('displayed');
-            setAddCardBtnDisplay('not-displayed');
-            setContent('');
-            setDescription('');
-            setDueDate('');
-        } else {
-            setCreateCardDisplay('not-displayed');
-            setAddCardBtnDisplay('displayed');
-            setContent('');
-            setDescription('');
-            setDueDate('');
-        }
-    };
-
     const titleAndInputDisplay = () => {
         if (titleDisplay === 'displayed') {
             setTitleDisplay('not-displayed')
@@ -156,15 +108,15 @@ const ListsPage = () => {
                                                     <label className='list__title'>
                                                         {list.title}
                                                     </label>
-                                                    <div className='edit-title-div'>
+                                                    {/* <div className='edit-title-div'>
                                                         <input
                                                             type="text"
                                                             value={list.title}
                                                             onChange={(e) => setTitle(e.target.value)}
                                                         ></input>
-                                                    </div>
+                                                    </div> */}
                                                 </div>
-                                                <i className="fa-solid fa-pen-to-square"></i>
+                                                {/* <i className="fa-solid fa-pen-to-square"></i> */}
                                                 <button
                                                     className="close"
                                                     onClick={() => removeList(list)}
@@ -172,6 +124,7 @@ const ListsPage = () => {
                                                     <div className="close__text">&#215;</div>
                                                 </button>
                                             </div>
+
                                             <div>
                                                 {list.cards.map((card, index) =>
                                                     <div className='card__container' key={index}>
@@ -181,20 +134,9 @@ const ListsPage = () => {
                                                         {/* <div>{card.created_at}</div> */}
                                                     </div>
                                                 )}
-                                            </div>
-
-                                            <div className='create__list__button'>
-                                                <button
-                                                    id='cards__buttons'
-                                                    onClick={createNewCardDisplay}
-                                                    className='
-                                                        light__blue__button
-                                                        jello__wiggle
-                                                        button__shine__short
-                                                    '>
-                                                    {list.cards.length > 0 ? 'Add Another Card' : 'Create a Card'}
-                                                </button>
-
+                                                <div>
+                                                    <AddNewCard />
+                                                </div>
                                             </div>
                                         </div>
                                     )}
@@ -218,7 +160,7 @@ const ListsPage = () => {
                             value={title}
                         >
                         </input>
-                        <div className='create__list__button create-list-btns'>
+                        <div className='create__card_in_list__button create-list-btns'>
                             <button
                                 onClick={addNewList}
                                 id='lists__buttons'
@@ -246,7 +188,6 @@ const ListsPage = () => {
                             `}>
                             {board.lists.length > 0 ? 'Add Another List' : 'Create a List'}
                         </button>
-
                     </div>
                 </div>
             </div>

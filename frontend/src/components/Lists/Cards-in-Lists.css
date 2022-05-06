@@ -17,7 +17,7 @@
 
 .card__due__date {}
 
-.create__list__button {
+.create__card_in_list__button {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -48,4 +48,12 @@
     color: #ffffff;
     background: var(--dark-blue-button-color);
     border: 1px #000000 solid;
+}
+
+.displayed-card {
+    display: block;
+}
+
+.not-displayed-card {
+    display: none;
 }
