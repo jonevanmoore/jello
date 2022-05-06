@@ -11,6 +11,7 @@ from .api.auth_routes  import auth_routes
 from .api.board_routes import board_routes
 from .api.list_routes  import list_routes
 from .api.card_routes  import card_routes
+from .api.comment_routes import comment_routes
 
 from .seeds import seed_commands
 
@@ -32,11 +33,12 @@ def load_user(id):
 app.cli.add_command(seed_commands)
 
 app.config.from_object(Config)
-app.register_blueprint(user_routes,  url_prefix='/api/users')
-app.register_blueprint(auth_routes,  url_prefix='/api/auth')
-app.register_blueprint(board_routes, url_prefix='/api/boards')
-app.register_blueprint(list_routes,  url_prefix='/api/lists')
-app.register_blueprint(card_routes,  url_prefix='/api/cards')
+app.register_blueprint(user_routes,    url_prefix='/api/users')
+app.register_blueprint(auth_routes,    url_prefix='/api/auth')
+app.register_blueprint(board_routes,   url_prefix='/api/boards')
+app.register_blueprint(list_routes,    url_prefix='/api/lists')
+app.register_blueprint(card_routes,    url_prefix='/api/cards')
+app.register_blueprint(comment_routes, url_prefix='/api/comments')
 db.init_app(app)
 Migrate(app, db)
 
