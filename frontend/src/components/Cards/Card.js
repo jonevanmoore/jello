@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, Redirect, useHistory, useParams } from 'react-router-dom';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
+import { deleteCard } from '../../store/boards';
 
 import { UserIcon } from '../UserIcon';
 import { avatars } from '../../context/Avatar';
 
-import { readOneBoard } from '../../store/boards';
-
 import './Card.css';
 
 const CardPage = ({ list, card, closeModalFunc }) => {
+    const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
 
-    console.log('LIST:  ', list);
-    console.log('CARD:  ', card);
+
+    const removeCard = async (card) => {
+        await dispatch(deleteCard(card));
+        // TODO: fix this
+    };
 
 
     const avatarPNGs = Object.values(avatars)
@@ -41,11 +43,11 @@ const CardPage = ({ list, card, closeModalFunc }) => {
                 </div>
                 <div className='card__title__container__in_card'>
                     <div className='card__title__in_card'>
-                        Card Title
+                        {card.content}
                     </div>
                     <span className='card__subtitle__in_list'>in list
                         <span className='list__title__in_list'>
-                            {` LIST NAME`}
+                            {card.list_id === list.id ? ` ${list.title}` : ''}
                         </span>
                     </span>
                 </div>
