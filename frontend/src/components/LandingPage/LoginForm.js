@@ -12,8 +12,8 @@ const LoginForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
-  const [signupDisplay, setSignupDisplay] = useState('not-displayed')
-  const [loginDisplay, setLoginDisplay] = useState('displayed')
+  // const [signupDisplay, setSignupDisplay] = useState('not-displayed')
+  const [loginDisplay] = useState('displayed')
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -27,7 +27,7 @@ const LoginForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
     if (errors.length > 0) {
       setCustomError('Email or password is incorrect')
     }
-  })
+  }, [errors.length])
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -41,25 +41,25 @@ const LoginForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
     return <Redirect to='/' />;
   }
 
-  const changeLoginDisplay = () => {
-    if (loginDisplay === 'not-displayed') {
-      setLoginDisplay('displayed')
-    } else if (loginDisplay === 'displayed') {
-      setLoginDisplay('not-displayed')
-    } else if (signupDisplay === 'displayed') {
-      setLoginDisplay('not-displayed')
-    }
-  }
+  // const changeLoginDisplay = () => {
+  //   if (loginDisplay === 'not-displayed') {
+  //     setLoginDisplay('displayed')
+  //   } else if (loginDisplay === 'displayed') {
+  //     setLoginDisplay('not-displayed')
+  //   } else if (signupDisplay === 'displayed') {
+  //     setLoginDisplay('not-displayed')
+  //   }
+  // }
 
-  const changeSignupDisplay = () => {
-    if (signupDisplay === 'not-displayed') {
-      setSignupDisplay('displayed')
-    } else if (signupDisplay === 'displayed') {
-      setSignupDisplay('not-displayed')
-    } else if (loginDisplay === 'displayed') {
-      setSignupDisplay('not-displayed')
-    }
-  }
+  // const changeSignupDisplay = () => {
+  //   if (signupDisplay === 'not-displayed') {
+  //     setSignupDisplay('displayed')
+  //   } else if (signupDisplay === 'displayed') {
+  //     setSignupDisplay('not-displayed')
+  //   } else if (loginDisplay === 'displayed') {
+  //     setSignupDisplay('not-displayed')
+  //   }
+  // }
 
   const stopTheProp = e => e.stopPropagation();
 

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { login } from '../../store/session';
 
 import './LandingPage.css'
@@ -9,8 +8,6 @@ import SignUpForm from './SignUpForm'
 
 const LandingPage = () => {
     const dispatch = useDispatch();
-    const sessionUser = useSelector(state => state.session.user);
-    const history = useHistory()
 
     const [loginDisplay, setLoginDisplay] = useState('not-displayed')
     const [signupDisplay, setSignupDisplay] = useState('not-displayed')
@@ -49,7 +46,7 @@ const LandingPage = () => {
 
                 <div className="home-top-div">
                     <div className="logo-div">
-                        <img src='static/Jello-Blue-Logo.png' className='dark-logo' />
+                        <img src='static/Jello-Blue-Logo.png' alt='jello-logo' className='dark-logo' />
                     </div>
                     <div className="user-buttons-div">
                         <button className='demo-btn jello-wiggle button__shine__short' onClick={demoLogin}>Demo User</button>
@@ -72,28 +69,28 @@ const LandingPage = () => {
 
             <div className="coder-profiles">
                 <div className="coder">
-                    <a target="_blank" href="https://github.com/danguai">
-                        <img src="static/jello9.png" className="coder-img jello-wiggle"></img>
+                    <a target="_blank" rel='noreferrer' href="https://github.com/danguai">
+                        <img src="static/jello9.png" alt='coder-profile-daniel' className="coder-img jello-wiggle"></img>
                     </a>
                     <span>Daniel Blanco</span>
                 </div>
                 <div className="coder">
-                    <a target="_blank" href="https://github.com/jonevanmoore">
-                        <img src="static/jello6.png" className="coder-img jello-wiggle"></img>
+                    <a target="_blank" rel='noreferrer' href="https://github.com/jonevanmoore">
+                        <img src="static/jello6.png" alt='coder-profile-jon' className="coder-img jello-wiggle"></img>
                     </a>
                     <span>Jon Moore</span>
                 </div>
 
                 <div className="coder">
-                    <a target="_blank" href="https://github.com/MasonKogami">
-                        <img src="static/jello3.png" className="coder-img jello-wiggle"></img>
+                    <a target="_blank" rel='noreferrer' href="https://github.com/MasonKogami">
+                        <img src="static/jello3.png" alt='coder-profile-mason' className="coder-img jello-wiggle"></img>
                     </a>
                     <span>Mason Kogami</span>
                 </div>
 
                 <div className="coder">
-                    <a target="_blank" href="https://github.com/Nick-Yawn">
-                        <img src="static/jello5.png" className="coder-img jello-wiggle"></img>
+                    <a target="_blank" rel='noreferrer' href="https://github.com/Nick-Yawn">
+                        <img src="static/jello5.png" alt='coder-profile-nicholas' className="coder-img jello-wiggle"></img>
                     </a>
                     <span>Nicholas Yuan</span>
                 </div>

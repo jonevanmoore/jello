@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink, useHistory } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { UserIcon } from '../UserIcon';
 import { avatars } from "../../context/Avatar";
 
@@ -33,7 +33,7 @@ const DashBoard = () => {
     if (!boards) return null;
 
     const avatarPNGs = Object.values(avatars)
-        .filter((avatar, i) => user.avatar_id != i + 1)
+        .filter((avatar, i) => user.avatar_id !== i + 1)
         .map(avatar => avatar.imageUrl)
 
     const randomAvatar = avatarPNGs[Math.floor(Math.random() * avatarPNGs.length)];

@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, Redirect, useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import { avatars } from '../../context/Avatar';
 
-import { readOneBoard, createList, updateListOrder, updateList, deleteList } from '../../store/boards';
+import { createList, updateListOrder, deleteList } from '../../store/boards';
+
 import AddNewCard from '../Cards/NewCard';
 
 import './Lists.css';
