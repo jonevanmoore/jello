@@ -9,6 +9,7 @@ import OneBoard from './components/boards/OneBoard';
 import EditBoard from './components/boards/EditBoardForm';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import DashBoard from './components/boards/DashBoard';
+import CardPage from './components/Cards/Card';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import LandingPage from './components/LandingPage/LandingPage'
@@ -62,6 +63,9 @@ function App() {
         <ProtectedRoute path='/boards/:board_id/edit' exact={true}>
           <EditBoard />
         </ProtectedRoute>*/}
+        <ProtectedRoute path='/cards' exact={true}>
+          <CardPage />
+        </ProtectedRoute>
         <ProtectedRoute path={`/boards/:board_id`} exact={true}>
           <OneBoard />
         </ProtectedRoute>

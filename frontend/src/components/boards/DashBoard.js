@@ -78,11 +78,14 @@ const DashBoard = () => {
                     </div>
                 </div>
                 <div className='body__boards' style={{
-                    backgroundImage: `url('${randomAvatar}')`,
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: '95% 90%',
-                    backgroundSize: "350px",
+                    // backgroundImage: `url('${randomAvatar}')`,
+                    // backgroundRepeat: "no-repeat",
+                    // backgroundPosition: '95% 90%',
+                    // backgroundSize: "350px",
                 }}>
+                    <div className='bg__avatar__image jello__wiggle__big'>
+                        <img className='bg__avatar__image' src={randomAvatar} />
+                    </div>
                     <div className='boards__name'>
                         <div className='avatar__boards__big'>
                             <UserIcon size={120} isNavIcon={true} />
@@ -91,40 +94,40 @@ const DashBoard = () => {
                             {`${user.first_name} ${user.last_name}'s boards`}
                         </div>
                     </div>
-                    <div className='subtitles__boards'>
-                        My Boards
-                    </div>
-                    <div>
-                        <ul className='all__boards'>
-                            {boardsOwned.map(board =>
-                                <li className="boards__list__elements" key={board.id}>
-                                    <NavLink style={{ textDecoration: 'none' }} to={`/boards/${board.id}`}>
-                                        <div
-                                            className={`
+                    <div className='all__boards__display'>
+                        <div className='subtitles__boards'>
+                            My Boards
+                        </div>
+                        <div>
+                            <ul className='all__boards'>
+                                {boardsOwned.map(board =>
+                                    <li className="boards__list__elements" key={board.id}>
+                                        <NavLink style={{ textDecoration: 'none' }} to={`/boards/${board.id}`}>
+                                            <div
+                                                className={`
                                             jello__container
                                             jello__container__ani
                                             jello__bg__${board.avatar_id}
                                             `}
-                                        // style={{ backgroundColor: avatars[board.avatar_id].color }}
-                                        >
-                                            <div className='jello__title'>
-                                                {board.title}
+                                            >
+                                                <div className='jello__title'>
+                                                    {board.title}
+                                                </div>
+                                                <div className="jello__wiggle">
+                                                    <img
+                                                        className="jello__image"
+                                                        src={avatars[board.avatar_id].imageUrl} />
+                                                </div>
                                             </div>
-                                            <div className="jello__wiggle">
-                                                <img
-                                                    className="jello__image"
-                                                    src={avatars[board.avatar_id].imageUrl} />
-                                            </div>
-                                        </div>
-                                    </NavLink>
-                                </li>
-                            )}
-                        </ul>
-                    </div>
-                    <div className='subtitles__boards'>
-                        Shared Boards (WRONG LOGIC)
-                    </div>
-                    {/* <div>
+                                        </NavLink>
+                                    </li>
+                                )}
+                            </ul>
+                        </div>
+                        <div className='subtitles__boards'>
+                            Shared Boards (WRONG LOGIC)
+                        </div>
+                        {/* <div>
                         <ul className='all__boards'>
                             {boardsShared.map(board =>
                                 <li className="jello__container jello__container__ani jello__bg" key={board.id}>
@@ -139,6 +142,7 @@ const DashBoard = () => {
                             )}
                         </ul>
                     </div> */}
+                    </div>
                 </div>
             </div>
         </>

@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Redirect, useHistory, useParams } from 'react-router-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
+import { avatars } from '../../context/Avatar';
+
 import { readOneBoard, createList, updateListOrder, updateList, deleteList } from '../../store/boards';
 
 import './Lists.css';
-import './Cards.css';
+import './Cards-in-Lists.css';
 
 const ListsPage = () => {
     const dispatch = useDispatch()
@@ -89,7 +91,10 @@ const ListsPage = () => {
     }
 
     return (
-        <div className='lists__in__boards'>
+        <div className='lists__in__boards'
+            style={{
+                backgroundColor: avatars[board.avatar_id].color
+            }}>
             <DragDropContext onDragEnd={handleOnDragEnd}>
                 <Droppable droppableId='list__size' direction='horizontal'>
                     {(provided) => (
@@ -99,6 +104,7 @@ const ListsPage = () => {
                                     {(provided) => (
                                         <div className='list__container' {...provided.draggableProps} ref={provided.innerRef} {...provided.dragHandleProps}>
                                             <div className='list__title__close'>
+
                                                 <div className='title-and-input-display'>
                                                     <label className='list__title'>
                                                         {list.title}

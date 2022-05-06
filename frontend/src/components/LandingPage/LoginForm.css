@@ -1,8 +1,42 @@
 .login-body {
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0px 0px 20px 0px;
-    width: 470px;
+    background-color: var(--white-color);
+    border-radius: var(--main-border-radius);
+    width: 400px;
+    box-shadow: var(--main-box-shadow);
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.login-click {
+    color: rgb(0, 145, 255);
+    background-color: transparent;
+    border: none;
+    font-weight: bolder;
+    cursor: default;
+    transition: .2s;
+}
+
+.login-click:hover {
+    cursor: pointer;
+    color: rgb(0, 170, 176);
+}
+
+.login-input {
+    height: 35px;
+    width: 352px;
+    margin: 10px 0 10px 0;
+    border: 1px solid var(--nav-bar-left-divider-color);
+    border-radius: var(--main-border-radius);
+    box-sizing: border-box;
+}
+
+.login-input::placeholder {
+    color: rgb(167, 167, 167);
 }
 
 .login-error-div {
@@ -18,12 +52,6 @@
     font-size: small;
 }
 
-.login-form {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 10px;
-}
-
 .login-text {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -33,37 +61,6 @@
 #skinny {
     font-weight: 300;
 }
-
-.signup-click {
-    color: rgb(0, 145, 255);
-    background-color: transparent;
-    border: none;
-    font-weight: bolder;
-    cursor: default;
-    transition: .2s;
-}
-
-.signup-click:hover {
-    color: rgb(0, 170, 176);
-}
-
-.signup-click:hover {
-    cursor: pointer;
-}
-
-.login-input {
-    height: 35px;
-    width: 75%;
-    margin: 10px 0 10px 0;
-    border: 1px solid rgb(167, 167, 167);
-    border-radius: 3px;
-    box-sizing: border-box;
-}
-
-.login-input::placeholder {
-    color: rgb(167, 167, 167);
-}
-
 
 .login-form-btn {
     height: 35px;

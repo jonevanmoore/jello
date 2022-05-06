@@ -87,7 +87,6 @@ const NewBoardForm = ({ closeModalFunc }) => {
                     </div>
                     <div>
                         <input
-
                             className='input__board__title'
                             placeholder='Title'
                             type='text'
@@ -134,7 +133,6 @@ const NewBoardForm = ({ closeModalFunc }) => {
                     red__button
                     button__shine__long__red
                     '
-
                         onClick={closeModalFunc}>
                         Cancel
                     </button>
