@@ -5,7 +5,7 @@ from backend.models import db, Comment
 comment_routes = Blueprint('comment_routes', __name__)
 
 # D E L E T E  C O M M E N T
-@card_routes.route('/<int:id>', methods=['DELETE'])
+@comment_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_comment(id):
     comment = Comment.query.get(id)

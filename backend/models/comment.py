@@ -17,8 +17,8 @@ class Comment(db.Model):
         return {
                 'id': self.id,
                 'user_id': self.user_id,
-                'card_id': self.list_id,
-                'body': self.content,
+                'card_id': self.card_id,
+                'body': self.body,
                 'created_at': self.created_at,
                 'updated_at': self.updated_at,
                 'card': self.card.to_short_dict()

@@ -29,7 +29,7 @@ class Card(db.Model):
                 'due_date': self.due_date,
                 'created_at': self.created_at,
                 'updated_at': self.updated_at,
-                'list': self.list.to_short_dict()
+                'list': self.list.to_short_dict(),
                 'comments': [ comment.to_dict() for comment in self.comments ]
                 }
 
