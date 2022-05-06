@@ -16,6 +16,8 @@ class Card(db.Model):
 
     list        = db.relationship('List', backref=db.backref("cards", cascade="all, delete"))
 
+    comments    = db.relationship('Comment', back_populates='card', cascade="all, delete")
+
     def to_dict(self):
         return {
                 'id': self.id,
