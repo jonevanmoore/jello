@@ -17,7 +17,7 @@ const NavBar = () => {
     <nav>
       <div className="nav-bar-left">
         <Link to='/boards' className='logo-link'>
-          <img src='/static/Jello-White-Logo.png' className='nav-bar-logo' />
+          <img src='/static/Jello-White-Logo.png' alt='jello-logo' className='nav-bar-logo' />
         </Link>
         <div className="nav-bar-left-divider" />
         <div className='create-board-link jello__wiggle' onClick={showModalFunc}>

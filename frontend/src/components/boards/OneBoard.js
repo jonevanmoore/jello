@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink, useHistory, useParams, Redirect } from 'react-router-dom';
-import { readBoards, readOneBoard, updateBoard, deleteBoard } from '../../store/boards';
+import { NavLink, useHistory, useParams } from 'react-router-dom';
+import { readBoards, readOneBoard, deleteBoard } from '../../store/boards';
 import { UserIcon } from '../UserIcon';
 import ListsPage from '../Lists/Lists';
 import Modal from '../Modal';
@@ -152,7 +152,7 @@ const OneBoard = () => {
                         <ListsPage />
                     </div>
                     <div className='bg__avatar__image jello__wiggle__big'>
-                        <img className='bg__avatar__image ' src={avatars[board.avatar_id].imageUrl} />
+                        <img className='bg__avatar__image ' alt='background-avatar' src={avatars[board.avatar_id].imageUrl} />
                     </div>
                 </div>
             </div>
