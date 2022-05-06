@@ -6,19 +6,56 @@ import { deleteCard } from '../../store/boards';
 import { UserIcon } from '../UserIcon';
 import { avatars } from '../../context/Avatar';
 
+import Comments from '../Comments/Comments';
+
 import './Card.css';
 
 const CardPage = ({ list, card, closeModalFunc }) => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
 
+    const [newDescription, setNewDescription] = useState('');
+    const [newDueDate, setNewDueDate] = useState('');
+    const [descriptionDisplay, setDescriptionDisplay] = useState('displayed-desc')
+    const [descriptionInputDisplay, setDescriptionInputDisplay] = useState('not-displayed-desc')
+
+    const updateCard = async () => {
+        let updatedCard = {
+            id: card.id,
+            user_id: card.user_id,
+            content: card.content,
+            order: card.order,
+            description: newDescription,
+            due_date: newDueDate,
+        };
+        await dispatch(updateCard(updatedCard));
+        setDescriptionDisplay('displayed-desc');
+        setDescriptionInputDisplay('not-displayed-desc');
+    };
 
     const removeCard = async (card) => {
         await dispatch(deleteCard(card));
         // TODO: fix this
     };
 
-    console.log(card);
+    const titleAndInputDisplay = () => {
+        if (descriptionDisplay === 'displayed-desc') {
+            setDescriptionDisplay('not-displayed-desc');
+            setDescriptionInputDisplay('displayed-desc');
+        } else {
+            setDescriptionDisplay('displayed-desc');
+            setDescriptionInputDisplay('not-displayed-desc');
+        }
+
+        if (descriptionInputDisplay === 'not-displayed-desc') {
+            setDescriptionInputDisplay('displayed-desc');
+            setDescriptionDisplay('not-displayed-desc');
+        } else {
+            setDescriptionInputDisplay('not-displayed-desc');
+            setDescriptionDisplay('displayed-desc');
+        }
+    };
+
     const avatarPNGs = Object.values(avatars)
         .filter((avatar, i) => user.avatar_id != i + 1)
         .map(avatar => avatar.imageUrl);
@@ -29,14 +66,14 @@ const CardPage = ({ list, card, closeModalFunc }) => {
 
     return (
         <div
-            className='TEMP__POSITION'
+            className='card__element'
             onClick={stopTheProp}
             onMouseDown={stopTheProp}>
             <div className='card__container__in_card'>
                 <div className='close__in_card'>
                     <button
                         className="close"
-                        onClick={() => removeCard(card)}
+                        onClick={closeModalFunc}
                     >
                         <div className="close__text">&#215;</div>
                     </button>
@@ -67,29 +104,48 @@ const CardPage = ({ list, card, closeModalFunc }) => {
                         <div className='description__title'>
                             Description
                         </div>
+                        <p className='description__paragraph'>
+                            {card.description}
+                        </p>
                         <textarea
                             className='textarea__input__description'
                             placeholder='Add a more detailed description...'
                         />
-                    </div>
-                    <div className='comments__container'>
-                        <div className='comments__title'>
-                            Comments
+                        <div className='add__cancel__desc'>
+                            <button
+                                id='desc__buttons'
+                                className={`
+                                light__green__blue__button
+                                jello__wiggle
+                                button__shine__short
+                                `}>
+                                Add Description</button>
+                            <button
+                                className="close__desc"
+                            >
+                                <div className="close__text">&#215;</div>
+                            </button>
                         </div>
-                        <div className='next__comment'>
-                            <div className='comments__image__users'>
-                                <UserIcon size={30} isNavIcon={true} />
-                            </div>
-                            <textarea
-                                className='textarea__input__comments'
-                                placeholder='Add a more detailed comments...'
-                            />
-                        </div>
                     </div>
-                    <div className='form__avatar__image'>
+                    <div>
+                        <Comments />
+                    </div>
+                    {/* <div className='form__avatar__image'>
                         <img className="jello__image__card" src={randomAvatar} />
-                    </div>
+                    </div> */}
                 </div>
+            </div>
+            <div className='del__card__btn__container'>
+                <button
+                    id='del__card__btn'
+                    className='
+                            jello__wiggle
+                            logout__button
+                            red__button
+                            button__shine__short__red
+                            '
+                    onClick={() => removeCard(card)}
+                >Delete Card</button>
             </div>
         </div>
     )
