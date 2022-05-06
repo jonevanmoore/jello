@@ -27,7 +27,7 @@ const LoginForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
     if (errors.length > 0) {
       setCustomError('Email or password is incorrect')
     }
-  })
+  }, [errors.length])
 
   const updateEmail = (e) => {
     setEmail(e.target.value);

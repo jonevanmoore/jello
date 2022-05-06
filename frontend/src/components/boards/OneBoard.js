@@ -151,7 +151,7 @@ const OneBoard = () => {
                         <ListsPage />
                     </div>
                     <div className='bg__avatar__image jello__wiggle__big'>
-                        <img className='bg__avatar__image ' src={avatars[board.avatar_id].imageUrl} />
+                        <img className='bg__avatar__image ' alt='background-avatar' src={avatars[board.avatar_id].imageUrl} />
                     </div>
                 </div>
             </div>

@@ -113,6 +113,7 @@ const DashBoard = () => {
                                             <div className="jello__wiggle">
                                                 <img
                                                     className="jello__image"
+                                                    alt='jello-avatar'
                                                     src={avatars[board.avatar_id].imageUrl} />
                                             </div>
                                         </div>
