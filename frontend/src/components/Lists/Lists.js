@@ -11,14 +11,16 @@ import './Cards.css';
 const ListsPage = () => {
     const dispatch = useDispatch()
     const { board_id } = useParams();
-    const board   = useSelector(state => state.boards[board_id]);
+    const board = useSelector(state => state.boards[board_id]);
     const user_id = useSelector(state => state.session.user.id);
-    
+
     const [addListBtnDisplay, setAddListBtnDisplay] = useState('displayed')
     const [createListDisplay, setCreateListDisplay] = useState('not-displayed');
     const [title, setTitle] = useState('');
+    const [titleDisplay, setTitleDisplay] = useState('displayed')
+    const [titleInputDisplay, setTitleInputDisplay] = useState('not-displayed')
 
-    let lists   = board.lists.sort((a,b) => a.order - b.order);
+    let lists = board.lists.sort((a, b) => a.order - b.order);
 
     const addNewList = async () => {
         const newList = { title, user_id, board_id, order: board.lists.length + 1 }
@@ -35,13 +37,13 @@ const ListsPage = () => {
 
     const handleOnDragEnd = async (result) => {
         if (!result.destination) return;
-        
+
         let listCopy = Array.from(lists);
         const [reOrderedItem] = listCopy.splice(result.source.index, 1);
         listCopy.splice(result.destination.index, 0, reOrderedItem);
 
         let listOrder = {};
-        listCopy.forEach( (list, index) => listOrder[list.id] = index);
+        listCopy.forEach((list, index) => listOrder[list.id] = index);
         lists = listCopy;
         await dispatch(updateListOrder(board_id, listOrder));
     };
@@ -68,6 +70,24 @@ const ListsPage = () => {
         }
     };
 
+    const titleAndInputDisplay = () => {
+        if (titleDisplay === 'displayed') {
+            setTitleDisplay('not-displayed')
+            setTitleInputDisplay('displayed')
+        } else {
+            setTitleDisplay('displayed')
+            setTitleInputDisplay('not-displayed')
+        }
+
+        if (titleInputDisplay === 'not-displayed') {
+            setTitleInputDisplay('displayed')
+            setTitleDisplay('not-displayed')
+        } else {
+            setTitleInputDisplay('not-displayed')
+            setTitleDisplay('displayed')
+        }
+    }
+
     return (
         <div className='lists__in__boards'>
             <DragDropContext onDragEnd={handleOnDragEnd}>
@@ -75,46 +95,56 @@ const ListsPage = () => {
                     {(provided) => (
                         <div className='list__size' {...provided.droppableProps} ref={provided.innerRef}>
                             {lists.map((list, index) =>
-                            <Draggable draggableId={String(list.id)} key={list.id} index={index}>
-                                {(provided) => (
-                                    <div className='list__container' {...provided.draggableProps} ref={provided.innerRef} {...provided.dragHandleProps}>
-                                        <div className='list__title__close'>
-                                            <label className='list__title'>
-                                                {list.title}
-                                            </label>
-                                            <button 
-                                              className="close"
-                                              onClick={() => removeList(list)}
-                                            >
-                                                <div className="close__text">&#215;</div>
-                                            </button>
-                                        </div>
-                                        <div>
-                                            {list.cards.map((card, index) =>
-                                                <div className='card__container' key={index}>
-                                                    <div className='card__content'>{card.content}</div>
-                                                    <div className='card__description'>{card.description}</div>
-                                                    <div className='card__due__date'>{card.due_date}</div>
-                                                    {/* <div>{card.created_at}</div> */}
+                                <Draggable draggableId={String(list.id)} key={list.id} index={index}>
+                                    {(provided) => (
+                                        <div className='list__container' {...provided.draggableProps} ref={provided.innerRef} {...provided.dragHandleProps}>
+                                            <div className='list__title__close'>
+                                                <div className='title-and-input-display'>
+                                                    <label className='list__title'>
+                                                        {list.title}
+                                                    </label>
+                                                    <div className='edit-title-div'>
+                                                        <input
+                                                            type="text"
+                                                            value={list.title}
+                                                            onChange={(e) => setTitle(e.target.value)}
+                                                        ></input>
+                                                    </div>
                                                 </div>
-                                            )}
-                                        </div>
+                                                <i className="fa-solid fa-pen-to-square"></i>
+                                                <button
+                                                    className="close"
+                                                    onClick={() => removeList(list)}
+                                                >
+                                                    <div className="close__text">&#215;</div>
+                                                </button>
+                                            </div>
+                                            <div>
+                                                {list.cards.map((card, index) =>
+                                                    <div className='card__container' key={index}>
+                                                        <div className='card__content'>{card.content}</div>
+                                                        <div className='card__description'>{card.description}</div>
+                                                        <div className='card__due__date'>{card.due_date}</div>
+                                                        {/* <div>{card.created_at}</div> */}
+                                                    </div>
+                                                )}
+                                            </div>
 
-                                        <div className='create__list__button'>
-                                            <button
-                                                id='cards__buttons'
-                                                className='
+                                            <div className='create__list__button'>
+                                                <button
+                                                    id='cards__buttons'
+                                                    className='
                                         light__blue__button
                                         jello__wiggle
                                         button__shine__short
                                         '>
-                                                Create a Card
-                                            </button>
+                                                    Create a Card
+                                                </button>
 
+                                            </div>
                                         </div>
-                                    </div>
-                                )}
-                            </Draggable>
+                                    )}
+                                </Draggable>
                             )}
                             {provided.placeholder}
                         </div>
@@ -122,10 +152,10 @@ const ListsPage = () => {
                 </Droppable>
             </DragDropContext>
             {/* <div className='lists__in__boards'> */}
-            <div className='list__size'>
 
-                <div className='list__container'>
-                    <div className={`add-another-list-div ${createListDisplay}`}>
+            <div className='list__size'>
+                <div className='list__container grow-down'>
+                    <div className={`add-another-list-div ${createListDisplay} grow-down`}>
                         <input
                             onChange={e => setTitle(e.target.value)}
                             className='input__list__title'
@@ -151,7 +181,7 @@ const ListsPage = () => {
                             </button>
                         </div>
                     </div>
-                    <div className={`create__list__button ${addListBtnDisplay}`}>
+                    <div className={`create__list__button ${addListBtnDisplay} grow-down`}>
                         <button
                             onClick={createDisplay}
                             id='lists__buttons'

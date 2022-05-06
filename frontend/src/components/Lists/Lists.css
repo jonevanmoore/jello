@@ -115,3 +115,32 @@
     border: var(--nav-bar-left-divider-color) var(--main-button-border-width) solid;
     border-radius: var(--main-border-radius);
 }
+
+/* EDIT TITLE */
+.edit-title-div {
+    /* display: none; */
+}
+
+.fa-pen-to-square {
+    cursor: pointer;
+    align-content: end;
+}
+
+/* ANIMATIONS */
+@keyframes growDown {
+    0% {
+        transform: scaleY(0)
+    }
+
+    80% {
+        transform: scaleY(1.1)
+    }
+
+    100% {
+        transform: scaleY(1)
+    }
+}
+
+.grow-down {
+    animation: growDown .5s;
+}
