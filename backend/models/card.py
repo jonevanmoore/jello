@@ -26,5 +26,6 @@ class Card(db.Model):
                 'description': self.description,
                 'due_date': self.due_date,
                 'created_at': self.created_at,
-                'updated_at': self.updated_at
+                'updated_at': self.updated_at,
+                'list': self.list.to_short_dict()
                 }

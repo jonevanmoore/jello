@@ -144,7 +144,7 @@ const OneBoard = () => {
                         </div>
                     </div>
                     <div
-                        className='lists__page__bg__color'
+                        className='lists__page__bg__color lists-page-position'
                         style={{
                             backgroundColor: avatars[board.avatar_id].color
                         }}>

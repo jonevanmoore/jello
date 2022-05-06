@@ -32,7 +32,6 @@
     align-items: center;
     padding: 2px 4px;
     margin: 4px;
-
 }
 
 #lists__buttons {
@@ -90,8 +89,26 @@
 .add-another-list-div {
     display: flex;
     flex-direction: column;
+    /* justify-content: center;
+    align-items: center; */
 }
 
 .create-list-btns {
     display: flex;
+}
+
+.displayed {
+    display: block;
+}
+
+.not-displayed {
+    display: none;
+}
+
+.input__list__title {
+    margin: 6px;
+    width: 200px;
+    height: 25px;
+    border: var(--nav-bar-left-divider-color) var(--main-button-border-width) solid;
+    border-radius: var(--main-border-radius);
 }

@@ -21,7 +21,7 @@ const EditBoardForm = ({ closeModalFunc }) => {
     // CUSTOME ERRORS
     const [titleError, setTitleError] = useState('invalid')
     const [avatarError, setAvatarError] = useState('invalid');
-    const [submitError, setSubmitError] = useState('disabled');
+    const [submitError, setSubmitError] = useState('disabled-blue');
 
 
     useEffect(() => {
@@ -44,7 +44,7 @@ const EditBoardForm = ({ closeModalFunc }) => {
             avatarId > 0) {
             setSubmitError('able')
         } else {
-            setSubmitError('disabled')
+            setSubmitError('disabled-blue')
         }
     }, [title, avatarId]);
 
@@ -124,12 +124,14 @@ const EditBoardForm = ({ closeModalFunc }) => {
                 </div> */}
                 <div className='buttons__board__form'>
                     <button
-                        id='create-button'
                         className='
+                        create-button
                         jello__wiggle
                         button__shine__long__blue
                         '
-                        type='submit'>
+                        type='submit'
+                        id={submitError}
+                        disabled={submitError !== 'able'}>
                         Save Changes
                     </button>
                     <button
