@@ -1,8 +1,6 @@
 .lists__in__boards {
     display: flex;
     padding: 2px;
-    /* width: 100vw;
-    height: 100vh; */
     /* height: 80%; */
     /* max-height: 80%; */
 }
@@ -71,7 +69,7 @@
     height: 15px;
     width: 15px;
     border: none;
-    background-color: var(--white-button-main-color);
+    /* background-color: var(--white-button-main-color); */
 
 }
 
@@ -126,13 +124,19 @@
 }
 
 /* ANIMATIONS */
+.grow-down {
+    animation: growDown .5s;
+    animation-timing-function: ease-in-out;
+    transform-origin: top;
+}
+
 @keyframes growDown {
     0% {
         transform: scaleY(0)
     }
 
     80% {
-        transform: scaleY(1.1)
+        transform: scaleY(1.05)
     }
 
     100% {
@@ -140,6 +144,22 @@
     }
 }
 
-.grow-down {
-    animation: growDown .5s;
+.shrink-up {
+    animation: shrinkUp .5s;
+    animation-timing-function: ease-in-out;
+    transform-origin: top;
+}
+
+@keyframes shrinkUp {
+    0% {
+        transform: scaleY(1)
+    }
+
+    20% {
+        transform: scaleY(1.05)
+    }
+
+    100% {
+        transform: scaleY(0)
+    }
 }

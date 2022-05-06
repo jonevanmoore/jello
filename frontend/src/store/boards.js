@@ -112,11 +112,11 @@ export const updateListOrder = (boardId, listOrder) => async dispatch => {
     const response = await fetch(`/api/boards/${boardId}/list-order`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({listOrder})
+        body: JSON.stringify({ listOrder })
     });
 
     const data = await response.json();
-   
+
     if (response.ok) {
         await dispatch(readOneBoardAction(data));
         return data;
@@ -373,7 +373,7 @@ const boardsReducer = (state = initialState, action) => {
             let list = board.lists.find(list => list.id === action.card.list.id);
             list.cards = [...list.cards, action.card];
             board.lists = [...board.lists];
-            newState[board_id] = [...board];
+            newState[board_id] = { ...board };
             return newState;
         }
         case UPDATE_CARD: {
@@ -384,7 +384,7 @@ const boardsReducer = (state = initialState, action) => {
             list.cards[index] = action.card;
             list.cards = [...list.cards];
             board.lists = [...board.lists];
-            newState[board_id] = [...board];
+            newState[board_id] = { ...board };
             return newState;
         }
         case DELETE_CARD: {
@@ -395,7 +395,7 @@ const boardsReducer = (state = initialState, action) => {
             list.cards.splice(index, 1); // removal of card
             list.cards = [...list.cards];
             board.lists = [...board.lists];
-            newState[board_id] = [...board];
+            newState[board_id] = { ...board };
             return newState;
         }
         case CREATE_COMMENT: {

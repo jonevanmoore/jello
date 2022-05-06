@@ -1,9 +1,16 @@
 .card__container {
     margin: 5px;
     padding: 6px 0;
+    border: 1px var(--white-color) solid;
     border-radius: var(--main-border-radius);
     background-color: var(--white-button-main-color);
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+    transition: border 0.25s;
+}
+
+.card__container:hover {
+    border: 1px var(--dark-blue-button-color) solid;
+    cursor: pointer;
 }
 
 .card__content {
@@ -17,7 +24,7 @@
 
 .card__due__date {}
 
-.create__list__button {
+.create__card_in_list__button {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -48,4 +55,12 @@
     color: #ffffff;
     background: var(--dark-blue-button-color);
     border: 1px #000000 solid;
+}
+
+.displayed-card {
+    display: block;
+}
+
+.not-displayed-card {
+    display: none;
 }

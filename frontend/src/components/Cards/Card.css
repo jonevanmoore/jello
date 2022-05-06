@@ -1,19 +1,24 @@
 .TEMP__POSITION {
-    position: relative;
-    top: 84px;
-    left: 190px;
+    /* margin: auto; */
 }
 
 .card__container__in_card {
-    background: var(--white-color);
     border-radius: var(--main-border-radius);
-    width: 620px;
+    width: 600px;
     height: 720px;
     overflow: hidden;
+    background-color: var(--white-color);
+    box-shadow: 0px 0px 20px rgb(0, 0, 0, 0.3);
+    animation: jello_3 1s;
 }
 
 .card__title__container__in_card {
     margin-bottom: 20px;
+}
+
+.close__in_card {
+    float: right;
+    margin: 20px;
 }
 
 
@@ -21,11 +26,11 @@
     font-size: 24px;
     letter-spacing: 0.5px;
     color: var(--dark-blue-main-text);
-    margin: 20px 60px 0;
+    margin: 20px 40px 0;
 }
 
 .card__subtitle__in_list {
-    margin: 0px 60px;
+    margin: 0px 40px;
     font-weight: 500;
 }
 
@@ -34,7 +39,7 @@
 }
 
 .due__date__container {
-    margin: 20px 60px 0;
+    margin: 20px 40px 0;
 }
 
 .due__date__title {
@@ -93,9 +98,9 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    position: absolute;
+    /* position: absolute; */
     margin-top: 20px;
-    left: 10px;
+    margin-left: -35px;
 }
 
 .textarea__input__comments {
@@ -110,7 +115,7 @@
     position: relative;
     left: -50px;
     overflow: hidden;
-    bottom: -220px;
+    bottom: -160px;
 }
 
 .form__avatar__image>img {

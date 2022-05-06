@@ -144,16 +144,17 @@ const OneBoard = () => {
                         </div>
                     </div>
                     <div
-                        className='lists__page__bg__color lists-page-position'
+                        className='lists-page-position'>
+                        <ListsPage />
+                    </div>
+                    <div className='bg__avatar__image lists__page__bg__color'
                         style={{
                             backgroundColor: avatars[board.avatar_id].color
                         }}
                     >
-                        <ListsPage />
+                        <img className='bg__avatar__image' src={avatars[board.avatar_id].imageUrl} />
                     </div>
-                    <div className='bg__avatar__image jello__wiggle__big'>
-                        <img className='bg__avatar__image ' alt='background-avatar' src={avatars[board.avatar_id].imageUrl} />
-                    </div>
+                    <div className='lists__page__bg__color'></div>
                 </div>
             </div>
         </>
