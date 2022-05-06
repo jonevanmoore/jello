@@ -19,6 +19,8 @@ const ListsPage = () => {
     const [addListBtnDisplay, setAddListBtnDisplay] = useState('displayed')
     const [createListDisplay, setCreateListDisplay] = useState('not-displayed');
     const [title, setTitle] = useState('');
+    const [titleDisplay, setTitleDisplay] = useState('displayed')
+    const [titleInputDisplay, setTitleInputDisplay] = useState('not-displayed')
 
     let lists = board.lists.sort((a, b) => a.order - b.order);
 
@@ -70,6 +72,24 @@ const ListsPage = () => {
         }
     };
 
+    const titleAndInputDisplay = () => {
+        if (titleDisplay === 'displayed') {
+            setTitleDisplay('not-displayed')
+            setTitleInputDisplay('displayed')
+        } else {
+            setTitleDisplay('displayed')
+            setTitleInputDisplay('not-displayed')
+        }
+
+        if (titleInputDisplay === 'not-displayed') {
+            setTitleInputDisplay('displayed')
+            setTitleDisplay('not-displayed')
+        } else {
+            setTitleInputDisplay('not-displayed')
+            setTitleDisplay('displayed')
+        }
+    }
+
     return (
         <div className='lists__in__boards'
             style={{
@@ -84,9 +104,20 @@ const ListsPage = () => {
                                     {(provided) => (
                                         <div className='list__container' {...provided.draggableProps} ref={provided.innerRef} {...provided.dragHandleProps}>
                                             <div className='list__title__close'>
-                                                <label className='list__title'>
-                                                    {list.title}
-                                                </label>
+
+                                                <div className='title-and-input-display'>
+                                                    <label className='list__title'>
+                                                        {list.title}
+                                                    </label>
+                                                    <div className='edit-title-div'>
+                                                        <input
+                                                            type="text"
+                                                            value={list.title}
+                                                            onChange={(e) => setTitle(e.target.value)}
+                                                        ></input>
+                                                    </div>
+                                                </div>
+                                                <i className="fa-solid fa-pen-to-square"></i>
                                                 <button
                                                     className="close"
                                                     onClick={() => removeList(list)}
@@ -127,10 +158,10 @@ const ListsPage = () => {
                 </Droppable>
             </DragDropContext>
             {/* <div className='lists__in__boards'> */}
-            <div className='list__size'>
 
-                <div className='list__container'>
-                    <div className={`add-another-list-div ${createListDisplay}`}>
+            <div className='list__size'>
+                <div className='list__container grow-down'>
+                    <div className={`add-another-list-div ${createListDisplay} grow-down`}>
                         <input
                             onChange={e => setTitle(e.target.value)}
                             className='input__list__title'
@@ -156,7 +187,7 @@ const ListsPage = () => {
                             </button>
                         </div>
                     </div>
-                    <div className={`create__list__button ${addListBtnDisplay}`}>
+                    <div className={`create__list__button ${addListBtnDisplay} grow-down`}>
                         <button
                             onClick={createDisplay}
                             id='lists__buttons'
