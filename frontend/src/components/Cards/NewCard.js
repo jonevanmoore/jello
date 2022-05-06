@@ -4,7 +4,7 @@ import { NavLink, Redirect, useHistory, useParams } from 'react-router-dom';
 
 import { createCard, } from '../../store/boards';
 
-const AddNewCard = () => {
+const AddNewCard = ({ list }) => {
     const dispatch = useDispatch();
     const { board_id } = useParams();
     const board = useSelector(state => state.boards[board_id]);
@@ -15,15 +15,18 @@ const AddNewCard = () => {
 
     const [content, setContent] = useState('');
     const [description, setDescription] = useState('');
-    const [orderCard, setOrderCard] = useState('');
+    // const [orderCard, setOrderCard] = useState('');
     const [dueDate, setDueDate] = useState('');
 
-    let lists = board.lists;
-
-    console.log('LISTS: ', lists);
-
     const addNewCard = async () => {
-        const newCard = { content, user_id, list_id: board.lists.id, order: orderCard, description, due_date: dueDate };
+        const newCard = {
+            content,
+            user_id,
+            list_id: list.id,
+            order: list.cards.length + 1,
+            description
+            // due_date: dueDate
+        };
         await dispatch(createCard(newCard));
     };
 
@@ -50,7 +53,6 @@ const AddNewCard = () => {
 
     return (
         <>
-
             <div className={`add-another-list-div ${createCardDisplay} grow-down`}>
                 <input
                     onChange={e => setContent(e.target.value)}
@@ -72,7 +74,7 @@ const AddNewCard = () => {
                     >Create Card</button>
                     <button
                         onClick={createNewCardDisplay}
-                        className={`close`}>
+                        className='close shrink-up'>
                         <div className="close__text">&#215;</div>
                     </button>
                 </div>
@@ -86,21 +88,11 @@ const AddNewCard = () => {
                     jello__wiggle
                     button__shine__short
                 '>
-                    {/* {list.cards.length > 0 ? 'Add Another Card' : 'Create a Card'} */}
+                    {list.cards.length > 0 ? 'Add Another Card' : 'Create a Card'}
                 </button>
+
             </div>
-            {/* <div className={`create__list__button ${addListBtnDisplay} grow-down`}>
-                                                <button
-                                                    onClick={createNewListDisplay}
-                                                    id='lists__buttons'
-                                                    className='
-                                                        light__green__blue__button
-                                                        jello__wiggle
-                                                        button__shine__short
-                                                    '>
-                                                    {board.lists.length > 0 ? 'Add Another List' : 'Create a List'}
-                                                </button>
-                                            </div> */}
+
         </>
     );
 };

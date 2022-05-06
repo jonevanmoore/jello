@@ -1,15 +1,15 @@
 .TEMP__POSITION {
-    position: relative;
-    top: 84px;
-    left: 190px;
+    /* margin: auto; */
 }
 
 .card__container__in_card {
-    background: var(--white-color);
     border-radius: var(--main-border-radius);
     width: 600px;
     height: 720px;
     overflow: hidden;
+    background-color: var(--white-color);
+    box-shadow: var(--main-box-shadow);
+    animation: jello_3 1s;
 }
 
 .card__title__container__in_card {
@@ -98,9 +98,9 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    position: absolute;
+    /* position: absolute; */
     margin-top: 20px;
-    left: 10px;
+    margin-left: -35px;
 }
 
 .textarea__input__comments {
@@ -115,7 +115,7 @@
     position: relative;
     left: -50px;
     overflow: hidden;
-    bottom: -220px;
+    bottom: -160px;
 }
 
 .form__avatar__image>img {

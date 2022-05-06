@@ -6,12 +6,16 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { UserIcon } from '../UserIcon';
 import { avatars } from '../../context/Avatar';
 
-import { } from '../../store/boards';
+import { readOneBoard } from '../../store/boards';
 
 import './Card.css';
 
-const CardPage = () => {
+const CardPage = ({ list, card, closeModalFunc }) => {
     const user = useSelector(state => state.session.user);
+
+    console.log('LIST:  ', list);
+    console.log('CARD:  ', card);
+
 
     const avatarPNGs = Object.values(avatars)
         .filter((avatar, i) => user.avatar_id != i + 1)
@@ -19,8 +23,13 @@ const CardPage = () => {
 
     const randomAvatar = avatarPNGs[Math.floor(Math.random() * avatarPNGs.length)];
 
+    const stopTheProp = e => e.stopPropagation();
+
     return (
-        <div className='TEMP__POSITION'>
+        <div
+            className='TEMP__POSITION'
+            onClick={stopTheProp}
+            onMouseDown={stopTheProp}>
             <div className='card__container__in_card'>
                 <div className='close__in_card'>
                     <button
@@ -75,9 +84,9 @@ const CardPage = () => {
                             />
                         </div>
                     </div>
-                </div>
-                <div className='form__avatar__image'>
-                    <img className="jello__image__card" src={randomAvatar} />
+                    <div className='form__avatar__image'>
+                        <img className="jello__image__card" src={randomAvatar} />
+                    </div>
                 </div>
             </div>
         </div>

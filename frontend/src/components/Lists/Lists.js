@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-
-import { avatars } from '../../context/Avatar';
+import Modal from '../Modal';
 
 import { createList, updateListOrder, deleteList } from '../../store/boards';
 
 import AddNewCard from '../Cards/NewCard';
+import CardPage from '../Cards/Card';
 
 import './Lists.css';
 import './Cards-in-Lists.css';
@@ -24,6 +24,11 @@ const ListsPage = () => {
     const [title, setTitle] = useState('');
     const [titleDisplay, setTitleDisplay] = useState('displayed');
     const [titleInputDisplay, setTitleInputDisplay] = useState('not-displayed');
+
+    const [showModal, setShowModal] = useState(false);
+
+    const closeModalFunc = () => setShowModal(false);
+    const showModalFunc = () => setShowModal(true);
 
     let lists = board.lists.sort((a, b) => a.order - b.order);
 
@@ -129,14 +134,25 @@ const ListsPage = () => {
                                             <div>
                                                 {list.cards.map((card, index) =>
                                                     <div className='card__container' key={index}>
-                                                        <div className='card__content'>{card.content}</div>
-                                                        <div className='card__description'>{card.description}</div>
+                                                        <div
+                                                            className='card__content'
+                                                            onClick={showModalFunc}
+                                                        >
+                                                            {card.content}
+                                                        </div>
+                                                        {showModal && (
+                                                            <Modal closeModalFunc={closeModalFunc}>
+                                                                <CardPage list={list} card={card} closeModalFunc={closeModalFunc} />
+                                                            </Modal>
+                                                        )}
+
+                                                        {/* <div className='card__description'>{card.description}</div> */}
                                                         <div className='card__due__date'>{card.due_date}</div>
                                                         {/* <div>{card.created_at}</div> */}
                                                     </div>
                                                 )}
                                                 <div>
-                                                    <AddNewCard />
+                                                    <AddNewCard list={list} />
                                                 </div>
                                             </div>
                                         </div>
@@ -173,7 +189,7 @@ const ListsPage = () => {
                             >Create List</button>
                             <button
                                 onClick={createNewListDisplay}
-                                className={`close`}>
+                                className='close'>
                                 <div className="close__text">&#215;</div>
                             </button>
                         </div>
