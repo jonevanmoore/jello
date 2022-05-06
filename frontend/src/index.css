@@ -6,8 +6,19 @@
   src: url('https: //fonts.google.com/share?selection.family=Roboto%20Condensed:wght@300;400;700');
 }
 
+#root, body  {
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
 /* CSS VARIABLES GO HERE */
 :root {
+  height: 100%;
+
   font-family: 'Roboto Condensed', sans-serif;
   font-weight: 700;
   font-size: 15px;

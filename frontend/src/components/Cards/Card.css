@@ -1,4 +1,4 @@
-.TEMP__POSITION {
+.card__element {
     /* margin: auto; */
 }
 
@@ -8,7 +8,7 @@
     height: 720px;
     overflow: hidden;
     background-color: var(--white-color);
-    box-shadow: 0px 0px 20px rgb(0, 0, 0, 0.3);
+    box-shadow: var(--main-box-shadow);
     animation: jello_3 1s;
 }
 
@@ -82,32 +82,16 @@
     font-size: 18px;
 }
 
+.description__paragraph {
+    font-size: 13px;
+    font-weight: 500;
+}
+
 .textarea__input__description {
     margin-top: 20px;
     width: 520px;
     border-radius: var(--main-border-radius);
     resize: vertical;
-}
-
-.comments__container {
-    margin-top: 30px;
-    font-size: 18px;
-}
-
-.next__comment {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    /* position: absolute; */
-    margin-top: 20px;
-    margin-left: -35px;
-}
-
-.textarea__input__comments {
-    width: 520px;
-    border-radius: var(--main-border-radius);
-    resize: vertical;
-    margin-left: 5px;
 }
 
 .form__avatar__image {
@@ -118,6 +102,7 @@
     bottom: -160px;
 }
 
+
 .form__avatar__image>img {
     width: 250px;
     height: auto
@@ -125,4 +110,63 @@
 
 .jello__image__card {
     overflow: hidden;
+}
+
+.del__card__btn__container {
+    float: right;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--main-box-shadow);
+}
+
+.add__cancel__desc {
+    display: flex;
+    align-items: center;
+}
+
+#desc__buttons {
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1;
+    border-radius: 3px;
+    width: 110px;
+    height: 22px;
+}
+
+.close__desc {
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15px;
+    width: 15px;
+    border: none;
+    /* background-color: var(--white-button-main-color); */
+}
+
+#del__card__btn {
+    width: 90px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-family: inherit;
+    color: var(--red-button-main-color);
+    background-color: var(--white-color);
+    padding: 6px 12px;
+    border-width: var(--main-button-border-width);
+    border-color: var(--red-button-main-color);
+    border-style: solid;
+    border-radius: var(--main-border-radius);
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+}
+
+#del__card__btn:hover {
+    color: var(--white-button-main-color);
+    background: var(--red-button-main-color);
+    border: 1px #000000 solid;
 }
