@@ -38,7 +38,7 @@ def delete_list(id):
 
     db.session.delete(list)
     db.session.commit()
-    return {'id':id}
+    return list.to_dict()
 
 
 # C R E A T E  C A R D

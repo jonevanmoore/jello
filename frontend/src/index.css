@@ -176,7 +176,7 @@ button:hover {
   left: -55%;
   width: 75%;
   height: 40%;
-  /* background-color: black; */
+  background-color: black;
   background-color: var(--light-blue-shine-color);
   transform: rotate(-45deg);
   transition: all ease 0.75s;

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Redirect, useHistory, useParams } from 'react-router-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-import { readOneBoard, createList, updateListOrder } from '../../store/boards';
+import { readOneBoard, createList, updateListOrder, updateList, deleteList } from '../../store/boards';
 
 import './Lists.css';
 import './Cards.css';
@@ -15,15 +15,23 @@ const ListsPage = () => {
     const user_id = useSelector(state => state.session.user.id);
     
     const [addListBtnDisplay, setAddListBtnDisplay] = useState('displayed')
+    const [createListDisplay, setCreateListDisplay] = useState('not-displayed');
     const [title, setTitle] = useState('');
 
     let lists   = board.lists.sort((a,b) => a.order - b.order);
 
     const addNewList = async () => {
         const newList = { title, user_id, board_id, order: board.lists.length + 1 }
-        const createdList = await dispatch(createList(newList))
-        // const newLists = [...lists, createdList];
+        await dispatch(createList(newList))
+        setTitle('');
+        setAddListBtnDisplay('displayed');
+        setCreateListDisplay('not-displayed')
     }
+
+    const removeList = async (list) => {
+        await dispatch(deleteList(list));
+        // TODO: fix this
+    };
 
     const handleOnDragEnd = async (result) => {
         if (!result.destination) return;
@@ -36,6 +44,28 @@ const ListsPage = () => {
         listCopy.forEach( (list, index) => listOrder[list.id] = index);
         lists = listCopy;
         await dispatch(updateListOrder(board_id, listOrder));
+    };
+
+    const createDisplay = () => {
+        if (addListBtnDisplay === 'displayed') {
+            setAddListBtnDisplay('not-displayed');
+            setCreateListDisplay('displayed');
+            setTitle('');
+        } else {
+            setAddListBtnDisplay('displayed');
+            setCreateListDisplay('not-displayed');
+            setTitle('');
+        }
+
+        if (createListDisplay === 'not-displayed') {
+            setCreateListDisplay('displayed');
+            setAddListBtnDisplay('not-displayed');
+            setTitle('');
+        } else {
+            setCreateListDisplay('not-displayed');
+            setAddListBtnDisplay('displayed');
+            setTitle('');
+        }
     };
 
     return (
@@ -52,7 +82,10 @@ const ListsPage = () => {
                                             <label className='list__title'>
                                                 {list.title}
                                             </label>
-                                            <button className="close">
+                                            <button 
+                                              className="close"
+                                              onClick={() => removeList(list)}
+                                            >
                                                 <div className="close__text">&#215;</div>
                                             </button>
                                         </div>
@@ -69,9 +102,9 @@ const ListsPage = () => {
 
                                         <div className='create__list__button'>
                                             <button
-                                                id='lists__buttons'
+                                                id='cards__buttons'
                                                 className='
-                                        light__green__blue__button
+                                        light__blue__button
                                         jello__wiggle
                                         button__shine__short
                                         '>
@@ -92,30 +125,41 @@ const ListsPage = () => {
             <div className='list__size'>
 
                 <div className='list__container'>
-                    <div className='add-another-list-div'>
+                    <div className={`add-another-list-div ${createListDisplay}`}>
                         <input
                             onChange={e => setTitle(e.target.value)}
+                            className='input__list__title'
+                            placeholder='List Title'
                             type='text'
                             value={title}
                         >
                         </input>
-                        <div className='create-list-btns'>
+                        <div className='create__list__button create-list-btns'>
                             <button
                                 onClick={addNewList}
+                                id='lists__buttons'
+                                className='
+                                light__green__blue__button
+                                jello__wiggle
+                                button__shine__short
+                                '
                             >Create List</button>
-                            <button className="close">
+                            <button
+                                onClick={createDisplay}
+                                className={`close `}>
                                 <div className="close__text">&#215;</div>
                             </button>
                         </div>
                     </div>
-                    <div className='create__list__button'>
+                    <div className={`create__list__button ${addListBtnDisplay}`}>
                         <button
+                            onClick={createDisplay}
                             id='lists__buttons'
-                            className='
-                        light__green__blue__button
-                        jello__wiggle
-                        button__shine__short
-                        '>
+                            className={`
+                            light__green__blue__button
+                            jello__wiggle
+                            button__shine__short
+                            `}>
                             {board.lists.length > 0 ? 'Add Another List' : 'Create a List'}
                         </button>
 
@@ -123,7 +167,7 @@ const ListsPage = () => {
                 </div>
             </div>
             {/* </div> */}
-        </div>
+        </div >
     )
 };
 

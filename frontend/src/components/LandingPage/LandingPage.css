@@ -51,6 +51,7 @@
 }
 
 .user-buttons-div>* {
+    font-family: 'Roboto Condensed';
     margin-left: 3px;
     margin-right: 3px;
     padding: 7px 15px 7px 15px;
