@@ -13,7 +13,7 @@ board_routes = Blueprint('boards', __name__)
 def read_all_boards():
     boards = Board.query.filter(Board.user_id == current_user.id).all()
     return {'boards': [board.to_dict() for board in boards]}
-
+    # TODO:figure out how to eager load everything and also convert that into a JSON response 
 
 # R E A D  O N E  B O A R D
 @board_routes.route('/<int:id>', methods=['GET'])
