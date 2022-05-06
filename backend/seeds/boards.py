@@ -24,9 +24,9 @@ def seed_boards():
     comment1 = Comment(user_id=1, card_id=1, body='commit often!')
     comment2 = Comment(user_id=2, card_id=1, body='this is my comment :)')
     comment3 = Comment(user_id=3, card_id=1, body='body - meg the stallion')
-    comment4 = Comment(user_id=1, card_id=1, body='body for a comment')
-    comment5 = Comment(user_id=2, card_id=1, body='lorem ipsum')
-    comment6 = Comment(user_id=3, card_id=1, body="""According to all known laws of aviation, there is no way a bee should be able to fly.
+    comment4 = Comment(user_id=1, card_id=2, body='body for a comment')
+    comment5 = Comment(user_id=2, card_id=2, body='lorem ipsum')
+    comment6 = Comment(user_id=3, card_id=2, body="""According to all known laws of aviation, there is no way a bee should be able to fly.
 Its wings are too small to get its fat little body off the ground.
 The bee, of course, flies anyway because bees don't care what humans think is impossible.
 Yellow, black. Yellow, black. Yellow, black. Yellow, black.
