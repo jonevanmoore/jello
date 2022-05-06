@@ -92,9 +92,10 @@ const ListsPage = () => {
 
     return (
         <div className='lists__in__boards'
-            style={{
-                backgroundColor: avatars[board.avatar_id].color
-            }}>
+        // style={{
+        //     backgroundColor: avatars[board.avatar_id].color
+        // }}
+        >
             <DragDropContext onDragEnd={handleOnDragEnd}>
                 <Droppable droppableId='list__size' direction='horizontal'>
                     {(provided) => (

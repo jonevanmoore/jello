@@ -83,8 +83,10 @@ const DashBoard = () => {
                     // backgroundPosition: '95% 90%',
                     // backgroundSize: "350px",
                 }}>
-                    <div className='bg__avatar__image jello__wiggle__big'>
-                        <img className='bg__avatar__image' src={randomAvatar} />
+                    <div className='bg__avatar__image'>
+                        <img className='bg__avatar__image'
+                            src={randomAvatar}
+                        />
                     </div>
                     <div className='boards__name'>
                         <div className='avatar__boards__big'>

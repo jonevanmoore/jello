@@ -22,6 +22,14 @@ const CardPage = () => {
     return (
         <div className='TEMP__POSITION'>
             <div className='card__container__in_card'>
+                <div className='close__in_card'>
+                    <button
+                        className="close"
+                    // onClick={() => removeList(list)}
+                    >
+                        <div className="close__text">&#215;</div>
+                    </button>
+                </div>
                 <div className='card__title__container__in_card'>
                     <div className='card__title__in_card'>
                         Card Title
