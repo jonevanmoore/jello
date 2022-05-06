@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink, useHistory } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { UserIcon } from '../UserIcon';
 import { avatars } from "../../context/Avatar";
 
