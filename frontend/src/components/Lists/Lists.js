@@ -33,10 +33,7 @@ const ListsPage = () => {
         setCreateListDisplay('not-displayed')
     }
 
-    const removeList = async (list) => {
-        await dispatch(deleteList(list));
-        // TODO: fix this
-    };
+
 
     const handleOnDragEnd = async (result) => {
         if (!result.destination) return;
@@ -73,23 +70,7 @@ const ListsPage = () => {
         }
     };
 
-    const titleAndInputDisplay = () => {
-        if (titleDisplay === 'displayed') {
-            setTitleDisplay('not-displayed')
-            setTitleInputDisplay('displayed')
-        } else {
-            setTitleDisplay('displayed')
-            setTitleInputDisplay('not-displayed')
-        }
 
-        if (titleInputDisplay === 'not-displayed') {
-            setTitleInputDisplay('displayed')
-            setTitleDisplay('not-displayed')
-        } else {
-            setTitleInputDisplay('not-displayed')
-            setTitleDisplay('displayed')
-        }
-    }
 
     return (
         <div className='lists__in__boards'
@@ -102,56 +83,36 @@ const ListsPage = () => {
                         <div className='list__size' {...provided.droppableProps} ref={provided.innerRef}>
                             {lists.map((list, index) =>
                                 <Draggable draggableId={String(list.id)} key={list.id} index={index}>
-                                    {(provided) => (
-                                        <div className='list__container' {...provided.draggableProps} ref={provided.innerRef} {...provided.dragHandleProps}>
-                                            <div className='list__title__close'>
-
-                                                <div className='title-and-input-display'>
-                                                    <label className={`list__title ${titleDisplay}`}>
-                                                        {list.title}
-                                                    </label>
-                                                    <div className={`edit-title-div ${titleInputDisplay}`}>
-                                                        <SingleList
-                                                            list={list}
-                                                            titleAndInputDisplay={titleAndInputDisplay}
-                                                            setTitleDisplay={setTitleDisplay}
-                                                            setTitleInputDisplay={setTitleInputDisplay}
-                                                        />
-                                                    </div>
+                                    {(provided) => {
+                                        return (
+                                            <div className='list__container' {...provided.draggableProps} ref={provided.innerRef} {...provided.dragHandleProps}>
+                                                <SingleList list={list} />
+                                                <div>
+                                                    {list.cards.map((card, index) =>
+                                                        <div className='card__container' key={index}>
+                                                            <div className='card__content'>{card.content}</div>
+                                                            <div className='card__description'>{card.description}</div>
+                                                            <div className='card__due__date'>{card.due_date}</div>
+                                                            {/* <div>{card.created_at}</div> */}
+                                                        </div>
+                                                    )}
                                                 </div>
-                                                <i className={`fa-solid fa-pen-to-square ${titleDisplay}`} onClick={titleAndInputDisplay}></i>
-                                                <button
-                                                    className="close"
-                                                    onClick={() => removeList(list)}
-                                                >
-                                                    <div className={`close__text ${titleDisplay}`}>&#215;</div>
-                                                </button>
-                                            </div>
-                                            <div>
-                                                {list.cards.map((card, index) =>
-                                                    <div className='card__container' key={index}>
-                                                        <div className='card__content'>{card.content}</div>
-                                                        <div className='card__description'>{card.description}</div>
-                                                        <div className='card__due__date'>{card.due_date}</div>
-                                                        {/* <div>{card.created_at}</div> */}
-                                                    </div>
-                                                )}
-                                            </div>
 
-                                            <div className='create__list__button'>
-                                                <button
-                                                    id='cards__buttons'
-                                                    className='
+                                                <div className='create__list__button'>
+                                                    <button
+                                                        id='cards__buttons'
+                                                        className='
                                         light__blue__button
                                         jello__wiggle
                                         button__shine__short
                                         '>
-                                                    Create a Card
-                                                </button>
+                                                        Create a Card
+                                                    </button>
 
+                                                </div>
                                             </div>
-                                        </div>
-                                    )}
+                                        )
+                                    }}
                                 </Draggable>
                             )}
                             {provided.placeholder}
