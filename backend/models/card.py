@@ -30,4 +30,11 @@ class Card(db.Model):
                 'created_at': self.created_at,
                 'updated_at': self.updated_at,
                 'list': self.list.to_short_dict()
+                'comments': [ comment.to_dict() for comment in self.comments ]
+                }
+
+    def to_short_dict(self):
+        return {
+                'id': self.id,
+                'list_id': self.list_id
                 }
