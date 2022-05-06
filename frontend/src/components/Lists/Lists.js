@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { SingleList } from './SingleList';
 
 import { avatars } from '../../context/Avatar';
 
@@ -106,23 +107,24 @@ const ListsPage = () => {
                                             <div className='list__title__close'>
 
                                                 <div className='title-and-input-display'>
-                                                    <label className='list__title'>
+                                                    <label className={`list__title ${titleDisplay}`}>
                                                         {list.title}
                                                     </label>
-                                                    <div className='edit-title-div'>
-                                                        <input
-                                                            type="text"
-                                                            value={list.title}
-                                                            onChange={(e) => setTitle(e.target.value)}
-                                                        ></input>
+                                                    <div className={`edit-title-div ${titleInputDisplay}`}>
+                                                        <SingleList
+                                                            list={list}
+                                                            titleAndInputDisplay={titleAndInputDisplay}
+                                                            setTitleDisplay={setTitleDisplay}
+                                                            setTitleInputDisplay={setTitleInputDisplay}
+                                                        />
                                                     </div>
                                                 </div>
-                                                <i className="fa-solid fa-pen-to-square"></i>
+                                                <i className={`fa-solid fa-pen-to-square ${titleDisplay}`} onClick={titleAndInputDisplay}></i>
                                                 <button
                                                     className="close"
                                                     onClick={() => removeList(list)}
                                                 >
-                                                    <div className="close__text">&#215;</div>
+                                                    <div className={`close__text ${titleDisplay}`}>&#215;</div>
                                                 </button>
                                             </div>
                                             <div>

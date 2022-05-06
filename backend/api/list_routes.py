@@ -14,17 +14,17 @@ def update_list(id):
     if list.user_id != current_user.id:
         return {'errors': "Unauthorized edit"}, 401
 
-    list.title = request.json('title')
-    list.order = request.json('order')
+    list.title = request.json['title']
+    list.order = request.json['order']
 
     db.session.commit()
     return list.to_dict()
 
 # TODO: How to manage shared board permissions?
 # maybe a function which checks:
-# does users_boards have a record of 
+# does users_boards have a record of
 # user_id == current_user.is
-# and 
+# and
 # board_id == card.list.board.id ?
 
 # D E L E T E  L I S T
