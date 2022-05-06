@@ -9,7 +9,7 @@
     height: 30px;
     background-color: #777d7f;
     align-items: center;
-    position: fixed;
+    /* position: fixed; */
     top: 54px;
     left: 190px;
     right: 0px;
@@ -17,7 +17,7 @@
 }
 
 .one__board__vertical__navbar {
-    position: fixed;
+    /* position: fixed; */
     top: 54px;
     z-index: 1;
 }
@@ -58,7 +58,9 @@
 }
 
 .lists-page-position {
-    position: relative;
+    /* position: relative;
     top: 84px;
-    left: 190px;
+    left: 190px; */
+    height: 100%;
+    overflow-x: scroll;
 }

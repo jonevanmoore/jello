@@ -1,12 +1,15 @@
 .modal-background {
-    top: 400px;
+    top: 0px;
     bottom: 0px;
     left: 0px;
     right: 0px;
     position: absolute;
-    z-index: 8;
+    z-index: 10;
 
-    backdrop-filter: blur(5px);
+    /* WHEN THE TOO MANY CARD MODALS AT ONCE ISSUE */
+    /* IS FIXED, UNCOMMENT THIS */
+    /* OTHERWISE, JON'S LAPTOP WILL EXPLODE */
+    /* backdrop-filter: blur(5px); */
 
     display: flex;
     flex-direction: column;

@@ -1,7 +1,7 @@
 .lists__in__boards {
     display: flex;
     padding: 2px;
-    /* height: 80%; */
+    height: 95%;
     /* max-height: 80%; */
 }
 
@@ -18,7 +18,7 @@
 .list__size {
     display: flex;
     align-items: flex-start;
-    height: 80%;
+    height: 100%;
     /* max-height: 100%; */
 }
 
