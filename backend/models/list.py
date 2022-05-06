@@ -12,7 +12,8 @@ class List(db.Model):
     created_at  = db.Column(db.DateTime(timezone = True), server_default = func.now())
     updated_at  = db.Column(db.DateTime(timezone = True), onupdate = func.now())
 
-    cards       = db.relationship('Card', back_populates='list')
+#   this is handled inside the card model using backref 
+#    cards       = db.relationship('Card', cascade="all, delete")
 
     def to_dict(self):
         return {
