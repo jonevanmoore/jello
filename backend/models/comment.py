@@ -12,3 +12,14 @@ class Comment(db.Model):
     updated_at  = db.Column(db.DateTime(timezone = True), onupdate = func.now())
 
     card        = db.relationship('Card', back_populates='comments')
+
+    def to_dict(self):
+        return {
+                'id': self.id,
+                'user_id': self.user_id,
+                'card_id': self.list_id,
+                'body': self.content,
+                'created_at': self.created_at,
+                'updated_at': self.updated_at,
+                'card': self.card.to_short_dict()
+                }
