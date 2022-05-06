@@ -5,32 +5,52 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import { avatars } from '../../context/Avatar';
 
-import { readOneBoard, createList, updateListOrder, updateList, deleteList } from '../../store/boards';
+import {
+    readOneBoard,
+    createList,
+    updateListOrder,
+    updateList,
+    deleteList,
+    createCard,
+} from '../../store/boards';
 
 import './Lists.css';
 import './Cards-in-Lists.css';
 
 const ListsPage = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const { board_id } = useParams();
     const board = useSelector(state => state.boards[board_id]);
     const user_id = useSelector(state => state.session.user.id);
 
-    const [addListBtnDisplay, setAddListBtnDisplay] = useState('displayed')
+    const [addListBtnDisplay, setAddListBtnDisplay] = useState('displayed');
     const [createListDisplay, setCreateListDisplay] = useState('not-displayed');
+    const [addCardBtnDisplay, setAddCardBtnDisplay] = useState('displayed-card');
+    const [createCardDisplay, setCreateCardDisplay] = useState('not-displayed-card');
+
     const [title, setTitle] = useState('');
-    const [titleDisplay, setTitleDisplay] = useState('displayed')
-    const [titleInputDisplay, setTitleInputDisplay] = useState('not-displayed')
+    const [titleDisplay, setTitleDisplay] = useState('displayed');
+    const [titleInputDisplay, setTitleInputDisplay] = useState('not-displayed');
+
+    const [content, setContent] = useState('');
+    const [description, setDescription] = useState('');
+    const [orderCard, setOrderCard] = useState('');
+    const [dueDate, setDueDate] = useState('');
 
     let lists = board.lists.sort((a, b) => a.order - b.order);
 
     const addNewList = async () => {
-        const newList = { title, user_id, board_id, order: board.lists.length + 1 }
-        await dispatch(createList(newList))
+        const newList = { title, user_id, board_id, order: board.lists.length + 1 };
+        await dispatch(createList(newList));
         setTitle('');
         setAddListBtnDisplay('displayed');
-        setCreateListDisplay('not-displayed')
-    }
+        setCreateListDisplay('not-displayed');
+    };
+
+    const addNewCard = async () => {
+        const newCard = { content, user_id, list_id: board.lists.id, order: orderCard, description, due_date: dueDate };
+        await dispatch(createCard(newCard));
+    };
 
     const removeList = async (list) => {
         await dispatch(deleteList(list));
@@ -50,7 +70,7 @@ const ListsPage = () => {
         await dispatch(updateListOrder(board_id, listOrder));
     };
 
-    const createDisplay = () => {
+    const createNewListDisplay = () => {
         if (addListBtnDisplay === 'displayed') {
             setAddListBtnDisplay('not-displayed');
             setCreateListDisplay('displayed');
@@ -69,6 +89,36 @@ const ListsPage = () => {
             setCreateListDisplay('not-displayed');
             setAddListBtnDisplay('displayed');
             setTitle('');
+        }
+    };
+
+    const createNewCardDisplay = () => {
+        if (addCardBtnDisplay === 'displayed') {
+            setAddCardBtnDisplay('not-displayed');
+            setCreateCardDisplay('displayed');
+            setContent('');
+            setDescription('');
+            setDueDate('');
+        } else {
+            setAddCardBtnDisplay('displayed');
+            setCreateCardDisplay('not-displayed');
+            setContent('');
+            setDescription('');
+            setDueDate('');
+        }
+
+        if (createCardDisplay === 'not-displayed') {
+            setCreateCardDisplay('displayed');
+            setAddCardBtnDisplay('not-displayed');
+            setContent('');
+            setDescription('');
+            setDueDate('');
+        } else {
+            setCreateCardDisplay('not-displayed');
+            setAddCardBtnDisplay('displayed');
+            setContent('');
+            setDescription('');
+            setDueDate('');
         }
     };
 
@@ -91,11 +141,7 @@ const ListsPage = () => {
     }
 
     return (
-        <div className='lists__in__boards'
-        // style={{
-        //     backgroundColor: avatars[board.avatar_id].color
-        // }}
-        >
+        <div className='lists__in__boards'>
             <DragDropContext onDragEnd={handleOnDragEnd}>
                 <Droppable droppableId='list__size' direction='horizontal'>
                     {(provided) => (
@@ -140,12 +186,13 @@ const ListsPage = () => {
                                             <div className='create__list__button'>
                                                 <button
                                                     id='cards__buttons'
+                                                    onClick={createNewCardDisplay}
                                                     className='
-                                        light__blue__button
-                                        jello__wiggle
-                                        button__shine__short
-                                        '>
-                                                    Create a Card
+                                                        light__blue__button
+                                                        jello__wiggle
+                                                        button__shine__short
+                                                    '>
+                                                    {list.cards.length > 0 ? 'Add Another Card' : 'Create a Card'}
                                                 </button>
 
                                             </div>
@@ -182,15 +229,15 @@ const ListsPage = () => {
                                 '
                             >Create List</button>
                             <button
-                                onClick={createDisplay}
-                                className={`close `}>
+                                onClick={createNewListDisplay}
+                                className={`close`}>
                                 <div className="close__text">&#215;</div>
                             </button>
                         </div>
                     </div>
                     <div className={`create__list__button ${addListBtnDisplay} grow-down`}>
                         <button
-                            onClick={createDisplay}
+                            onClick={createNewListDisplay}
                             id='lists__buttons'
                             className={`
                             light__green__blue__button
