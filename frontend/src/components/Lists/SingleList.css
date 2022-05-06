@@ -1,0 +1,82 @@
+.list-title-div {
+    display: flex;
+}
+
+.list__title {
+    animation: growDown .3s;
+    transform-origin: bottom;
+}
+
+.fa-pen-to-square {
+    position: relative;
+    left: 10px;
+    transition: .2s;
+    color: #12426D;
+    animation: growDown .3s;
+    transform-origin: bottom;
+}
+
+.title-input {
+    height: 20px;
+}
+
+.check-div {
+    position: absolute;
+}
+
+.check-div>* {
+    position: relative;
+    bottom: 22px;
+    left: 128px;
+}
+
+.fa-pen-to-square:hover {
+    color: #30AAE1;
+}
+
+.fa-pen-to-square:active {
+    color: #195f9c;
+}
+
+.update-title-btns>* {
+    margin-top: 5px;
+}
+
+.light__blue__button {
+    border-radius: 3px;
+    font-family: 'Roboto Condensed';
+    font-weight: 600;
+}
+
+.cancel-title-btn {
+    color: var(--red-button-main-color);
+    background-color: white;
+    border: 1px solid var(--red-button-main-color);
+    font-family: 'Roboto Condensed';
+    font-weight: 700;
+    transition: .3s;
+    border-radius: 3px;
+    margin-left: 8px;
+}
+
+.cancel-title-btn:hover {
+    color: white;
+    background-color: var(--red-button-main-color);
+    border-color: white;
+}
+
+.delete-list {
+    padding: 0px;
+    border: none;
+    background-color: transparent;
+    animation: growDown .3s;
+    transform-origin: bottom;
+}
+
+.disabled-blue {
+    opacity: 50%;
+}
+
+.disabled-blue:hover {
+    animation: none;
+}
