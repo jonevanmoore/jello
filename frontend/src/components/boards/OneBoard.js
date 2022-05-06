@@ -111,7 +111,7 @@ const OneBoard = () => {
                             </div>
                             <div className='board-nav-left-divider' />
                             <div className='shared__with'>
-                                <UserIcon isNavIcon={true} />
+                                <UserIcon size={20} isNavIcon={true} />
                             </div>
                             <div className='board-nav-left-divider' />
                         </div>
@@ -147,7 +147,8 @@ const OneBoard = () => {
                         className='lists__page__bg__color lists-page-position'
                         style={{
                             backgroundColor: avatars[board.avatar_id].color
-                        }}>
+                        }}
+                    >
                         <ListsPage />
                     </div>
                     <div className='bg__avatar__image jello__wiggle__big'>

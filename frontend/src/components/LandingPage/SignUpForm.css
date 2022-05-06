@@ -1,21 +1,8 @@
 .signup-body {
-    background-color: white;
-    border-radius: 5px;
+    background-color: var(--white-color);
+    border-radius: var(--main-border-radius);
     width: 400px;
-    box-shadow: 0px 0px 20px 0px;
-}
-
-.login-click {
-    color: rgb(0, 145, 255);
-    background-color: transparent;
-    border: none;
-    font-weight: bolder;
-    cursor: default;
-    transition: .2s;
-}
-
-.login-click:hover {
-    color: rgb(0, 170, 176);
+    box-shadow: var(--main-box-shadow);
 }
 
 .signup-form {
@@ -25,12 +12,26 @@
     padding-bottom: 10px;
 }
 
+.signup-click {
+    color: rgb(0, 145, 255);
+    background-color: transparent;
+    border: none;
+    font-weight: bolder;
+    cursor: default;
+    transition: .2s;
+}
+
+.signup-click:hover {
+    cursor: pointer;
+    color: rgb(0, 170, 176);
+}
+
 .signup-input {
     height: 35px;
     width: 352px;
     margin: 10px 0 10px 0;
-    border: 1px solid rgb(167, 167, 167);
-    border-radius: 3px;
+    border: 1px solid var(--nav-bar-left-divider-color);
+    border-radius: var(--main-border-radius);
     box-sizing: border-box;
 }
 
@@ -45,22 +46,6 @@
     justify-content: space-between;
 }
 
-/* ERROR HANDLES */
-#invalid {
-    color: lightgray;
-    transition: .3s;
-}
-
-#valid {
-    color: #6CAC45;
-    transition: .3s;
-}
-
-#disabled {
-    color: #2b6f0064;
-    background-color: #6dac455b;
-    border-color: rgba(6, 132, 6, 0.254);
-}
 
 #disabled:hover {
     animation: none;
@@ -107,6 +92,22 @@
 
 /* ERROR HANDLES */
 
+#invalid {
+    color: lightgray;
+    transition: .3s;
+}
+
+#valid {
+    color: #6CAC45;
+    transition: .3s;
+}
+
+#disabled {
+    color: #2b6f0064;
+    background-color: #6dac455b;
+    border-color: rgba(6, 132, 6, 0.254);
+}
+
 .radio-div {
     border: 1px solid gray;
     border-radius: 5px;
@@ -119,7 +120,6 @@
         '7 8 9 10 11 12';
 
 }
-
 
 #radio-jello-div {
     display: flex;

@@ -1,0 +1,123 @@
+.TEMP__POSITION {
+    position: relative;
+    top: 84px;
+    left: 190px;
+}
+
+.card__container__in_card {
+    background: var(--white-color);
+    border-radius: var(--main-border-radius);
+    width: 620px;
+    height: 720px;
+    overflow: hidden;
+}
+
+.card__title__container__in_card {
+    margin-bottom: 20px;
+}
+
+
+.card__title__in_card {
+    font-size: 24px;
+    letter-spacing: 0.5px;
+    color: var(--dark-blue-main-text);
+    margin: 20px 60px 0;
+}
+
+.card__subtitle__in_list {
+    margin: 0px 60px;
+    font-weight: 500;
+}
+
+.list__title__in_list {
+    font-weight: 700;
+}
+
+.due__date__container {
+    margin: 20px 60px 0;
+}
+
+.due__date__title {
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+
+.due__date {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 200px;
+    height: 30px;
+    border-radius: var(--main-border-radius);
+    color: var(--white-color);
+    background: var(--light-gray-bg-color);
+}
+
+.month__day__year {
+    color: var(--dark-blue-main-text);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.drop__down__mark {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #379913;
+    width: 50px;
+    height: 15px;
+    border-radius: 3px;
+    color: var(--white-color);
+    font-size: 10px;
+}
+
+.description__container {
+    margin-top: 30px;
+    font-size: 18px;
+}
+
+.textarea__input__description {
+    margin-top: 20px;
+    width: 520px;
+    border-radius: var(--main-border-radius);
+    resize: vertical;
+}
+
+.comments__container {
+    margin-top: 30px;
+    font-size: 18px;
+}
+
+.next__comment {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: absolute;
+    margin-top: 20px;
+    left: 10px;
+}
+
+.textarea__input__comments {
+    width: 520px;
+    border-radius: var(--main-border-radius);
+    resize: vertical;
+    margin-left: 5px;
+}
+
+.form__avatar__image {
+    overflow: hidden;
+    position: relative;
+    left: -50px;
+    overflow: hidden;
+    bottom: -220px;
+}
+
+.form__avatar__image>img {
+    width: 250px;
+    height: auto
+}
+
+.jello__image__card {
+    overflow: hidden;
+}
