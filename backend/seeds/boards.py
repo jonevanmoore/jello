@@ -1,9 +1,14 @@
-from backend.models import db, Board, List, Card, Comment
+from backend.models import db, Board, List, Card, Comment, User
 
 # Adds a demo user, you can add other users here if you want
 def seed_boards():
+    
+    user1 = User.query.get(2);
+    user2 = User.query.get(3);
+    user3 = User.query.get(4);
+
     board_01 = Board(
-        user_id=1, title='This is a Title', avatar_id=1)
+        user_id=1, title='This is a Title', avatar_id=1, shared_users=[user1, user2, user3])
     board_02 = Board(
         user_id=1, title='This is a Second Title', avatar_id=3)
     board_03 = Board(

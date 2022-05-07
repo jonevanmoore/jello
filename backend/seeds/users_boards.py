@@ -8,7 +8,7 @@ def seed_users_boards():
     fifth_user = User(
         first_name='Caroline', last_name='Gonzalez', avatar_id=1, email='caroline@aa.io', password='password')
     board_04 = Board(
-        user_id=4, title='This is a Title', avatar_id=1, users=[fifth_user])
+        user_id=4, title='This is a Title', avatar_id=1, shared_users=[fifth_user])
 
     db.session.add_all([fourth_user, fifth_user, board_04])
     db.session.commit()
