@@ -35,7 +35,9 @@ const CardPage = ({ list, card, closeModalFunc }) => {
 
     const removeCard = async (card) => {
         await dispatch(deleteCard(card));
-        // TODO: fix this
+        closeModalFunc(); 
+      // TODO: fix this — update: I don't know if this was fixed or not
+      // I should have been much more descriptive
     };
 
     const titleAndInputDisplay = () => {

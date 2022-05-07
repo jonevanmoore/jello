@@ -15,6 +15,36 @@ import CardPage from '../Cards/Card';
 import './Lists.css';
 import './Cards-in-Lists.css';
 
+
+// This is the cards within the lists
+const ListCard = ({ card, list }) => {
+    const [showModal, setShowModal] = useState(false);
+ 
+    const closeModalFunc = () => setShowModal(false);
+    const showModalFunc  = () => setShowModal(true);
+  
+    return (
+      <div className='card__container' >
+        <div
+            className='card__content'
+            onClick={showModalFunc}
+        >
+            {card.content}
+        </div>
+        {showModal && (
+            <Modal closeModalFunc={closeModalFunc}>
+                <CardPage list={list} card={card} closeModalFunc={closeModalFunc} />
+            </Modal>
+        )}
+
+        {/* <div className='card__description'>{card.description}</div> */}
+        <div className='card__due__date'>{card.due_date}</div>
+        {/* <div>{card.created_at}</div> */}
+      </div>
+    )
+}
+
+
 const ListsPage = () => {
     const dispatch = useDispatch();
     const { board_id } = useParams();
@@ -28,11 +58,6 @@ const ListsPage = () => {
     const [titleDisplay, setTitleDisplay] = useState('displayed');
     const [titleInputDisplay, setTitleInputDisplay] = useState('not-displayed');
 
-    const [showModal, setShowModal] = useState(false);
-
-    const closeModalFunc = () => setShowModal(false);
-    const showModalFunc = () => setShowModal(true);
-
     let lists = board.lists.sort((a, b) => a.order - b.order);
 
     const addNewList = async () => {
@@ -44,8 +69,6 @@ const ListsPage = () => {
         setAddListBtnDisplay('displayed');
         setCreateListDisplay('not-displayed');
     };
-
-
 
     const handleOnDragEnd = async (result) => {
         if (!result.destination) return;
@@ -99,23 +122,7 @@ const ListsPage = () => {
                                                 <SingleList list={list} />
                                                 <div>
                                                     {list.cards.map((card, index) =>
-                                                        <div className='card__container' key={index}>
-                                                            <div
-                                                                className='card__content'
-                                                                onClick={showModalFunc}
-                                                            >
-                                                                {card.content}
-                                                            </div>
-                                                            {showModal && (
-                                                                <Modal closeModalFunc={closeModalFunc}>
-                                                                    <CardPage list={list} card={card} closeModalFunc={closeModalFunc} />
-                                                                </Modal>
-                                                            )}
-
-                                                            {/* <div className='card__description'>{card.description}</div> */}
-                                                            <div className='card__due__date'>{card.due_date}</div>
-                                                            {/* <div>{card.created_at}</div> */}
-                                                        </div>
+                                                        <ListCard card={card} list={list} key={index} />
                                                     )}
                                                 </div>
 

@@ -6,10 +6,8 @@
     position: absolute;
     z-index: 10;
 
-    /* WHEN THE TOO MANY CARD MODALS AT ONCE ISSUE */
-    /* IS FIXED, UNCOMMENT THIS */
-    /* OTHERWISE, JON'S LAPTOP WILL EXPLODE */
-    /* backdrop-filter: blur(5px); */
+    /* GOOD LUCK, JON */
+    backdrop-filter: blur(5px);
 
     display: flex;
     flex-direction: column;
