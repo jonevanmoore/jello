@@ -94,7 +94,7 @@ const ListsPage = () => {
             
             if (!result.destination) return;
 
-            if (true) {
+            if (result.source.droppableId === result.destination.droppableId) {
                 let list = board.lists.find(list => list.id === +result.source.droppableId.slice(5));
                 let cardsCopy = Array.from(list.cards);
                 
@@ -102,24 +102,21 @@ const ListsPage = () => {
                 cardsCopy.splice(result.destination.index, 0, reorderedItem);
     
                 let cardOrder = {};
-                cardsCopy.forEach((card, index) => cardOrder[card.id] = index);
+                cardsCopy.forEach((card, index) => cardOrder[card.id] = [index, list.id]);
                 list.cards = cardsCopy;
                 await dispatch(updateCardOrder(board_id, cardOrder));
             } else {
-                let list = lists[result.source.index]
-                let destList = lists[result.destination.index];
+                let list = board.lists.find(list => list.id === +result.source.droppableId.slice(5));
+                let destList = board.lists.find(list => list.id === +result.destination.droppableId.slice(5));
                 let cardsCopy = Array.from(list.cards);
                 let destCards = Array.from(list.cards);
 
-                console.log(cardsCopy);
-                console.log(destCards);
-                
                 const [reorderedItem] = cardsCopy.splice(result.source.index, 1);
-                destCards.splice(result.destination.cards, 0, reorderedItem);
+                destCards.splice(result.destination.index, 0, reorderedItem);
     
                 let cardOrder = {};
-                cardsCopy.forEach((card, index) => cardOrder[card.id] = index);
-                destCards.forEach((card, index) => cardOrder[card.id] = index);
+                cardsCopy.forEach((card, index) => cardOrder[card.id] = [index, list.id]);
+                destCards.forEach((card, index) => cardOrder[card.id] = [index, destList.id]);
                 list.cards = cardsCopy;
                 destList.cards = destCards;
                 await dispatch(updateCardOrder(board_id, cardOrder));

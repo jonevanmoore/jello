@@ -120,7 +120,8 @@ def update_card_order(id):
     cards = Card.query.filter(Card.id.in_(list(card_order)))
 
     for a_card in cards:
-        a_card.order = card_order[str(a_card.id)]
+        a_card.order = card_order[str(a_card.id)][0]
+        a_card.list_id = card_order[str(a_card.id)][1]
     
     db.session.commit()
     board = Board.query.get(id)
