@@ -198,7 +198,7 @@ export const deleteList = list => async dispatch => {
 
 export const updateCardOrder = (listId, cardOrder) => async dispatch => {
     const response = await fetch(`/api/lists/${listId}/card-order`, {
-        method: 'PUT',
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ cardOrder })
     });
