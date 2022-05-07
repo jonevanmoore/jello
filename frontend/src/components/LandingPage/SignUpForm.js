@@ -56,7 +56,7 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
     }
 
     //PASS
-    if (password.length > 7 && password.length < 256) {
+    if (password.length > 2 && password.length < 256) {
       setPassError('valid')
     } else {
       setPassError('invalid')
@@ -74,7 +74,7 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
       lastName.length > 0 && lastName.length < 101 &&
       avatarId > 0 &&
       email.length > 4 && email.length < 256 &&
-      password.length > 7 && password.length < 256 &&
+      password.length > 2 && password.length < 256 &&
       repeatPassword === password && repeatPassword.length > 0) {
       setSubmitError('able')
     } else {
