@@ -123,7 +123,7 @@ export const updateListOrder = (boardId, listOrder) => async dispatch => {
     } else {
         console.log(data.errors);
     }
-}
+};
 
 // LIST CONSTANTS
 const CREATE_LIST = 'boards/CREATE_LIST';
@@ -196,7 +196,22 @@ export const deleteList = list => async dispatch => {
     }
 };
 
+export const updateCardOrder = (listId, cardOrder) => async dispatch => {
+    const response = await fetch(`/api/lists/${listId}/card-order`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cardOrder })
+    });
 
+    const data = await response.json();
+
+    if (response.ok) {
+        await dispatch(updateListAction(data));
+        return data;
+    } else {
+        console.log(data.errors);
+    }
+};
 
 // CARD CONSTANTS
 const CREATE_CARD = 'boards/CREATE_CARD';
