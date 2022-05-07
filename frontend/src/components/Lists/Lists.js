@@ -110,7 +110,7 @@ const ListsPage = () => {
     return (
         <div className='lists__in__boards'>
             <DragDropContext onDragEnd={handleOnDragEnd}>
-                <Droppable droppableId='list__size' direction='horizontal'>
+                <Droppable droppableId='list__size' direction='horizontal' type='list'>
                     {(provided) => (
                         <div className='list__size' {...provided.droppableProps} ref={provided.innerRef}>
                             {lists.map((list, index) =>
@@ -120,11 +120,21 @@ const ListsPage = () => {
                                         return (
                                             <div className='list__container' {...provided.draggableProps} ref={provided.innerRef} {...provided.dragHandleProps}>
                                                 <SingleList list={list} />
-                                                <div>
-                                                    {list.cards.map((card, index) =>
-                                                        <ListCard card={card} list={list} key={index} />
+                                                <Droppable droppableId='card-mapping' direction='horizontal' type='card'>
+                                                    {(provided) => (
+                                                        <div {...provided.droppableProps} ref={provided.innerRef}>
+                                                            {list.cards.map((card, index) =>
+                                                                <Draggable draggableId={String(card.id)} key={card.id} index={index}>
+                                                                    {(provided) => {
+                                                                        return (
+                                                                            <ListCard card={card} list={list} key={index} {...provided.droppableProps} ref={provided.innerRef} />
+                                                                        )
+                                                                    }}
+                                                                </Draggable>
+                                                            )}
+                                                        </div>
                                                     )}
-                                                </div>
+                                                </Droppable>
 
                                                 <AddNewCard list={list} />
                                             </div>
