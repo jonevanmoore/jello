@@ -112,8 +112,8 @@ const OneBoard = () => {
                             <div className='board-nav-left-divider' />
                             <div className='shared__with'>
                               <UserIcon size={20} givenUser={board.user} />
-                              { board?.shared_users.map(user =>(
-                                <UserIcon size={20} givenUser={user} isNavIcon={true} />
+                              { board?.shared_users.map((user, i) =>(
+                                <UserIcon size={20} givenUser={user} isNavIcon={true} key={i} />
                               ))}
                             </div>
                             { board?.shared_users.length > 0 && <div className='board-nav-left-divider' />}
