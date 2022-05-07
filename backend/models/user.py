@@ -18,9 +18,9 @@ class User(db.Model, UserMixin):
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
 
 
-    boards = db.relationship('Board', back_populates='users')
+    boards = db.relationship('Board', back_populates='user')
 
-    shared_boards = db.relationship('Board', back_populates='users')
+    shared_boards = db.relationship('Board', back_populates='shared_users')
 
 
     @property
