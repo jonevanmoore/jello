@@ -80,7 +80,7 @@ const Comments = ({ card }) => {
                         <div className='comment__delete__container'>
                             <div className='comments__image__users' key={index}>
                                 {/* {comment.user_id === user.id ? `${{}}` : ''} */}
-                                <UserIcon size={30} isNavIcon={true} />
+                                <UserIcon givenUser={comment.user} size={30} isNavIcon={true} />
                                 {/* <img className='' src={avatars[card.avatar_id].imageUrl} /> */}
                             </div>
                             <div className='comments__font__size'>
