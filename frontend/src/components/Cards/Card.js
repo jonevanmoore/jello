@@ -144,40 +144,51 @@ const CardPage = ({ list, card, closeModalFunc }) => {
                         </div>
                     </div>
                 </div>
-
                 <div className='due__date__container'>
-
                     <div className='description__container'>
                         <div className='description__title'>
                             Description
                         </div>
-                        <p className='description__paragraph'>
-                            {card.description}
-                        </p>
-                        <textarea
-                            className='textarea__input__description'
-                            type="text"
-                            value={newDescription}
-                            onChange={(e) => setNewDescription(e.target.value)}
-                            placeholder='Add a more detailed description...'
-                        />
-                        <div className='add__cancel__desc'>
+                        <div className={`${descriptionDisplay}`}>
+                            <p className='description__paragraph'>
+                                {card.description}
+                            </p>
                             <button
-                                onClick={updateOneCard}
+                                onClick={descriptionAndInputDisplay}
                                 id='desc__buttons'
                                 className={`
                                 light__green__blue__button
                                 jello__wiggle
                                 button__shine__short
                                 `}>
-                                Add Description
+                                Edit Description
                             </button>
-                            {/* <button
-                                type='submit'
-                                className="close__desc"
-                            >
-                                <div className="close__text">&#215;</div>
-                            </button> */}
+                        </div>
+                        <div className={`${descriptionInputDisplay}`}>
+                            <textarea
+                                className='textarea__input__description'
+                                type="text"
+                                value={newDescription}
+                                onChange={(e) => setNewDescription(e.target.value)}
+                                placeholder='Add a more detailed description...'
+                            />
+                            <div className='add__cancel__desc'>
+                                <button
+                                    onClick={updateOneCard}
+                                    id='desc__buttons'
+                                    className={`
+                                        light__green__blue__button
+                                        jello__wiggle
+                                        button__shine__short
+                                        `}>
+                                    Add Description
+                                </button>
+                                <button className="add__tag__comment"
+                                    onClick={descriptionAndInputDisplay}
+                                >
+                                    <div className="close__text bg-white">&#215;</div>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div className='comments__in__list__container'>
@@ -187,18 +198,18 @@ const CardPage = ({ list, card, closeModalFunc }) => {
                         <img className="jello__image__card" src={randomAvatar} />
                     </div> */}
                 </div>
-                <div className='del__card__btn__container'>
-                    <button
-                        id='del__card__btn'
-                        className='
+            </div>
+            <div className='del__card__btn__container'>
+                <button
+                    id='del__card__btn'
+                    className='
                             jello__wiggle
                             logout__button
                             red__button
                             button__shine__short__red
                             '
-                        onClick={() => removeCard(card)}
-                    >Delete Card</button>
-                </div>
+                    onClick={() => removeCard(card)}
+                >Delete Card</button>
             </div>
         </div>
     )

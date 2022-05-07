@@ -60,15 +60,16 @@ const Comments = ({ card }) => {
                     onClick={addComment}
                     id='comments__buttons'
                     className={`
-                                light__green__blue__button
-                                jello__wiggle
-                                button__shine__short
-                                `}>
-                    Add Comment</button>
-                {/* } */}
-                <button className="add__tag__comment">
-                    <div className="close__text">&#215;</div>
+                        light__green__blue__button
+                        jello__wiggle
+                        button__shine__short
+                        `}>
+                    Add Comment
                 </button>
+                {/* } */}
+                {/* <button className="add__tag__comment">
+                    <div className="close__text bg-white">&#215;</div>
+                </button> */}
             </div>
             <div className='display__comments'>
                 {comments.map((comment, index) =>

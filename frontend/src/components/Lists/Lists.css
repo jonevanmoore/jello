@@ -74,6 +74,7 @@
 .close__text {
     font-size: 25px;
     color: #A1A8AA;
+    /* background-color: transparent; */
     transition: transform 1s, color 0.5s;
 }
 

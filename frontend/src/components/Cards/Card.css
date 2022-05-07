@@ -1,15 +1,17 @@
 .card__element {
     /* margin-top: 30px; */
-}
-
-.card__container__in_card {
     border-radius: var(--main-border-radius);
+    background-color: var(--white-color);
     width: 600px;
     height: 800px;
 
-    background-color: var(--white-color);
     box-shadow: var(--main-box-shadow);
     animation: jello_3 1s;
+}
+
+.card__container__in_card {
+    width: 600px;
+    height: 760px;
 }
 
 .card__title__container__in_card {
@@ -139,8 +141,8 @@
 
 .del__card__btn__container {
     float: right;
-    margin-right: 10px;
-    margin-top: 10px;
+    margin-right: 15px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -149,6 +151,7 @@
 .add__cancel__desc {
     display: flex;
     align-items: center;
+
 }
 
 #desc__buttons {
@@ -169,6 +172,16 @@
     width: 15px;
     border: none;
     background-color: white;
+}
+
+.close__tag__description {
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15px;
+    width: 15px;
+    border: none;
 }
 
 .close__desc {

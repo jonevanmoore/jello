@@ -91,7 +91,6 @@
     height: 15px;
     width: 15px;
     border: none;
-    border-radius: 3px;
 }
 
 .add__tag__comment {
@@ -102,7 +101,6 @@
     height: 15px;
     width: 15px;
     border: none;
-    /* background-color: var(--white-button-main-color); */
 }
 
 .bg-white {
