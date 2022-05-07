@@ -15,6 +15,7 @@ const Comments = ({ card }) => {
 
     const sessionUser = useSelector(state => state.session.user);
     const comments = card.comments;
+    comments.sort((a, b) => b.id - a.id);
 
     const addComment = async () => {
         if (body.trim() === '') return;
@@ -30,11 +31,6 @@ const Comments = ({ card }) => {
     const removeComment = async (comment) => {
         await dispatch(deleteComment(comment));
     };
-
-    const cardOwner = card.userId === sessionUser?.id;
-
-    let orderedComments = comments.sort((a, b) => a.order - b.order).reverse();
-    console.log('ORDERED COMMENTS: ', orderedComments);
 
     const stopTheProp = e => e.stopPropagation();
 
@@ -75,7 +71,7 @@ const Comments = ({ card }) => {
                 </button>
             </div>
             <div className='display__comments'>
-                {orderedComments.map((comment, index) =>
+                {comments.map((comment, index) =>
                     <div className='comment__by__user'>
                         <div className='comment__delete__container'>
                             <div className='comments__image__users' key={index}>
@@ -88,14 +84,14 @@ const Comments = ({ card }) => {
                             </div>
                         </div>
                         <div>
-                            {/* {cardOwner && */}
-                            <button
-                                className="close__tag__comment"
-                                onClick={() => removeComment(comment)}
-                            >
-                                <div className="close__text bg-white">&#215;</div>
-                            </button>
-                            {/* } */}
+                            {comment.user_id === sessionUser?.id &&
+                                <button
+                                    className="close__tag__comment"
+                                    onClick={() => removeComment(comment)}
+                                >
+                                    <div className="close__text bg-white">&#215;</div>
+                                </button>
+                            }
                         </div>
                     </div>
                 )}
