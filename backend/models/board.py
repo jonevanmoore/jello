@@ -31,6 +31,7 @@ class Board(db.Model):
             # 'workspace_id': self.workspace_id,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
+            'user': self.user.to_dict(),
             'lists': [ list.to_dict() for list in self.lists ],
             'shared_users': [ user.to_dict() for user in self.shared_users ]
         }
