@@ -13,6 +13,7 @@ export const ShareBoardForm = ({ closeShareModalFunc, boardId }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         await dispatch(shareBoard(email, boardId))
+        closeShareModalFunc()
     }
 
     return (

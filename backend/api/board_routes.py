@@ -81,12 +81,12 @@ def delete_board(id):
 def share_board(id):
     board = Board.query.get(id)
     email = request.json['email']
-    user = User.query.filter(User.email == email)
-
+    user = User.query.filter(User.email == email).first()
+    print(user)
     if user:
-        board.shared_users += user
+        board.shared_users += [user]
     db.session.commit()
-    return board.to_dict()
+    return user.to_dict()
 
 # U P D A T E   L I S T   O R D E R
 @board_routes.route('/<int:id>/list-order', methods = [ 'POST' ])
