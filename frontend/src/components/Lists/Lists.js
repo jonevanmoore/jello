@@ -60,10 +60,12 @@ const ListsPage = () => {
     const [titleDisplay, setTitleDisplay] = useState('displayed');
     const [titleInputDisplay, setTitleInputDisplay] = useState('not-displayed');
 
-    // let lists = board.lists.sort((a, b) => a.order - b.order);
-
-    const lists = board.lists;
-
+    
+    let lists = board.lists;
+    lists.sort((a, b) => a.order - b.order);
+    lists.forEach(list => {
+        list.cards.sort((a, b) => a.order - b.order)
+    });
     const addNewList = async () => {
         if (title.trim() === '') return;
 
@@ -89,12 +91,11 @@ const ListsPage = () => {
             await dispatch(updateListOrder(board_id, listOrder));
 
         } else if (result.type === 'card') {
-            console.log(result);
+            
             if (!result.destination) return;
 
             if (true) {
                 let list = board.lists.find(list => list.id === +result.source.droppableId.slice(5));
-                console.log(result.source.droppableId.slice(5), list);
                 let cardsCopy = Array.from(list.cards);
                 
                 const [reorderedItem] = cardsCopy.splice(result.source.index, 1);
@@ -175,7 +176,7 @@ const ListsPage = () => {
                                                                     }}
                                                                 </Draggable>
                                                             )}
-                                                            {/* {provided.placeholder} */}
+                                                            {provided.placeholder}
                                                         </div>
                                                     )}
                                                 </Droppable>
