@@ -1,0 +1,16 @@
+.share-board-form {}
+
+.share-board-form>* {
+    margin-left: 1px;
+    margin-right: 1px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    padding: 3px;
+    display: flex;
+    flex-direction: column;
+}
+
+.share-board-input {
+    border: 1px solid transparent;
+    border-radius: 3px;
+}
