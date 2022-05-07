@@ -70,17 +70,35 @@ const ListsPage = () => {
         setCreateListDisplay('not-displayed');
     };
 
-    const handleOnDragEnd = async (result) => {
-        if (!result.destination) return;
+    const handleOnDragEnd = async (result, type) => {
+        if (type === 'list') {
+            if (!result.destination) return;
+    
+            let listCopy = Array.from(lists);
+            const [reOrderedItem] = listCopy.splice(result.source.index, 1);
+            listCopy.splice(result.destination.index, 0, reOrderedItem);
+    
+            let listOrder = {};
+            listCopy.forEach((list, index) => listOrder[list.id] = index);
+            lists = listCopy;
+            await dispatch(updateListOrder(board_id, listOrder));
 
-        let listCopy = Array.from(lists);
-        const [reOrderedItem] = listCopy.splice(result.source.index, 1);
-        listCopy.splice(result.destination.index, 0, reOrderedItem);
+        } else if (type === 'card') {
+            if (!result.destination) return;
 
-        let listOrder = {};
-        listCopy.forEach((list, index) => listOrder[list.id] = index);
-        lists = listCopy;
-        await dispatch(updateListOrder(board_id, listOrder));
+            let cardsCopy = Array.from(lists.cards);
+            console.log(cardsCopy);
+            const [reorderedItem] = cardsCopy.splice(result.source.index, 1);
+            cardsCopy.splice(result.destination.index, 0, reorderedItem);
+
+            let cardOrder = {};
+            cardsCopy.forEach((card, index) => listOrder[card.id] = index);
+            lists.cards = cardsCopy;
+            await dispatch(updateCardOrder(board_id, cardOrder));
+
+        } else {
+            return;
+        }
     };
 
     const createNewListDisplay = () => {
@@ -127,7 +145,7 @@ const ListsPage = () => {
                                                                 <Draggable draggableId={String(card.id)} key={card.id} index={index}>
                                                                     {(provided) => {
                                                                         return (
-                                                                            <ListCard card={card} list={list} key={index} {...provided.droppableProps} ref={provided.innerRef} />
+                                                                            <ListCard card={card} list={list} key={index} {...provided.droppableProps} ref={provided.innerRef} {...provided.dragHandleProps} />
                                                                         )
                                                                     }}
                                                                 </Draggable>
