@@ -87,19 +87,22 @@ const ListsPage = () => {
         if (type === 'card') {
             if (!result.destination) return;
 
-            let list = lists[result.source.droppableId]
-            let destList = lists[result.destination.droppableId]
-            let cardsCopy = Array.from(list.cards.sort((a, b) => a.order - b.order));
-            let destCards = Array.from(list.cards.sort((a, b) => a.order - b.order));
-            
-            const [reorderedItem] = cardsCopy.splice(result.source.index, 1);
-            destCards.splice(result.destination.cards, 0, reorderedItem);
-
-            let cardOrder = {};
-            cardsCopy.forEach((card, index) => cardOrder[card.id] = index);
-            list.cards = cardsCopy;
-            await dispatch(updateCardOrder(list.id, cardOrder));
-
+            if (result.source.draggableId !== result.destination.droppableId) {
+                let list = lists[result.source.droppableId]
+                let destList = lists[result.destination.droppableId]
+                let cardsCopy = Array.from(list.cards.sort((a, b) => a.order - b.order));
+                let destCards = Array.from(list.cards.sort((a, b) => a.order - b.order));
+                
+                const [reorderedItem] = cardsCopy.splice(result.source.index, 1);
+                destCards.splice(result.destination.cards, 0, reorderedItem);
+    
+                let cardOrder = {};
+                cardsCopy.forEach((card, index) => cardOrder[card.id] = index);
+                destCards.forEach((card, index) => cardOrder[card.id] = index);
+                await dispatch(updateCardOrder(list.id, cardOrder));
+            } else {
+                return;
+            }
         } 
     };
 
@@ -142,12 +145,14 @@ const ListsPage = () => {
                                                 <SingleList list={list} />
                                                 <Droppable droppableId='card-mapping' direction='horizontal' type='card'>
                                                     {(provided) => (
-                                                        <div {...provided.droppableProps} ref={provided.innerRef}>
+                                                        <div className='card-mapping' {...provided.droppableProps} ref={provided.innerRef}>
                                                             {list.cards.map((card, index) =>
                                                                 <Draggable draggableId={String(card.id)} key={card.id} index={index}>
                                                                     {(provided) => {
                                                                         return (
-                                                                            <ListCard card={card} list={list} key={index} {...provided.droppableProps} ref={provided.innerRef} {...provided.dragHandleProps} />
+                                                                            <div {...provided.droppableProps} ref={provided.innerRef} {...provided.dragHandleProps}>
+                                                                                <ListCard card={card} list={list} key={index} />
+                                                                            </div>
                                                                         )
                                                                     }}
                                                                 </Draggable>
