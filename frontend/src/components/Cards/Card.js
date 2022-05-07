@@ -36,6 +36,12 @@ const CardPage = ({ list, card, closeModalFunc }) => {
         setNewDescription('');
     };
 
+    const removeCard = async (card) => {
+        await dispatch(deleteCard(card));
+        closeModalFunc();
+        // TODO: fix this — update: I don't know if this was fixed or not
+        // I should have been much more descriptive
+    };
 
     const descriptionAndInputDisplay = () => {
         if (descriptionDisplay === 'displayed-desc') {
@@ -54,11 +60,6 @@ const CardPage = ({ list, card, closeModalFunc }) => {
             setDescriptionDisplay('displayed-desc');
         }
         setNewDescription(card.description)
-    };
-
-    const removeCard = async (card) => {
-        await dispatch(deleteCard(card));
-        // TODO: fix this
     };
 
     const avatarPNGs = Object.values(avatars)
