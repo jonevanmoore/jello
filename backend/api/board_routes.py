@@ -85,9 +85,10 @@ def share_board(id):
 
     if user:
         board.shared_users += [user]
-    db.session.commit()
-
-    return user.to_dict()
+        db.session.commit()
+        return user.to_dict()
+    else:
+        return {'errors': ['Unable to share']}, 400
 
 # U P D A T E   L I S T   O R D E R
 @board_routes.route('/<int:id>/list-order', methods = [ 'POST' ])
