@@ -17,14 +17,14 @@ import './Cards-in-Lists.css';
 
 
 // This is the cards within the lists
-const ListCard = ({ card, list }) => {
+const ListCard = ({ card, list, provided }) => {
     const [showModal, setShowModal] = useState(false);
 
     const closeModalFunc = () => setShowModal(false);
     const showModalFunc = () => setShowModal(true);
 
     return (
-        <div className='card__container' >
+        <div className='card__container' key={card.id} {...provided.droppableProps} ref={provided.innerRef} {...provided.dragHandleProps} >
             <div
                 className='card__content'
                 onClick={showModalFunc}
@@ -150,9 +150,7 @@ const ListsPage = () => {
                                                                 <Draggable draggableId={String(card.id)} key={card.id} index={index}>
                                                                     {(provided) => {
                                                                         return (
-                                                                            <div {...provided.droppableProps} ref={provided.innerRef} {...provided.dragHandleProps}>
-                                                                                <ListCard card={card} list={list} key={index} />
-                                                                            </div>
+                                                                            <ListCard card={card} list={list} key={card.id} provided={provided} />
                                                                         )
                                                                     }}
                                                                 </Draggable>
