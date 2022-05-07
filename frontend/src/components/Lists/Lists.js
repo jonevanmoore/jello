@@ -96,9 +96,9 @@ const ListsPage = () => {
                 let list = board.lists.find(list => list.id === +result.source.droppableId.slice(5));
                 console.log(result.source.droppableId.slice(5), list);
                 let cardsCopy = Array.from(list.cards);
-                // console.log(cardsCopy);
+                
                 const [reorderedItem] = cardsCopy.splice(result.source.index, 1);
-                cardsCopy.splice(result.destination.cards, 0, reorderedItem);
+                cardsCopy.splice(result.destination.index, 0, reorderedItem);
     
                 let cardOrder = {};
                 cardsCopy.forEach((card, index) => cardOrder[card.id] = index);
