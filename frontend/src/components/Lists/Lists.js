@@ -23,8 +23,10 @@ const ListCard = ({ card, list, provided }) => {
     const closeModalFunc = () => setShowModal(false);
     const showModalFunc = () => setShowModal(true);
 
+
+    // key={card.id} {...provided.droppableProps} ref={provided.innerRef} {...provided.dragHandleProps}
     return (
-        <div className='card__container' key={card.id} {...provided.droppableProps} ref={provided.innerRef} {...provided.dragHandleProps} >
+        <div className='card__container' >
             <div
                 className='card__content'
                 onClick={showModalFunc}
@@ -70,8 +72,9 @@ const ListsPage = () => {
         setCreateListDisplay('not-displayed');
     };
 
-    const handleOnDragEnd = async (result, type) => {
-        if (type === 'list') {
+    const handleOnDragEnd = async (result) => {
+        // console.log(result, type);
+        if (result.type === 'list') {
             if (!result.destination) return;
     
             let listCopy = Array.from(lists);
@@ -83,8 +86,7 @@ const ListsPage = () => {
             lists = listCopy;
             await dispatch(updateListOrder(board_id, listOrder));
 
-        } 
-        if (type === 'card') {
+        } else if (result.type === 'card') {
             if (!result.destination) return;
 
             if (result.source.draggableId !== result.destination.droppableId) {
@@ -143,14 +145,16 @@ const ListsPage = () => {
                                         return (
                                             <div className='list__container' {...provided.draggableProps} ref={provided.innerRef} {...provided.dragHandleProps}>
                                                 <SingleList list={list} />
-                                                <Droppable droppableId='card-mapping' direction='horizontal' type='card'>
+                                                <Droppable droppableId='card-mapping' direction='vertical' type='card'>
                                                     {(provided) => (
                                                         <div className='card-mapping' {...provided.droppableProps} ref={provided.innerRef}>
                                                             {list.cards.map((card, index) =>
                                                                 <Draggable draggableId={String(card.id)} key={card.id} index={index}>
                                                                     {(provided) => {
                                                                         return (
-                                                                            <ListCard card={card} list={list} key={card.id} provided={provided} />
+                                                                            <div {...provided.droppableProps} ref={provided.innerRef} {...provided.dragHandleProps}>
+                                                                                <ListCard card={card} list={list} provided={provided} />
+                                                                            </div>
                                                                         )
                                                                     }}
                                                                 </Draggable>
