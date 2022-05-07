@@ -13,6 +13,8 @@ class Comment(db.Model):
 
     card        = db.relationship('Card', back_populates='comments')
 
+    user        = db.relationship('User')
+
     def to_dict(self):
         return {
                 'id': self.id,
@@ -22,5 +24,6 @@ class Comment(db.Model):
                 'created_at': self.created_at,
                 'updated_at': self.updated_at,
                 'card': self.card.to_short_dict(),
-                'board_id': self.card.list.board_id
+                'board_id': self.card.list.board_id,
+                'user': self.user.to_dict()
                 }

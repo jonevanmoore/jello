@@ -412,7 +412,7 @@ const boardsReducer = (state = initialState, action) => {
         case DELETE_COMMENT: {
             let board_id = action.comment.board_id; //note this is only from Comment.to_dict()
             let board = newState[board_id];
-            let list = board.lists.find(list => list.id === action.comment.card.list_id); // oh no
+            let list = board.lists.find(list => list.id === action.comment.list_id); // oh no
             let card = list.cards.find(card => card.id === action.comment.card_id);
             let index = card.comments.findIndex(comment => comment.id === action.comment.id);
             card.comments.splice(index, 1); // remove comment

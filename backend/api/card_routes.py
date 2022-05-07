@@ -15,11 +15,11 @@ def update_card(id):
     if card.user_id != current_user.id:
         return {'errors': "Unauthorized edit"}, 401
 
-    card.content = request.json('content')
-    card.description = request.json('description')
-    card.order = request.json('order')
-    card.due_date = request.json('due_date')
-    card.list_id = request.json('list_id')
+    card.content = request.json['content']
+    card.description = request.json['description']
+    card.order = request.json['order']
+    card.due_date = request.json['due_date']
+    card.list_id = request.json['list_id']
 
     db.session.commit()
     return card.to_dict()
@@ -46,14 +46,14 @@ def delete_card(id):
 @card_routes.route('/<int:id>/comments', methods=['POST'])
 @login_required
 def new_comment(id):
-    comment = NewCommentForm()
+    form = NewCommentForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         comment = Comment(
             user_id=form.data['user_id'],
             card_id=id,
-            body=form.data['content']
+            body=form.data['body']
         )
 
         db.session.add(comment)

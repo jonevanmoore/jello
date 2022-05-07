@@ -19,28 +19,28 @@ import './Cards-in-Lists.css';
 // This is the cards within the lists
 const ListCard = ({ card, list }) => {
     const [showModal, setShowModal] = useState(false);
- 
-    const closeModalFunc = () => setShowModal(false);
-    const showModalFunc  = () => setShowModal(true);
-  
-    return (
-      <div className='card__container' >
-        <div
-            className='card__content'
-            onClick={showModalFunc}
-        >
-            {card.content}
-        </div>
-        {showModal && (
-            <Modal closeModalFunc={closeModalFunc}>
-                <CardPage list={list} card={card} closeModalFunc={closeModalFunc} />
-            </Modal>
-        )}
 
-        {/* <div className='card__description'>{card.description}</div> */}
-        <div className='card__due__date'>{card.due_date}</div>
-        {/* <div>{card.created_at}</div> */}
-      </div>
+    const closeModalFunc = () => setShowModal(false);
+    const showModalFunc = () => setShowModal(true);
+
+    return (
+        <div className='card__container' >
+            <div
+                className='card__content'
+                onClick={showModalFunc}
+            >
+                {card.content}
+            </div>
+            {showModal && (
+                <Modal closeModalFunc={closeModalFunc}>
+                    <CardPage list={list} card={card} closeModalFunc={closeModalFunc} />
+                </Modal>
+            )}
+
+            {/* <div className='card__description'>{card.description}</div> */}
+            {/* <div className='card__due__date'>{card.due_date}</div> */}
+            {/* <div>{card.created_at}</div> */}
+        </div>
     )
 }
 
@@ -61,7 +61,7 @@ const ListsPage = () => {
     let lists = board.lists.sort((a, b) => a.order - b.order);
 
     const addNewList = async () => {
-        if( title.trim() === '' ) return;
+        if (title.trim() === '') return;
 
         const newList = { title, user_id, board_id, order: board.lists.length + 1 };
         await dispatch(createList(newList));

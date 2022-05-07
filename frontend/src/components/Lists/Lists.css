@@ -120,13 +120,13 @@
 }
 
 /* ANIMATIONS */
-.grow-down {
+/* .grow-down {
     animation: growDown .5s;
     animation-timing-function: ease-in-out;
     transform-origin: top;
-}
+} */
 
-@keyframes growDown {
+/* @keyframes growDown {
     0% {
         transform: scaleY(0)
     }
@@ -138,15 +138,15 @@
     100% {
         transform: scaleY(1)
     }
-}
+} */
 
-.shrink-up {
+/* .shrink-up {
     animation: shrinkUp .5s;
     animation-timing-function: ease-in-out;
     transform-origin: top;
-}
+} */
 
-@keyframes shrinkUp {
+/* @keyframes shrinkUp {
     0% {
         transform: scaleY(1)
     }
@@ -158,4 +158,4 @@
     100% {
         transform: scaleY(0)
     }
-}
+} */
