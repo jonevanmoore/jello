@@ -6,8 +6,8 @@ import { createCard, } from '../../store/boards';
 
 const AddNewCard = ({ list }) => {
     const dispatch = useDispatch();
-    const { board_id } = useParams();
-    const board = useSelector(state => state.boards[board_id]);
+    // const { board_id } = useParams();
+    // const board = useSelector(state => state.boards[board_id]);
     const user_id = useSelector(state => state.session.user.id);
 
     const [content, setContent] = useState('');

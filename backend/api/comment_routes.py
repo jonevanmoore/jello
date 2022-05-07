@@ -13,7 +13,10 @@ def delete_comment(id):
     if comment.user_id != current_user.id:
         return {'errors': "Unauthorized delete"}, 401
 
+    board_id = comment.card.list.board_id
+    list_id = comment.card.list_id
+
     db.session.delete(comment)
     db.session.commit()
 
-    return comment.to_dict()
+    return { 'id': id, 'board_id': board_id, 'list_id': list_id, 'card_id': comment.card_id}

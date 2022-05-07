@@ -111,7 +111,7 @@ const ListsPage = () => {
                                                             )}
 
                                                             {/* <div className='card__description'>{card.description}</div> */}
-                                                            <div className='card__due__date'>{card.due_date}</div>
+                                                            {/* <div className='card__due__date'>{card.due_date}</div> */}
                                                             {/* <div>{card.created_at}</div> */}
                                                         </div>
                                                     )}

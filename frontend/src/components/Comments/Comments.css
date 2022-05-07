@@ -1,6 +1,7 @@
 .comments__container {
     margin-top: 30px;
     font-size: 18px;
+    width: 550px;
 }
 
 .next__comment {
@@ -9,22 +10,42 @@
     align-items: flex-start;
     /* position: absolute; */
     margin-top: 20px;
-    margin-left: -35px;
+    /* margin-left: -35px; */
 }
 
 .textarea__input__comments {
-    width: 520px;
+    width: 640px;
+    height: 60px;
     border-radius: var(--main-border-radius);
-    resize: vertical;
-    margin-left: 5px;
+    resize: none;
+    margin-left: 4px;
+}
+
+.comments__title {
+    margin-left: 34px;
+}
+
+.display__comments {
+    overflow-y: scroll;
+    overflow-x: visible;
+    z-index: -3;
+    margin-left: -4px;
+    /* position: absolute; */
+    /* margin-left: -20px; */
+    height: 320px;
+    width: 587px;
 }
 
 .comment__by__user {
+    border: 1px solid var(--nav-bar-left-divider-color);
+
+    position: relative;
     display: flex;
-    margin-left: -35px;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-radius: 4px;
     margin-top: 5px;
-
-
+    padding: 3px;
 }
 
 .comments__image__users {
@@ -38,4 +59,52 @@
     padding: 5px;
     font-size: 14px;
     font-weight: 500;
+}
+
+.add__cancel__comments {
+    display: flex;
+    align-items: center;
+    margin: 5px 34px;
+}
+
+.comment__delete__container {
+    display: flex;
+    justify-content: space-around;
+}
+
+#comments__buttons {
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1;
+    border-radius: 3px;
+    width: 110px;
+    height: 22px;
+    /* background-color: none; */
+}
+
+.close__tag__comment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 7px;
+    height: 15px;
+    width: 15px;
+    border: none;
+    border-radius: 3px;
+}
+
+.add__tag__comment {
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15px;
+    width: 15px;
+    border: none;
+    /* background-color: var(--white-button-main-color); */
+}
+
+.bg-white {
+    background-color: white;
 }

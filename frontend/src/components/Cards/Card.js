@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { deleteCard } from '../../store/boards';
+import { updateCard, deleteCard } from '../../store/boards';
 
 import { UserIcon } from '../UserIcon';
 import { avatars } from '../../context/Avatar';
@@ -15,30 +15,29 @@ const CardPage = ({ list, card, closeModalFunc }) => {
     const user = useSelector(state => state.session.user);
 
     const [newDescription, setNewDescription] = useState('');
-    const [newDueDate, setNewDueDate] = useState('');
-    const [descriptionDisplay, setDescriptionDisplay] = useState('displayed-desc')
-    const [descriptionInputDisplay, setDescriptionInputDisplay] = useState('not-displayed-desc')
+    const [newDueDate, setNewDueDate] = useState('1999-12-31 11:59:59');
+    const [descriptionDisplay, setDescriptionDisplay] = useState('displayed-desc');
+    const [descriptionInputDisplay, setDescriptionInputDisplay] = useState('not-displayed-desc');
 
-    const updateCard = async () => {
-        let updatedCard = {
+    const updateOneCard = async () => {
+        let oneCard = {
             id: card.id,
             user_id: card.user_id,
+            list_id: list.id,
             content: card.content,
             order: card.order,
             description: newDescription,
             due_date: newDueDate,
         };
-        await dispatch(updateCard(updatedCard));
+        const updatedCard = await dispatch(updateCard(oneCard));
+        console.log('UPDATED CARD:  ', updatedCard);
         setDescriptionDisplay('displayed-desc');
         setDescriptionInputDisplay('not-displayed-desc');
+        setNewDescription('');
     };
 
-    const removeCard = async (card) => {
-        await dispatch(deleteCard(card));
-        // TODO: fix this
-    };
 
-    const titleAndInputDisplay = () => {
+    const descriptionAndInputDisplay = () => {
         if (descriptionDisplay === 'displayed-desc') {
             setDescriptionDisplay('not-displayed-desc');
             setDescriptionInputDisplay('displayed-desc');
@@ -54,6 +53,12 @@ const CardPage = ({ list, card, closeModalFunc }) => {
             setDescriptionInputDisplay('not-displayed-desc');
             setDescriptionDisplay('displayed-desc');
         }
+        setNewDescription(card.description)
+    };
+
+    const removeCard = async (card) => {
+        await dispatch(deleteCard(card));
+        // TODO: fix this
     };
 
     const avatarPNGs = Object.values(avatars)
@@ -72,7 +77,7 @@ const CardPage = ({ list, card, closeModalFunc }) => {
             <div className='card__container__in_card'>
                 <div className='close__in_card'>
                     <button
-                        className="close"
+                        className="close__tag__card"
                         onClick={closeModalFunc}
                     >
                         <div className="close__text">&#215;</div>
@@ -107,45 +112,61 @@ const CardPage = ({ list, card, closeModalFunc }) => {
                         <p className='description__paragraph'>
                             {card.description}
                         </p>
+                        {/* <input
+                            type="text"
+                            value={newTitle}
+                            onChange={(e) => setNewTitle(e.target.value)}
+                            className="title-input"
+                        ></input>
+                        <div className={`check-div`}>
+                            <i className="fa-solid fa-circle-check" id={titleInputValid}></i>
+                        </div> */}
                         <textarea
                             className='textarea__input__description'
+                            type="text"
+                            value={newDescription}
+                            onChange={(e) => setNewDescription(e.target.value)}
                             placeholder='Add a more detailed description...'
                         />
                         <div className='add__cancel__desc'>
                             <button
+                                onClick={updateOneCard}
                                 id='desc__buttons'
                                 className={`
                                 light__green__blue__button
                                 jello__wiggle
                                 button__shine__short
-                                `}>
+                                `}
+                            >
                                 Add Description</button>
                             <button
+                                type='submit'
                                 className="close__desc"
+                            // onClick={descriptionAndInputDisplay}
                             >
                                 <div className="close__text">&#215;</div>
                             </button>
                         </div>
                     </div>
-                    <div>
+                    <div className='comments__in__list__container'>
                         <Comments card={card} />
                     </div>
                     {/* <div className='form__avatar__image'>
                         <img className="jello__image__card" src={randomAvatar} />
                     </div> */}
                 </div>
-            </div>
-            <div className='del__card__btn__container'>
-                <button
-                    id='del__card__btn'
-                    className='
+                <div className='del__card__btn__container'>
+                    <button
+                        id='del__card__btn'
+                        className='
                             jello__wiggle
                             logout__button
                             red__button
                             button__shine__short__red
                             '
-                    onClick={() => removeCard(card)}
-                >Delete Card</button>
+                        onClick={() => removeCard(card)}
+                    >Delete Card</button>
+                </div>
             </div>
         </div>
     )

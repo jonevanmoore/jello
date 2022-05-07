@@ -43,10 +43,8 @@ export const SingleList = ({ list }) => {
             setTitleInputDisplay('not-displayed');
             setTitleDisplay('displayed');
         }
-
         setNewTitle(list.title)
     }
-
 
     const removeList = async (list) => {
         await dispatch(deleteList(list));
