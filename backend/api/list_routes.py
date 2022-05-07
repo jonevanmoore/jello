@@ -61,19 +61,3 @@ def new_card(id):
         db.session.commit()
         return card.to_dict()
     return {'errors': ["Unsuccessful Card Submission"]}, 400
-
-# U P D A T E  C A R D  O R D E R
-@list_routes.route('/<int:id>/card-order', methods=['POST'])
-def update_card_order(id):
-    list = List.query.get(id)
-
-    card_order = request.json['cardOrder']
-
-    cards = Card.query.filter(Card.id.in_(list(card_order)))
-
-    for a_card in cards:
-        a_card.order = card_order[str(a_card.id)]
-
-    db.session.commit()
-
-    return list.to_dict()

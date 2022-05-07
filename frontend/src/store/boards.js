@@ -205,8 +205,8 @@ export const deleteList = list => async dispatch => {
     }
 };
 
-export const updateCardOrder = (listId, cardOrder) => async dispatch => {
-    const response = await fetch(`/api/lists/${listId}/card-order`, {
+export const updateCardOrder = (boardId, cardOrder) => async dispatch => {
+    const response = await fetch(`/api/boards/${boardId}/card-order`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ cardOrder })
@@ -215,7 +215,7 @@ export const updateCardOrder = (listId, cardOrder) => async dispatch => {
     const data = await response.json();
 
     if (response.ok) {
-        await dispatch(updateListAction(data));
+        await dispatch(readOneBoardAction(data));
         return data;
     } else {
         console.log(data.errors);

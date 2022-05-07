@@ -26,7 +26,7 @@ const ListCard = ({ card, list, provided }) => {
 
     // key={card.id} {...provided.droppableProps} ref={provided.innerRef} {...provided.dragHandleProps}
     return (
-        <div className='card__container' >
+        <div className='card__container'  {...provided.draggableProps} ref={provided.innerRef} {...provided.dragHandleProps}>
             <div
                 className='card__content'
                 onClick={showModalFunc}
@@ -60,7 +60,9 @@ const ListsPage = () => {
     const [titleDisplay, setTitleDisplay] = useState('displayed');
     const [titleInputDisplay, setTitleInputDisplay] = useState('not-displayed');
 
-    let lists = board.lists.sort((a, b) => a.order - b.order);
+    // let lists = board.lists.sort((a, b) => a.order - b.order);
+
+    const lists = board.lists;
 
     const addNewList = async () => {
         if (title.trim() === '') return;
@@ -73,7 +75,7 @@ const ListsPage = () => {
     };
 
     const handleOnDragEnd = async (result) => {
-        // console.log(result, type);
+        console.log(result);
         if (result.type === 'list') {
             if (!result.destination) return;
     
@@ -87,13 +89,29 @@ const ListsPage = () => {
             await dispatch(updateListOrder(board_id, listOrder));
 
         } else if (result.type === 'card') {
+            console.log(result);
             if (!result.destination) return;
 
-            if (result.source.draggableId !== result.destination.droppableId) {
-                let list = lists[result.source.droppableId]
-                let destList = lists[result.destination.droppableId]
-                let cardsCopy = Array.from(list.cards.sort((a, b) => a.order - b.order));
-                let destCards = Array.from(list.cards.sort((a, b) => a.order - b.order));
+            if (true) {
+                let list = board.lists.find(list => list.id === +result.source.droppableId.slice(5));
+                console.log(result.source.droppableId.slice(5), list);
+                let cardsCopy = Array.from(list.cards);
+                // console.log(cardsCopy);
+                const [reorderedItem] = cardsCopy.splice(result.source.index, 1);
+                cardsCopy.splice(result.destination.cards, 0, reorderedItem);
+    
+                let cardOrder = {};
+                cardsCopy.forEach((card, index) => cardOrder[card.id] = index);
+                list.cards = cardsCopy;
+                await dispatch(updateCardOrder(board_id, cardOrder));
+            } else {
+                let list = lists[result.source.index]
+                let destList = lists[result.destination.index];
+                let cardsCopy = Array.from(list.cards);
+                let destCards = Array.from(list.cards);
+
+                console.log(cardsCopy);
+                console.log(destCards);
                 
                 const [reorderedItem] = cardsCopy.splice(result.source.index, 1);
                 destCards.splice(result.destination.cards, 0, reorderedItem);
@@ -101,9 +119,9 @@ const ListsPage = () => {
                 let cardOrder = {};
                 cardsCopy.forEach((card, index) => cardOrder[card.id] = index);
                 destCards.forEach((card, index) => cardOrder[card.id] = index);
-                await dispatch(updateCardOrder(list.id, cardOrder));
-            } else {
-                return;
+                list.cards = cardsCopy;
+                destList.cards = destCards;
+                await dispatch(updateCardOrder(board_id, cardOrder));
             }
         } 
     };
@@ -145,21 +163,19 @@ const ListsPage = () => {
                                         return (
                                             <div className='list__container' {...provided.draggableProps} ref={provided.innerRef} {...provided.dragHandleProps}>
                                                 <SingleList list={list} />
-                                                <Droppable droppableId='card-mapping' direction='vertical' type='card'>
+                                                <Droppable droppableId={`list-${list.id}`} direction='vertical' type='card'>
                                                     {(provided) => (
                                                         <div className='card-mapping' {...provided.droppableProps} ref={provided.innerRef}>
                                                             {list.cards.map((card, index) =>
                                                                 <Draggable draggableId={`card-${card.id}`} key={`card-${card.id}`} index={index}>
                                                                     {(provided) => {
                                                                         return (
-                                                                            <div {...provided.draggableProps} ref={provided.innerRef} {...provided.dragHandleProps}>
-                                                                                <ListCard card={card} list={list} provided={provided} />
-                                                                            </div>
+                                                                            <ListCard card={card} list={list} provided={provided} />
                                                                         )
                                                                     }}
                                                                 </Draggable>
                                                             )}
-                                                        {/* {provided.placeholder} */}
+                                                            {/* {provided.placeholder} */}
                                                         </div>
                                                     )}
                                                 </Droppable>
