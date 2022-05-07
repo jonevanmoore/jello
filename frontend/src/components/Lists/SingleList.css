@@ -10,7 +10,8 @@
 }
 
 .edit__bts__in__lsts {
-    margin: 0 10px;
+
+    /* margin: 1 10px; */
 }
 
 .del__bts__in__lsts {
@@ -25,12 +26,20 @@
 .fa-pen-to-square {
     cursor: pointer;
     align-content: end;
-    position: relative;
-    left: 10px;
+    padding-bottom: 1px;
     transition: .2s;
     color: #A1A8AA;
     animation: growDown .3s;
     transform-origin: bottom;
+}
+
+.fa-pen-to-square:hover {
+    color: var(--dark-blue-button-color);
+}
+
+.fa-pen-to-square:active {
+    color: red;
+    /* color: #195f9c; */
 }
 
 .title-input {
@@ -51,15 +60,6 @@
     bottom: 19px;
     right: 5px;
     /* left: 128px; */
-}
-
-.fa-pen-to-square:hover {
-    color: var(--dark-blue-button-color);
-}
-
-.fa-pen-to-square:active {
-    color: red;
-    /* color: #195f9c; */
 }
 
 .update-title-btns>* {

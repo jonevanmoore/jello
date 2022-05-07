@@ -24,7 +24,7 @@ export const SingleList = ({ list }) => {
         await dispatch(updateList(updated));
         setTitleDisplay('displayed');
         setTitleInputDisplay('not-displayed');
-    }
+    };
 
     const titleAndInputDisplay = () => {
         if (titleDisplay === 'displayed') {
@@ -42,8 +42,8 @@ export const SingleList = ({ list }) => {
             setTitleInputDisplay('not-displayed');
             setTitleDisplay('displayed');
         }
-        setNewTitle(list.title)
-    }
+        setNewTitle(list.title);
+    };
 
     const removeList = async (list) => {
         await dispatch(deleteList(list));
@@ -62,13 +62,11 @@ export const SingleList = ({ list }) => {
     return (
 
         <div className='list__title__close'>
-
             <div className='title-and-input-display'>
                 <div className='list-title-div'>
                     <label className={`list__title ${titleDisplay}`}>
                         {list.title}
                     </label>
-                    {/* <i className={`fa-solid fa-pen-to-square ${titleDisplay}`} onClick={titleAndInputDisplay}></i> */}
                 </div>
                 <div className={`edit-title-div ${titleInputDisplay} grow-down`}>
                     <input
@@ -94,7 +92,7 @@ export const SingleList = ({ list }) => {
                 <div className='edit__bts__in__lsts'>
                     <i className={`fa-solid fa-pen-to-square jello-wiggle ${titleDisplay}`} onClick={titleAndInputDisplay}></i>
                 </div>
-                <div className='del__bts__in__lsts'>
+                <div className='del__bts__in__card'>
                     <button
                         className={`${titleDisplay} delete-list`}
                         onClick={() => removeList(list)}
