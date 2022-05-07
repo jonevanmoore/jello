@@ -1,13 +1,22 @@
-from backend.models import db, Board, List, Card, Comment
+from backend.models import db, Board, List, Card, Comment, User
 
 # Adds a demo user, you can add other users here if you want
 def seed_boards():
+    
+    user1 = User.query.get(1);
+    user2 = User.query.get(2);
+    user3 = User.query.get(3);
+    user4 = User.query.get(4);
+    user5 = User.query.get(5);
+
     board_01 = Board(
-        user_id=1, title='This is a Title', avatar_id=1)
+        user_id=1, title='This is a Title', avatar_id=1, shared_users=[user2, user3, user4, user5])
     board_02 = Board(
-        user_id=1, title='This is a Second Title', avatar_id=3)
+        user_id=1, title='This is a Second Title', avatar_id=3, shared_users=[user2, user4])
     board_03 = Board(
-        user_id=2, title='This is the Third Title Limit.', avatar_id=2)
+        user_id=2, title='This is the Third Title Limit.', avatar_id=2, shared_users=[user1, user3])
+    board_04 = Board(
+        user_id=4, title='This is a Title', avatar_id=1, shared_users=[user1])
 
     list_01 = List( user_id=1, board_id=1, title="test list 1", order=1 )
     list_02 = List( user_id=1, board_id=1, title="test list 2", order=2 )
@@ -57,7 +66,7 @@ Barry, I told you, stop flying in the house!
 Hey, Adam.
 Hey, Barry.""")
 
-    db.session.add_all([board_01, board_02, board_03, list_01, list_02, list_03])
+    db.session.add_all([board_01, board_02, board_03, board_04, list_01, list_02, list_03])
     db.session.add_all([c1, c2, c3, c4, c5, c6, c7])
     db.session.add_all([comment1, comment2, comment3, comment4, comment5, comment6])
     db.session.commit()

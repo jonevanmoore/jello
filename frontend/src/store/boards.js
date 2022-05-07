@@ -5,6 +5,7 @@ const READ_BOARDS = 'boards/READ_BOARDS';
 const READ_ONE_BOARD = 'boards/READ_ONE_BOARD';
 const UPDATE_BOARD = 'boards/UPDATE_BOARD';
 const DELETE_BOARD = 'boards/DELETE_BOARD';
+const CLEAR_BOARDS = 'boards/CLEAR_BOARDS';
 
 // BOARD ACTIONS
 const createBoardAction = board => ({
@@ -31,6 +32,10 @@ const deleteBoardAction = board => ({
     type: DELETE_BOARD,
     board
 });
+
+const clearBoardsAction = () => ({
+    type: CLEAR_BOARDS
+})
 
 // BOARD THUNKS
 export const createBoard = board => async dispatch => {
@@ -124,6 +129,10 @@ export const updateListOrder = (boardId, listOrder) => async dispatch => {
         console.log(data.errors);
     }
 };
+
+export const clearBoards = () => async dispatch => {
+    await dispatch(clearBoardsAction());
+}
 
 // LIST CONSTANTS
 const CREATE_LIST = 'boards/CREATE_LIST';
@@ -354,6 +363,8 @@ const boardsReducer = (state = initialState, action) => {
         case DELETE_BOARD:
             delete newState[action.board.id]
             return newState;
+        case CLEAR_BOARDS:
+            return {};
         case CREATE_LIST: {
             let board_id = action.list.board_id
             let board = newState[board_id];
