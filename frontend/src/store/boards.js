@@ -6,6 +6,7 @@ const READ_ONE_BOARD = 'boards/READ_ONE_BOARD';
 const UPDATE_BOARD = 'boards/UPDATE_BOARD';
 const DELETE_BOARD = 'boards/DELETE_BOARD';
 const CLEAR_BOARDS = 'boards/CLEAR_BOARDS';
+const SHARE_BOARD = 'boards/SHARE_BOARDS';
 
 // BOARD ACTIONS
 const createBoardAction = board => ({
@@ -35,6 +36,12 @@ const deleteBoardAction = board => ({
 
 const clearBoardsAction = () => ({
     type: CLEAR_BOARDS
+})
+
+const shareBoardAction = (boardId, user) => ({
+    type: SHARE_BOARD,
+    boardId,
+    user
 })
 
 // BOARD THUNKS
@@ -132,6 +139,22 @@ export const updateListOrder = (boardId, listOrder) => async dispatch => {
 
 export const clearBoards = () => async dispatch => {
     await dispatch(clearBoardsAction());
+}
+
+export const shareBoard = (email, boardId) => async dispatch => {
+    const response = await fetch(`api/boards/${boardId}/sharing`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+    })
+
+    const data = await response.json()
+    if (response.ok) {
+        await dispatch(shareBoardAction(boardId, data));
+        return data;
+    } else {
+        console.log(data.errors)
+    }
 }
 
 // LIST CONSTANTS
@@ -350,6 +373,13 @@ const boardsReducer = (state = initialState, action) => {
             return newState;
         case CLEAR_BOARDS:
             return {};
+        case SHARE_BOARD:
+            let board_id = action.boardId;
+            let board = newState[board_id];
+            let shared_users = board.shared_users;
+            newState[board_id] = { ...board };
+            newState[board_id].shared_users = [...shared_users, action.user]
+            return newState;
         case CREATE_LIST: {
             let board_id = action.list.board_id
             let board = newState[board_id];
