@@ -6,7 +6,8 @@
   src: url('https: //fonts.google.com/share?selection.family=Roboto%20Condensed:wght@300;400;700');
 }
 
-#root, body  {
+#root,
+body {
   height: 100%;
 }
 
@@ -236,6 +237,12 @@ button:hover {
   animation: jello_1 1s;
   animation-timing-function: ease-in-out;
   transform-origin: center
+}
+
+.jello__wiggle__top:hover {
+  animation: jello_1 1s;
+  animation-timing-function: ease-in-out;
+  transform-origin: top
 }
 
 .jello__wiggle__big:hover {

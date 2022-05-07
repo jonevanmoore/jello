@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateList, deleteList } from '../../store/boards';
-import { useParams } from 'react-router-dom';
-import './SingleList.css'
+import './SingleList.css';
 
 export const SingleList = ({ list }) => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
-    const [newTitle, setNewTitle] = useState(list.title)
-    const [titleDisplay, setTitleDisplay] = useState('displayed')
-    const [titleInputDisplay, setTitleInputDisplay] = useState('not-displayed')
+    const [newTitle, setNewTitle] = useState(list.title);
+    const [titleDisplay, setTitleDisplay] = useState('displayed');
+    const [titleInputDisplay, setTitleInputDisplay] = useState('not-displayed');
 
-    const [titleInputValid, setTitleInputValid] = useState('valid-blue')
-    const [titleSubmitBtn, setTitleSubmitBtn] = useState('able')
+    const [titleInputValid, setTitleInputValid] = useState('valid-blue');
+    const [titleSubmitBtn, setTitleSubmitBtn] = useState('able');
 
     const updateTitle = async () => {
         let updated = {
@@ -52,14 +51,13 @@ export const SingleList = ({ list }) => {
 
     useEffect(() => {
         if (newTitle.length < 30 && newTitle.length > 0) {
-            setTitleInputValid('valid-blue')
-            setTitleSubmitBtn('able')
+            setTitleInputValid('valid-blue');
+            setTitleSubmitBtn('able');
         } else {
-            setTitleInputValid('invalid')
-            setTitleSubmitBtn('disabled-blue')
+            setTitleInputValid('invalid');
+            setTitleSubmitBtn('disabled-blue');
         }
-
-    }, [newTitle])
+    }, [newTitle]);
 
     return (
 
@@ -70,7 +68,7 @@ export const SingleList = ({ list }) => {
                     <label className={`list__title ${titleDisplay}`}>
                         {list.title}
                     </label>
-                    <i className={`fa-solid fa-pen-to-square ${titleDisplay}`} onClick={titleAndInputDisplay}></i>
+                    {/* <i className={`fa-solid fa-pen-to-square ${titleDisplay}`} onClick={titleAndInputDisplay}></i> */}
                 </div>
                 <div className={`edit-title-div ${titleInputDisplay} grow-down`}>
                     <input
@@ -85,19 +83,26 @@ export const SingleList = ({ list }) => {
                     <div className='update-title-btns'>
                         <button
                             onClick={updateTitle}
-                            className={`jello-wiggle button__shine__short light__blue__button ${titleSubmitBtn}`}
+                            className={`jello-wiggle button__shine__short light__green__button ${titleSubmitBtn}`}
                             disabled={titleSubmitBtn === 'disabled-blue'}
                         >Update</button>
-                        <button onClick={titleAndInputDisplay} className='jello-wiggle cancel-title-btn'>Cancel</button>
+                        <button onClick={titleAndInputDisplay} className='jello-wiggle cancel-title-btn button__shine__short'>Cancel</button>
                     </div>
                 </div>
             </div>
-            <button
-                className={`${titleDisplay} delete-list`}
-                onClick={() => removeList(list)}
-            >
-                <div className={`close__text`}>&#215;</div>
-            </button>
+            <div className='list-edit-del-div'>
+                <div className='edit__bts__in__lsts'>
+                    <i className={`fa-solid fa-pen-to-square jello-wiggle ${titleDisplay}`} onClick={titleAndInputDisplay}></i>
+                </div>
+                <div className='del__bts__in__lsts'>
+                    <button
+                        className={`${titleDisplay} delete-list`}
+                        onClick={() => removeList(list)}
+                    >
+                        <div className={`close__text`}>&#215;</div>
+                    </button>
+                </div>
+            </div>
         </div>
 
     )

@@ -192,9 +192,9 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
           disabled={submitError !== 'able'}>Sign Up</button>
       </form>
       <button className='login-form-btn jello-wiggle jello__container__ani cancel-btn'
-        style={{ width: '88%', marginBottom: '36px' }} /* <<< hack alert */
+        style={{ width: '91%' }} /* <<< hack alert */
         onClick={closeModalFunc}
-        id="logout-button">Cancel</button>
+        id="cancel-button">Cancel</button>
     </div>
   );
 };

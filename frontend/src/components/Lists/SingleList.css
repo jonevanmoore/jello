@@ -2,50 +2,86 @@
     display: flex;
 }
 
+.list-edit-del-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit__bts__in__lsts {
+    margin: 0 10px;
+}
+
+.del__bts__in__lsts {
+    margin-left: 5px;
+}
+
 .list__title {
     animation: growDown .3s;
     transform-origin: bottom;
 }
 
 .fa-pen-to-square {
+    cursor: pointer;
+    align-content: end;
     position: relative;
     left: 10px;
     transition: .2s;
-    color: #12426D;
+    color: #A1A8AA;
     animation: growDown .3s;
     transform-origin: bottom;
 }
 
 .title-input {
     height: 20px;
+    border: #A1A8AA 1px solid;
+    border-radius: 3px;
+    width: 198px;
 }
 
 .check-div {
-    position: absolute;
+    display: flex;
+    align-items: center;
+    float: right;
 }
 
 .check-div>* {
     position: relative;
-    bottom: 22px;
-    left: 128px;
+    bottom: 19px;
+    right: 5px;
+    /* left: 128px; */
 }
 
 .fa-pen-to-square:hover {
-    color: #30AAE1;
+    color: var(--dark-blue-button-color);
 }
 
 .fa-pen-to-square:active {
-    color: #195f9c;
+    color: red;
+    /* color: #195f9c; */
 }
 
 .update-title-btns>* {
     margin-top: 5px;
 }
 
-.light__blue__button {
+.light__green__button {
     border-radius: 3px;
     font-family: 'Roboto Condensed';
     font-weight: 600;
+    color: var(--jello-1-font);
+    background: var(--jello-1);
+    border: 1px var(--jello-1-font) solid;
+    position: relative;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+}
+
+.light__green__button:hover {
+    color: #ffffff;
+    background: var(--jello-1-font);
+    border: 1px var(--jello-1) solid;
 }
 
 .cancel-title-btn {

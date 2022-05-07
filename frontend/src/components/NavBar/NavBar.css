@@ -37,7 +37,6 @@ nav {
   font-size: 13px;
   padding: 6px 12px;
   border-radius: var(--main-border-radius);
-  /* font-weight: 900; */
   color: var(--create-board-button-main-color);
   background-color: var(--create-board-button-background-color);
   border-width: var(--main-button-border-width);

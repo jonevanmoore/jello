@@ -1,9 +1,9 @@
 .radio-div {
-    border: 1px solid gray;
-    border-radius: 5px;
+    width: 352px;
+    border: var(--nav-bar-left-divider-color) var(--main-button-border-width) solid;
+    border-radius: var(--main-border-radius);
     padding: 5px;
 
-    /* background-color: red; */
 }
 
 .icon-loop {
@@ -13,11 +13,17 @@
         '7 8 9 10 11 12';
 }
 
-.avatar-check {
-    float: right;
-    position: relative;
-    /* bottom: 16px; */
-    right: -99px;
+.justify_right_label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1px 0;
+    /* background-color: red; */
+}
+
+#avatar-label {
+    color: rgb(186, 186, 186);
+    font-size: 12px;
 }
 
 #radio-jello-div {
@@ -25,23 +31,11 @@
     flex-direction: column;
 }
 
-#avatar-label {
-    color: rgb(186, 186, 186);
-    font-size: 12px;
-    position: relative;
-    top: -1px;
-    margin-left: 195px;
-}
-
-.justify_right_label {
-    display: flex;
-}
-
 #radio-icon {
-    width: 50.5px;
+    width: 45px;
     border: 1px solid rgb(197, 197, 197);
     border-radius: 3px;
-    margin: 2px;
+    margin: 5px;
     transition: .09s;
 }
 

@@ -64,19 +64,43 @@
 
 .login-form-btn {
     height: 35px;
-    width: 352px;
+    width: 364px;
     margin-top: 15px;
     align-self: center;
 }
 
 .submit-btn {
     margin-top: 20px;
+    font-family: 'Roboto Condensed';
     font-weight: bolder;
     box-sizing: border-box;
-    width: 352px;
+    width: 364px;
 }
 
 .cancel-btn {
-    width: 352px;
+    width: 364px;
     margin-bottom: 25px;
+}
+
+#cancel-button-boards {
+    border-width: var(--main-button-border-width);
+    border-style: solid;
+    border-color: var(--red-button-main-color);
+    color: var(--red-button-main-color);
+    font-weight: 700;
+    font-family: inherit;
+    border-radius: var(--main-border-radius);
+    position: relative;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+    background-color: white;
+    width: 364px;
+    height: 30px;
+}
+
+#cancel-button-boards:hover {
+    color: var(--white-button-main-color);
+    background: var(--red-button-main-color);
+    border: 1px #000000 solid;
+    cursor: pointer;
 }

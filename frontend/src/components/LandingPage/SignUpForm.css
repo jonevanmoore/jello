@@ -27,12 +27,11 @@
 }
 
 .signup-input {
-    height: 35px;
-    width: 352px;
+    height: 30px;
+    width: 358px;
     margin: 10px 0 10px 0;
     border: 1px solid var(--nav-bar-left-divider-color);
     border-radius: var(--main-border-radius);
-    box-sizing: border-box;
 }
 
 .signup-input::placeholder {
@@ -41,11 +40,10 @@
 
 .first-last-div {
     display: flex;
-    width: 352px;
-    gap: 18px;
+    width: 364px;
+    gap: 12px;
     justify-content: space-between;
 }
-
 
 #disabled:hover {
     animation: none;
@@ -63,32 +61,54 @@
 
 .first-name-check {
     position: relative;
-    right: 15px;
+    right: 13px;
 }
 
 .last-name-check {
     position: relative;
-    left: 155px;
+    left: 161px;
 }
 
 .email-check {
     position: relative;
-    top: 133px;
-    left: 163px;
+    top: 132px;
+    left: 168.5px;
 }
 
 .pass-check {
     position: relative;
-    top: 330px;
-    left: 163px;
+    top: 334px;
+    left: 168.5px;
 }
 
 .confirm-pass-check {
     position: relative;
-    top: 385px;
-    left: 163px;
+    top: 387px;
+    left: 168.5px;
 }
 
+#cancel-button {
+    border-width: var(--main-button-border-width);
+    border-style: solid;
+    border-color: var(--red-button-main-color);
+    color: var(--red-button-main-color);
+    font-weight: 700;
+    font-family: inherit;
+    border-radius: var(--main-border-radius);
+    position: relative;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+    background-color: white;
+    width: 90px;
+    height: 30px;
+}
+
+#cancel-button:hover {
+    color: var(--white-button-main-color);
+    background: var(--red-button-main-color);
+    border: 1px #000000 solid;
+    cursor: pointer;
+}
 
 /* ERROR HANDLES */
 
@@ -106,58 +126,4 @@
     color: #2b6f0064;
     background-color: #6dac455b;
     border-color: rgba(6, 132, 6, 0.254);
-}
-
-.radio-div {
-    border: 1px solid gray;
-    border-radius: 5px;
-    padding: 5px;
-}
-
-.icon-loop {
-    display: grid;
-    grid-template: '1 2 3 4 5 6'
-        '7 8 9 10 11 12';
-
-}
-
-#radio-jello-div {
-    display: flex;
-    flex-direction: column;
-}
-
-#avatar-label {
-    position: relative;
-    right: 18vh;
-    bottom: .5vh;
-    color: gray;
-    font-size: 12px;
-}
-
-#radio-icon {
-    width: 50px;
-    border: 1px solid rgb(197, 197, 197);
-    border-radius: 3px;
-    margin: 2px;
-}
-
-#radio-icon:hover {
-    background-color: lightgray;
-}
-
-[type=radio] {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-/* IMAGE STYLES */
-[type=radio]+img {
-    cursor: pointer;
-}
-
-/* CHECKED STYLES */
-[type=radio]:checked+img {
-    /* background: #1aff00b9; */
 }

@@ -10,8 +10,10 @@ export const Icons = ({ avatarId, setAvatarId, avatarError, setAvatarError }) =>
     return (
         <div className='radio-div'>
             <div className="justify_right_label" >
-                <label id="avatar-label">Avatar</label>
-                <i className="fa-solid fa-circle-check avatar-check" id={avatarError}></i>
+                <div id="avatar-label">Avatar</div>
+                <div>
+                    <i className="fa-solid fa-circle-check avatar-check" id={avatarError}></i>
+                </div>
             </div>
             <div className='icon-loop'>
                 {Object.values(avatars).map((avatar, i) => (

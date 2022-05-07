@@ -1,5 +1,4 @@
 #logout-button {
-  padding: 6px 12px;
   border-width: var(--main-button-border-width);
   border-style: solid;
   border-color: var(--red-button-main-color);
@@ -19,6 +18,7 @@
   color: var(--white-button-main-color);
   background: var(--red-button-main-color);
   border: 1px #000000 solid;
+  cursor: pointer;
 }
 
 
@@ -36,7 +36,6 @@
   width: 85%;
   height: 50%;
   background-color: rgb(255, 255, 255, 0.5);
-  /* background-color: black; */
   transform: rotate(-45deg);
   transition: all ease 0.75s;
   z-index: 1;
@@ -50,7 +49,3 @@
 .button__shine__short__red:hover:after {
   left: 100%
 }
-
-/* #logout-button:hover {
-  cursor: pointer;
-} */

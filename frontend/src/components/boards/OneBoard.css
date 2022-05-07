@@ -15,11 +15,6 @@
     z-index: 1;
 }
 
-.one__board__vertical__navbar {
-    top: 54px;
-    z-index: 1;
-}
-
 .title-share-icons {
     display: flex;
     justify-content: space-around;
