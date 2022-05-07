@@ -17,7 +17,7 @@ export const Icons = ({ avatarId, setAvatarId, avatarError, setAvatarError }) =>
             </div>
             <div className='icon-loop'>
                 {Object.values(avatars).map((avatar, i) => (
-                    <div id='radio-jello-div'>
+                    <div id='radio-jello-div' key={i}>
                         <label>
                             <input
                                 type='radio'

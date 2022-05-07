@@ -52,3 +52,7 @@
     height: 100%;
     overflow-x: scroll;
 }
+
+.shared__with {
+    display: flex;
+}

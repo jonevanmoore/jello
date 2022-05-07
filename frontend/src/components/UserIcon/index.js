@@ -32,6 +32,6 @@ export const UserIcon = ({ isNavIcon, givenUser, size }) => {
   }
 
   return (
-    <div className="user-icon" style={styleObject} />
+    <div className="user-icon" style={styleObject} title={givenUser ? givenUser.email : ''} />
   )
 }

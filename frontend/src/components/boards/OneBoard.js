@@ -111,9 +111,12 @@ const OneBoard = () => {
                             </div>
                             <div className='board-nav-left-divider' />
                             <div className='shared__with'>
-                                <UserIcon size={20} isNavIcon={true} />
+                              <UserIcon size={20} givenUser={board.user} />
+                              { board?.shared_users.map((user, i) =>(
+                                <UserIcon size={20} givenUser={user} isNavIcon={true} key={i} />
+                              ))}
                             </div>
-                            <div className='board-nav-left-divider' />
+                            { board?.shared_users.length > 0 && <div className='board-nav-left-divider' />}
                         </div>
                         <div className='edit-delete-btns'>
                             <button
@@ -130,7 +133,8 @@ const OneBoard = () => {
                             {showEditModal && (<Modal closeModalFunc={closeEditModalFunc}>
                                 <EditBoardForm closeModalFunc={closeEditModalFunc} />
                             </Modal>)}
-                            <button
+                            
+                          {board.user_id === user.id && (<button
                                 id='gray__board__button'
                                 className='
                                 jello__wiggle
@@ -141,6 +145,7 @@ const OneBoard = () => {
                                 onClick={() => {
                                     deleteOneBoard(board)
                                 }}>Delete Board</button>
+                            )}
                         </div>
                     </div>
                     <div
