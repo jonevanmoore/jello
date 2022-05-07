@@ -139,7 +139,7 @@ const ListsPage = () => {
                     {(provided) => (
                         <div className='list__size' {...provided.droppableProps} ref={provided.innerRef}>
                             {lists.map((list, index) =>
-                                <Draggable draggableId={String(list.id)} key={list.id} index={index}>
+                                <Draggable draggableId={`list-${list.id}`} key={list.id} index={index}>
 
                                     {(provided) => {
                                         return (
@@ -149,16 +149,17 @@ const ListsPage = () => {
                                                     {(provided) => (
                                                         <div className='card-mapping' {...provided.droppableProps} ref={provided.innerRef}>
                                                             {list.cards.map((card, index) =>
-                                                                <Draggable draggableId={String(card.id)} key={card.id} index={index}>
+                                                                <Draggable draggableId={`card-${card.id}`} key={`card-${card.id}`} index={index}>
                                                                     {(provided) => {
                                                                         return (
-                                                                            <div {...provided.droppableProps} ref={provided.innerRef} {...provided.dragHandleProps}>
+                                                                            <div {...provided.draggableProps} ref={provided.innerRef} {...provided.dragHandleProps}>
                                                                                 <ListCard card={card} list={list} provided={provided} />
                                                                             </div>
                                                                         )
                                                                     }}
                                                                 </Draggable>
                                                             )}
+                                                        {/* {provided.placeholder} */}
                                                         </div>
                                                     )}
                                                 </Droppable>
