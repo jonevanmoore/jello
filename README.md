@@ -1,135 +1,64 @@
-# Flask React Project
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/90283463/167225606-8d881f7c-071f-4029-b9d1-2e9492d11ee6.png" />
+</p>
 
-This is the starter for the Flask React project.
-
-## Getting started
-1. Clone this repository (only this branch)
-
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
-
-2. Install dependencies
-
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
-
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
-
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
-
-   ```bash
-   pipenv shell
-   ```
-
-   ```bash
-   flask db upgrade
-   ```
-
-   ```bash
-   flask seed all
-   ```
-
-   ```bash
-   flask run
-   ```
-
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
-
-***
+<p align="center">
+   <a href="https://the-jello-app.herokuapp.com/home">Jello</a>, a clone of Trello, is a simple, easy-to-use collaboration tool that enables you to organize projects and everything related to them into boards!
+</p>
 
 
-*IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
+## Table of Contents  
+- [Getting Started](https://github.com/jonevanmoore/jello/edit/main/README.md#getting-started)
+- [Technical Details](https://github.com/jonevanmoore/jello/edit/main/README.md#technical-details) 
+- [Technologies](https://github.com/jonevanmoore/jello/edit/main/README.md#technologies)
+- [Feature List](https://github.com/jonevanmoore/jello/edit/main/README.md#feature-list)  
 
-### Dev Containers (Option for M1 Users)
 
-1. Make sure you have the [Microsoft Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension installed. 
-2. Make sure you have [Docker](https://www.docker.com/products/docker-desktop/) installed on your computer. 
-3. Clone the repository (only this branch)
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
-4. Open the repo in VS Code. 
-5. Click "Open in Container" when VS Code prompts to open container in the bottom right hand corner. 
-6. **Be Patient!** The initial install will take a LONG time, it's building a container that has postgres preconfigured and even installing all your project dependencies. (For both flask and react!)
 
-   **Note:** This will take much less time on future starts because everything will be cached.
+## Getting Started
+To get started, you can access the live site [here](https://the-jello-app.herokuapp.com/home). 
 
-7. Once everything is up, be sure to make a `.env` file based on `.env.example` in both the root directory and the *react-app* directory before running your app. 
+#### Step 1
 
-8. Get into your pipenv, migrate your database, seed your database, and run your flask app
+![image](https://user-images.githubusercontent.com/90283463/167236617-3565654b-9add-4cdc-aa36-1db80bcd5fea.png)
 
-   ```bash
-   pipenv shell
-   ```
+From the home page, you can access the site via a demo user or by signing up. In the sign up form, you must enter a first name, last name, email, a password of at least 3 chacters, and you may choose from our selection of Jello avatars.
 
-   ```bash
-   flask db upgrade
-   ```
+#### Step 2
 
-   ```bash
-   flask seed all
-   ```
+![image](https://user-images.githubusercontent.com/90283463/167236691-f4591288-e10b-43d5-8ed5-b0374451f448.png)
 
-   ```bash
-   flask run
-   ```
+After filling our the form with your information, you can now access Jello to its full potential! Have fun building your boards!
 
-9. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+![image](https://user-images.githubusercontent.com/90283463/167236807-dfb05790-9161-406b-9bd6-fc1cd59ac98f.png)
 
-<br>
+## Technical Details
+[Atlassian's react-beautiful-dnd package](https://github.com/atlassian/react-beautiful-dnd) brought life to Jello. By utilizing this package, Jello gives users the capability to reorganize their lists or cards, the power to change their mind, shift their thinking, and make overall better project boards. To fully implement this package, we applied the DragDropContext, Droppable, and Draggable components to our list and card components. The DragDropContext component provides context to allow for our lists and cards to fully mobile. 
 
-## Deploy to Heroku
-This repo comes configured with Github Actions. When you push to your main branch, Github will automatically pull your code, package and push it to Heroku, and then release the new image and run db migrations. 
+![brave_1U9ZVFenAg](https://user-images.githubusercontent.com/90283463/167239263-3173870f-0e9e-4118-903e-5df8f4feb346.gif)
 
-1. Before you deploy, don't forget to run the following command in order to
-ensure that your production environment has all of your up-to-date
-dependencies. You only have to run this command when you have installed new
-Python packages since your last deployment, but if you aren't sure, it won't
-hurt to run it again.
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
 
-2. Write your Dockerfile. In order for the Github action to work effectively, it must have a configured Dockerfile. Follow the comments found in this [Dockerfile](./Dockerfile) to write your own!
+## Technologies
+- Reactjs
+   - [React Beatiful Drag and Drop](https://github.com/atlassian/react-beautiful-dnd)
+- Redux
+- Python
+- SQLAlchemy
+- PostgreSQL
+- Heroku
+- Docker
 
-3. Create a new project on Heroku.
+## Feature List
+- Users can sign up, log in, and log out
+- Logged-in users can create a board, view their boards, update their board, and delete a board
+- Logged-in users can create a list, view their lists within a board, update a list, and delete a list
+- Logged-in users can create a card, view their cards within a list, update a card, and delete a card
+- Logged-in users can share their boards, view users who received access to the owner's board, and remove access from a user
+- Logged-in users can leave a comment on a card, view all comments on a card, and delete their own comments
 
-4. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres".
-
-5. Configure production environment variables. In your Heroku app settings -> config variables you should have two environment variables set:
-
-   |    Key          |    Value    |
-   | -------------   | ----------- |
-   | `DATABASE_URL`  | Autogenerated when adding postgres to Heroku app |
-   | `SECRET_KEY`    | Random string full of entropy |
-
-6. Generate a Heroku OAuth token for your Github Action. To do so, log in to Heroku via your command line with `heroku login`. Once you are logged in, run `heroku authorizations:create`. Copy the GUID value for the Token key.
-
-7. In your Github Actions Secrets you should have two environment variables set. You can set these variables via your Github repository settings -> secrets -> actions. Click "New respository secret" to create
-each of the following variables:
-
-   |    Key            |    Value    |
-   | -------------     | ----------- |
-   | `HEROKU_API_KEY`  | Heroku Oauth Token (from step 6)|
-   | `HEROKU_APP_NAME` | Heroku app name    |
-
-8. Push to your `main` branch!
-
-## Helpful commands
-|    Command            |    Purpose    |
-| -------------         | ------------- |
-| `pipenv shell`        | Open your terminal in the virtual environment and be able to run flask commands without a prefix |
-| `pipenv run`          | Run a command from the context of the virtual environment without actually entering into it. You can use this as a prefix for flask commands  |
-| `flask db upgrade`    | Check in with the database and run any needed migrations  |
-| `flask db downgrade`  | Check in with the database and revert any needed migrations  |
-| `flask seed all`      | Just a helpful syntax to run queries against the db to seed data. See the **app/seeds** folder for reference and more details |
-| `heroku login -i`      | Authenticate your heroku-cli using the command line. Drop the -i to authenticate via the browser |
-| `heroku authorizations:create` | Once authenticated, use this to generate an Oauth token |
-| `heroku run -a <app name>` | Run a command from within the deployed container on Heroku |
+#### Future Implementations
+A few features missing from this Trello clone that will be implemented at a later date:
+- Workspaces
+- User profiles
+- Board settings
+- Hotkeys
