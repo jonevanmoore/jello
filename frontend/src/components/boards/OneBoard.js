@@ -133,7 +133,8 @@ const OneBoard = () => {
                             {showEditModal && (<Modal closeModalFunc={closeEditModalFunc}>
                                 <EditBoardForm closeModalFunc={closeEditModalFunc} />
                             </Modal>)}
-                            <button
+                            
+                          {board.user_id === user.id && (<button
                                 id='gray__board__button'
                                 className='
                                 jello__wiggle
@@ -144,6 +145,7 @@ const OneBoard = () => {
                                 onClick={() => {
                                     deleteOneBoard(board)
                                 }}>Delete Board</button>
+                            )}
                         </div>
                     </div>
                     <div
