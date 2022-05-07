@@ -125,14 +125,14 @@ const DashBoard = () => {
                     <div className='all__boards__display'>
                         <div className='subtitles__boards'>My Boards</div>
                         <ul className='all__boards'>
-                            {boardsOwned.map(board =>
-                                <BoardCard board={board} />
+                            {boardsOwned.map((board, i) =>
+                                <BoardCard board={board} key={i} />
                             )}
                         </ul>
                         {boardsShared.length > 0 && <div className='subtitles__boards'>Shared Boards</div>}
                         <ul className='all__boards'>
-                            {boardsShared.map(board =>
-                                <BoardCard board={board} />
+                            {boardsShared.map((board, i) =>
+                                <BoardCard board={board} key={i} />
                             )}
                         </ul>
                     </div>
