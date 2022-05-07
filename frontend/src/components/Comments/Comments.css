@@ -18,3 +18,24 @@
     resize: vertical;
     margin-left: 5px;
 }
+
+.comment__by__user {
+    display: flex;
+    margin-left: -35px;
+    margin-top: 5px;
+
+
+}
+
+.comments__image__users {
+    width: 30px;
+    height: 30px;
+    /* border: 1px blue solid; */
+}
+
+.comments__font__size {
+    /* border: red 1px solid; */
+    padding: 5px;
+    font-size: 14px;
+    font-weight: 500;
+}

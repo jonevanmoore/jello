@@ -36,7 +36,7 @@ const ListsPage = () => {
     let lists = board.lists.sort((a, b) => a.order - b.order);
 
     const addNewList = async () => {
-        if( title.trim() === '' ) return;
+        if (title.trim() === '') return;
 
         const newList = { title, user_id, board_id, order: board.lists.length + 1 };
         await dispatch(createList(newList));
@@ -44,8 +44,6 @@ const ListsPage = () => {
         setAddListBtnDisplay('displayed');
         setCreateListDisplay('not-displayed');
     };
-
-
 
     const handleOnDragEnd = async (result) => {
         if (!result.destination) return;

@@ -4,9 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { UserIcon } from '../UserIcon';
 import { avatars } from '../../context/Avatar';
 
+import { readBoards } from '../../store/boards';
+
 import './Comments.css';
 
-const Comments = () => {
+const Comments = ({ card }) => {
+    const dispatch = useDispatch();
+
+    const user = useSelector(state => state.session.user);
+    const comments = card.comments;
+
+    console.log('COMMENTS:   ', comments);
     return (
         <div className='comments__container'>
             <div className='comments__title'>
@@ -35,6 +43,21 @@ const Comments = () => {
                 >
                     <div className="close__text">&#215;</div>
                 </button>
+            </div>
+            <div className='display__comments'>
+                {comments.map(comment =>
+                    <div className='comment__by__user'>
+                        <div className='comments__image__users'>
+                            {/* {comment.user_id === user.id ? `${{}}` : ''} */}
+                            <UserIcon size={30} isNavIcon={true} />
+
+                            {/* <img className='' src={avatars[card.avatar_id].imageUrl} /> */}
+                        </div>
+                        <div className='comments__font__size'>
+                            {comment.body}
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     )

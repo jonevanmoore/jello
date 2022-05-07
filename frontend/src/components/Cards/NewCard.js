@@ -16,6 +16,8 @@ const AddNewCard = ({ list }) => {
     const [cardInputDisplay, setCardInputDisplay] = useState('not-displayed-card');
 
     const addNewCard = async () => {
+        if (content.trim() === '') return;
+
         const newCard = {
             content,
             user_id,

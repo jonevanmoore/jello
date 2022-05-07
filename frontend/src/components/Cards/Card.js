@@ -89,7 +89,7 @@ const CardPage = ({ list, card, closeModalFunc }) => {
                     </span>
                 </div>
                 <div className='due__date__container'>
-                    <div className='due__date__title'>
+                    {/* <div className='due__date__title'>
                         Due date
                     </div>
                     <div className='due__date'>
@@ -99,7 +99,7 @@ const CardPage = ({ list, card, closeModalFunc }) => {
                         <div className='drop__down__mark'>
                             complete
                         </div>
-                    </div>
+                    </div> */}
                     <div className='description__container'>
                         <div className='description__title'>
                             Description
@@ -128,7 +128,7 @@ const CardPage = ({ list, card, closeModalFunc }) => {
                         </div>
                     </div>
                     <div>
-                        <Comments />
+                        <Comments card={card} />
                     </div>
                     {/* <div className='form__avatar__image'>
                         <img className="jello__image__card" src={randomAvatar} />
