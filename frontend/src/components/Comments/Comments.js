@@ -51,7 +51,7 @@ const Comments = ({ card }) => {
                     type="text"
                     value={body}
                     onChange={(e) => setBody(e.target.value)}
-                    placeholder='Add a more detailed comments...'
+                    placeholder='Add a comment...'
                 />
             </div>
             <div className='add__cancel__comments'>

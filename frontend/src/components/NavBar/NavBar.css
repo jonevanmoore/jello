@@ -42,6 +42,7 @@ nav {
   border-width: var(--main-button-border-width);
   border-style: solid;
   border-color: var(--create-board-button-main-color);
+  cursor: pointer;
 }
 
 .nav-bar-left-divider {

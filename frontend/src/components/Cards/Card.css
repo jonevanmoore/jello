@@ -35,9 +35,27 @@
     justify-content: center;
 }
 
-.edit__bts__in__card {
+.edit__content__position {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px 40px;
+    /* border: red 1px solid; */
+}
 
-    /* margin: 1 10px; */
+.edit__content__position>* {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.update-content-btns {
+    /* border: 3px blue solid; */
+}
+
+.update-content-input {
+    margin-right: 10px;
+    /* border: 3px green solid; */
 }
 
 .edit__close__in_card {
@@ -110,7 +128,10 @@
 .description__paragraph {
     font-size: 13px;
     font-weight: 500;
-    /* border: 1px red solid; */
+    max-height: 200px;
+    overflow: scroll;
+    border: 1px solid var(--nav-bar-left-divider-color);
+    border-radius: var(--main-border-radius);
 }
 
 .textarea__input__description {

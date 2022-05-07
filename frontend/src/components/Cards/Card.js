@@ -48,20 +48,20 @@ const CardPage = ({ list, card, closeModalFunc }) => {
     };
 
     const contentAndInputDisplay = () => {
-        if (contentDisplay === 'displayed') {
-            setContentDisplay('not-displayed');
-            setContentInputDisplay('displayed');
+        if (contentDisplay === 'displayed-cont') {
+            setContentDisplay('not-displayed-cont');
+            setContentInputDisplay('displayed-cont');
         } else {
-            setContentDisplay('displayed');
-            setContentInputDisplay('not-displayed');
+            setContentDisplay('displayed-cont');
+            setContentInputDisplay('not-displayed-cont');
         }
 
-        if (contentInputDisplay === 'not-displayed') {
-            setContentInputDisplay('displayed');
-            setContentDisplay('not-displayed');
+        if (contentInputDisplay === 'not-displayed-cont') {
+            setContentInputDisplay('displayed-cont');
+            setContentDisplay('not-displayed-cont');
         } else {
-            setContentInputDisplay('not-displayed');
-            setContentDisplay('displayed');
+            setContentInputDisplay('not-displayed-cont');
+            setContentDisplay('displayed-cont');
         }
         setNewContent(card.content);
     };
@@ -105,23 +105,34 @@ const CardPage = ({ list, card, closeModalFunc }) => {
                             {card.content}
                         </div>
                         <div className={`${contentInputDisplay}`}>
-                            <input
-                                type="text"
-                                value={newContent}
-                                onChange={(e) => setNewContent(e.target.value)}
-                                className="content-input"
-                            ></input>
-                            <div className='update-content-btns'>
-                                <button
-                                    onClick={updateOneCard}
-                                    className={`
+                            <div className='edit__content__position'>
+                                <div className='update-content-input'>
+                                    <input
+                                        type="text"
+                                        value={newContent}
+                                        onChange={(e) => setNewContent(e.target.value)}
+                                        className="content-input"
+                                    ></input>
+                                </div>
+                                <div className='update-content-btns'>
+                                    <button
+                                        onClick={updateOneCard}
+                                        className={`
                                         jello-wiggle
                                         button__shine__short
                                         light__green__button
                                         `}>
-                                    Update
-                                </button>
-                                <button onClick={contentAndInputDisplay} className='jello-wiggle cancel-title-btn button__shine__short'>Cancel</button>
+                                        Update
+                                    </button>
+                                    <button
+                                        onClick={contentAndInputDisplay}
+                                        className='
+                                        jello-wiggle
+                                        cancel-title-btn
+                                        button__shine__short'>
+                                        Cancel
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <span className='card__subtitle__in_list'>in list
@@ -161,7 +172,7 @@ const CardPage = ({ list, card, closeModalFunc }) => {
                                 jello__wiggle
                                 button__shine__short
                                 `}>
-                                Edit Description
+                                {card.description?.length < 1 ? 'Add Description' : 'Edit Description'}
                             </button>
                         </div>
                         <div className={`${descriptionInputDisplay}`}>
@@ -181,7 +192,7 @@ const CardPage = ({ list, card, closeModalFunc }) => {
                                         jello__wiggle
                                         button__shine__short
                                         `}>
-                                    Add Description
+                                    Save Changes
                                 </button>
                                 <button className="add__tag__comment"
                                     onClick={descriptionAndInputDisplay}
