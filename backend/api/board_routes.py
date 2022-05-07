@@ -19,13 +19,13 @@ def read_all_boards():
     shared_boards = db.session.execute(stmt);
    # for board in shared_boards:
    #     print(board[0].to_dict())
-    boards_list = [b.to_dict() for b in boards] 
+    boards_list = [b.to_dict() for b in boards]
     shared_boards_list =  [b[0].to_dict() for b in shared_boards]
 #    print(boards_list + shared_boards_list)
 
     print('---------------------------------')
     return {'boards': boards_list + shared_boards_list }
-    # TODO:figure out how to eager load everything and also convert that into a JSON response 
+    # TODO:figure out how to eager load everything and also convert that into a JSON response
 
 # R E A D  O N E  B O A R D
 @board_routes.route('/<int:id>', methods=['GET'])
@@ -76,11 +76,25 @@ def delete_board(id):
     db.session.commit()
     return { 'id': id }
 
+# S H A R E  B O A R D
+@board_routes.route('/<int:id>/sharing', methods = ['POST'])
+def share_board(id):
+    board = Board.query.get(id)
+    email = request.json['email']
+    user = User.query.filter(User.email == email).first()
+
+    if user:
+        board.shared_users += [user]
+        db.session.commit()
+        return user.to_dict()
+    else:
+        return {'errors': ['Unable to share']}, 400
+
 # U P D A T E   L I S T   O R D E R
 @board_routes.route('/<int:id>/list-order', methods = [ 'POST' ])
 def update_list_order(id):
     board = Board.query.get(id)
-    
+
     list_order = request.json['listOrder']
 #    print(list_order, "<<<<<<<<<<<<<<<<<<<<<")
 
