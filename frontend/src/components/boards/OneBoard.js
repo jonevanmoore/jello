@@ -6,6 +6,7 @@ import { UserIcon } from '../UserIcon';
 import ListsPage from '../Lists/Lists';
 import Modal from '../Modal';
 import EditBoardForm from './EditBoardForm';
+import { ShareBoardForm } from './ShareBoardForm';
 import { avatars } from '../../context/Avatar';
 
 import './Boards.css';
@@ -19,6 +20,7 @@ const OneBoard = () => {
     const boards = useSelector(state => state.boards);
     const board = useSelector(state => state.boards[board_id]);
     const [showEditModal, setShowEditModal] = useState(false);
+    const [showShareModal, setShowShareModal] = useState(false);
 
     //console.log("BOARDS>>>>>>>>>>>>>>>>>>>",boards);
 
@@ -50,6 +52,9 @@ const OneBoard = () => {
 
     const showEditModalFunc = () => setShowEditModal(true);
     const closeEditModalFunc = () => setShowEditModal(false);
+
+    const showShareModalFunc = () => setShowShareModal(true);
+    const closeShareModalFunc = () => setShowShareModal(false);
 
     return (
         <>
@@ -98,25 +103,30 @@ const OneBoard = () => {
                             </div>
                             <div className='board-nav-left-divider' />
                             <div>
-                                <button
+                                {!showShareModal && (<button
                                     id='gray__board__button'
                                     className='
                             jello__wiggle
                             logout__button
                             red__button
                             button__shine__short__red
-                            '>
+                            '
+                                    onClick={showShareModalFunc}>
                                     Share
-                                </button>
+                                </button>)}
+
+                                {showShareModal && (<Modal closeModalFunc={closeShareModalFunc}>
+                                    <ShareBoardForm closeShareModalFunc={closeShareModalFunc} boardId={board_id} />
+                                </Modal>)}
                             </div>
                             <div className='board-nav-left-divider' />
                             <div className='shared__with'>
-                              <UserIcon size={20} givenUser={board.user} />
-                              { board?.shared_users.map((user, i) =>(
-                                <UserIcon size={20} givenUser={user} isNavIcon={true} key={i} />
-                              ))}
+                                <UserIcon size={20} givenUser={board.user} />
+                                {board?.shared_users.map((user, i) => (
+                                    <UserIcon size={20} givenUser={user} isNavIcon={true} key={i} />
+                                ))}
                             </div>
-                            { board?.shared_users.length > 0 && <div className='board-nav-left-divider' />}
+                            {board?.shared_users.length > 0 && <div className='board-nav-left-divider' />}
                         </div>
                         <div className='edit-delete-btns'>
                             <button
@@ -133,8 +143,8 @@ const OneBoard = () => {
                             {showEditModal && (<Modal closeModalFunc={closeEditModalFunc}>
                                 <EditBoardForm closeModalFunc={closeEditModalFunc} />
                             </Modal>)}
-                            
-                          {board.user_id === user.id && (<button
+
+                            {board.user_id === user.id && (<button
                                 id='gray__board__button'
                                 className='
                                 jello__wiggle
