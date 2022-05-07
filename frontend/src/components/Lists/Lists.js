@@ -94,7 +94,7 @@ const ListsPage = () => {
             let cardOrder = {};
             cardsCopy.forEach((card, index) => listOrder[card.id] = index);
             lists.cards = cardsCopy;
-            await dispatch(updateCardOrder(board_id, cardOrder));
+            await dispatch(updateCardOrder(list_id, cardOrder));
 
         } else {
             return;
