@@ -69,7 +69,7 @@ def update_card_order(id):
 
     card_order = request.json['cardOrder']
 
-    cards = Card.query.filter(Card.id.in(list(card_order)))
+    cards = Card.query.filter(Card.id.in_(list(card_order)))
 
     for a_card in cards:
         a_card.order = card_order[str(a_card.id)]

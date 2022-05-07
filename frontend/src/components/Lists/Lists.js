@@ -7,7 +7,7 @@ import { SingleList } from './SingleList';
 
 import { avatars } from '../../context/Avatar';
 
-import { createList, updateListOrder, deleteList } from '../../store/boards';
+import { createList, updateListOrder, deleteList, updateCardOrder } from '../../store/boards';
 
 import AddNewCard from '../Cards/NewCard';
 import CardPage from '../Cards/Card';
@@ -83,22 +83,24 @@ const ListsPage = () => {
             lists = listCopy;
             await dispatch(updateListOrder(board_id, listOrder));
 
-        } else if (type === 'card') {
+        } 
+        if (type === 'card') {
             if (!result.destination) return;
 
-            let cardsCopy = Array.from(lists.cards);
-            console.log(cardsCopy);
+            let list = lists[result.source.droppableId]
+            let destList = lists[result.destination.droppableId]
+            let cardsCopy = Array.from(list.cards.sort((a, b) => a.order - b.order));
+            let destCards = Array.from(list.cards.sort((a, b) => a.order - b.order));
+            
             const [reorderedItem] = cardsCopy.splice(result.source.index, 1);
-            cardsCopy.splice(result.destination.index, 0, reorderedItem);
+            destCards.splice(result.destination.cards, 0, reorderedItem);
 
             let cardOrder = {};
-            cardsCopy.forEach((card, index) => listOrder[card.id] = index);
-            lists.cards = cardsCopy;
-            await dispatch(updateCardOrder(list_id, cardOrder));
+            cardsCopy.forEach((card, index) => cardOrder[card.id] = index);
+            list.cards = cardsCopy;
+            await dispatch(updateCardOrder(list.id, cardOrder));
 
-        } else {
-            return;
-        }
+        } 
     };
 
     const createNewListDisplay = () => {
