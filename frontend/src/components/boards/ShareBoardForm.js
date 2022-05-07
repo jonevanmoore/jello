@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 import { shareBoard } from '../../store/boards';
 import './ShareBoardForm.css'
 
-export const ShareBoardForm = ({ closeShareModalFunc }) => {
-    const dispatch = useDispatch
+export const ShareBoardForm = ({ closeShareModalFunc, boardId }) => {
+    const dispatch = useDispatch()
 
     const [email, setEmail] = useState('')
     const stopTheProp = e => e.stopPropagation();

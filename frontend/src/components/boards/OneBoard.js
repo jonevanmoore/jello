@@ -116,7 +116,7 @@ const OneBoard = () => {
                                 </button>)}
 
                                 {showShareModal && (<Modal closeModalFunc={closeShareModalFunc}>
-                                    <ShareBoardForm closeShareModalFunc={closeShareModalFunc} />
+                                    <ShareBoardForm closeShareModalFunc={closeShareModalFunc} boardId={board_id} />
                                 </Modal>)}
                             </div>
                             <div className='board-nav-left-divider' />

@@ -76,6 +76,18 @@ def delete_board(id):
     db.session.commit()
     return { 'id': id }
 
+# S H A R E  B O A R D
+@board_routes.route('/<int:id>/sharing', methods = ['POST'])
+def share_board(id):
+    board = Board.query.get(id)
+    email = request.json['email']
+    user = User.query.filter(User.email == email)
+
+    if user:
+        board.shared_users += user
+    db.session.commit()
+    return board.to_dict()
+
 # U P D A T E   L I S T   O R D E R
 @board_routes.route('/<int:id>/list-order', methods = [ 'POST' ])
 def update_list_order(id):

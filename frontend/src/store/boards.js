@@ -142,13 +142,14 @@ export const clearBoards = () => async dispatch => {
 }
 
 export const shareBoard = (email, boardId) => async dispatch => {
-    const response = await fetch(`api/boards/${boardId}/sharing`, {
+    const response = await fetch(`/api/boards/${boardId}/sharing`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email })
+        body: JSON.stringify({ email, boardId })
     })
 
-    const data = await response.json()
+    const data = await response.json();
+
     if (response.ok) {
         await dispatch(shareBoardAction(boardId, data));
         return data;
