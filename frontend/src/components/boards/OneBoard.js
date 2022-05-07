@@ -103,7 +103,7 @@ const OneBoard = () => {
                             </div>
                             <div className='board-nav-left-divider' />
                             <div>
-                                {!showShareModal && (<button
+                                <button
                                     id='gray__board__button'
                                     className='
                             jello__wiggle
@@ -113,7 +113,7 @@ const OneBoard = () => {
                             '
                                     onClick={showShareModalFunc}>
                                     Share
-                                </button>)}
+                                </button>
 
                                 {showShareModal && (<Modal closeModalFunc={closeShareModalFunc}>
                                     <ShareBoardForm closeShareModalFunc={closeShareModalFunc} boardId={board_id} />
