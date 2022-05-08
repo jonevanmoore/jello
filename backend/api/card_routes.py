@@ -12,8 +12,8 @@ card_routes = Blueprint("card_routes", __name__)
 def update_card(id):
     card = Card.query.get(id)
 
-    if card.user_id != current_user.id:
-        return {'errors': "Unauthorized edit"}, 401
+#    if card.user_id != current_user.id:
+#        return {'errors': "Unauthorized edit"}, 401
 
     card.content = request.json['content']
     card.description = request.json['description']
