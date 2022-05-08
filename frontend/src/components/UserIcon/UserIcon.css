@@ -12,3 +12,7 @@
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.share-icon {
+  cursor: pointer;
+}
