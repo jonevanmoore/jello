@@ -108,8 +108,8 @@ const DashBoard = () => {
                       </div>
                     </div>
                     <div>
-                        {boardsOwned.map(board =>
-                          <BoardSidebarCard board={board} />
+                        {boardsOwned.map((board, i) =>
+                          <BoardSidebarCard key={i} board={board} />
                         )}
                     </div>
                   {boardsShared.length > 0 &&
@@ -120,8 +120,8 @@ const DashBoard = () => {
                       </div>
                     </div>
                     <div>
-                        {boardsShared.map(board =>
-                          <BoardSidebarCard board={board} />
+                        {boardsShared.map((board, i) =>
+                          <BoardSidebarCard key={i} board={board} />
                         )}
                     </div>
                     </>
