@@ -8,12 +8,32 @@
     bottom: 0; */
 }
 
-
+/*
 .all__boards {
     display: grid;
     gap: 10px;
     grid-template-columns: 270px 270px 270px 270px;
     grid-auto-flow: row dense;
+} */
+
+.all__boards {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+.create__new__board__in__grid {
+    width: 260px;
+    height: 80px;
+
+    border-radius: 4px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--light-gray-bg-color);
+    border: 1px var(--gray-bg-color) solid;
 }
 
 .jello__container {

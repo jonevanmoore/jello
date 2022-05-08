@@ -10,28 +10,28 @@ import './Boards.css';
 import './BoardsNavbar.css';
 
 const BoardCard = ({ board }) => {
-  return (
-    <li className="boards__list__elements" key={board.id}>
-        <NavLink style={{ textDecoration: 'none' }} to={`/boards/${board.id}`}>
-            <div
-                className={`
+    return (
+        <li className="boards__list__elements" key={board.id}>
+            <NavLink style={{ textDecoration: 'none' }} to={`/boards/${board.id}`}>
+                <div
+                    className={`
             jello__container
             jello__container__ani
             jello__bg__${board.avatar_id}
             `}
-            >
-                <div className='jello__title'>
-                    {board.title}
+                >
+                    <div className='jello__title'>
+                        {board.title}
+                    </div>
+                    <div className="jello__wiggle">
+                        <img
+                            className="jello__image"
+                            src={avatars[board.avatar_id].imageUrl} />
+                    </div>
                 </div>
-                <div className="jello__wiggle">
-                    <img
-                        className="jello__image"
-                        src={avatars[board.avatar_id].imageUrl} />
-                </div>
-            </div>
-        </NavLink>
-    </li>
-  )
+            </NavLink>
+        </li>
+    )
 }
 
 const DashBoard = () => {
@@ -81,9 +81,9 @@ const DashBoard = () => {
                         <div>
                             Your Boards
                         </div>
-                        <div>
+                        {/* <div>
                             +
-                        </div>
+                        </div> */}
                     </div>
                     <div>
                         {boardsOwned.map(board =>
@@ -125,6 +125,7 @@ const DashBoard = () => {
                     <div className='all__boards__display'>
                         <div className='subtitles__boards'>My Boards</div>
                         <ul className='all__boards'>
+                            <div className='create__new__board__in__grid'> New Board</div>
                             {boardsOwned.map((board, i) =>
                                 <BoardCard board={board} key={i} />
                             )}
