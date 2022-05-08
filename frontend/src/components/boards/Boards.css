@@ -32,8 +32,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    overflow: hidden;
+
     background-color: var(--light-gray-bg-color);
     border: 1px var(--gray-bg-color) solid;
+
+    cursor: pointer;
 }
 
 .jello__container {

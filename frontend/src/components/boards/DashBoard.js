@@ -1,10 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { UserIcon } from '../UserIcon';
 import { avatars } from "../../context/Avatar";
 
+import Modal from '../Modal';
+import NewBoardForm from '../boards/NewBoardForm';
+
 import { readBoards } from '../../store/boards';
+
+
 
 import './Boards.css';
 import './BoardsNavbar.css';
@@ -35,9 +40,14 @@ const BoardCard = ({ board }) => {
 }
 
 const DashBoard = () => {
+
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
     const boards = useSelector(state => state.boards);
+
+    const [showModal, setShowModal] = useState(false);
+    const closeModalFunc = () => setShowModal(false);
+    const showModalFunc = () => setShowModal(true);
 
     // this works actually
     const boardsOwned = [];
@@ -102,12 +112,7 @@ const DashBoard = () => {
                         )}
                     </div>
                 </div>
-                <div className='body__boards' style={{
-                    // backgroundImage: `url('${randomAvatar}')`,
-                    // backgroundRepeat: "no-repeat",
-                    // backgroundPosition: '95% 90%',
-                    // backgroundSize: "350px",
-                }}>
+                <div className='body__boards'>
                     <div className='bg__avatar__image'>
                         <img className='bg__avatar__image'
                             src={randomAvatar}
@@ -125,7 +130,12 @@ const DashBoard = () => {
                     <div className='all__boards__display'>
                         <div className='subtitles__boards'>My Boards</div>
                         <ul className='all__boards'>
-                            <div className='create__new__board__in__grid'> New Board</div>
+                            <div
+                                className='create__new__board__in__grid jello__wiggle'
+                                onClick={showModalFunc}
+                            >
+                                New Board
+                            </div>
                             {boardsOwned.map((board, i) =>
                                 <BoardCard board={board} key={i} />
                             )}
@@ -136,6 +146,11 @@ const DashBoard = () => {
                                 <BoardCard board={board} key={i} />
                             )}
                         </ul>
+                        {showModal && (
+                            <Modal closeModalFunc={closeModalFunc}>
+                                <NewBoardForm closeModalFunc={closeModalFunc} />
+                            </Modal>
+                        )}
                     </div>
                 </div>
             </div>
