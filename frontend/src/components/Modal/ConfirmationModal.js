@@ -15,7 +15,10 @@ export default function ConfirmationModal({ message, actionButtonLabel, func, ch
 
   const stopTheProp = e => e.stopPropagation();
 
-  const doAction = e => func();
+  const doAction = e => {
+    func();
+    closeModalFunc();
+  };
 
   const className = `
   jello__wiggle
