@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
-import { readBoards, readOneBoard, deleteBoard } from '../../store/boards';
+import { readBoards, readOneBoard, deleteBoard, revokeBoard } from '../../store/boards';
 import { UserIcon } from '../UserIcon';
 import ListsPage from '../Lists/Lists';
 import Modal from '../Modal';
@@ -23,9 +23,6 @@ const OneBoard = () => {
     const [showEditModal, setShowEditModal] = useState(false);
     const [showShareModal, setShowShareModal] = useState(false);
 
-    //console.log("BOARDS>>>>>>>>>>>>>>>>>>>",boards);
-
-    // TODO: FIX SHARED BOARDS BEHAVIOR
     const boardsOwned = [];
 
     Object.values(boards).forEach(board => {
@@ -34,7 +31,6 @@ const OneBoard = () => {
         }
     });
 
-    // console.log('THIS BOARD: ', board);
     useEffect(() => {
         dispatch(readBoards());
     }, [dispatch]);
@@ -56,6 +52,11 @@ const OneBoard = () => {
 
     const showShareModalFunc = () => setShowShareModal(true);
     const closeShareModalFunc = () => setShowShareModal(false);
+
+    // this is a closure
+    const revokeBoardFuncForUser = userId => async e => {
+      dispatch(revokeBoard(board_id, userId));
+    };
 
     return (
         <>
@@ -124,7 +125,11 @@ const OneBoard = () => {
                             <div className='shared__with'>
                                 <UserIcon size={20} givenUser={board.user} />
                                 {board?.shared_users.map((user, i) => (
-                                    <UserIcon size={20} givenUser={user} isNavIcon={true} key={i} />
+                                    <UserIcon size={20} 
+                                              givenUser={user} 
+                                              isNavIcon={true} 
+                                              key={i}
+                                              func={revokeBoardFuncForUser(user.id)}/>
                                 ))}
                             </div>
                             {board?.shared_users.length > 0 && <div className='board-nav-left-divider' />}
