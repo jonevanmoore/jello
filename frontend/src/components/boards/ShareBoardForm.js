@@ -21,6 +21,7 @@ export const ShareBoardForm = ({ closeShareModalFunc, boardId }) => {
             onClick={stopTheProp}
             onMouseDown={stopTheProp}
             onSubmit={handleSubmit}>
+            <label>Share this board with another user</label>
             <input
                 className='share-board-input'
                 type="text"
@@ -30,8 +31,8 @@ export const ShareBoardForm = ({ closeShareModalFunc, boardId }) => {
             >
             </input>
             <div className='share-form-btns'>
-                <button className='jello-wiggle'>Share</button>
-                <button onClick={closeShareModalFunc} className='jello-wiggle'>Cancel</button>
+                <button className='jello-wiggle button__shine__long__green green-btn' style={{ fontFamily: 'Roboto Condensed', fontWeight: '700' }}>Share</button>
+                <button onClick={closeShareModalFunc} className='jello-wiggle button__shine__short__red share-form-cancel' style={{ fontFamily: 'Roboto Condensed', fontWeight: '700' }}>Cancel</button>
             </div>
         </form>
     )
