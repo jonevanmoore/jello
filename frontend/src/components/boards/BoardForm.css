@@ -145,10 +145,10 @@
 }
 
 #disabled-blue {
-    color: var(--dark-blue-button-color);
-    background-color: var(--light-blue-button-color);
-    border-color: var(--dark-blue-button-color);
-    opacity: 35%
+    color: #12426d6c;
+    background-color: #30a9e15a;
+    border-color: #12426d61;
+    /* opacity: 35% */
 }
 
 #disabled-blue:hover {
