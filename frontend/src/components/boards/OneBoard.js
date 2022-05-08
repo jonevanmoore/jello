@@ -66,7 +66,10 @@ const OneBoard = () => {
     };
 
     //    if (!boards) return null;
-    if (!board) return null;
+    if (!board) {
+      history.push('/boards');
+      return null;
+    };
 
     const showEditModalFunc = () => setShowEditModal(true);
     const closeEditModalFunc = () => setShowEditModal(false);
