@@ -13,15 +13,13 @@ export const ShareBoardForm = ({ closeShareModalFunc, boardId }) => {
 
 
     const handleSubmit = async (e) => {
-        try {
-            e.preventDefault()
-            await dispatch(shareBoard(email, boardId))
-            // closeShareModalFunc()
+        e.preventDefault()
+        const data = await dispatch(shareBoard(email, boardId))
+        if (data) {
             setEmail('')
             setSuccessOrError('User added! Add another?')
             setSuccessOrErrorClass('success')
-
-        } catch {
+        } else {
             setSuccessOrError('Unable to find user')
             setSuccessOrErrorClass('error')
         }
