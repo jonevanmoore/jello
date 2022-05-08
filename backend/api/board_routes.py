@@ -90,21 +90,16 @@ def share_board(id):
     else:
         return {'errors': ['Unable to share']}, 400
 
-# U P D A T E   L I S T   O R D E R
-@board_routes.route('/<int:id>/list-order', methods = [ 'POST' ])
-def update_list_order(id):
-    board = Board.query.get(id)
+# R E V O K E   B O A R D 
+@board_routes.route('/<int:board_id>/sharing/<int:user_id>', methods = ['delete'])
+def revoke_board(board_id, user_id):
+    board = Board.query.get(board_id)
 
-    list_order = request.json['listOrder']
-#    print(list_order, "<<<<<<<<<<<<<<<<<<<<<")
-
-    lists = List.query.filter(List.id.in_(list(list_order))) # this grabs all changing lists in a single DB query
-    for a_list in lists:    # this loop is still only O(n)!
-        a_list.order = list_order[str(a_list.id)] # this is a O( log( n ) ) operation — basically constant-time
+    board.shared_users = [user for user in board.shared_users if user.id != int(user_id)]
 
     db.session.commit()
-
-    return board.to_dict()
+    
+    return {'user_id': user_id} 
 
 # C R E A T E   L I S T
 @board_routes.route('/<int:id>/lists', methods = [ 'POST' ])
@@ -124,6 +119,21 @@ def create_list(id):
         return list.to_dict()
     return {'errors': ["Unsuccessful List Submission"]}, 400
 
+# U P D A T E   L I S T   O R D E R
+@board_routes.route('/<int:id>/list-order', methods = [ 'POST' ])
+def update_list_order(id):
+    board = Board.query.get(id)
+
+    list_order = request.json['listOrder']
+#    print(list_order, "<<<<<<<<<<<<<<<<<<<<<")
+
+    lists = List.query.filter(List.id.in_(list(list_order))) # this grabs all changing lists in a single DB query
+    for a_list in lists:    # this loop is still only O(n)!
+        a_list.order = list_order[str(a_list.id)] # this is a O( log( n ) ) operation — basically constant-time
+
+    db.session.commit()
+
+    return board.to_dict()
 
 # U P D A T E  C A R D  O R D E R
 @board_routes.route('/<int:id>/card-order', methods=['POST'])
