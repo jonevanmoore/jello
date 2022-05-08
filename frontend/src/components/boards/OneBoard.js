@@ -40,6 +40,7 @@ const OneBoard = () => {
     const board = useSelector(state => state.boards[board_id]);
     const [showEditModal, setShowEditModal] = useState(false);
     const [showShareModal, setShowShareModal] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     const boardsOwned = [];
     const boardsShared = [];
@@ -57,7 +58,11 @@ const OneBoard = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        dispatch(readOneBoard(board_id));
+        const aFunc = async () => {
+          await dispatch(readOneBoard(board_id));
+          setIsLoaded(true);
+        }
+        aFunc();
     }, [dispatch, board_id]);
 
     const deleteOneBoard = async (board) => {
@@ -67,7 +72,8 @@ const OneBoard = () => {
 
     //    if (!boards) return null;
     if (!board) {
-      history.push('/boards');
+      if( isLoaded )
+        history.push('/boards');
       return null;
     };
 
@@ -79,7 +85,7 @@ const OneBoard = () => {
 
     // this is a closure
     const revokeBoardFuncForUser = userId => async e => {
-      dispatch(revokeBoard(board_id, userId));
+      dispatch(revokeBoard(board_id, userId, user.id));
     };
 
     return (

@@ -45,10 +45,11 @@ const shareBoardAction = (boardId, user) => ({
     user
 })
 
-const revokeBoardAction = (boardId, userId) => ({
+const revokeBoardAction = (boardId, userId, currentUserId) => ({
     type: REVOKE_BOARD,
     boardId,
-    userId
+    userId,
+    currentUserId
 })
 
 // BOARD THUNKS
@@ -184,7 +185,7 @@ export const shareBoard = (email, boardId) => async dispatch => {
     }
 }
 
-export const revokeBoard = (boardId, userId) => async dispatch => {
+export const revokeBoard = (boardId, userId, currentUserId) => async dispatch => {
     const response = await fetch(`/api/boards/${boardId}/sharing/${userId}`,{
       method: 'DELETE'
     })
@@ -192,7 +193,7 @@ export const revokeBoard = (boardId, userId) => async dispatch => {
     const data = await response.json();
 
     if (response.ok) {
-      await dispatch(revokeBoardAction(boardId, userId))
+      await dispatch(revokeBoardAction(boardId, userId, currentUserId))
       return data;
     } else {
       console.log(data.errors);
@@ -431,6 +432,10 @@ const boardsReducer = (state = initialState, action) => {
             })
             newState[board_id] = { ...board };
             newState[board_id].shared_users = newSharedUsers;
+            console.log(action.userId, action.currentUserId);
+            if (+action.userId === +action.currentUserId){
+              delete newState[board_id];
+            }
             return newState;
         }
         case CREATE_LIST: {
