@@ -125,11 +125,15 @@ const OneBoard = () => {
                             <div className='shared__with'>
                                 <UserIcon size={20} givenUser={board.user} />
                                 {board?.shared_users.map((user, i) => (
-                                    <UserIcon size={20} 
-                                              givenUser={user} 
-                                              isNavIcon={true} 
-                                              key={i}
-                                              func={revokeBoardFuncForUser(user.id)}/>
+                                    <ConfirmationModal  message={`Are you sure you want to revoke this board from ${user.first_name} ${user.last_name}?`}
+                                                        actionButtonLabel="Revoke Board"
+                                                        func={revokeBoardFuncForUser(user.id)}> 
+                                        <UserIcon size={20} 
+                                                  givenUser={user} 
+                                                  isNavIcon={true} 
+                                                  key={i} 
+                                                  isShareIcon={true} />
+                                    </ConfirmationModal>
                                 ))}
                             </div>
                             {board?.shared_users.length > 0 && <div className='board-nav-left-divider' />}
