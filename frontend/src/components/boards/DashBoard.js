@@ -112,6 +112,8 @@ const DashBoard = () => {
                           <BoardSidebarCard board={board} />
                         )}
                     </div>
+                  {boardsShared.length > 0 &&
+                    <>
                     <div className='your__boards__PLUS' style={{marginTop: "20px"}} >
                       <div >
                         Shared Boards
@@ -122,6 +124,8 @@ const DashBoard = () => {
                           <BoardSidebarCard board={board} />
                         )}
                     </div>
+                    </>
+                  }
                 </div>
                 <div className='body__boards'>
                     <div className='bg__avatar__image'>
