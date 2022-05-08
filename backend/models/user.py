@@ -2,6 +2,7 @@ from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from sqlalchemy.sql import func
+from backend.models.users_boards import users_boards
 
 
 class User(db.Model, UserMixin):
@@ -20,7 +21,7 @@ class User(db.Model, UserMixin):
 
     boards = db.relationship('Board', back_populates='user')
 
-    shared_boards = db.relationship('Board', back_populates='shared_users')
+    shared_boards = db.relationship('Board', back_populates='shared_users', secondary=users_boards)
 
 
     @property
