@@ -177,6 +177,7 @@ const OneBoard = () => {
                                                actionButtonLabel="Delete Board"
                                                func={()=>deleteOneBoard(board)}>
                               <button
+                                style={{marginRight: "12px"}}
                                 id='gray__board__button'
                                 className='
                                 jello__wiggle
