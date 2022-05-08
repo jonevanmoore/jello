@@ -135,7 +135,7 @@ const EditBoardForm = ({ closeModalFunc }) => {
                         Save Changes
                     </button>
                     <button
-                        id='cancel-button'
+                        id='cancel-button-boards'
                         className='
                     jello__wiggle
                     logout__button

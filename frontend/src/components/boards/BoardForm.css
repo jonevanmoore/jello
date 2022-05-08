@@ -27,7 +27,7 @@
 }
 
 .input__board__title {
-    width: 344px;
+    width: 358px;
     height: 30px;
     border: var(--nav-bar-left-divider-color) var(--main-button-border-width) solid;
     border-radius: var(--main-border-radius);
@@ -90,7 +90,7 @@
     transition: all 0.25s ease-in-out;
     cursor: pointer;
     background-color: white;
-    width: 350px;
+    width: 364px;
     height: 30px;
 }
 
@@ -113,7 +113,7 @@
     transition: all 0.25s ease-in-out;
     cursor: pointer;
     background-color: var(--light-blue-button-color);
-    width: 350px;
+    width: 364px;
     height: 30px;
 }
 
@@ -126,7 +126,7 @@
 .title-avatar-checks>* {
     position: relative;
     top: 18px;
-    right: -162px
+    right: -169px
 }
 
 .boards-checks {

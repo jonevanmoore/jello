@@ -12,8 +12,6 @@
     width: 190px;
     display: flex;
     flex-direction: column;
-    /* padding-left: 10px; */
-    z-index: 5;
     background: var(--dark-gray-bg-color);
 }
 

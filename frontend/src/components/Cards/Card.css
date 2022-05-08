@@ -1,22 +1,64 @@
 .card__element {
     /* margin-top: 30px; */
-}
-
-.card__container__in_card {
     border-radius: var(--main-border-radius);
+    background-color: var(--white-color);
     width: 600px;
     height: 800px;
 
-    background-color: var(--white-color);
     box-shadow: var(--main-box-shadow);
     animation: jello_3 1s;
+}
+
+.card__container__in_card {
+    width: 600px;
+    height: 760px;
 }
 
 .card__title__container__in_card {
     padding: 1px 0;
 }
 
-.close__in_card {
+.titles__closing__n__edit {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 20px;
+}
+
+.edit__bts__in__card {
+    margin-right: 10px;
+}
+
+.card-edit-close-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit__content__position {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px 40px;
+    /* border: red 1px solid; */
+}
+
+.edit__content__position>* {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.update-content-btns {
+    /* border: 3px blue solid; */
+}
+
+.update-content-input {
+    margin-right: 10px;
+    /* border: 3px green solid; */
+}
+
+.edit__close__in_card {
     float: right;
     margin: 20px;
 }
@@ -86,7 +128,11 @@
 .description__paragraph {
     font-size: 13px;
     font-weight: 500;
-    /* border: 1px red solid; */
+    padding: 5px;
+    max-height: 120px;
+    overflow: scroll;
+    border: 1px solid var(--nav-bar-left-divider-color);
+    border-radius: var(--main-border-radius);
 }
 
 .textarea__input__description {
@@ -117,8 +163,8 @@
 
 .del__card__btn__container {
     float: right;
-    margin-right: 10px;
-    margin-top: 10px;
+    margin-right: 15px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -127,6 +173,7 @@
 .add__cancel__desc {
     display: flex;
     align-items: center;
+
 }
 
 #desc__buttons {
@@ -147,6 +194,16 @@
     width: 15px;
     border: none;
     background-color: white;
+}
+
+.close__tag__description {
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15px;
+    width: 15px;
+    border: none;
 }
 
 .close__desc {
@@ -185,7 +242,25 @@
 }
 
 .comments__in__list__container {
+    /* display: flex;
+    height: 100%; */
     position: relative;
     right: 40px;
     left: -30px;
+}
+
+.displayed-desc {
+    display: block;
+}
+
+.not-displayed-desc {
+    display: none;
+}
+
+.displayed-cont {
+    display: block;
+}
+
+.not-displayed-cont {
+    display: none;
 }

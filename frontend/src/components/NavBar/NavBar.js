@@ -8,7 +8,7 @@ import NewBoardForm from '../boards/NewBoardForm';
 import './NavBar.css'
 
 const NavBar = () => {
-  const [ showModal, setShowModal ] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const closeModalFunc = () => setShowModal(false);
   const showModalFunc = () => setShowModal(true);
@@ -20,7 +20,7 @@ const NavBar = () => {
           <img src='/static/Jello-White-Logo.png' alt='jello-logo' className='nav-bar-logo' />
         </Link>
         <div className="nav-bar-left-divider" />
-        <div className='create-board-link jello__wiggle' onClick={showModalFunc}>
+        <div className='create-board-link button__shine__short jello__wiggle__top' onClick={showModalFunc}>
           Create Board
         </div>
         {showModal && (

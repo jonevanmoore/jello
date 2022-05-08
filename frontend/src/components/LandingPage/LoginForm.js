@@ -92,7 +92,7 @@ const LoginForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
       </form>
       <button className='login-form-btn jello-wiggle jello__container__ani cancel-btn'
         id="logout-button"
-        style={{ width: '88%', marginBottom: '36px' }} /* <<< hack alert */
+        style={{ width: '91%' }} /* <<< hack alert */
         onClick={closeModalFunc}>Cancel</button>
     </div>
   );

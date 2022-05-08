@@ -14,33 +14,56 @@ const CardPage = ({ list, card, closeModalFunc }) => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
 
+    const [newContent, setNewContent] = useState(card.content);
     const [newDescription, setNewDescription] = useState('');
     const [newDueDate, setNewDueDate] = useState('1999-12-31 11:59:59');
+
+    const [contentDisplay, setContentDisplay] = useState('displayed-cont');
+    const [contentInputDisplay, setContentInputDisplay] = useState('not-displayed-cont');
     const [descriptionDisplay, setDescriptionDisplay] = useState('displayed-desc');
     const [descriptionInputDisplay, setDescriptionInputDisplay] = useState('not-displayed-desc');
+
 
     const updateOneCard = async () => {
         let oneCard = {
             id: card.id,
             user_id: card.user_id,
             list_id: list.id,
-            content: card.content,
+            content: newContent,
             order: card.order,
             description: newDescription,
             due_date: newDueDate,
         };
         const updatedCard = await dispatch(updateCard(oneCard));
-        console.log('UPDATED CARD:  ', updatedCard);
         setDescriptionDisplay('displayed-desc');
         setDescriptionInputDisplay('not-displayed-desc');
+        setContentDisplay('displayed-cont');
+        setContentInputDisplay('not-displayed-cont');
         setNewDescription('');
     };
 
     const removeCard = async (card) => {
         await dispatch(deleteCard(card));
         closeModalFunc();
-        // TODO: fix this — update: I don't know if this was fixed or not
-        // I should have been much more descriptive
+    };
+
+    const contentAndInputDisplay = () => {
+        if (contentDisplay === 'displayed-cont') {
+            setContentDisplay('not-displayed-cont');
+            setContentInputDisplay('displayed-cont');
+        } else {
+            setContentDisplay('displayed-cont');
+            setContentInputDisplay('not-displayed-cont');
+        }
+
+        if (contentInputDisplay === 'not-displayed-cont') {
+            setContentInputDisplay('displayed-cont');
+            setContentDisplay('not-displayed-cont');
+        } else {
+            setContentInputDisplay('not-displayed-cont');
+            setContentDisplay('displayed-cont');
+        }
+        setNewContent(card.content);
     };
 
     const descriptionAndInputDisplay = () => {
@@ -59,7 +82,7 @@ const CardPage = ({ list, card, closeModalFunc }) => {
             setDescriptionInputDisplay('not-displayed-desc');
             setDescriptionDisplay('displayed-desc');
         }
-        setNewDescription(card.description)
+        setNewDescription(card.description);
     };
 
     const avatarPNGs = Object.values(avatars)
@@ -76,77 +99,107 @@ const CardPage = ({ list, card, closeModalFunc }) => {
             onClick={stopTheProp}
             onMouseDown={stopTheProp}>
             <div className='card__container__in_card'>
-                <div className='close__in_card'>
-                    <button
-                        className="close__tag__card"
-                        onClick={closeModalFunc}
-                    >
-                        <div className="close__text">&#215;</div>
-                    </button>
-                </div>
-                <div className='card__title__container__in_card'>
-                    <div className='card__title__in_card'>
-                        {card.content}
-                    </div>
-                    <span className='card__subtitle__in_list'>in list
-                        <span className='list__title__in_list'>
-                            {card.list_id === list.id ? ` ${list.title}` : ''}
+                <div className='titles__closing__n__edit'>
+                    <div className='card__title__container__in_card'>
+                        <div className={`card__title__in_card ${contentDisplay}`}>
+                            {card.content}
+                        </div>
+                        <div className={`${contentInputDisplay}`}>
+                            <div className='edit__content__position'>
+                                <div className='update-content-input'>
+                                    <input
+                                        type="text"
+                                        value={newContent}
+                                        onChange={(e) => setNewContent(e.target.value)}
+                                        className="content-input"
+                                    ></input>
+                                </div>
+                                <div className='update-content-btns'>
+                                    <button
+                                        onClick={updateOneCard}
+                                        className={`
+                                        jello-wiggle
+                                        button__shine__short
+                                        light__green__button
+                                        `}>
+                                        Update
+                                    </button>
+                                    <button
+                                        onClick={contentAndInputDisplay}
+                                        className='
+                                        jello-wiggle
+                                        cancel-title-btn
+                                        button__shine__short'>
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <span className='card__subtitle__in_list'>in list
+                            <span className='list__title__in_list'>
+                                {card.list_id === list.id ? ` ${list.title}` : ''}
+                            </span>
                         </span>
-                    </span>
+                    </div>
+                    <div className='card-edit-close-div'>
+                        <div className={`edit__bts__in__card`}>
+                            <i className={`fa-solid fa-pen-to-square jello-wiggle ${contentDisplay}`} onClick={contentAndInputDisplay}></i>
+                        </div>
+                        <div className='close__bts__in__card'>
+                            <button
+                                className="close__tag__card"
+                                onClick={closeModalFunc}
+                            >
+                                <div className="close__text">&#215;</div>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div className='due__date__container'>
-                    {/* <div className='due__date__title'>
-                        Due date
-                    </div>
-                    <div className='due__date'>
-                        <div className='month__day__year'>
-                            This will be the DATE
-                        </div>
-                        <div className='drop__down__mark'>
-                            complete
-                        </div>
-                    </div> */}
                     <div className='description__container'>
                         <div className='description__title'>
                             Description
                         </div>
-                        <p className='description__paragraph'>
-                            {card.description}
-                        </p>
-                        {/* <input
-                            type="text"
-                            value={newTitle}
-                            onChange={(e) => setNewTitle(e.target.value)}
-                            className="title-input"
-                        ></input>
-                        <div className={`check-div`}>
-                            <i className="fa-solid fa-circle-check" id={titleInputValid}></i>
-                        </div> */}
-                        <textarea
-                            className='textarea__input__description'
-                            type="text"
-                            value={newDescription}
-                            onChange={(e) => setNewDescription(e.target.value)}
-                            placeholder='Add a more detailed description...'
-                        />
-                        <div className='add__cancel__desc'>
+                        <div className={`${descriptionDisplay}`}>
+                            <p className='description__paragraph'>
+                                {card.description}
+                            </p>
                             <button
-                                onClick={updateOneCard}
+                                onClick={descriptionAndInputDisplay}
                                 id='desc__buttons'
                                 className={`
                                 light__green__blue__button
                                 jello__wiggle
                                 button__shine__short
-                                `}
-                            >
-                                Add Description</button>
-                            <button
-                                type='submit'
-                                className="close__desc"
-                            // onClick={descriptionAndInputDisplay}
-                            >
-                                <div className="close__text">&#215;</div>
+                                `}>
+                                {card.description?.length < 1 ? 'Add Description' : 'Edit Description'}
                             </button>
+                        </div>
+                        <div className={`${descriptionInputDisplay}`}>
+                            <textarea
+                                className='textarea__input__description'
+                                type="text"
+                                value={newDescription}
+                                onChange={(e) => setNewDescription(e.target.value)}
+                                placeholder='Add a more detailed description...'
+                            />
+                            <div className='add__cancel__desc'>
+                                <button
+                                    onClick={updateOneCard}
+                                    id='desc__buttons'
+                                    className={`
+                                        light__green__blue__button
+                                        jello__wiggle
+                                        button__shine__short
+                                        `}>
+                                    Save Changes
+                                </button>
+                                <button className="add__tag__comment"
+                                    onClick={descriptionAndInputDisplay}
+                                >
+                                    <div className="close__text bg-white">&#215;</div>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div className='comments__in__list__container'>
@@ -156,18 +209,18 @@ const CardPage = ({ list, card, closeModalFunc }) => {
                         <img className="jello__image__card" src={randomAvatar} />
                     </div> */}
                 </div>
-                <div className='del__card__btn__container'>
-                    <button
-                        id='del__card__btn'
-                        className='
+            </div>
+            <div className='del__card__btn__container'>
+                <button
+                    id='del__card__btn'
+                    className='
                             jello__wiggle
                             logout__button
                             red__button
                             button__shine__short__red
                             '
-                        onClick={() => removeCard(card)}
-                    >Delete Card</button>
-                </div>
+                    onClick={() => removeCard(card)}
+                >Delete Card</button>
             </div>
         </div>
     )

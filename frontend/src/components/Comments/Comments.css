@@ -32,8 +32,10 @@
     margin-left: -4px;
     /* position: absolute; */
     /* margin-left: -20px; */
-    height: 320px;
+    height: 290px;
     width: 587px;
+    flex: auto;
+    /* border: red 1px solid; */
 }
 
 .comment__by__user {
@@ -91,7 +93,6 @@
     height: 15px;
     width: 15px;
     border: none;
-    border-radius: 3px;
 }
 
 .add__tag__comment {
@@ -102,7 +103,6 @@
     height: 15px;
     width: 15px;
     border: none;
-    /* background-color: var(--white-button-main-color); */
 }
 
 .bg-white {

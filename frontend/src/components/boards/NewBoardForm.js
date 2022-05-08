@@ -126,7 +126,7 @@ const NewBoardForm = ({ closeModalFunc }) => {
                         Create Board
                     </button>
                     <button
-                        id='cancel-button'
+                        id='cancel-button-boards'
                         className='
                     jello__wiggle
                     logout__button

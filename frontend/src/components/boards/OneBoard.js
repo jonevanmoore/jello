@@ -74,9 +74,9 @@ const OneBoard = () => {
                         <div>
                             Your Boards
                         </div>
-                        <div>
+                        {/* <div>
                             +
-                        </div>
+                        </div> */}
                     </div>
                     <div>
                         {boardsOwned.map(board =>
