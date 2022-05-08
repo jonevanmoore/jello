@@ -11,7 +11,7 @@ in the NavBar: <UserIcon isNavIcon={true} />
 as a sharing indicator: <UserIcon givenUser={ userObject } >
 where userObject has an avatar_id
 */
-export const UserIcon = ({ isNavIcon, givenUser, size }) => {
+export const UserIcon = ({ isNavIcon, givenUser, size, func }) => {
   const { avatars } = useContext(AvatarContext);
   const activeUser = useSelector(state => state.session?.user);
 
@@ -32,6 +32,9 @@ export const UserIcon = ({ isNavIcon, givenUser, size }) => {
   }
 
   return (
-    <div className="user-icon" style={styleObject} title={givenUser ? givenUser.email : ''} />
+    <div className={`user-icon ${func ? 'share-icon' : ''}`} 
+        style={styleObject} 
+        onClick={ func ? func : ()=>{} }
+        title={givenUser ? givenUser.email : ''} />
   )
 }
