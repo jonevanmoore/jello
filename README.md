@@ -8,10 +8,10 @@
 
 
 ## Table of Contents  
-- [Getting Started](https://github.com/jonevanmoore/jello/edit/main/README.md#getting-started)
-- [Technical Details](https://github.com/jonevanmoore/jello/edit/main/README.md#technical-details) 
-- [Technologies](https://github.com/jonevanmoore/jello/edit/main/README.md#technologies)
-- [Feature List](https://github.com/jonevanmoore/jello/edit/main/README.md#feature-list)  
+- [Getting Started](https://github.com/jonevanmoore/jello#getting-started)
+- [Technical Details](https://github.com/jonevanmoore/jello#technical-details) 
+- [Technologies](https://github.com/jonevanmoore/jello#technologies)
+- [Feature List](https://github.com/jonevanmoore/jello#feature-list)  
 
 
 
@@ -24,19 +24,20 @@ To get started, you can access the live site [here](https://the-jello-app.heroku
 
 From the home page, you can access the site via a demo user or by signing up. In the sign up form, you must enter a first name, last name, email, a password of at least 3 chacters, and you may choose from our selection of Jello avatars.
 
-#### Step 2
+![brave_ezgiwsQuAb](https://user-images.githubusercontent.com/90283463/167308839-71419027-3537-43aa-a9ac-cc2114efe3bb.gif)
 
-![image](https://user-images.githubusercontent.com/90283463/167236691-f4591288-e10b-43d5-8ed5-b0374451f448.png)
+#### Step 2
 
 After filling our the form with your information, you can now access Jello to its full potential! Have fun building your boards!
 
-![image](https://user-images.githubusercontent.com/90283463/167236807-dfb05790-9161-406b-9bd6-fc1cd59ac98f.png)
+![brave_LrMEApLXwF](https://user-images.githubusercontent.com/90283463/167309142-154ebc5c-4c13-4be6-b599-1707388a9261.png)
 
 ## Technical Details
 [Atlassian's react-beautiful-dnd package](https://github.com/atlassian/react-beautiful-dnd) brought life to Jello. By utilizing this package, Jello gives users the capability to reorganize their lists or cards, the power to change their mind, shift their thinking, and make overall better project boards. To fully implement this package, we applied the DragDropContext, Droppable, and Draggable components to our list and card components. The DragDropContext component provides context to allow for our lists and cards to fully mobile. 
 
-![brave_1U9ZVFenAg](https://user-images.githubusercontent.com/90283463/167239263-3173870f-0e9e-4118-903e-5df8f4feb346.gif)
+![brave_M12cFzcdir](https://user-images.githubusercontent.com/90283463/167308947-89e6d37d-4806-48bf-89ed-e2d22b56ebc7.gif)
 
+![brave_AsDopaWixx](https://user-images.githubusercontent.com/90283463/167309000-673e8d81-29e3-4e78-8bae-821d308f7c3a.gif)
 
 ## Technologies
 - Reactjs
