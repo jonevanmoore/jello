@@ -1,8 +1,12 @@
-.share-board-form {}
+.share-board-form {
+    background-color: white;
+    border-radius: 3px;
+    animation: jello_3 1s;
+
+}
 
 .share-board-form>* {
-    margin-left: 1px;
-    margin-right: 1px;
+    margin: 5px;
     border: 1px solid transparent;
     border-radius: 3px;
     padding: 3px;
@@ -11,6 +15,52 @@
 }
 
 .share-board-input {
-    border: 1px solid transparent;
+    border: 1px solid lightgray;
     border-radius: 3px;
+    width: 88%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    position: relative;
+    left: 4px;
+    font-family: 'Roboto Condensed';
+}
+
+.share-form-btns {
+    display: flex;
+}
+
+.share-form-btns>* {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.share-form-cancel {
+    background-color: white;
+    border: 1px solid var(--red-button-main-color);
+    color: var(--red-button-main-color);
+    border-radius: 3px;
+    transition: .3s;
+}
+
+.share-form-cancel:hover {
+    background-color: var(--red-button-main-color);
+    color: white;
+}
+
+/* SUCCESS OR ERROR */
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
+}
+
+.success,
+.error {
+    font-size: 10px;
+    position: relative;
+    bottom: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }

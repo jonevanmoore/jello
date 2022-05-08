@@ -41,26 +41,6 @@ const LoginForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
     return <Redirect to='/' />;
   }
 
-  // const changeLoginDisplay = () => {
-  //   if (loginDisplay === 'not-displayed') {
-  //     setLoginDisplay('displayed')
-  //   } else if (loginDisplay === 'displayed') {
-  //     setLoginDisplay('not-displayed')
-  //   } else if (signupDisplay === 'displayed') {
-  //     setLoginDisplay('not-displayed')
-  //   }
-  // }
-
-  // const changeSignupDisplay = () => {
-  //   if (signupDisplay === 'not-displayed') {
-  //     setSignupDisplay('displayed')
-  //   } else if (signupDisplay === 'displayed') {
-  //     setSignupDisplay('not-displayed')
-  //   } else if (loginDisplay === 'displayed') {
-  //     setSignupDisplay('not-displayed')
-  //   }
-  // }
-
   const stopTheProp = e => e.stopPropagation();
 
   return (

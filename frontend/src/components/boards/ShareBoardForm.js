@@ -7,13 +7,22 @@ export const ShareBoardForm = ({ closeShareModalFunc, boardId }) => {
     const dispatch = useDispatch()
 
     const [email, setEmail] = useState('')
+    const [successOrError, setSuccessOrError] = useState('')
+    const [successOrErrorClass, setSuccessOrErrorClass] = useState('')
     const stopTheProp = e => e.stopPropagation();
 
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await dispatch(shareBoard(email, boardId))
-        closeShareModalFunc()
+        const data = await dispatch(shareBoard(email, boardId))
+        if (data) {
+            setEmail('')
+            setSuccessOrError('User added! Add another?')
+            setSuccessOrErrorClass('success')
+        } else {
+            setSuccessOrError('Unable to find user')
+            setSuccessOrErrorClass('error')
+        }
     }
 
     return (
@@ -21,6 +30,10 @@ export const ShareBoardForm = ({ closeShareModalFunc, boardId }) => {
             onClick={stopTheProp}
             onMouseDown={stopTheProp}
             onSubmit={handleSubmit}>
+            <label style={{ color: 'gray' }}>Share this board with other users</label>
+            <div style={{ position: 'absolute' }}>
+                <label className={successOrErrorClass}>{successOrError}</label>
+            </div>
             <input
                 className='share-board-input'
                 type="text"
@@ -29,8 +42,10 @@ export const ShareBoardForm = ({ closeShareModalFunc, boardId }) => {
                 placeholder='Enter Email'
             >
             </input>
-            <button className='jello-wiggle'>Share</button>
-            <button onClick={closeShareModalFunc} className='jello-wiggle'>Cancel</button>
+            <div className='share-form-btns'>
+                <button className='jello-wiggle button__shine__long__green green-btn' style={{ fontFamily: 'Roboto Condensed', fontWeight: '700' }}>Share</button>
+                <button onClick={closeShareModalFunc} className='jello-wiggle button__shine__short__red share-form-cancel' style={{ fontFamily: 'Roboto Condensed', fontWeight: '700' }}>Cancel</button>
+            </div>
         </form>
     )
 }
