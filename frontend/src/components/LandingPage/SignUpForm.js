@@ -124,11 +124,6 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
       <form onSubmit={onSignUp} className='signup-form'>
         <span id="bulk" className='login-text'>Sign up for Jello <span id="skinny">or</span> <span className='login-click' onClick={toggleLoginSignupFunc}>Log in</span></span>
 
-        <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div>
         <div className='first-last-checks sign-up-checks'>
           <i className="fa-solid fa-circle-check first-name-check" id={firstNameError}></i>
           <i className="fa-solid fa-circle-check last-name-check" id={lastNameError}></i>
@@ -185,6 +180,11 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
           value={repeatPassword}
           required={true}
         ></input>
+        <div style={{marginTop: "10px"}}>
+          {errors.map((error, i) => (
+            <div key={i}>{error}</div>
+          ))}
+        </div>
         <button
           type='submit'
           className='login-form-btn submit-btn jello-wiggle button__shine__long__green green-btn'
