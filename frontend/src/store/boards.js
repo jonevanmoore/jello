@@ -1,12 +1,13 @@
 
 //BOARD CONSTANTS
-const CREATE_BOARD = 'boards/CREATE_BOARD';
-const READ_BOARDS = 'boards/READ_BOARDS';
+const CREATE_BOARD   = 'boards/CREATE_BOARD';
+const READ_BOARDS    = 'boards/READ_BOARDS';
 const READ_ONE_BOARD = 'boards/READ_ONE_BOARD';
-const UPDATE_BOARD = 'boards/UPDATE_BOARD';
-const DELETE_BOARD = 'boards/DELETE_BOARD';
-const CLEAR_BOARDS = 'boards/CLEAR_BOARDS';
-const SHARE_BOARD = 'boards/SHARE_BOARDS';
+const UPDATE_BOARD   = 'boards/UPDATE_BOARD';
+const DELETE_BOARD   = 'boards/DELETE_BOARD';
+const CLEAR_BOARDS   = 'boards/CLEAR_BOARDS';
+const SHARE_BOARD    = 'boards/SHARE_BOARD';
+const REVOKE_BOARD   = 'boards/REVOKE_BOARD';
 
 // BOARD ACTIONS
 const createBoardAction = board => ({
@@ -42,6 +43,12 @@ const shareBoardAction = (boardId, user) => ({
     type: SHARE_BOARD,
     boardId,
     user
+})
+
+const revokeBoardAction = (boardId, userId) => ({
+    type: REVOKE_BOARD,
+    boardId,
+    userId
 })
 
 // BOARD THUNKS
@@ -120,6 +127,11 @@ export const deleteBoard = board => async dispatch => {
     }
 };
 
+// this is called on logout
+export const clearBoards = () => async dispatch => {
+    await dispatch(clearBoardsAction());
+};
+
 export const updateListOrder = (boardId, listOrder) => async dispatch => {
     const response = await fetch(`/api/boards/${boardId}/list-order`, {
         method: 'POST',
@@ -137,9 +149,6 @@ export const updateListOrder = (boardId, listOrder) => async dispatch => {
     }
 };
 
-export const clearBoards = () => async dispatch => {
-    await dispatch(clearBoardsAction());
-};
 
 export const updateCardOrder = (boardId, cardOrder) => async dispatch => {
     const response = await fetch(`/api/boards/${boardId}/card-order`, {
@@ -172,6 +181,21 @@ export const shareBoard = (email, boardId) => async dispatch => {
         return data;
     } else {
         console.log(data.errors)
+    }
+}
+
+export const revokeBoard = (boardId, userId) => async dispatch => {
+    const response = await fetch(`/api/boards/${boardId}/sharing/${userId}`,{
+      method: 'DELETE'
+    })
+
+    const data = await response.json();
+
+    if (response.ok) {
+      await dispatch(revokeBoardAction(boardId, userId))
+      return data;
+    } else {
+      console.log(data.errors);
     }
 }
 
