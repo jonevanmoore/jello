@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateList, deleteList } from '../../store/boards';
 import './SingleList.css';
+import ConfirmationModal from '../Modal/ConfirmationModal';
 
 export const SingleList = ({ list }) => {
     const dispatch = useDispatch();
@@ -93,12 +94,19 @@ export const SingleList = ({ list }) => {
                     <i className={`fa-solid fa-pen-to-square jello-wiggle ${titleDisplay}`} onClick={titleAndInputDisplay}></i>
                 </div>
                 <div className='del__bts__in__card'>
+
+                  <ConfirmationModal message="Are you sure you want to delete this list?"
+                                     actionButtonLabel="Delete List"
+                                     func={()=>removeList(list)}
+                                     active={list.cards.length > 0}> 
                     <button
                         className={`${titleDisplay} delete-list`}
-                        onClick={() => removeList(list)}
+                        //onClick={() => removeList(list)}
                     >
                         <div className={`close__text`}>&#215;</div>
                     </button>
+                  </ConfirmationModal>
+
                 </div>
             </div>
         </div>

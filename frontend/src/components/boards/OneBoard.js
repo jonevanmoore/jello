@@ -5,6 +5,7 @@ import { readBoards, readOneBoard, deleteBoard } from '../../store/boards';
 import { UserIcon } from '../UserIcon';
 import ListsPage from '../Lists/Lists';
 import Modal from '../Modal';
+import ConfirmationModal from '../Modal/ConfirmationModal'
 import EditBoardForm from './EditBoardForm';
 import { ShareBoardForm } from './ShareBoardForm';
 import { avatars } from '../../context/Avatar';
@@ -144,7 +145,11 @@ const OneBoard = () => {
                                 <EditBoardForm closeModalFunc={closeEditModalFunc} />
                             </Modal>)}
 
-                            {board.user_id === user.id && (<button
+                            {board.user_id === user.id && (
+                            <ConfirmationModal message="Are you sure you want to delete this board?"
+                                               actionButtonLabel="Delete Board"
+                                               func={()=>deleteOneBoard(board)}>
+                              <button
                                 id='gray__board__button'
                                 className='
                                 jello__wiggle
@@ -152,9 +157,9 @@ const OneBoard = () => {
                                 red__button
                                 button__shine__short__red
                                 '
-                                onClick={() => {
-                                    deleteOneBoard(board)
-                                }}>Delete Board</button>
+                                //onClick={() => deleteOneBoard(board)}
+                              >Delete Board</button>
+                            </ConfirmationModal>
                             )}
                         </div>
                     </div>
