@@ -103,7 +103,9 @@ const OneBoard = () => {
                           <BoardSidebarCard board={board} />
                         )}
                     </div>
-                  <div className='your__boards__PLUS' style={{marginTop:"20px"}}>
+                  {boardsShared.length > 0 &&
+                    <>
+                    <div className='your__boards__PLUS' style={{marginTop:"20px"}}>
                         <div>
                             Shared Boards
                         </div>
@@ -113,6 +115,8 @@ const OneBoard = () => {
                           <BoardSidebarCard board={board} />
                         )}
                     </div>
+                    </>
+                  }
                 </div>
                 <div className='board-nav-bar-length'>
                     <div className='board-nav-bar'>
