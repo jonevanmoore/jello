@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, session, request, redirect
 from flask_login import login_required, current_user
 from backend.forms import NewBoardForm, NewListForm
-from backend.models import User, Board, List, db, users_boards
+from backend.models import User, Board, List, db, users_boards, Card 
 from backend.api.auth_routes import validation_errors_to_error_messages
 
 board_routes = Blueprint('boards', __name__)
@@ -123,3 +123,21 @@ def create_list(id):
         db.session.commit()
         return list.to_dict()
     return {'errors': ["Unsuccessful List Submission"]}, 400
+
+
+# U P D A T E  C A R D  O R D E R
+@board_routes.route('/<int:id>/card-order', methods=['POST'])
+def update_card_order(id):
+    
+    card_order = request.json['cardOrder']
+    
+    cards = Card.query.filter(Card.id.in_(list(card_order)))
+
+    for a_card in cards:
+        a_card.order = card_order[str(a_card.id)][0]
+        a_card.list_id = card_order[str(a_card.id)][1]
+    
+    db.session.commit()
+    board = Board.query.get(id)
+    
+    return board.to_dict()

@@ -4,6 +4,10 @@
     height: 95%;
 }
 
+.card-mapping {
+  min-height: .1px;
+}
+
 .list__container {
     display: inline-block;
     width: 220px;

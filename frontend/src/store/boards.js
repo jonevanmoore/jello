@@ -135,11 +135,28 @@ export const updateListOrder = (boardId, listOrder) => async dispatch => {
     } else {
         console.log(data.errors);
     }
-}
+};
 
 export const clearBoards = () => async dispatch => {
     await dispatch(clearBoardsAction());
-}
+};
+
+export const updateCardOrder = (boardId, cardOrder) => async dispatch => {
+    const response = await fetch(`/api/boards/${boardId}/card-order`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cardOrder })
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+        await dispatch(readOneBoardAction(data));
+        return data;
+    } else {
+        console.log(data.errors);
+    }
+};
 
 export const shareBoard = (email, boardId) => async dispatch => {
     const response = await fetch(`/api/boards/${boardId}/sharing`, {
@@ -228,8 +245,6 @@ export const deleteList = list => async dispatch => {
         console.log(data.errors);
     }
 };
-
-
 
 // CARD CONSTANTS
 const CREATE_CARD = 'boards/CREATE_CARD';

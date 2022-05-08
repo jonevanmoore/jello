@@ -7,7 +7,7 @@ import { SingleList } from './SingleList';
 
 import { avatars } from '../../context/Avatar';
 
-import { createList, updateListOrder, deleteList } from '../../store/boards';
+import { createList, updateListOrder, deleteList, updateCardOrder } from '../../store/boards';
 
 import AddNewCard from '../Cards/NewCard';
 import CardPage from '../Cards/Card';
@@ -17,14 +17,20 @@ import './Cards-in-Lists.css';
 
 
 // This is the cards within the lists
-const ListCard = ({ card, list }) => {
+const ListCard = ({ card, list, provided }) => {
     const [showModal, setShowModal] = useState(false);
 
     const closeModalFunc = () => setShowModal(false);
     const showModalFunc = () => setShowModal(true);
 
+
+    // key={card.id} {...provided.droppableProps} ref={provided.innerRef} {...provided.dragHandleProps}
     return (
-        <div className='card__container' >
+        <div className='card__container'  
+             {...provided.draggableProps} 
+             ref={provided.innerRef}
+             {...provided.dragHandleProps}
+        >
             <div
                 className='card__content'
                 onClick={showModalFunc}
@@ -36,10 +42,6 @@ const ListCard = ({ card, list }) => {
                     <CardPage list={list} card={card} closeModalFunc={closeModalFunc} />
                 </Modal>
             )}
-
-            {/* <div className='card__description'>{card.description}</div> */}
-            {/* <div className='card__due__date'>{card.due_date}</div> */}
-            {/* <div>{card.created_at}</div> */}
         </div>
     )
 }
@@ -58,8 +60,12 @@ const ListsPage = () => {
     const [titleDisplay, setTitleDisplay] = useState('displayed');
     const [titleInputDisplay, setTitleInputDisplay] = useState('not-displayed');
 
-    let lists = board.lists.sort((a, b) => a.order - b.order);
-
+    
+    let lists = board.lists;
+    lists.sort((a, b) => a.order - b.order);
+    lists.forEach(list => {
+        list.cards.sort((a, b) => a.order - b.order)
+    });
     const addNewList = async () => {
         if (title.trim() === '') return;
 
@@ -71,16 +77,51 @@ const ListsPage = () => {
     };
 
     const handleOnDragEnd = async (result) => {
-        if (!result.destination) return;
+        //console.log(result);
+        if (result.type === 'list') {
+            if (!result.destination) return;
+    
+            let listCopy = Array.from(lists);
+            const [reOrderedItem] = listCopy.splice(result.source.index, 1);
+            listCopy.splice(result.destination.index, 0, reOrderedItem);
+    
+            let listOrder = {};
+            listCopy.forEach((list, index) => listOrder[list.id] = index);
+            lists = listCopy;
+            await dispatch(updateListOrder(board_id, listOrder));
 
-        let listCopy = Array.from(lists);
-        const [reOrderedItem] = listCopy.splice(result.source.index, 1);
-        listCopy.splice(result.destination.index, 0, reOrderedItem);
+        } else if (result.type === 'card') {
+            
+            if (!result.destination) return;
 
-        let listOrder = {};
-        listCopy.forEach((list, index) => listOrder[list.id] = index);
-        lists = listCopy;
-        await dispatch(updateListOrder(board_id, listOrder));
+            if (result.source.droppableId === result.destination.droppableId) { // same list
+                let list = board.lists.find(list => list.id === +result.source.droppableId.slice(5));
+                let cardsCopy = Array.from(list.cards);
+                
+                const [reorderedItem] = cardsCopy.splice(result.source.index, 1);
+                cardsCopy.splice(result.destination.index, 0, reorderedItem);
+    
+                let cardOrder = {};
+                cardsCopy.forEach((card, index) => cardOrder[card.id] = [index, list.id]);
+                list.cards = cardsCopy;
+                await dispatch(updateCardOrder(board_id, cardOrder));
+            } else { // card is changing list
+                let list     = board.lists.find(list => list.id === +result.source.droppableId.slice(5));
+                let destList = board.lists.find(list => list.id === +result.destination.droppableId.slice(5));
+                let cardsCopy = [...list.cards];
+                let destCards = [...destList.cards];
+
+                const [reorderedItem] = cardsCopy.splice(result.source.index, 1);
+                destCards.splice(result.destination.index, 0, reorderedItem);
+
+                let cardOrder = {};
+                cardsCopy.forEach((card, index) => cardOrder[card.id] = [index, list.id]);
+                destCards.forEach((card, index) => cardOrder[card.id] = [index, destList.id]);
+                list.cards = cardsCopy;
+                destList.cards = destCards;
+                await dispatch(updateCardOrder(board_id, cardOrder));
+            }
+        } 
     };
 
     const createNewListDisplay = () => {
@@ -108,35 +149,42 @@ const ListsPage = () => {
 
 
     return (
-        <div className='lists__in__boards'>
-            <DragDropContext onDragEnd={handleOnDragEnd}>
-                <Droppable droppableId='list__size' direction='horizontal'>
-                    {(provided) => (
-                        <div className='list__size' {...provided.droppableProps} ref={provided.innerRef}>
-                            {lists.map((list, index) =>
-                                <Draggable draggableId={String(list.id)} key={list.id} index={index}>
-
-                                    {(provided) => {
-                                        return (
-                                            <div className='list__container' {...provided.draggableProps} ref={provided.innerRef} {...provided.dragHandleProps}>
-                                                <SingleList list={list} />
-                                                <div>
-                                                    {list.cards.map((card, index) =>
-                                                        <ListCard card={card} list={list} key={index} />
-                                                    )}
-                                                </div>
-
-                                                <AddNewCard list={list} />
-                                            </div>
-                                        )
-                                    }}
+      <div className='lists__in__boards'>
+        <DragDropContext onDragEnd={handleOnDragEnd}>
+          <Droppable droppableId='list__size' direction='horizontal' type='list'>
+            {(provided) => (
+              <div className='list__size' {...provided.droppableProps} ref={provided.innerRef}>
+                {lists.map((list, index) =>
+                <Draggable draggableId={`list-${list.id}`} key={list.id} index={index}>
+                  {(provided) => (
+                      <div className='list__container' {...provided.draggableProps} ref={provided.innerRef} {...provided.dragHandleProps}>
+                        <SingleList list={list} />
+                        <Droppable droppableId={`list-${list.id}`} direction='vertical' type='card'>
+                          {(provided) => (
+                            <div className='card-mapping' {...provided.droppableProps} ref={provided.innerRef}>
+                              {list.cards.map((card, index) =>
+                                <Draggable draggableId={`card-${card.id}`} key={`card-${card.id}`} index={index}>
+                                  {(provided) => (
+                                    <ListCard card={card} list={list} provided={provided} />
+                                  )}
                                 </Draggable>
-                            )}
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
-            </DragDropContext >
+                              )}
+                              {provided.placeholder}
+                            </div>
+                          )}
+                        </Droppable>
+
+                        <AddNewCard list={list} />
+                      </div>
+                  )}
+                </Draggable>
+                )}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext >
+
             {/* <div className='lists__in__boards'> */}
 
             < div className='list__size' >
