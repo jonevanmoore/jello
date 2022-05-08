@@ -128,7 +128,8 @@
 .description__paragraph {
     font-size: 13px;
     font-weight: 500;
-    max-height: 200px;
+    padding: 5px;
+    max-height: 120px;
     overflow: scroll;
     border: 1px solid var(--nav-bar-left-divider-color);
     border-radius: var(--main-border-radius);
@@ -241,6 +242,8 @@
 }
 
 .comments__in__list__container {
+    /* display: flex;
+    height: 100%; */
     position: relative;
     right: 40px;
     left: -30px;

@@ -32,8 +32,10 @@
     margin-left: -4px;
     /* position: absolute; */
     /* margin-left: -20px; */
-    height: 320px;
+    height: 290px;
     width: 587px;
+    flex: auto;
+    /* border: red 1px solid; */
 }
 
 .comment__by__user {
