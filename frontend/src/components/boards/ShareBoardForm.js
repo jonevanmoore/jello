@@ -17,6 +17,7 @@ export const ShareBoardForm = ({ closeShareModalFunc, boardId }) => {
             e.preventDefault()
             await dispatch(shareBoard(email, boardId))
             closeShareModalFunc()
+            setEmail('')
             setSuccessOrError('User added! Add another?')
             setSuccessOrErrorClass('success')
 
@@ -33,7 +34,7 @@ export const ShareBoardForm = ({ closeShareModalFunc, boardId }) => {
             onSubmit={handleSubmit}>
             <label style={{ color: 'gray' }}>Share this board with another user</label>
             <div style={{ position: 'absolute' }}>
-                <label className=''>{error}</label>
+                <label className={successOrErrorClass}>{successOrError}</label>
             </div>
             <input
                 className='share-board-input'
