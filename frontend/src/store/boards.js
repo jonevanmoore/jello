@@ -432,7 +432,6 @@ const boardsReducer = (state = initialState, action) => {
             })
             newState[board_id] = { ...board };
             newState[board_id].shared_users = newSharedUsers;
-            console.log(action.userId, action.currentUserId);
             if (+action.userId === +action.currentUserId){
               delete newState[board_id];
             }
