@@ -29,8 +29,10 @@ export const ShareBoardForm = ({ closeShareModalFunc, boardId }) => {
                 placeholder='Enter Email'
             >
             </input>
-            <button className='jello-wiggle'>Share</button>
-            <button onClick={closeShareModalFunc} className='jello-wiggle'>Cancel</button>
+            <div className='share-form-btns'>
+                <button className='jello-wiggle'>Share</button>
+                <button onClick={closeShareModalFunc} className='jello-wiggle'>Cancel</button>
+            </div>
         </form>
     )
 }

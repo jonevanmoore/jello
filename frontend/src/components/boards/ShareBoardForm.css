@@ -1,4 +1,8 @@
-.share-board-form {}
+.share-board-form {
+    background-color: white;
+    border-radius: 3px;
+
+}
 
 .share-board-form>* {
     margin-left: 1px;
@@ -13,4 +17,8 @@
 .share-board-input {
     border: 1px solid transparent;
     border-radius: 3px;
+}
+
+.share-form-btns {
+    display: flex;
 }
