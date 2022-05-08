@@ -11,7 +11,10 @@
 
 .card__container__in_card {
     width: 600px;
-    height: 760px;
+    height: 730px;
+    overflow: scroll;
+    /* margin-top: 15px; */
+
 }
 
 .card__title__container__in_card {
@@ -22,6 +25,10 @@
     display: flex;
     justify-content: space-between;
     margin-right: 20px;
+}
+
+.display__comments {
+    height: 388px;
 }
 
 .edit__bts__in__card {
@@ -163,8 +170,7 @@
 
 .del__card__btn__container {
     float: right;
-    margin-right: 15px;
-    margin-bottom: 10px;
+    margin: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -242,8 +248,6 @@
 }
 
 .comments__in__list__container {
-    /* display: flex;
-    height: 100%; */
     position: relative;
     right: 40px;
     left: -30px;
