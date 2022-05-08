@@ -7,7 +7,8 @@ export const ShareBoardForm = ({ closeShareModalFunc, boardId }) => {
     const dispatch = useDispatch()
 
     const [email, setEmail] = useState('')
-    const [error, setError] = useState('')
+    const [successOrError, setSuccessOrError] = useState('')
+    const [successOrErrorClass, setSuccessOrErrorClass] = useState('')
     const stopTheProp = e => e.stopPropagation();
 
 
@@ -16,8 +17,12 @@ export const ShareBoardForm = ({ closeShareModalFunc, boardId }) => {
             e.preventDefault()
             await dispatch(shareBoard(email, boardId))
             closeShareModalFunc()
+            setSuccessOrError('User added! Add another?')
+            setSuccessOrErrorClass('success')
+
         } catch {
-            setError('Unable to find user')
+            setSuccessOrError('Unable to find user')
+            setSuccessOrErrorClass('error')
         }
     }
 
@@ -28,7 +33,7 @@ export const ShareBoardForm = ({ closeShareModalFunc, boardId }) => {
             onSubmit={handleSubmit}>
             <label style={{ color: 'gray' }}>Share this board with another user</label>
             <div style={{ position: 'absolute' }}>
-                <label>{error}</label>
+                <label className=''>{error}</label>
             </div>
             <input
                 className='share-board-input'
