@@ -124,12 +124,13 @@ const OneBoard = () => {
                             <div className='board-nav-left-divider' />
                             <div className='shared__with'>
                                 <UserIcon size={20} givenUser={board.user} />
-                                {board?.shared_users.map((user, i) => (
-                                    <ConfirmationModal  message={`Are you sure you want to revoke this board from ${user.first_name} ${user.last_name}?`}
+                                {board?.shared_users.map((aUser, i) => (
+                                    <ConfirmationModal  message={ user.id === aUser.id ? "Are you sure you wish to remove yourself from this board?"
+                                                                  :`Are you sure you want to revoke this board from ${aUser.first_name} ${aUser.last_name}?`}
                                                         actionButtonLabel="Revoke Board"
-                                                        func={revokeBoardFuncForUser(user.id)}> 
+                                                        func={revokeBoardFuncForUser(aUser.id)}> 
                                         <UserIcon size={20} 
-                                                  givenUser={user} 
+                                                  givenUser={aUser} 
                                                   isNavIcon={true} 
                                                   key={i} 
                                                   isShareIcon={true} />
