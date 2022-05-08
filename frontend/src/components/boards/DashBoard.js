@@ -146,13 +146,13 @@ const DashBoard = () => {
                                 <BoardCard board={board} key={i} />
                             )}
                         </ul>
-                        {showModal && (
-                            <Modal closeModalFunc={closeModalFunc}>
-                                <NewBoardForm closeModalFunc={closeModalFunc} />
-                            </Modal>
-                        )}
                     </div>
                 </div>
+                {showModal && (
+                    <Modal closeModalFunc={closeModalFunc}>
+                        <NewBoardForm closeModalFunc={closeModalFunc} />
+                    </Modal>
+                )}
             </div>
         </>
     );
