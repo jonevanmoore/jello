@@ -17,8 +17,10 @@
 .share-board-input {
     border: 1px solid lightgray;
     border-radius: 3px;
-    width: 90%;
+    width: 88%;
     margin-top: 10px;
+    position: relative;
+    left: 4px;
 }
 
 .share-form-btns {
