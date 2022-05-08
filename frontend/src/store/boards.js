@@ -413,13 +413,26 @@ const boardsReducer = (state = initialState, action) => {
             return newState;
         case CLEAR_BOARDS:
             return {};
-        case SHARE_BOARD:
+        case SHARE_BOARD: {
             let board_id = action.boardId;
             let board = newState[board_id];
             let shared_users = board.shared_users;
             newState[board_id] = { ...board };
             newState[board_id].shared_users = [...shared_users, action.user]
             return newState;
+        }
+        case REVOKE_BOARD: {
+            let board_id = action.boardId;
+            let board = newState[action.boardId]; 
+            let shared_users = board.shared_users;
+            let newSharedUsers = [];
+            shared_users.forEach( user => {
+              if(user.id !== +action.userId) newSharedUsers.push(user) 
+            })
+            newState[board_id] = { ...board };
+            newState[board_id].shared_users = newSharedUsers;
+            return newState;
+        }
         case CREATE_LIST: {
             let board_id = action.list.board_id
             let board = newState[board_id];
