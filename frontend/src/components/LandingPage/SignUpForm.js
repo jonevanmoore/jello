@@ -188,7 +188,7 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
         ></input>
         <div style={{ marginTop: "10px", position: "absolute" }}>
           {errors.map((error, i) => (
-            <div key={i} style={{ position: "relative", top: "410px", fontWeight: "lighter", color: "#af100b" }}>{error.split(': ')[1]}</div>
+            <div key={i} style={{ position: "relative", top: "414px", fontWeight: "lighter", color: "#af100b" }}>{error.split(': ')[1]}</div>
           ))}
         </div>
         <button
