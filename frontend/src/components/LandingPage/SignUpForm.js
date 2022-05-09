@@ -55,13 +55,6 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
     } else {
       setEmailError('invalid')
     }
-
-    // if (errors.length >= 1) {
-    //   setUsedEmail(email)
-    // } else {
-    //   setUsedEmail('')
-    // }
-
     if (usedEmail === email) {
       setEmailError("invalid")
     }
