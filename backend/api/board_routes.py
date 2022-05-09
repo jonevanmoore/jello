@@ -29,8 +29,13 @@ def read_all_boards():
 
 # R E A D  O N E  B O A R D
 @board_routes.route('/<int:id>', methods=['GET'])
+@login_required
 def read_one_board(id):
     board = Board.query.get(id)
+    
+    if( board.user_id != current_user.id and current_user.id not in [user.id for user in board.shared_users] ):
+        return {'errors': ['Access denied']}, 401
+
     return board.to_dict()
 
 # C R E A T E  B O A R D

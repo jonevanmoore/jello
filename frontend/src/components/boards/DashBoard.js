@@ -9,10 +9,25 @@ import NewBoardForm from '../boards/NewBoardForm';
 
 import { readBoards } from '../../store/boards';
 
-
-
 import './Boards.css';
 import './BoardsNavbar.css';
+
+const BoardSidebarCard = ({ board }) => {
+  return (
+      <li className="boards__list__elements" key={board.id}>
+          <NavLink style={{ textDecoration: 'none' }} to={`/boards/${board.id}`}>
+              <div className='vertical__list__boards'>
+                  <div className='color__square jello__wiggle'
+                      style={{ backgroundColor: avatars[board.avatar_id].color }}
+                  />
+                  <div className='vertical__boards__names jello__wiggle'>
+                      {board.title}
+                  </div>
+              </div>
+          </NavLink>
+      </li>
+  )
+}
 
 const BoardCard = ({ board }) => {
     return (
@@ -88,29 +103,29 @@ const DashBoard = () => {
                         </div>
                     </div>
                     <div className='your__boards__PLUS'>
-                        <div>
-                            Your Boards
-                        </div>
-                        {/* <div>
-                            +
-                        </div> */}
+                      <div>
+                        Your Boards
+                      </div>
                     </div>
                     <div>
-                        {boardsOwned.map(board =>
-                            <li className="boards__list__elements" key={board.id}>
-                                <NavLink style={{ textDecoration: 'none' }} to={`/boards/${board.id}`}>
-                                    <div className='vertical__list__boards'>
-                                        <div className='color__square jello__wiggle'
-                                            style={{ backgroundColor: avatars[board.avatar_id].color }}
-                                        />
-                                        <div className='vertical__boards__names jello__wiggle'>
-                                            {board.title}
-                                        </div>
-                                    </div>
-                                </NavLink>
-                            </li>
+                        {boardsOwned.map((board, i) =>
+                          <BoardSidebarCard key={i} board={board} />
                         )}
                     </div>
+                  {boardsShared.length > 0 &&
+                    <>
+                    <div className='your__boards__PLUS' style={{marginTop: "20px"}} >
+                      <div >
+                        Shared Boards
+                      </div>
+                    </div>
+                    <div>
+                        {boardsShared.map((board, i) =>
+                          <BoardSidebarCard key={i} board={board} />
+                        )}
+                    </div>
+                    </>
+                  }
                 </div>
                 <div className='body__boards'>
                     <div className='bg__avatar__image'>

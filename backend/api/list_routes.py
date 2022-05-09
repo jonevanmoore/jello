@@ -11,9 +11,6 @@ list_routes = Blueprint('lists', __name__)
 def update_list(id):
     list = List.query.get(id)
 
-    if list.user_id != current_user.id:
-        return {'errors': "Unauthorized edit"}, 401
-
     list.title = request.json['title']
     list.order = request.json['order']
 
@@ -32,9 +29,6 @@ def update_list(id):
 @login_required
 def delete_list(id):
     list = List.query.get(id)
-
-    if list.user_id != current_user.id:
-        return {'errors': "Unauthorized delete"}, 401
 
     db.session.delete(list)
     db.session.commit()

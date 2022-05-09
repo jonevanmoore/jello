@@ -13,8 +13,26 @@ import { avatars } from '../../context/Avatar';
 import './Boards.css';
 import './OneBoard.css';
 
+
+const BoardSidebarCard = ({ board }) => {
+  return (
+      <li className="boards__list__elements" key={board.id}>
+          <NavLink style={{ textDecoration: 'none' }} to={`/boards/${board.id}`}>
+              <div className='vertical__list__boards'>
+                  <div className='color__square jello__wiggle'
+                      style={{ backgroundColor: avatars[board.avatar_id].color }}
+                  />
+                  <div className='vertical__board__names jello__wiggle'>
+                      {board.title}
+                  </div>
+              </div>
+          </NavLink>
+      </li>
+  )
+}
+
 const OneBoard = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
     const history = useHistory();
     const { board_id } = useParams();
     const user = useSelector(state => state.session?.user);
@@ -22,12 +40,16 @@ const OneBoard = () => {
     const board = useSelector(state => state.boards[board_id]);
     const [showEditModal, setShowEditModal] = useState(false);
     const [showShareModal, setShowShareModal] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     const boardsOwned = [];
+    const boardsShared = [];
 
     Object.values(boards).forEach(board => {
         if (board.user_id === user.id) {
             boardsOwned.push(board);
+        } else {
+            boardsShared.push(board);
         }
     });
 
@@ -36,7 +58,11 @@ const OneBoard = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        dispatch(readOneBoard(board_id));
+        const aFunc = async () => {
+          await dispatch(readOneBoard(board_id));
+          setIsLoaded(true);
+        }
+        aFunc();
     }, [dispatch, board_id]);
 
     const deleteOneBoard = async (board) => {
@@ -45,7 +71,11 @@ const OneBoard = () => {
     };
 
     //    if (!boards) return null;
-    if (!board) return null;
+    if (!board) {
+      if( isLoaded )
+        history.push('/boards');
+      return null;
+    };
 
     const showEditModalFunc = () => setShowEditModal(true);
     const closeEditModalFunc = () => setShowEditModal(false);
@@ -55,7 +85,7 @@ const OneBoard = () => {
 
     // this is a closure
     const revokeBoardFuncForUser = userId => async e => {
-      dispatch(revokeBoard(board_id, userId));
+      dispatch(revokeBoard(board_id, userId, user.id));
     };
 
     return (
@@ -76,26 +106,26 @@ const OneBoard = () => {
                         <div>
                             Your Boards
                         </div>
-                        {/* <div>
-                            +
-                        </div> */}
                     </div>
                     <div>
                         {boardsOwned.map(board =>
-                            <li className="boards__list__elements" key={board.id}>
-                                <NavLink style={{ textDecoration: 'none' }} to={`/boards/${board.id}`}>
-                                    <div className='vertical__list__boards'>
-                                        <div className='color__square jello__wiggle'
-                                            style={{ backgroundColor: avatars[board.avatar_id].color }}
-                                        />
-                                        <div className='vertical__board__names jello__wiggle'>
-                                            {board.title}
-                                        </div>
-                                    </div>
-                                </NavLink>
-                            </li>
+                          <BoardSidebarCard board={board} />
                         )}
                     </div>
+                  {boardsShared.length > 0 &&
+                    <>
+                    <div className='your__boards__PLUS' style={{marginTop:"20px"}}>
+                        <div>
+                            Shared Boards
+                        </div>
+                    </div>
+                    <div>
+                        {boardsShared.map(board =>
+                          <BoardSidebarCard board={board} />
+                        )}
+                    </div>
+                    </>
+                  }
                 </div>
                 <div className='board-nav-bar-length'>
                     <div className='board-nav-bar'>
@@ -160,6 +190,7 @@ const OneBoard = () => {
                                                actionButtonLabel="Delete Board"
                                                func={()=>deleteOneBoard(board)}>
                               <button
+                                style={{marginRight: "12px"}}
                                 id='gray__board__button'
                                 className='
                                 jello__wiggle
