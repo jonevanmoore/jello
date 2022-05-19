@@ -25,6 +25,7 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
   const [passError, setPassError] = useState('invalid')
   const [confirmPassError, setConfirmPassError] = useState('invalid')
   const [submitError, setSubmitError] = useState('disabled')
+  const [usedEmail, setUsedEmail] = useState('')
 
   useEffect(() => {
     //FIRST NAME
@@ -54,6 +55,9 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
     } else {
       setEmailError('invalid')
     }
+    if (usedEmail === email) {
+      setEmailError("invalid")
+    }
 
     //PASS
     if (password.length > 2 && password.length < 256) {
@@ -74,6 +78,7 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
       lastName.length > 0 && lastName.length < 101 &&
       avatarId > 0 &&
       email.length > 4 && email.length < 256 &&
+      usedEmail !== email &&
       password.length > 2 && password.length < 256 &&
       repeatPassword === password && repeatPassword.length > 0) {
       setSubmitError('able')
@@ -81,7 +86,7 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
       setSubmitError('disabled')
     }
 
-  }, [firstName, lastName, avatarId, email, password, repeatPassword])
+  }, [firstName, lastName, avatarId, email, password, repeatPassword, errors, usedEmail])
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -89,6 +94,7 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
       const data = await dispatch(signUp(firstName, lastName, avatarId, email, password));
       if (data) {
         setErrors(data)
+        setUsedEmail(email)
       }
     }
   };
@@ -180,9 +186,9 @@ const SignUpForm = ({ closeModalFunc, toggleLoginSignupFunc }) => {
           value={repeatPassword}
           required={true}
         ></input>
-        <div style={{marginTop: "10px"}}>
+        <div style={{ marginTop: "10px", position: "absolute" }}>
           {errors.map((error, i) => (
-            <div key={i}>{error}</div>
+            <div key={i} style={{ position: "relative", top: "410px", fontWeight: "lighter", color: "#af100b" }}>{error.split(': ')[1]}</div>
           ))}
         </div>
         <button

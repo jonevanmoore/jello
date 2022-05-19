@@ -42,6 +42,10 @@ function App() {
         <ProtectedRoute path={`/boards/:board_id`} exact={true}>
           <OneBoard />
         </ProtectedRoute>
+
+        <Route>
+          {sessionUser ? <Redirect to='/boards' /> : <Redirect to='/home' />}
+        </Route>
       </Switch>
     </BrowserRouter>
   );
