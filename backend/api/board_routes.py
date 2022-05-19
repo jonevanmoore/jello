@@ -11,15 +11,17 @@ board_routes = Blueprint('boards', __name__)
 @board_routes.route('/', methods = [ 'GET' ])
 @login_required
 def read_all_boards():
-    boards = Board.query.filter(Board.user_id == current_user.id).all()
-    stmt = db.select(Board).join(Board.shared_users).where(db.text(f"users_boards_1.user_id = {current_user.id}"))
+    print('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
+    boards = db.session.execute( db.select(Board).options(db.joinedload('*')).where(Board.user_id == current_user.id) ).unique()
+#    boards = Board.query.filter(Board.user_id == current_user.id).all()
+    stmt = db.select(Board).join(Board.shared_users).options(db.joinedload('*')).where(db.text(f"users_boards_1.user_id = {current_user.id}"))
 #    print('---------------------------------')
 #    print(stmt);
 #    print('---------------------------------')
-    shared_boards = db.session.execute(stmt);
+    shared_boards = db.session.execute(stmt).unique();
    # for board in shared_boards:
    #     print(board[0].to_dict())
-    boards_list = [b.to_dict() for b in boards]
+    boards_list = [b[0].to_dict() for b in boards]
     shared_boards_list =  [b[0].to_dict() for b in shared_boards]
 #    print(boards_list + shared_boards_list)
 
